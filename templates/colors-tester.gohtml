@@ -1,0 +1,96 @@
+{{define "colors-tester"}}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta name='color-scheme' content='dark light'>
+        <title>Color Tester</title>
+        {{template "css-colors"}}
+        {{template "css-units"}}
+        {{template "css-base"}}
+        <style>
+            body {
+                margin: var(--large)
+            }
+
+            section#colors {
+                display: grid;
+                grid-template-columns: repeat(8, 200px);
+                gap: var(--normal);
+            }
+
+            div.color {
+                font-size: var(--fs-normal);
+                padding: var(--small);
+                border-radius: var(--br-normal);
+            }
+        </style>
+    </head>
+    <body>
+    <section id="colors"></section>
+    </body>
+    </html>
+    <script>
+
+        let parseColor = (c) => {
+            let m = c.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+            if( m) return [m[1],m[2],m[3]];
+        }
+
+        let luminance = (c) => {
+            let s = []
+		    // Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+            for(var i=0; i<3; i++) {
+                var rgb = c[i];
+                rgb /= 255;
+                rgb = rgb < .03928 ? rgb / 12.92 : Math.pow((rgb + .055) / 1.055, 2.4);
+                s[i] = rgb;
+            }
+		    return .2126 * s[0] + .7152 * s[1] + 0.0722 * s[2];
+	    }
+
+	    let contrastRatio = (c1, c2) => {
+	        var l1 = luminance(c1) + .05, l2 = luminance(c2) + .05,
+			ratio = l1/l2;
+			if (l2 > l1) {
+				ratio = 1 / ratio;
+			}
+            return ratio
+	    }
+
+        let colorToken = (c) => {
+            if (c === "background") {
+                return "var(--background-color)"
+            }
+            if (c === "white" || c === "black") {
+                return c
+            }
+            return "var(--c-"+c+")";
+        }
+
+        const colorTokens = ["background", "white", "black", "red", "pink", "purple", "deep-purple", "indigo", "blue", "light-blue", "cyan", "teal", "green", "light-green", "lime", "yellow", "amber", "orange", "deep-orange", "brown"];
+        let sectionColors = document.getElementById("colors");
+
+        for (bg of colorTokens) {
+            for (fg of colorTokens) {
+                if (bg === fg) {
+                    continue;
+                }
+                let elem = document.createElement("div");
+                elem.className = "color";
+                elem.textContent = fg;
+                elem.style.backgroundColor = colorToken(bg);
+                elem.style.color = colorToken(fg);
+
+                sectionColors.appendChild(elem);
+
+                cs = getComputedStyle(elem);
+                bgc = cs.backgroundColor;
+                fgc = cs.color;
+                elem.textContent += " " + contrastRatio(parseColor(fgc),parseColor(bgc)).toFixed(1);
+            }
+        }
+
+    </script>
+{{end}}
