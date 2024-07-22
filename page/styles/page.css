@@ -1,0 +1,14 @@
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+body {
+    margin: 0;
+}
+
+* {
+    font-family: -apple-system, sans-serif;
+}
