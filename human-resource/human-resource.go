@@ -4,7 +4,6 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/web-components"
 	"io"
 )
 
@@ -20,7 +19,7 @@ var (
 )
 
 type HumanResource struct {
-	wcr        *web_components.Registrar
+	wcr        compton.Registrar
 	FirstName  string
 	LastName   string
 	Department string
@@ -32,7 +31,7 @@ func (hr *HumanResource) Add(_ ...compton.Component) {
 
 func (hr *HumanResource) Write(w io.Writer) error {
 
-	if err := hr.wcr.Register(elementName, markupTemplate, web_components.Closed, w); err != nil {
+	if err := hr.wcr.Register(elementName, markupTemplate, compton.Closed, w); err != nil {
 		return err
 	}
 
@@ -63,7 +62,7 @@ func (hr *HumanResource) writeHumanResourceFragment(t string, w io.Writer) error
 	return nil
 }
 
-func New(wcr *web_components.Registrar, firstName, lastName, department string) compton.Component {
+func New(wcr compton.Registrar, firstName, lastName, department string) compton.Component {
 	return &HumanResource{
 		wcr:        wcr,
 		FirstName:  firstName,

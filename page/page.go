@@ -10,6 +10,8 @@ import (
 var (
 	//go:embed "markup/page.html"
 	markupPage []byte
+	//go:embed "markup/define_script.html"
+	markupDefineScript []byte
 )
 
 var (
@@ -23,6 +25,7 @@ var (
 
 type Page struct {
 	compton.Parent
+	registry     map[string]any
 	Title        string
 	CustomStyles []byte
 }
@@ -75,8 +78,44 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func New(title string) compton.Component {
+func (p *Page) Register(name string, template []byte, mode compton.EncapsulationMode, w io.Writer) error {
+
+	if _, ok := p.registry[name]; ok {
+		return nil
+	}
+
+	if err := compton.WriteContents(
+		bytes.NewReader(markupDefineScript), w,
+		func(token string, w io.Writer) error {
+			switch token {
+			case ".ElementName":
+				if _, err := io.WriteString(w, name); err != nil {
+					return err
+				}
+			case ".Mode":
+				if _, err := io.WriteString(w, string(mode)); err != nil {
+					return err
+				}
+			default:
+				return compton.ErrUnknownToken(token)
+			}
+			return nil
+		}); err != nil {
+		return err
+	}
+
+	if _, err := w.Write(template); err != nil {
+		return err
+	}
+
+	p.registry[name] = nil
+
+	return nil
+}
+
+func New(title string) *Page {
 	return &Page{
-		Title: title,
+		registry: make(map[string]any),
+		Title:    title,
 	}
 }

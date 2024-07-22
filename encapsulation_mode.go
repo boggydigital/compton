@@ -1,4 +1,4 @@
-package web_components
+package compton
 
 type EncapsulationMode string
 
