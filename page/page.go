@@ -3,7 +3,6 @@ package page
 import (
 	"bytes"
 	_ "embed"
-	"fmt"
 	"github.com/boggydigital/compton"
 	"io"
 )
@@ -14,17 +13,13 @@ var (
 )
 
 var (
-	//go:embed "styles/colors.css"
+	//go:embed "style/colors.css"
 	styleColors []byte
-	//go:embed "styles/units.css"
+	//go:embed "style/units.css"
 	styleUnits []byte
-	//go:embed "styles/page.css"
+	//go:embed "style/page.css"
 	stylePages []byte
 )
-
-func ErrUnknownToken(t string) error {
-	return fmt.Errorf("unknown token: %s", t)
-}
 
 type Page struct {
 	compton.Parent
@@ -41,10 +36,10 @@ func (p *Page) AddCustomStyles(customStyles []byte) {
 }
 
 func (p *Page) Write(w io.Writer) error {
-	return compton.WriteContents(bytes.NewReader(markupPage), w, p.writePageFragment)
+	return compton.WriteContents(bytes.NewReader(markupPage), w, p.writeFragment)
 }
 
-func (p *Page) writePageFragment(t string, w io.Writer) error {
+func (p *Page) writeFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
 		if _, err := io.WriteString(w, p.Title); err != nil {
@@ -75,7 +70,7 @@ func (p *Page) writePageFragment(t string, w io.Writer) error {
 			}
 		}
 	default:
-		return ErrUnknownToken(t)
+		return compton.ErrUnknownToken(t)
 	}
 	return nil
 }

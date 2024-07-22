@@ -1,0 +1,11 @@
+<script>
+    customElements.define("{{.ElementName}}",
+        class extends HTMLElement {
+            constructor() {
+                super();
+                const template = document.getElementById("{{.ElementName}}-template").content;
+                this.attachShadow({ mode: "{{.Mode}}" }).appendChild(template.cloneNode(true));
+            }
+        }
+    );
+</script>

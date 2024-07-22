@@ -1,0 +1,20 @@
+<template id="human-resource-template">
+    <style>
+        span.title {
+            font-weight: var(--fw-bolder);
+        }
+
+        ul {
+            list-style: none;
+            padding: var(--normal);
+            border-radius: var(--br-normal);
+            background-color: var(--highlight-color);
+            margin: var(--normal)
+        }
+    </style>
+    <ul>
+        <li><span class="title">First name:</span> <slot name="first-name">First name</slot></li>
+        <li><span class="title">Last name:</span> <slot name="last-name">Last name</slot></li>
+        <li><span class="title">Department:</span> <slot name="department">Department</slot></li>
+    </ul>
+</template>
