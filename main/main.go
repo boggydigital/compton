@@ -9,16 +9,14 @@ import (
 	"path/filepath"
 )
 
-var ()
-
 func main() {
 
 	p := page.New("test")
 
-	p.Add(human_resource.New(p, "John", "Smith", "Sales"))
-	p.Add(human_resource.New(p, "Mike", "Jones", "Marketing"))
-	p.Add(human_resource.New(p, "Brian", "Paul", "Security"))
-	p.Add(human_resource.New(p, "Fiona", "Apple", "Capital"))
+	p.Append(human_resource.New(p, "John", "Smith", "Sales"))
+	p.Append(human_resource.New(p, "Mike", "Jones", "Marketing"))
+	p.Append(human_resource.New(p, "Brian", "Paul", "Security"))
+	p.Append(human_resource.New(p, "Fiona", "Apple", "Capital"))
 
 	tempPath := filepath.Join(os.TempDir(), "test.html")
 	tempFile, err := os.Create(tempPath)

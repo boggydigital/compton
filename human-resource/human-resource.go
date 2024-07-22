@@ -25,7 +25,7 @@ type HumanResource struct {
 	Department string
 }
 
-func (hr *HumanResource) Add(_ ...compton.Component) {
+func (hr *HumanResource) Append(_ ...compton.Component) {
 	// do nothing
 }
 

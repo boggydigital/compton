@@ -3,7 +3,6 @@ package compton
 import "io"
 
 type Component interface {
-	Add(children ...Component)
-	//AddCustomStyles(styles []byte)
+	Append(children ...Component)
 	Write(w io.Writer) error
 }

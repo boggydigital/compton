@@ -30,8 +30,8 @@ type Page struct {
 	CustomStyles []byte
 }
 
-func (p *Page) Add(children ...compton.Component) {
-	p.Parent.Add(children...)
+func (p *Page) Append(children ...compton.Component) {
+	p.Parent.Append(children...)
 }
 
 func (p *Page) AddCustomStyles(customStyles []byte) {

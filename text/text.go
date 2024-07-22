@@ -9,7 +9,7 @@ type Text struct {
 	content string
 }
 
-func (t *Text) Add(_ ...compton.Component) {
+func (t *Text) Append(_ ...compton.Component) {
 	// do nothing
 }
 
