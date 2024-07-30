@@ -59,3 +59,14 @@ func WriteContents(r io.Reader, w io.Writer, wd TokenWriter) error {
 
 	return nil
 }
+
+//type stringWriter string
+//
+//func (sw stringWriter) write(_ string, w io.Writer) error {
+//	_, err := io.WriteString(w, string(sw))
+//	return err
+//}
+//
+//func WriteString(r io.Reader, w io.Writer, s string) error {
+//	return WriteContents(r, w, stringWriter(s).write)
+//}

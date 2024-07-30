@@ -3,8 +3,8 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	human_resource "github.com/boggydigital/compton/human-resource"
 	"github.com/boggydigital/compton/page"
+	"github.com/boggydigital/compton/table"
 	"os"
 	"path/filepath"
 )
@@ -13,10 +13,29 @@ func main() {
 
 	p := page.New("test")
 
-	p.Append(human_resource.New(p, "John", "Smith", "Sales"))
-	p.Append(human_resource.New(p, "Mike", "Jones", "Marketing"))
-	p.Append(human_resource.New(p, "Brian", "Paul", "Security"))
-	p.Append(human_resource.New(p, "Fiona", "Apple", "Capital"))
+	t := table.New(p, "")
+	t.AppendHead("Property", "Value")
+	t.AppendRow("Name", "John")
+	t.AppendRow("Last Name", "Smith")
+
+	//thead := table.NewHead().Append(
+	//	table.NewTh().Append(text.New("Property")),
+	//	table.NewTh().Append(text.New("Value")),
+	//)
+
+	//tbody := table.NewBody().Append(
+	//	table.NewTr().Append(
+	//		table.NewTd().Append(text.New("Name")),
+	//		table.NewTd().Append(text.New("John")),
+	//	),
+	//	table.NewTr().Append(
+	//		table.NewTd().Append(text.New("Last Name")),
+	//		table.NewTd().Append(text.New("Smith")),
+	//	),
+	//)
+	//t.Append(tbody)
+
+	p.Append(t)
 
 	tempPath := filepath.Join(os.TempDir(), "test.html")
 	tempFile, err := os.Create(tempPath)

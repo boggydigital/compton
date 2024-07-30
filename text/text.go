@@ -9,12 +9,9 @@ type Text struct {
 	content string
 }
 
-func (t *Text) Append(_ ...compton.Component) {
+func (t *Text) Append(_ ...compton.Component) compton.Component {
 	// do nothing
-}
-
-func (t *Text) AddCustomStyles(_ []byte) {
-	// do nothing
+	return nil
 }
 
 func (t *Text) Write(w io.Writer) error {

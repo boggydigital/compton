@@ -21,6 +21,8 @@ var (
 	styleUnits []byte
 	//go:embed "style/page.css"
 	stylePages []byte
+	//go:embed "style/elements.css"
+	styleElements []byte
 )
 
 type Page struct {
@@ -30,8 +32,9 @@ type Page struct {
 	CustomStyles []byte
 }
 
-func (p *Page) Append(children ...compton.Component) {
+func (p *Page) Append(children ...compton.Component) compton.Component {
 	p.Parent.Append(children...)
+	return p
 }
 
 func (p *Page) AddCustomStyles(customStyles []byte) {
@@ -60,6 +63,10 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 		if _, err := w.Write(stylePages); err != nil {
 			return err
 		}
+	case ".StyleElements":
+		if _, err := w.Write(styleElements); err != nil {
+			return err
+		}
 	case ".StyleCustom":
 		if len(p.CustomStyles) > 0 {
 			if _, err := w.Write(p.CustomStyles); err != nil {
@@ -78,7 +85,7 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (p *Page) Register(name string, template []byte, mode compton.EncapsulationMode, w io.Writer) error {
+func (p *Page) Register(name, extends string, template []byte, mode compton.EncapsulationMode, w io.Writer) error {
 
 	if _, ok := p.registry[name]; ok {
 		return nil
@@ -90,6 +97,10 @@ func (p *Page) Register(name string, template []byte, mode compton.Encapsulation
 			switch token {
 			case ".ElementName":
 				if _, err := io.WriteString(w, name); err != nil {
+					return err
+				}
+			case ".ExtendsElement":
+				if _, err := io.WriteString(w, extends); err != nil {
 					return err
 				}
 			case ".Mode":
