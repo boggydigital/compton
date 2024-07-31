@@ -6,12 +6,6 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/text"
 	"io"
-	"strings"
-)
-
-const (
-	elementName    = "c-table"
-	extendsElement = "HTMLTableElement"
 )
 
 var (
@@ -19,11 +13,8 @@ var (
 	markupTable []byte
 )
 
-type tableRow []string
-
 type Table struct {
 	compton.Parent
-	wcr       compton.Registrar
 	Id        string
 	ClassList []string
 }
@@ -33,7 +24,7 @@ func (tbl *Table) Append(children ...compton.Component) compton.Component {
 	return tbl
 }
 
-func (t *Table) AppendHead(columns ...string) {
+func (t *Table) AppendHead(columns ...string) *Table {
 
 	// assuming the first element to be thead, or create a new one
 	// if table has no children
@@ -46,9 +37,11 @@ func (t *Table) AppendHead(columns ...string) {
 		th := NewTh().Append(text.New(col))
 		thead.Append(th)
 	}
+
+	return t
 }
 
-func (t *Table) AppendRow(data ...string) {
+func (t *Table) AppendRow(data ...string) *Table {
 
 	// assuming the second element to be tbody, or create a new one
 	// if table has fewer than 2 children
@@ -56,12 +49,14 @@ func (t *Table) AppendRow(data ...string) {
 	if len(t.Children) < 2 {
 		t.Append(NewBody())
 	}
-	tbody := t.Children[1]
+	tbody := t.Children[len(t.Children)-1]
 	tr := NewTr()
 	for _, col := range data {
 		tr.Append(NewTd().Append(text.New(col)))
 	}
 	tbody.Append(tr)
+
+	return t
 }
 
 func (tbl *Table) Write(w io.Writer) error {
@@ -72,13 +67,13 @@ func (tbl *Table) writeTableFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Id":
 		if tbl.Id != "" {
-			if _, err := w.Write([]byte(tbl.Id)); err != nil {
+			if err := compton.WriteId(w, tbl.Id); err != nil {
 				return err
 			}
 		}
 	case ".ClassList":
 		if len(tbl.ClassList) > 0 {
-			if _, err := w.Write([]byte(strings.Join(tbl.ClassList, " "))); err != nil {
+			if err := compton.WriteClassList(w, tbl.ClassList...); err != nil {
 				return err
 			}
 		}
@@ -94,6 +89,6 @@ func (tbl *Table) writeTableFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func New(wcr compton.Registrar, id string, classList ...string) *Table {
-	return &Table{wcr: wcr, Id: id, ClassList: classList}
+func New(id string, classList ...string) *Table {
+	return &Table{Id: id, ClassList: classList}
 }

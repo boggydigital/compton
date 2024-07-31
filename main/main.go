@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton/heading"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
 	"os"
@@ -11,12 +12,15 @@ import (
 
 func main() {
 
-	p := page.New("test")
+	p := page.New("test", "🤔")
 
-	t := table.New(p, "")
-	t.AppendHead("Property", "Value")
-	t.AppendRow("Name", "John")
-	t.AppendRow("Last Name", "Smith")
+	p.Append(heading.NewText("Heading 1", 1, ""))
+
+	p.Append(
+		table.New("test-table").
+			AppendHead("Property", "Value", "Another one").
+			AppendRow("Name", "John", "two").
+			AppendRow("Last Name", "Smith", "three"))
 
 	//thead := table.NewHead().Append(
 	//	table.NewTh().Append(text.New("Property")),
@@ -34,8 +38,6 @@ func main() {
 	//	),
 	//)
 	//t.Append(tbody)
-
-	p.Append(t)
 
 	tempPath := filepath.Join(os.TempDir(), "test.html")
 	tempFile, err := os.Create(tempPath)

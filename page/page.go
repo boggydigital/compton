@@ -29,6 +29,7 @@ type Page struct {
 	compton.Parent
 	registry     map[string]any
 	Title        string
+	FavIconEmoji string
 	CustomStyles []byte
 }
 
@@ -49,6 +50,10 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
 		if _, err := io.WriteString(w, p.Title); err != nil {
+			return err
+		}
+	case ".FavIconEmoji":
+		if _, err := io.WriteString(w, p.FavIconEmoji); err != nil {
 			return err
 		}
 	case ".StyleColors":
@@ -124,9 +129,10 @@ func (p *Page) Register(name, extends string, template []byte, mode compton.Enca
 	return nil
 }
 
-func New(title string) *Page {
+func New(title, favIconEmoji string) *Page {
 	return &Page{
-		registry: make(map[string]any),
-		Title:    title,
+		registry:     make(map[string]any),
+		Title:        title,
+		FavIconEmoji: favIconEmoji,
 	}
 }
