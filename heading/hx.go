@@ -15,7 +15,7 @@ var (
 )
 
 type Heading struct {
-	compton.AP
+	compton.BaseElement
 	level int
 }
 
@@ -29,15 +29,11 @@ func (h *Heading) writeHeadingFragment(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, strconv.Itoa(h.level)); err != nil {
 			return err
 		}
-	case ".Attributes":
-		if err := h.Attributes.Write(w); err != nil {
+	case compton.AttributesToken:
+		fallthrough
+	case compton.ContentToken:
+		if err := h.BaseElement.WriteFragment(t, w); err != nil {
 			return err
-		}
-	case ".Content":
-		for _, child := range h.Children {
-			if err := child.Write(w); err != nil {
-				return err
-			}
 		}
 	default:
 		return compton.ErrUnknownToken(t)

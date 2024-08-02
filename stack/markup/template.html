@@ -1,0 +1,10 @@
+<template id="c-stack-template">
+    <style>
+        div {
+            display: flex;
+            flex-direction: column;
+            gap: var({{.Spacing}});
+        }
+    </style>
+    <div><slot id="elements">Elements</slot></div>
+</template>

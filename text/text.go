@@ -6,7 +6,7 @@ import (
 )
 
 type Text struct {
-	compton.AP
+	compton.BaseElement
 	content string
 }
 

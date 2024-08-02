@@ -26,7 +26,7 @@ var (
 )
 
 type Page struct {
-	compton.AP
+	compton.BaseElement
 	registry     map[string]any
 	title        string
 	favIconEmoji string
@@ -69,15 +69,11 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 				return err
 			}
 		}
-	case ".Attributes":
-		if err := p.Attributes.Write(w); err != nil {
+	case compton.AttributesToken:
+		fallthrough
+	case compton.ContentToken:
+		if err := p.BaseElement.WriteFragment(t, w); err != nil {
 			return err
-		}
-	case ".Body":
-		for _, child := range p.Children {
-			if err := child.Write(w); err != nil {
-				return err
-			}
 		}
 	default:
 		return compton.ErrUnknownToken(t)
@@ -85,7 +81,7 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (p *Page) Register(name, extends string, template []byte, mode compton.EncapsulationMode, w io.Writer) error {
+func (p *Page) RegisterCustomElement(name, extends string, mode compton.EncapsulationMode, w io.Writer) error {
 
 	if _, ok := p.registry[name]; ok {
 		return nil
@@ -115,13 +111,13 @@ func (p *Page) Register(name, extends string, template []byte, mode compton.Enca
 		return err
 	}
 
-	if _, err := w.Write(template); err != nil {
-		return err
-	}
-
 	p.registry[name] = nil
 
 	return nil
+}
+
+func (p *Page) RegisterMarkup(r io.Reader, w io.Writer, tw compton.TokenWriter) error {
+	return compton.WriteContents(r, w, tw)
 }
 
 func (p *Page) SetCustomStyles(customStyles []byte) {
@@ -130,6 +126,7 @@ func (p *Page) SetCustomStyles(customStyles []byte) {
 
 func New(title, favIconEmoji string) *Page {
 	return &Page{
+		BaseElement:  compton.BaseElement{Markup: markupPage},
 		registry:     make(map[string]any),
 		title:        title,
 		favIconEmoji: favIconEmoji,

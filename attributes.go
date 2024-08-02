@@ -5,6 +5,11 @@ import (
 	"strings"
 )
 
+const (
+	IdAttr    = "id"
+	ClassAttr = "class"
+)
+
 type Attributes struct {
 	attributes map[string]string
 }

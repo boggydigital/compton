@@ -1,11 +1,9 @@
 package table
 
 import (
-	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/text"
-	"io"
 )
 
 var (
@@ -14,7 +12,7 @@ var (
 )
 
 type Table struct {
-	compton.AP
+	compton.BaseElement
 }
 
 func (t *Table) AppendHead(columns ...string) *Table {
@@ -55,28 +53,6 @@ func (t *Table) AppendRow(data ...string) *Table {
 	return t
 }
 
-func (tbl *Table) Write(w io.Writer) error {
-	return compton.WriteContents(bytes.NewReader(markupTable), w, tbl.writeTableFragment)
-}
-
-func (tbl *Table) writeTableFragment(t string, w io.Writer) error {
-	switch t {
-	case ".Attributes":
-		if err := tbl.Attributes.Write(w); err != nil {
-			return err
-		}
-	case ".TableContent":
-		for _, child := range tbl.Children {
-			if err := child.Write(w); err != nil {
-				return err
-			}
-		}
-	default:
-		return compton.ErrUnknownToken(t)
-	}
-	return nil
-}
-
 func New() *Table {
-	return &Table{}
+	return &Table{compton.BaseElement{Markup: markupTable}}
 }

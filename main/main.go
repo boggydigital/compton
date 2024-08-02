@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/boggydigital/compton/heading"
 	"github.com/boggydigital/compton/page"
+	"github.com/boggydigital/compton/stack"
 	"github.com/boggydigital/compton/table"
 	"os"
 	"path/filepath"
@@ -18,16 +19,20 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	h1 := heading.NewText("Heading 1", 1)
-	h1.SetClass("green")
+	s := stack.New(p, stack.Normal)
+
+	h1 := heading.NewText("Success", 1)
+	h1.SetClass("success")
 	h1.SetAttr("data-test", "test-val")
-	p.Append(h1)
+	s.Append(h1)
 
 	t := table.New().
 		AppendHead("Property", "Value", "Another one").
 		AppendRow("Name", "John", "two").
 		AppendRow("Last Name", "Smith", "three")
-	p.Append(t)
+	s.Append(t)
+
+	p.Append(s)
 
 	tempPath := filepath.Join(os.TempDir(), "test.html")
 	tempFile, err := os.Create(tempPath)
