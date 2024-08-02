@@ -6,14 +6,9 @@ import (
 )
 
 type Container struct {
-	Parent
+	AP
 	markup       []byte
 	contentToken string
-}
-
-func (c *Container) Append(children ...Component) Component {
-	c.Children = append(c.Children, children...)
-	return c
 }
 
 func (c *Container) Write(w io.Writer) error {
@@ -28,13 +23,17 @@ func (c *Container) writeFragment(t string, w io.Writer) error {
 				return err
 			}
 		}
+	case ".Attributes":
+		if err := c.Attributes.Write(w); err != nil {
+			return err
+		}
 	default:
 		return ErrUnknownToken(t)
 	}
 	return nil
 }
 
-func NewContainer(markup []byte, contentToken string) Component {
+func NewContainer(markup []byte, contentToken string) Element {
 	return &Container{
 		markup:       markup,
 		contentToken: contentToken,

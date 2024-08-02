@@ -1,9 +1,9 @@
 package compton
 
 type Parent struct {
-	Children []Component
+	Children []Element
 }
 
-func (pc *Parent) Append(children ...Component) {
+func (pc *Parent) Append(children ...Element) {
 	pc.Children = append(pc.Children, children...)
 }

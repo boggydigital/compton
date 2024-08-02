@@ -12,6 +12,6 @@ var (
 	markupTHead []byte
 )
 
-func NewHead() compton.Component {
+func NewHead() compton.Element {
 	return compton.NewContainer(markupTHead, theadContentToken)
 }

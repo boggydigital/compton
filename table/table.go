@@ -14,14 +14,7 @@ var (
 )
 
 type Table struct {
-	compton.Parent
-	Id        string
-	ClassList []string
-}
-
-func (tbl *Table) Append(children ...compton.Component) compton.Component {
-	tbl.Children = append(tbl.Children, children...)
-	return tbl
+	compton.AP
 }
 
 func (t *Table) AppendHead(columns ...string) *Table {
@@ -34,7 +27,8 @@ func (t *Table) AppendHead(columns ...string) *Table {
 	}
 	thead := t.Children[0]
 	for _, col := range columns {
-		th := NewTh().Append(text.New(col))
+		th := NewTh()
+		th.Append(text.New(col))
 		thead.Append(th)
 	}
 
@@ -52,7 +46,9 @@ func (t *Table) AppendRow(data ...string) *Table {
 	tbody := t.Children[len(t.Children)-1]
 	tr := NewTr()
 	for _, col := range data {
-		tr.Append(NewTd().Append(text.New(col)))
+		td := NewTd()
+		td.Append(text.New(col))
+		tr.Append(td)
 	}
 	tbody.Append(tr)
 
@@ -65,17 +61,9 @@ func (tbl *Table) Write(w io.Writer) error {
 
 func (tbl *Table) writeTableFragment(t string, w io.Writer) error {
 	switch t {
-	case ".Id":
-		if tbl.Id != "" {
-			if err := compton.WriteId(w, tbl.Id); err != nil {
-				return err
-			}
-		}
-	case ".ClassList":
-		if len(tbl.ClassList) > 0 {
-			if err := compton.WriteClassList(w, tbl.ClassList...); err != nil {
-				return err
-			}
+	case ".Attributes":
+		if err := tbl.Attributes.Write(w); err != nil {
+			return err
 		}
 	case ".TableContent":
 		for _, child := range tbl.Children {
@@ -89,6 +77,6 @@ func (tbl *Table) writeTableFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func New(id string, classList ...string) *Table {
-	return &Table{Id: id, ClassList: classList}
+func New() *Table {
+	return &Table{}
 }

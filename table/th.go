@@ -12,6 +12,6 @@ var (
 	markupTh []byte
 )
 
-func NewTh() compton.Component {
+func NewTh() compton.Element {
 	return compton.NewContainer(markupTh, thContentToken)
 }

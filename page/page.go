@@ -26,20 +26,11 @@ var (
 )
 
 type Page struct {
-	compton.Parent
+	compton.AP
 	registry     map[string]any
-	Title        string
-	FavIconEmoji string
-	CustomStyles []byte
-}
-
-func (p *Page) Append(children ...compton.Component) compton.Component {
-	p.Parent.Append(children...)
-	return p
-}
-
-func (p *Page) AddCustomStyles(customStyles []byte) {
-	p.CustomStyles = customStyles
+	title        string
+	favIconEmoji string
+	customStyles []byte
 }
 
 func (p *Page) Write(w io.Writer) error {
@@ -49,11 +40,11 @@ func (p *Page) Write(w io.Writer) error {
 func (p *Page) writeFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
-		if _, err := io.WriteString(w, p.Title); err != nil {
+		if _, err := io.WriteString(w, p.title); err != nil {
 			return err
 		}
 	case ".FavIconEmoji":
-		if _, err := io.WriteString(w, p.FavIconEmoji); err != nil {
+		if _, err := io.WriteString(w, p.favIconEmoji); err != nil {
 			return err
 		}
 	case ".StyleColors":
@@ -73,10 +64,14 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 			return err
 		}
 	case ".StyleCustom":
-		if len(p.CustomStyles) > 0 {
-			if _, err := w.Write(p.CustomStyles); err != nil {
+		if len(p.customStyles) > 0 {
+			if _, err := w.Write(p.customStyles); err != nil {
 				return err
 			}
+		}
+	case ".Attributes":
+		if err := p.Attributes.Write(w); err != nil {
+			return err
 		}
 	case ".Body":
 		for _, child := range p.Children {
@@ -129,10 +124,14 @@ func (p *Page) Register(name, extends string, template []byte, mode compton.Enca
 	return nil
 }
 
+func (p *Page) SetCustomStyles(customStyles []byte) {
+	p.customStyles = customStyles
+}
+
 func New(title, favIconEmoji string) *Page {
 	return &Page{
 		registry:     make(map[string]any),
-		Title:        title,
-		FavIconEmoji: favIconEmoji,
+		title:        title,
+		favIconEmoji: favIconEmoji,
 	}
 }

@@ -15,15 +15,8 @@ var (
 )
 
 type Heading struct {
-	compton.Parent
-	Id        string
-	ClassList []string
-	Level     string
-}
-
-func (h *Heading) Append(children ...compton.Component) compton.Component {
-	h.Children = append(h.Children, children...)
-	return h
+	compton.AP
+	level int
 }
 
 func (h *Heading) Write(w io.Writer) error {
@@ -33,20 +26,12 @@ func (h *Heading) Write(w io.Writer) error {
 func (h *Heading) writeHeadingFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Level":
-		if _, err := io.WriteString(w, h.Level); err != nil {
+		if _, err := io.WriteString(w, strconv.Itoa(h.level)); err != nil {
 			return err
 		}
-	case ".Id":
-		if h.Id != "" {
-			if err := compton.WriteId(w, h.Id); err != nil {
-				return err
-			}
-		}
-	case ".ClassList":
-		if len(h.ClassList) > 0 {
-			if err := compton.WriteClassList(w, h.ClassList...); err != nil {
-				return err
-			}
+	case ".Attributes":
+		if err := h.Attributes.Write(w); err != nil {
+			return err
 		}
 	case ".Content":
 		for _, child := range h.Children {
@@ -60,7 +45,7 @@ func (h *Heading) writeHeadingFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func New(level int, id string, classList ...string) compton.Component {
+func New(level int) compton.Element {
 	if level < 1 {
 		level = 1
 	}
@@ -68,12 +53,12 @@ func New(level int, id string, classList ...string) compton.Component {
 		level = 6
 	}
 	return &Heading{
-		Level:     strconv.Itoa(level),
-		Id:        id,
-		ClassList: classList,
+		level: level,
 	}
 }
 
-func NewText(data string, level int, id string, classList ...string) compton.Component {
-	return New(level, id, classList...).Append(text.New(data))
+func NewText(data string, level int) compton.Element {
+	heading := New(level)
+	heading.Append(text.New(data))
+	return heading
 }

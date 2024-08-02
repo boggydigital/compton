@@ -2,6 +2,7 @@ table {
     border-collapse: collapse;
     border: 1px solid var(--subtle-color);
     width: max-content;
+    margin: 0;
 
     & tr * {
         border: 1px solid var(--subtle-color);
