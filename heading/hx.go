@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/text"
+	"golang.org/x/net/html/atom"
 	"io"
 	"strconv"
 )
@@ -48,7 +49,25 @@ func New(level int) compton.Element {
 	if level > 6 {
 		level = 6
 	}
+	tn := atom.H1
+	switch level {
+	case 1:
+		tn = atom.H1
+	case 2:
+		tn = atom.H2
+	case 3:
+		tn = atom.H3
+	case 4:
+		tn = atom.H4
+	case 5:
+		tn = atom.H5
+	case 6:
+		tn = atom.H6
+	}
 	return &Heading{
+		BaseElement: compton.BaseElement{
+			TagName: tn,
+		},
 		level: level,
 	}
 }

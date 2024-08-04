@@ -19,7 +19,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := stack.New(p, stack.Normal)
+	s := stack.New(p, stack.Large)
 
 	h1 := heading.NewText("Success", 1)
 	h1.SetClass("success")
@@ -29,7 +29,8 @@ func main() {
 	t := table.New().
 		AppendHead("Property", "Value", "Another one").
 		AppendRow("Name", "John", "two").
-		AppendRow("Last Name", "Smith", "three")
+		AppendRow("Last Name", "Smith", "three").
+		AppendFoot("Summary", "123", "456")
 	s.Append(t)
 
 	p.Append(s)

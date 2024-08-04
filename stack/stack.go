@@ -4,15 +4,11 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"golang.org/x/net/html/atom"
 	"io"
 )
 
 type Gap int
-
-const (
-	elementName    = "c-stack"
-	extendsElement = "HTMLElement"
-)
 
 const (
 	Small Gap = iota
@@ -20,19 +16,22 @@ const (
 	Large
 )
 
+var gapCustomProperties = map[Gap]string{
+	Small:  "--small",
+	Normal: "--normal",
+	Large:  "--large",
+}
+
+const (
+	elementName    = "c-stack"
+	extendsElement = "HTMLElement"
+)
+
 var (
 	//go:embed "markup/template.html"
 	markupTemplate []byte
 	//go:embed "markup/c-stack.html"
 	markupStack []byte
-)
-
-var (
-	gapCustomProperties = map[Gap]string{
-		Small:  "--small",
-		Normal: "--normal",
-		Large:  "--large",
-	}
 )
 
 type Stack struct {
@@ -66,7 +65,8 @@ func (s *Stack) templateFragmentWriter(t string, w io.Writer) error {
 func New(wcr compton.Registrar, gap Gap) compton.Element {
 	return &Stack{
 		BaseElement: compton.BaseElement{
-			Markup: markupStack,
+			Markup:  markupStack,
+			TagName: atom.Div,
 		},
 		wcr: wcr,
 		gap: gap,

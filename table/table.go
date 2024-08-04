@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/text"
+	"golang.org/x/net/html/atom"
 )
 
 var (
@@ -17,13 +18,16 @@ type Table struct {
 
 func (t *Table) AppendHead(columns ...string) *Table {
 
-	// assuming the first element to be thead, or create a new one
-	// if table has no children
-
-	if len(t.Children) < 1 {
-		t.Append(NewHead())
+	var thead compton.Element
+	if theads := t.GetElementsByTagName(atom.Thead); len(theads) > 0 {
+		thead = theads[0]
 	}
-	thead := t.Children[0]
+
+	if thead == nil {
+		thead = NewHead()
+		t.Append(thead)
+	}
+
 	for _, col := range columns {
 		th := NewTh()
 		th.Append(text.New(col))
@@ -35,13 +39,16 @@ func (t *Table) AppendHead(columns ...string) *Table {
 
 func (t *Table) AppendRow(data ...string) *Table {
 
-	// assuming the second element to be tbody, or create a new one
-	// if table has fewer than 2 children
-
-	if len(t.Children) < 2 {
-		t.Append(NewBody())
+	var tbody compton.Element
+	if tbodies := t.GetElementsByTagName(atom.Tbody); len(tbodies) > 0 {
+		tbody = tbodies[0]
 	}
-	tbody := t.Children[len(t.Children)-1]
+
+	if tbody == nil {
+		tbody = NewBody()
+		t.Append(tbody)
+	}
+
 	tr := NewTr()
 	for _, col := range data {
 		td := NewTd()
@@ -53,6 +60,31 @@ func (t *Table) AppendRow(data ...string) *Table {
 	return t
 }
 
+func (t *Table) AppendFoot(columns ...string) *Table {
+	var tfoot compton.Element
+	if tfeet := t.GetElementsByTagName(atom.Tfoot); len(tfeet) > 0 {
+		tfoot = tfeet[0]
+	}
+
+	if tfoot == nil {
+		tfoot = NewFoot()
+		t.Append(tfoot)
+	}
+
+	for _, col := range columns {
+		td := NewTd()
+		td.Append(text.New(col))
+		tfoot.Append(td)
+	}
+
+	return t
+}
+
 func New() *Table {
-	return &Table{compton.BaseElement{Markup: markupTable}}
+	return &Table{
+		compton.BaseElement{
+			Markup:  markupTable,
+			TagName: atom.Table,
+		},
+	}
 }

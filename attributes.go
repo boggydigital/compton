@@ -21,6 +21,10 @@ func (a *Attributes) SetAttr(name, val string) {
 	a.attributes[name] = val
 }
 
+func (a *Attributes) GetAttr(name string) string {
+	return a.attributes[name]
+}
+
 func (a *Attributes) Write(w io.Writer) error {
 	attrs := make([]string, 0, len(a.attributes))
 	for name, val := range a.attributes {

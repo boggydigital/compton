@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"golang.org/x/net/html/atom"
 	"io"
 )
 
@@ -126,7 +127,10 @@ func (p *Page) SetCustomStyles(customStyles []byte) {
 
 func New(title, favIconEmoji string) *Page {
 	return &Page{
-		BaseElement:  compton.BaseElement{Markup: markupPage},
+		BaseElement: compton.BaseElement{
+			Markup:  markupPage,
+			TagName: atom.Body,
+		},
 		registry:     make(map[string]any),
 		title:        title,
 		favIconEmoji: favIconEmoji,

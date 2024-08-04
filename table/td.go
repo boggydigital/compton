@@ -3,6 +3,7 @@ package table
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"golang.org/x/net/html/atom"
 )
 
 var (
@@ -11,5 +12,5 @@ var (
 )
 
 func NewTd() compton.Element {
-	return compton.NewElement(markupTd)
+	return compton.NewElement(atom.Td, markupTd)
 }

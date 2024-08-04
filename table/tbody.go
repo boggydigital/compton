@@ -3,13 +3,14 @@ package table
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"golang.org/x/net/html/atom"
 )
 
 var (
 	//go:embed "markup/tbody.html"
-	markupTBody []byte
+	markupTbody []byte
 )
 
 func NewBody() compton.Element {
-	return compton.NewElement(markupTBody)
+	return compton.NewElement(atom.Tbody, markupTbody)
 }
