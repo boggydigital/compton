@@ -40,8 +40,18 @@ func (be *BaseElement) SetId(id string) {
 	be.SetAttr(IdAttr, id)
 }
 
-func (be *BaseElement) SetClass(classes ...string) {
-	be.SetAttr(ClassAttr, strings.Join(classes, " "))
+func (be *BaseElement) SetClass(names ...string) {
+	be.SetAttr(ClassAttr, strings.Join(names, " "))
+}
+
+func (be *BaseElement) HasClass(names ...string) bool {
+	class := be.GetAttr(ClassAttr)
+	for _, name := range names {
+		if !strings.Contains(class, name) {
+			return false
+		}
+	}
+	return true
 }
 
 func (be *BaseElement) GetTagName() atom.Atom {
@@ -67,6 +77,17 @@ func (be *BaseElement) GetElementsByTagName(tagName atom.Atom) []Element {
 			matches = append(matches, child)
 		}
 		matches = append(matches, child.GetElementsByTagName(tagName)...)
+	}
+	return matches
+}
+
+func (be *BaseElement) GetElementsByClassName(names ...string) []Element {
+	matches := make([]Element, 0)
+	for _, child := range be.Children {
+		if child.HasClass(names...) {
+			matches = append(matches, child)
+		}
+		matches = append(matches, child.GetElementsByClassName(names...)...)
 	}
 	return matches
 }
