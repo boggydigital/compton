@@ -11,8 +11,6 @@ import (
 var (
 	//go:embed "markup/page.html"
 	markupPage []byte
-	//go:embed "markup/define_script.html"
-	markupDefineScript []byte
 )
 
 var (
@@ -28,10 +26,10 @@ var (
 
 type Page struct {
 	compton.BaseElement
-	registry     map[string]any
-	title        string
-	favIconEmoji string
-	customStyles []byte
+	customElementsRegistry map[string]any
+	title                  string
+	favIconEmoji           string
+	customStyles           []byte
 }
 
 func (p *Page) Write(w io.Writer) error {
@@ -70,6 +68,10 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 				return err
 			}
 		}
+	case ".Registry":
+		if err := p.Register(w); err != nil {
+			return err
+		}
 	case compton.AttributesToken:
 		fallthrough
 	case compton.ContentToken:
@@ -82,43 +84,12 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (p *Page) RegisterCustomElement(name, extends string, mode compton.EncapsulationMode, w io.Writer) error {
-
-	if _, ok := p.registry[name]; ok {
-		return nil
+func (p *Page) RequiresRegistration(name string) bool {
+	if _, ok := p.customElementsRegistry[name]; !ok {
+		p.customElementsRegistry[name] = nil
+		return true
 	}
-
-	if err := compton.WriteContents(
-		bytes.NewReader(markupDefineScript), w,
-		func(token string, w io.Writer) error {
-			switch token {
-			case ".ElementName":
-				if _, err := io.WriteString(w, name); err != nil {
-					return err
-				}
-			case ".ExtendsElement":
-				if _, err := io.WriteString(w, extends); err != nil {
-					return err
-				}
-			case ".Mode":
-				if _, err := io.WriteString(w, string(mode)); err != nil {
-					return err
-				}
-			default:
-				return compton.ErrUnknownToken(token)
-			}
-			return nil
-		}); err != nil {
-		return err
-	}
-
-	p.registry[name] = nil
-
-	return nil
-}
-
-func (p *Page) RegisterMarkup(r io.Reader, w io.Writer, tw compton.TokenWriter) error {
-	return compton.WriteContents(r, w, tw)
+	return false
 }
 
 func (p *Page) SetCustomStyles(customStyles []byte) {
@@ -131,8 +102,8 @@ func New(title, favIconEmoji string) *Page {
 			Markup:  markupPage,
 			TagName: atom.Body,
 		},
-		registry:     make(map[string]any),
-		title:        title,
-		favIconEmoji: favIconEmoji,
+		title:                  title,
+		favIconEmoji:           favIconEmoji,
+		customElementsRegistry: make(map[string]any),
 	}
 }
