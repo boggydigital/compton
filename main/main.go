@@ -3,10 +3,12 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton/details"
 	"github.com/boggydigital/compton/heading"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/stack"
 	"github.com/boggydigital/compton/table"
+	"github.com/boggydigital/compton/text"
 	"os"
 	"path/filepath"
 )
@@ -32,6 +34,12 @@ func main() {
 		AppendRow("Last Name", "Smith", "three").
 		AppendFoot("Summary", "123", "456")
 	s.Append(t)
+
+	d := details.New().
+		AppendSummary(heading.NewText("Summary", 2)).
+		Open()
+	d.Append(text.New("Details"))
+	s.Append(d)
 
 	p.Append(s)
 
