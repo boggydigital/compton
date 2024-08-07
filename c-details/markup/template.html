@@ -1,0 +1,62 @@
+<template id="c-details-template">
+    <style>
+        details {
+            content-visibility: auto;
+
+            & > summary {
+                display: flex;
+                align-items: center;
+                justify-items: center;
+                font-weight: var(--fw-bolder);
+                padding: calc((var(--small) + var(--normal)) / 2) var(--normal);
+                padding-inline-end: calc((var(--normal) + var(--large)) / 2);
+                background: var(--highlight-color);
+                border-radius: var(--large);
+                width: max-content;
+                column-gap: var(--small);
+                cursor: pointer;
+                margin-block-end: var({{.SummaryMarginBlockEnd}});
+
+                &::-webkit-details-marker {
+                    display: none;
+                }
+
+                & > h2 {
+                    display: inline;
+                    font-size: var(--fs-larger);
+                    margin: 0;
+                }
+
+                & > svg {
+                    width: calc((var(--normal) + var(--small)) / 2);
+                    height: calc((var(--normal) + var(--small)) / 2);
+                    transform-origin: 50% 50%;
+                    transition: rotate var(--du-fast) ease-in-out;
+                }
+            }
+        }
+
+        details[open] {
+            & > summary {
+                & > svg {
+                    rotate: 45deg;
+                }
+            }
+        }
+
+    </style>
+    <svg style="display:none">
+        <symbol id="plus" viewBox="0 0 100 100" style="fill:currentColor">
+            <path d="M 42.5,0h15v42.5h42.5v15h-42.5v42.5h-15v-42.5h-42.5v-15h42.5v-42.5Z"></path>
+        </symbol>
+    </svg>
+    <details {{.Open}}>
+        <summary>
+            <svg>
+                <use xlink:href="#plus"></use>
+            </svg>
+            <h2>{{.Summary}}</h2>
+        </summary>
+        <slot>Details</slot>
+    </details>
+</template>

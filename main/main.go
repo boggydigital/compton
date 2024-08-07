@@ -3,12 +3,12 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/boggydigital/compton/details"
+	c_details "github.com/boggydigital/compton/c-details"
+	c_stack "github.com/boggydigital/compton/c-stack"
 	"github.com/boggydigital/compton/heading"
+	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
-	"github.com/boggydigital/compton/stack"
 	"github.com/boggydigital/compton/table"
-	"github.com/boggydigital/compton/text"
 	"os"
 	"path/filepath"
 )
@@ -21,7 +21,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := stack.New(p, stack.Large)
+	s := c_stack.New(p).SetRowGap(measures.Large)
 
 	h1 := heading.NewText("Success", 1)
 	h1.SetClass("success")
@@ -35,10 +35,11 @@ func main() {
 		AppendFoot("Summary", "123", "456")
 	s.Append(t)
 
-	d := details.New().
-		AppendSummary(heading.NewText("Summary", 2)).
-		Open()
-	d.Append(text.New("Details"))
+	d := c_details.New(p, "Summary").
+		Open().
+		SetSummaryMarginBlockEnd(measures.Large)
+	//ns := c_stack.New(p).SetRowGap(measures.Normal)
+	//ns.Append(text.New("One"), text.New("Two"))
 	s.Append(d)
 
 	p.Append(s)

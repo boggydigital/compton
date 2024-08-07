@@ -3,8 +3,9 @@
         class extends {{.ExtendsElement}} {
             constructor() {
                 super();
-                const template = document.getElementById("{{.ElementName}}-template").content;
-                this.attachShadow({ mode: "{{.Mode}}" }).appendChild(template.cloneNode(true));
+                let tc = document.getElementById("{{.ElementName}}-template");
+                let shadowRoot = this.attachShadow({ mode: "{{.Mode}}" })
+                shadowRoot.appendChild(tc.content.cloneNode(true));
             }
         }
     );

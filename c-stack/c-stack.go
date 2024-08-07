@@ -1,20 +1,13 @@
-package stack
+package c_stack
 
 import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/custom_elements"
+	"github.com/boggydigital/compton/measures"
 	"golang.org/x/net/html/atom"
 	"io"
-)
-
-type Gap int
-
-const (
-	Small Gap = iota
-	Normal
-	Large
 )
 
 const (
@@ -22,12 +15,6 @@ const (
 	// using max value and leaving 255 more possible atoms
 	Atom atom.Atom = 0xffffff00
 )
-
-var gapCustomProperties = map[Gap]string{
-	Small:  "--small",
-	Normal: "--normal",
-	Large:  "--large",
-}
 
 const (
 	elementName = "c-stack"
@@ -42,8 +29,8 @@ var (
 
 type Stack struct {
 	compton.BaseElement
-	gap Gap
-	wcr compton.Registrar
+	rowGap measures.Unit
+	wcr    compton.Registrar
 }
 
 func (s *Stack) Register(w io.Writer) error {
@@ -55,17 +42,13 @@ func (s *Stack) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return nil
-}
-
-func (s *Stack) Write(w io.Writer) error {
-	return s.BaseElement.Write(w)
+	return s.Parent.Register(w)
 }
 
 func (s *Stack) templateFragmentWriter(t string, w io.Writer) error {
 	switch t {
-	case ".Spacing":
-		if _, err := io.WriteString(w, gapCustomProperties[s.gap]); err != nil {
+	case ".RowGap":
+		if _, err := io.WriteString(w, s.rowGap.String()); err != nil {
 			return err
 		}
 	default:
@@ -74,13 +57,18 @@ func (s *Stack) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func New(wcr compton.Registrar, gap Gap) compton.Element {
+func (s *Stack) SetRowGap(amount measures.Unit) *Stack {
+	s.rowGap = amount
+	return s
+}
+
+func New(wcr compton.Registrar) *Stack {
 	return &Stack{
 		BaseElement: compton.BaseElement{
 			Markup:  markupStack,
 			TagName: Atom,
 		},
-		wcr: wcr,
-		gap: gap,
+		wcr:    wcr,
+		rowGap: measures.Normal,
 	}
 }
