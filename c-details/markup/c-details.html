@@ -1,1 +1,4 @@
-<c-details {{.Attributes}}>{{.Content}}</c-details>
+<c-details {{.Attributes}}>
+    <span slot="summary">{{.Summary}}</span>
+    <div slot="details">{{.Content}}</div>
+</c-details>

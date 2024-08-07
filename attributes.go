@@ -8,6 +8,7 @@ import (
 const (
 	IdAttr    = "id"
 	ClassAttr = "class"
+	HrefAttr  = "href"
 )
 
 type Attributes struct {

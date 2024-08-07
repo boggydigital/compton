@@ -8,14 +8,14 @@
                 align-items: center;
                 justify-items: center;
                 font-weight: var(--fw-bolder);
-                padding: calc((var(--small) + var(--normal)) / 2) var(--normal);
+                padding: var(--small) var(--normal);
                 padding-inline-end: calc((var(--normal) + var(--large)) / 2);
                 background: var(--highlight-color);
-                border-radius: var(--large);
+                border-radius: var(--br-large);
                 width: max-content;
                 column-gap: var(--small);
                 cursor: pointer;
-                margin-block-end: var({{.SummaryMarginBlockEnd}});
+                margin-block-end: var(--normal);
 
                 &::-webkit-details-marker {
                     display: none;
@@ -39,8 +39,26 @@
         details[open] {
             & > summary {
                 & > svg {
-                    rotate: 45deg;
+                    rotate: -45deg;
                 }
+            }
+        }
+
+        :host([data-margin-block-end=large]) {
+            details > summary {
+                margin-block-end: var(--large)
+            }
+        }
+
+        :host([data-margin-block-end=normal]) {
+            details > summary {
+                margin-block-end: var(--normal)
+            }
+        }
+
+        :host([data-margin-block-end=small]) {
+            details > summary {
+                margin-block-end: var(--small)
             }
         }
 
@@ -50,13 +68,13 @@
             <path d="M 42.5,0h15v42.5h42.5v15h-42.5v42.5h-15v-42.5h-42.5v-15h42.5v-42.5Z"></path>
         </symbol>
     </svg>
-    <details {{.Open}}>
+    <details>
         <summary>
             <svg>
                 <use xlink:href="#plus"></use>
             </svg>
-            <h2>{{.Summary}}</h2>
+            <h2><slot name="summary"></slot></h2>
         </summary>
-        <slot>Details</slot>
+        <slot name="details"></slot>
     </details>
 </template>

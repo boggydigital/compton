@@ -9,9 +9,9 @@ const (
 )
 
 var unitCustomProperties = map[Unit]string{
-	Small:  "--small",
-	Normal: "--normal",
-	Large:  "--large",
+	Small:  "small",
+	Normal: "normal",
+	Large:  "large",
 }
 
 func (u Unit) String() string {

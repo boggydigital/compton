@@ -3,7 +3,19 @@
         :host {
             display: flex;
             flex-direction: column;
-            row-gap: var({{.RowGap}});
+            row-gap: var(--normal)
+        }
+
+        :host([data-row-gap=large]) {
+            row-gap: var(--large)
+        }
+
+        :host([data-row-gap=normal]) {
+            row-gap: var(--normal)
+        }
+
+        :host([data-row-gap=small]) {
+            row-gap: var(--small)
         }
     </style>
     <slot></slot>

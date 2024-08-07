@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton/anchor"
 	c_details "github.com/boggydigital/compton/c-details"
 	c_stack "github.com/boggydigital/compton/c-stack"
 	"github.com/boggydigital/compton/heading"
@@ -36,10 +37,11 @@ func main() {
 	s.Append(t)
 
 	d := c_details.New(p, "Summary").
-		Open().
-		SetSummaryMarginBlockEnd(measures.Large)
-	//ns := c_stack.New(p).SetRowGap(measures.Normal)
-	//ns.Append(text.New("One"), text.New("Two"))
+		SetSummaryMarginBlockEnd(measures.Large).
+		Open()
+	ns := c_stack.New(p)
+	ns.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
+	d.Append(ns)
 	s.Append(d)
 
 	p.Append(s)

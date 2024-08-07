@@ -17,7 +17,8 @@ const (
 )
 
 const (
-	elementName = "c-details"
+	elementName        = "c-details"
+	marginBlockEndAttr = "data-margin-block-end"
 )
 
 var (
@@ -29,10 +30,9 @@ var (
 
 type Details struct {
 	compton.BaseElement
-	summary               string
-	open                  bool
-	summaryMarginBlockEnd measures.Unit
-	wcr                   compton.Registrar
+	open    bool
+	summary string
+	wcr     compton.Registrar
 }
 
 func (d *Details) Register(w io.Writer) error {
@@ -40,38 +40,13 @@ func (d *Details) Register(w io.Writer) error {
 		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
 			return err
 		}
-		if err := compton.WriteContents(bytes.NewReader(markupTemplate), w, d.templateFragmentWriter); err != nil {
+		if _, err := io.Copy(w, bytes.NewReader(markupTemplate)); err != nil {
 			return err
 		}
+
 	}
 	return d.Parent.Register(w)
 }
-
-func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
-	switch t {
-	case ".Open":
-		if d.open {
-			if _, err := io.WriteString(w, "open"); err != nil {
-				return err
-			}
-		}
-	case ".Summary":
-		if _, err := io.WriteString(w, d.summary); err != nil {
-			return err
-		}
-	case ".SummaryMarginBlockEnd":
-		if _, err := io.WriteString(w, d.summaryMarginBlockEnd.String()); err != nil {
-			return err
-		}
-	default:
-		return compton.ErrUnknownToken(t)
-	}
-	return nil
-}
-
-//func (d *Details) Write(w io.Writer) error {
-//	return d.BaseElement.Write(w)
-//}
 
 func (d *Details) Open() *Details {
 	d.open = true
@@ -79,8 +54,28 @@ func (d *Details) Open() *Details {
 }
 
 func (d *Details) SetSummaryMarginBlockEnd(amount measures.Unit) *Details {
-	d.summaryMarginBlockEnd = amount
+	d.SetAttr(marginBlockEndAttr, amount.String())
 	return d
+}
+
+func (d *Details) Write(w io.Writer) error {
+	return compton.WriteContents(bytes.NewReader(markupDetails), w, d.elementFragmentWriter)
+}
+
+func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
+	switch t {
+	case ".Summary":
+		if _, err := io.WriteString(w, d.summary); err != nil {
+			return err
+		}
+	case compton.ContentToken:
+		fallthrough
+	case compton.AttributesToken:
+		if err := d.BaseElement.WriteFragment(t, w); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func New(wcr compton.Registrar, summary string) *Details {
@@ -89,8 +84,7 @@ func New(wcr compton.Registrar, summary string) *Details {
 			Markup:  markupDetails,
 			TagName: Atom,
 		},
-		wcr:                   wcr,
-		summary:               summary,
-		summaryMarginBlockEnd: measures.Normal,
+		wcr:     wcr,
+		summary: summary,
 	}
 }
