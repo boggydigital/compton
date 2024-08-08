@@ -35,31 +35,25 @@
             }
         }
 
+        :host([data-margin-block-end=large]) {
+            --mbe: var(--large)
+        }
+
+        :host([data-margin-block-end=normal]) {
+            --mbe: var(--normal)
+        }
+
+        :host([data-margin-block-end=small]) {
+            --mbe: var(--small)
+        }
+
         details[open] {
             & > summary {
-                margin-block-end: var(--normal);
+                margin-block-end: var(--mbe);
 
                 & > svg {
                     rotate: -45deg;
                 }
-            }
-        }
-
-        :host([data-margin-block-end=large]) {
-            details[open] > summary {
-                margin-block-end: var(--large)
-            }
-        }
-
-        :host([data-margin-block-end=normal]) {
-            details[open] > summary {
-                margin-block-end: var(--normal)
-            }
-        }
-
-        :host([data-margin-block-end=small]) {
-            details[open] > summary {
-                margin-block-end: var(--small)
             }
         }
 
@@ -74,7 +68,9 @@
             <svg>
                 <use xlink:href="#plus"></use>
             </svg>
-            <h2><slot name="summary"></slot></h2>
+            <h2>
+                <slot name="summary"></slot>
+            </h2>
         </summary>
         <slot name="details"></slot>
     </details>
