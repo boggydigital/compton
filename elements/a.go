@@ -1,9 +1,8 @@
-package anchor
+package elements
 
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/text"
 	"golang.org/x/net/html/atom"
 )
 
@@ -12,14 +11,14 @@ var (
 	markupAnchor []byte
 )
 
-func New(href string) compton.Element {
+func NewA(href string) compton.Element {
 	anchor := compton.NewElement(atom.A, markupAnchor)
 	anchor.SetAttr(compton.HrefAttr, href)
 	return anchor
 }
 
-func NewText(txt, href string) compton.Element {
-	anchor := New(href)
-	anchor.Append(text.New(txt))
+func NewAText(txt, href string) compton.Element {
+	anchor := NewA(href)
+	anchor.Append(NewText(txt))
 	return anchor
 }

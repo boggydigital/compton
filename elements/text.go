@@ -1,4 +1,4 @@
-package text
+package elements
 
 import (
 	"github.com/boggydigital/compton"
@@ -10,8 +10,8 @@ type Text struct {
 	content string
 }
 
-func (t *Text) Append(_ ...compton.Element) {
-	panic("cannot append to text")
+func (t *Text) Append(_ ...compton.Element) compton.Element {
+	return t
 }
 
 func (t *Text) Write(w io.Writer) error {
@@ -21,7 +21,7 @@ func (t *Text) Write(w io.Writer) error {
 	return nil
 }
 
-func New(content string) compton.Element {
+func NewText(content string) compton.Element {
 	return &Text{
 		content: content,
 	}

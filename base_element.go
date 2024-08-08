@@ -9,9 +9,23 @@ import (
 
 type BaseElement struct {
 	Attributes
-	Parent
-	TagName atom.Atom
-	Markup  []byte
+	Children []Element
+	TagName  atom.Atom
+	Markup   []byte
+}
+
+func (be *BaseElement) Append(children ...Element) Element {
+	be.Children = append(be.Children, children...)
+	return be
+}
+
+func (be *BaseElement) Register(w io.Writer) error {
+	for _, child := range be.Children {
+		if err := child.Register(w); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (be *BaseElement) Write(w io.Writer) error {
@@ -36,12 +50,14 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (be *BaseElement) SetId(id string) {
+func (be *BaseElement) SetId(id string) Element {
 	be.SetAttr(IdAttr, id)
+	return be
 }
 
-func (be *BaseElement) SetClass(names ...string) {
+func (be *BaseElement) SetClass(names ...string) Element {
 	be.SetAttr(ClassAttr, strings.Join(names, " "))
+	return be
 }
 
 func (be *BaseElement) HasClass(names ...string) bool {

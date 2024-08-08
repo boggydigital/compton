@@ -56,7 +56,7 @@ func (d *Details) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return d.Parent.Register(w)
+	return d.BaseElement.Register(w)
 }
 
 func (d *Details) templateFragmentWriter(t string, w io.Writer) error {

@@ -3,15 +3,15 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/boggydigital/compton/anchor"
 	c_details "github.com/boggydigital/compton/c-details"
 	c_stack "github.com/boggydigital/compton/c-stack"
-	"github.com/boggydigital/compton/heading"
+	"github.com/boggydigital/compton/elements"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 //go:embed "styles.css"
@@ -24,31 +24,37 @@ func main() {
 
 	s := c_stack.New(p).SetRowGap(measures.Large)
 
-	h1 := heading.NewText("Success", 1)
-	h1.SetClass("success")
-	h1.SetAttr("data-test", "test-val")
-	s.Append(h1)
+	s.Append(elements.NewHeadingText("Success", 1).
+		SetClass("success"))
 
 	t := table.New().
 		AppendHead("Property", "Value", "Another one").
 		AppendRow("Name", "John", "two").
 		AppendRow("Last Name", "Smith", "three").
-		AppendFoot("Summary", "123", "456")
+		AppendFoot("Summary", "123", "456").
+		SetClass("red")
 	s.Append(t)
 
 	cdo := c_details.New(p, "Open").SetSummaryMarginBlockEnd(measures.Large).Open()
 
-	nso := c_stack.New(p)
-	nso.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
+	nso := c_stack.New(p).
+		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
+
 	cdo.Append(nso)
 	s.Append(cdo)
 
 	cdc := c_details.New(p, "Closed").SetSummaryMarginBlockEnd(measures.Large)
 
-	nsc := c_stack.New(p)
-	nsc.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
+	nsc := c_stack.New(p).Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)
+
+	dv := elements.NewDiv().
+		SetClass("subtle").
+		Append(
+			elements.NewText("Last updated: "),
+			elements.NewTimeText(time.Now().Format("2006-01-02 15:04:05")))
+	s.Append(dv)
 
 	p.Append(s)
 

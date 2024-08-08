@@ -42,7 +42,7 @@ func (s *Stack) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return s.Parent.Register(w)
+	return s.BaseElement.Register(w)
 }
 
 func (s *Stack) SetRowGap(amount measures.Unit) *Stack {

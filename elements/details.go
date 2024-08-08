@@ -1,4 +1,4 @@
-package details
+package elements
 
 import (
 	_ "embed"
@@ -38,7 +38,7 @@ func (d *Details) Open() *Details {
 	return d
 }
 
-func New() *Details {
+func NewDetails() *Details {
 	return &Details{
 		compton.BaseElement{
 			Markup:  markupDetails,
