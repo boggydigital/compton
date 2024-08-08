@@ -36,13 +36,19 @@ func main() {
 		AppendFoot("Summary", "123", "456")
 	s.Append(t)
 
-	d := c_details.New(p, "Summary").
-		SetSummaryMarginBlockEnd(measures.Large).
-		Open()
-	ns := c_stack.New(p)
-	ns.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
-	d.Append(ns)
-	s.Append(d)
+	cdo := c_details.New(p, "Open").SetSummaryMarginBlockEnd(measures.Large).Open()
+
+	nso := c_stack.New(p)
+	nso.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
+	cdo.Append(nso)
+	s.Append(cdo)
+
+	cdc := c_details.New(p, "Closed").SetSummaryMarginBlockEnd(measures.Large)
+
+	nsc := c_stack.New(p)
+	nsc.Append(anchor.NewText("One", "/one"), anchor.NewText("Two", "/two"))
+	cdc.Append(nsc)
+	s.Append(cdc)
 
 	p.Append(s)
 

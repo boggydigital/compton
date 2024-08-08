@@ -11,6 +11,11 @@ const (
 	HrefAttr  = "href"
 )
 
+const (
+	TrueVal  = "true"
+	FalseVal = "false"
+)
+
 type Attributes struct {
 	attributes map[string]string
 }

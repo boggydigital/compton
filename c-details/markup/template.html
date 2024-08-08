@@ -1,4 +1,4 @@
-<template id="c-details-template">
+<template id="c-details-{{.OpenClosed}}-template">
     <style>
         details {
             content-visibility: auto;
@@ -15,7 +15,6 @@
                 width: max-content;
                 column-gap: var(--small);
                 cursor: pointer;
-                margin-block-end: var(--normal);
 
                 &::-webkit-details-marker {
                     display: none;
@@ -38,6 +37,8 @@
 
         details[open] {
             & > summary {
+                margin-block-end: var(--normal);
+
                 & > svg {
                     rotate: -45deg;
                 }
@@ -45,19 +46,19 @@
         }
 
         :host([data-margin-block-end=large]) {
-            details > summary {
+            details[open] > summary {
                 margin-block-end: var(--large)
             }
         }
 
         :host([data-margin-block-end=normal]) {
-            details > summary {
+            details[open] > summary {
                 margin-block-end: var(--normal)
             }
         }
 
         :host([data-margin-block-end=small]) {
-            details > summary {
+            details[open] > summary {
                 margin-block-end: var(--small)
             }
         }
@@ -68,7 +69,7 @@
             <path d="M 42.5,0h15v42.5h42.5v15h-42.5v42.5h-15v-42.5h-42.5v-15h42.5v-42.5Z"></path>
         </symbol>
     </svg>
-    <details>
+    <details {{.OpenClosed}}>
         <summary>
             <svg>
                 <use xlink:href="#plus"></use>
