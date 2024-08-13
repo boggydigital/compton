@@ -1,4 +1,4 @@
-<template id="c-stack-template">
+<template id="items-col-template">
     <style>
         :host {
             display: flex;
@@ -6,15 +6,15 @@
             row-gap: var(--normal)
         }
 
-        :host([data-row-gap=large]) {
+        :host([data-gap=large]) {
             row-gap: var(--large)
         }
 
-        :host([data-row-gap=normal]) {
+        :host([data-gap=normal]) {
             row-gap: var(--normal)
         }
 
-        :host([data-row-gap=small]) {
+        :host([data-gap=small]) {
             row-gap: var(--small)
         }
     </style>

@@ -312,11 +312,11 @@
         --c-deep-orange: var(--c-deep-orange-900);
         --c-brown: var(--c-brown-900);
 
-        --background-color: var(--c-gray-100);
-        --highlight-color: white;
-        --color: var(--c-gray-800);
-        --subtle-color: var(--c-gray-600);
-        --shadow-color: var(--c-gray-300);
+        --c-background: var(--c-gray-100);
+        --c-highlight: white;
+        --c-foreground: var(--c-gray-800);
+        --c-subtle: var(--c-gray-600);
+        --c-shadow: var(--c-gray-300);
     }
 }
 
@@ -340,10 +340,10 @@
         --c-deep-orange: var(--c-deep-orange-600);
         --c-brown: var(--c-brown-300);
 
-        --background-color: var(--c-gray-900);
-        --highlight-color: black;
-        --color: var(--c-gray-100);
-        --subtle-color: var(--c-gray-500);
-        --shadow-color: black;
+        --c-background: var(--c-gray-900);
+        --c-foreground: var(--c-gray-100);
+        --c-subtle: var(--c-gray-500);
+        --c-highlight: black;
+        --c-shadow: black;
     }
 }

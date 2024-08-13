@@ -1,11 +1,13 @@
-package c_details
+package details_toggle
 
 import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/colors"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/measures"
+	"github.com/boggydigital/compton/shared"
 	"golang.org/x/net/html/atom"
 	"io"
 )
@@ -17,15 +19,17 @@ const (
 )
 
 const (
-	elementName        = "c-details-"
-	marginBlockEndAttr = "data-margin-block-end"
-	openAttr           = "data-open"
+	elementName         = "details-"
+	summaryMarginAttr   = "data-summary-margin"
+	backgroundColorAttr = "data-background-color"
+	foregroundColorAttr = "data-foreground-color"
+	openAttr            = "data-open"
 )
 
 var (
 	//go:embed "markup/template.html"
 	markupTemplate []byte
-	//go:embed "markup/c-details.html"
+	//go:embed "markup/details-toggle.html"
 	markupDetails []byte
 )
 
@@ -65,6 +69,14 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, openClosed(d.open)); err != nil {
 			return err
 		}
+	case ".HostBackgroundColors":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostBackgroundColors)); err != nil {
+			return err
+		}
+	case ".HostForegroundColors":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostForegroundColors)); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -75,8 +87,18 @@ func (d *Details) Open() *Details {
 	return d
 }
 
-func (d *Details) SetSummaryMarginBlockEnd(amount measures.Unit) *Details {
-	d.SetAttr(marginBlockEndAttr, amount.String())
+func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
+	d.SetAttr(summaryMarginAttr, amount.String())
+	return d
+}
+
+func (d *Details) SetBackgroundColor(color colors.Color) *Details {
+	d.SetAttr(backgroundColorAttr, color.String())
+	return d
+}
+
+func (d *Details) SetForegroundColor(color colors.Color) *Details {
+	d.SetAttr(foregroundColorAttr, color.String())
 	return d
 }
 

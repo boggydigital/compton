@@ -3,6 +3,6 @@
 }
 
 .subtle {
-    color: var(--subtle-color);
+    color: var(--c-subtle);
     font-size: var(--fs-smaller)
 }

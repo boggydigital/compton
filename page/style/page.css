@@ -1,8 +1,8 @@
 html {
     min-height: 100%;
     scroll-behavior: smooth;
-    background-color: var(--background-color);
-    color: var(--color);
+    background-color: var(--c-background);
+    color: var(--c-foreground);
 }
 
 body {

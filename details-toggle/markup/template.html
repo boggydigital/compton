@@ -1,4 +1,4 @@
-<template id="c-details-{{.OpenClosed}}-template">
+<template id="details-{{.OpenClosed}}-template">
     <style>
         details {
             content-visibility: auto;
@@ -10,7 +10,8 @@
                 font-weight: var(--fw-bolder);
                 padding: var(--small) var(--normal);
                 padding-inline-end: calc((var(--normal) + var(--large)) / 2);
-                background: var(--highlight-color);
+                background-color: var(--c-bg);
+                color: var(--c-fg);
                 border-radius: var(--br-large);
                 width: max-content;
                 column-gap: var(--small);
@@ -35,21 +36,35 @@
             }
         }
 
-        :host([data-margin-block-end=large]) {
-            --mbe: var(--large)
+        {{.HostBackgroundColors}}
+
+        :host(:not([data-background-color])) {
+            --c-bg: var(--c-highlight)
         }
 
-        :host([data-margin-block-end=normal]) {
-            --mbe: var(--normal)
+        :host([data-background-color]) {
+            details > summary {
+                background-color: var(--c-bg);
+            }
         }
 
-        :host([data-margin-block-end=small]) {
-            --mbe: var(--small)
+        {{.HostForegroundColors}}
+
+        :host([data-summary-margin=large]) {
+            --summary-margin: var(--large)
+        }
+
+        :host([data-summary-margin=normal]) {
+            --summary-margin: var(--normal)
+        }
+
+        :host([data-summary-margin=small]) {
+            --summary-margin: var(--small)
         }
 
         details[open] {
             & > summary {
-                margin-block-end: var(--mbe);
+                margin-block-end: var(--summary-margin);
 
                 & > svg {
                     rotate: -45deg;

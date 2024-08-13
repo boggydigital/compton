@@ -8,12 +8,12 @@ const (
 	Large
 )
 
-var unitCustomProperties = map[Unit]string{
+var unitStrings = map[Unit]string{
 	Small:  "small",
 	Normal: "normal",
 	Large:  "large",
 }
 
 func (u Unit) String() string {
-	return unitCustomProperties[u]
+	return unitStrings[u]
 }

@@ -3,9 +3,10 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	c_details "github.com/boggydigital/compton/c-details"
-	c_stack "github.com/boggydigital/compton/c-stack"
+	"github.com/boggydigital/compton/colors"
+	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/elements"
+	"github.com/boggydigital/compton/items_col"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
@@ -22,7 +23,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := c_stack.New(p).SetRowGap(measures.Large)
+	s := items_col.New(p).SetGap(measures.Large)
 
 	s.Append(elements.NewHeadingText("Success", 1).
 		SetClass("success"))
@@ -35,17 +36,21 @@ func main() {
 		SetClass("red")
 	s.Append(t)
 
-	cdo := c_details.New(p, "Open").SetSummaryMarginBlockEnd(measures.Large).Open()
+	cdo := details_toggle.New(p, "Open").
+		SetSummaryMargin(measures.Large).
+		SetBackgroundColor(colors.Red).
+		SetForegroundColor(colors.Background).
+		Open()
 
-	nso := c_stack.New(p).
+	nso := items_col.New(p).
 		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 
 	cdo.Append(nso)
 	s.Append(cdo)
 
-	cdc := c_details.New(p, "Closed").SetSummaryMarginBlockEnd(measures.Large)
+	cdc := details_toggle.New(p, "Closed").SetSummaryMargin(measures.Large)
 
-	nsc := c_stack.New(p).Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
+	nsc := items_col.New(p).Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)
 

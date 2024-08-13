@@ -11,7 +11,7 @@
     --br-normal: var(--x-small);
     --br-large: var(--small);
 
-    --bs-small: 0 0 var(--small) var(--shadow-color);
+    --bs-small: 0 0 var(--small) var(--c-shadow);
 
     --fs-xxx-larger: 2.4rem;
     --fs-xx-larger: 2rem;

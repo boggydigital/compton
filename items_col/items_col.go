@@ -1,4 +1,4 @@
-package c_stack
+package items_col
 
 import (
 	"bytes"
@@ -17,15 +17,15 @@ const (
 )
 
 const (
-	elementName = "c-stack"
-	rowGapAttr  = "data-row-gap"
+	elementName = "items-col"
+	gapAttr     = "data-gap"
 )
 
 var (
 	//go:embed "markup/template.html"
 	markupTemplate []byte
-	//go:embed "markup/c-stack.html"
-	markupStack []byte
+	//go:embed "markup/items-col.html"
+	markupItemsCol []byte
 )
 
 type Stack struct {
@@ -45,15 +45,15 @@ func (s *Stack) Register(w io.Writer) error {
 	return s.BaseElement.Register(w)
 }
 
-func (s *Stack) SetRowGap(amount measures.Unit) *Stack {
-	s.SetAttr(rowGapAttr, amount.String())
+func (s *Stack) SetGap(amount measures.Unit) *Stack {
+	s.SetAttr(gapAttr, amount.String())
 	return s
 }
 
 func New(wcr compton.Registrar) *Stack {
 	return &Stack{
 		BaseElement: compton.BaseElement{
-			Markup:  markupStack,
+			Markup:  markupItemsCol,
 			TagName: Atom,
 		},
 		wcr: wcr,

@@ -1,22 +1,22 @@
 table {
     border-collapse: collapse;
-    border: 1px solid var(--subtle-color);
+    border: 1px solid var(--c-subtle);
     width: max-content;
     margin: 0;
 
     & tr * {
-        border: 1px solid var(--subtle-color);
+        border: 1px solid var(--c-subtle);
         padding: var(--small);
         padding-inline-end: var(--normal)
     }
 
     & th {
         text-align: left;
-        background-color: var(--highlight-color)
+        background-color: var(--c-highlight)
     }
 
     & tfoot {
-        color: var(--subtle-color)
+        color: var(--c-subtle)
     }
 }
 
