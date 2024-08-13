@@ -9,4 +9,6 @@ var (
 	StyleHostBackgroundColors []byte
 	//go:embed "styles/host-foreground-color.css"
 	StyleHostForegroundColors []byte
+	//go:embed "styles/host-gap.css"
+	StyleHostGaps []byte
 )

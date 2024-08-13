@@ -5,22 +5,16 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/colors"
+	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
-	"golang.org/x/net/html/atom"
 	"io"
 )
 
 const (
-	// Atom for c-details is the second value created,
-	// using max value + 1 and leaving 254 more possible atoms
-	Atom atom.Atom = 0xffffff01
-)
-
-const (
-	elementName         = "details-"
-	summaryMarginAttr   = "data-summary-margin"
+	elementNameTemplate = "details-"
+	marginAttr          = "data-margin"
 	backgroundColorAttr = "data-background-color"
 	foregroundColorAttr = "data-foreground-color"
 	openAttr            = "data-open"
@@ -51,7 +45,7 @@ func openClosed(o bool) string {
 }
 
 func (d *Details) Register(w io.Writer) error {
-	openClosedName := elementName + openClosed(d.open)
+	openClosedName := elementNameTemplate + openClosed(d.open)
 	if d.wcr.RequiresRegistration(openClosedName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(openClosedName)); err != nil {
 			return err
@@ -88,7 +82,7 @@ func (d *Details) Open() *Details {
 }
 
 func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
-	d.SetAttr(summaryMarginAttr, amount.String())
+	d.SetAttr(marginAttr, amount.String())
 	return d
 }
 
@@ -130,7 +124,7 @@ func New(wcr compton.Registrar, summary string) *Details {
 	return &Details{
 		BaseElement: compton.BaseElement{
 			Markup:  markupDetails,
-			TagName: Atom,
+			TagName: compton_atoms.DetailsToggle,
 		},
 		wcr:     wcr,
 		summary: summary,

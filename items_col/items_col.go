@@ -4,16 +4,11 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/measures"
-	"golang.org/x/net/html/atom"
+	"github.com/boggydigital/compton/shared"
 	"io"
-)
-
-const (
-	// Atom for stack is the first value created,
-	// using max value and leaving 255 more possible atoms
-	Atom atom.Atom = 0xffffff00
 )
 
 const (
@@ -38,11 +33,21 @@ func (s *Stack) Register(w io.Writer) error {
 		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
 			return err
 		}
-		if _, err := io.Copy(w, bytes.NewReader(markupTemplate)); err != nil {
+		if err := compton.WriteContents(bytes.NewReader(markupTemplate), w, s.templateFragmentWriter); err != nil {
 			return err
 		}
 	}
 	return s.BaseElement.Register(w)
+}
+
+func (s *Stack) templateFragmentWriter(t string, w io.Writer) error {
+	switch t {
+	case ".HostGaps":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostGaps)); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *Stack) SetGap(amount measures.Unit) *Stack {
@@ -54,7 +59,7 @@ func New(wcr compton.Registrar) *Stack {
 	return &Stack{
 		BaseElement: compton.BaseElement{
 			Markup:  markupItemsCol,
-			TagName: Atom,
+			TagName: compton_atoms.ItemsCol,
 		},
 		wcr: wcr,
 	}

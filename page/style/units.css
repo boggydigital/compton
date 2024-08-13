@@ -1,27 +1,33 @@
 :root {
-    --xxx-small: calc(var(--xx-small) / 2); /* 0.0625rem == 1px */
-    --xx-small: calc(var(--x-small) / 2); /* 0.125rem == 2px */
-    --x-small: calc(var(--small) / 2); /* 0.25rem == 4px */
-    --small: calc(var(--normal) / 2); /* 0.5rem == 8px */
+
     --normal: 1rem; /* 16px */
+
+    --small: calc(var(--normal) / 2); /* 0.5rem == 8px */
+    --x-small: calc(var(--small) / 2); /* 0.25rem == 4px */
+    --xx-small: calc(var(--x-small) / 2); /* 0.125rem == 2px */
+    --xxx-small: calc(var(--xx-small) / 2); /* 0.0625rem == 1px */
+
     --large: calc(2 * var(--normal)); /* 2rem == 32px */
     --x-large: calc(2 * var(--large)); /* 4rem == 64px */
     --xx-large: calc(2 * var(--x-large)); /* 8rem == 128px */
+    --xxx-large: calc(2 * var(--xx-large)); /* 16rem == 256px */
 
     --br-normal: var(--x-small);
     --br-large: var(--small);
 
     --bs-small: 0 0 var(--small) var(--c-shadow);
 
-    --fs-xxx-larger: 2.4rem;
-    --fs-xx-larger: 2rem;
-    --fs-x-larger: 1.4rem;
-    --fs-larger: 1.2rem;
     --fs-normal: 1rem;
+
     --fs-smaller: 0.9rem;
     --fs-x-smaller: 0.8rem;
     --fs-xx-smaller: 0.5rem;
     --fs-xxx-smaller: 0.375rem;
+
+    --fs-larger: 1.2rem;
+    --fs-x-larger: 1.4rem;
+    --fs-xx-larger: 2rem;
+    --fs-xxx-larger: 2.4rem;
 
     --fw-lighter: 300;
     --fw-bolder: 600;

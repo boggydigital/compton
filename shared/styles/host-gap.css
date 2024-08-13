@@ -1,0 +1,36 @@
+:host([data-gap=normal]) {
+    gap: var(--normal)
+}
+
+:host([data-gap=small]) {
+    gap: var(--small)
+}
+
+:host([data-gap=x-small]) {
+    gap: var(--x-small)
+}
+
+:host([data-gap=xx-small]) {
+    gap: var(--xx-small)
+}
+
+:host([data-gap=xxx-small]) {
+    gap:var(--xxx-small)
+}
+
+:host([data-gap=large]) {
+    gap: var(--large)
+}
+
+:host([data-gap=x-large]) {
+    gap: var(--x-large)
+}
+
+:host([data-gap=xx-large]) {
+    gap: var(--xx-large)
+}
+
+:host([data-gap=xxx-large]) {
+    gap: var(--xxx-large)
+}
+
