@@ -20,7 +20,8 @@ const (
 
 const (
 	flexElementNameTemplate = "flex-"
-	gapAttr                 = "data-gap"
+	rowGapAttr              = "data-row-gap"
+	columnGapAttr           = "data-column-gap"
 )
 
 var (
@@ -57,16 +58,31 @@ func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, string(f.dir)); err != nil {
 			return err
 		}
-	case ".HostGaps":
-		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostGaps)); err != nil {
+	case ".HostColumnGap":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostColumnGap)); err != nil {
+			return err
+		}
+	case ".HostRowGap":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostRowGap)); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (f *Flex) SetGap(amount measures.Unit) *Flex {
-	f.SetAttr(gapAttr, amount.String())
+func (f *Flex) SetRowGap(amount measures.Unit) *Flex {
+	f.SetAttr(rowGapAttr, amount.String())
+	return f
+}
+
+func (f *Flex) SetColumnGap(amount measures.Unit) *Flex {
+	f.SetAttr(columnGapAttr, amount.String())
+	return f
+}
+
+func (f *Flex) SetColumnRowGap(amount measures.Unit) *Flex {
+	f.SetColumnGap(amount)
+	f.SetRowGap(amount)
 	return f
 }
 

@@ -23,7 +23,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex.NewColumn(p).SetGap(measures.Large)
+	s := flex.NewColumn(p).SetRowGap(measures.Large)
 
 	s.Append(elements.NewHeadingText("Success", 1).
 		SetClass("success"))
@@ -43,7 +43,7 @@ func main() {
 		Open()
 
 	nso := flex.NewRow(p).
-		SetGap(measures.Small)
+		SetColumnGap(measures.Normal)
 
 	nso.Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 

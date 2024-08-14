@@ -6,9 +6,11 @@ import (
 
 var (
 	//go:embed "styles/host-background-color.css"
-	StyleHostBackgroundColors []byte
+	StyleHostBackgroundColor []byte
 	//go:embed "styles/host-foreground-color.css"
-	StyleHostForegroundColors []byte
-	//go:embed "styles/host-gap.css"
-	StyleHostGaps []byte
+	StyleHostForegroundColor []byte
+	//go:embed "styles/host-row-gap.css"
+	StyleHostRowGap []byte
+	//go:embed "styles/host-column-gap.css"
+	StyleHostColumnGap []byte
 )

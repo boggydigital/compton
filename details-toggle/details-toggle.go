@@ -63,12 +63,12 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, openClosed(d.open)); err != nil {
 			return err
 		}
-	case ".HostBackgroundColors":
-		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostBackgroundColors)); err != nil {
+	case ".HostBackgroundColor":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostBackgroundColor)); err != nil {
 			return err
 		}
-	case ".HostForegroundColors":
-		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostForegroundColors)); err != nil {
+	case ".HostForegroundColor":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostForegroundColor)); err != nil {
 			return err
 		}
 	}

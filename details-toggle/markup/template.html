@@ -37,7 +37,8 @@
             }
         }
 
-        {{.HostBackgroundColors}}
+        {{.HostForegroundColor}}
+        {{.HostBackgroundColor}}
 
         :host(:not([data-background-color])) {
             --c-bg: var(--c-highlight)
@@ -48,8 +49,6 @@
                 background-color: var(--c-bg);
             }
         }
-
-        {{.HostForegroundColors}}
 
         :host([data-margin=large]) {
             --summary-margin: var(--large)
