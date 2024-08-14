@@ -13,4 +13,6 @@ var (
 	StyleHostRowGap []byte
 	//go:embed "styles/host-column-gap.css"
 	StyleHostColumnGap []byte
+	//go:embed "styles/host-summary-margin.css"
+	StyleHostSummaryMargin []byte
 )

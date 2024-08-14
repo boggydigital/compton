@@ -50,17 +50,7 @@
             }
         }
 
-        :host([data-margin=large]) {
-            --summary-margin: var(--large)
-        }
-
-        :host([data-margin=normal]) {
-            --summary-margin: var(--normal)
-        }
-
-        :host([data-margin=small]) {
-            --summary-margin: var(--small)
-        }
+        {{.HostSummaryMargin}}
 
         details[open] {
             & > summary {

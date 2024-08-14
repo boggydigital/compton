@@ -14,7 +14,7 @@ import (
 
 const (
 	elementNameTemplate = "details-"
-	marginAttr          = "data-margin"
+	summaryMarginAttr   = "data-summary-margin"
 	backgroundColorAttr = "data-background-color"
 	foregroundColorAttr = "data-foreground-color"
 	openAttr            = "data-open"
@@ -71,6 +71,10 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostForegroundColor)); err != nil {
 			return err
 		}
+	case ".HostSummaryMargin":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostSummaryMargin)); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -82,7 +86,7 @@ func (d *Details) Open() *Details {
 }
 
 func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
-	d.SetAttr(marginAttr, amount.String())
+	d.SetAttr(summaryMarginAttr, amount.String())
 	return d
 }
 
