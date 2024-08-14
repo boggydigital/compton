@@ -6,7 +6,7 @@ import (
 	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/elements"
-	"github.com/boggydigital/compton/items_col"
+	"github.com/boggydigital/compton/flex"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
@@ -23,7 +23,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := items_col.New(p).SetGap(measures.Large)
+	s := flex.NewColumn(p).SetGap(measures.Large)
 
 	s.Append(elements.NewHeadingText("Success", 1).
 		SetClass("success"))
@@ -42,15 +42,18 @@ func main() {
 		SetForegroundColor(colors.Background).
 		Open()
 
-	nso := items_col.New(p).
-		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
+	nso := flex.NewRow(p).
+		SetGap(measures.Small)
+
+	nso.Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 
 	cdo.Append(nso)
 	s.Append(cdo)
 
 	cdc := details_toggle.New(p, "Closed").SetSummaryMargin(measures.Large)
 
-	nsc := items_col.New(p).Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
+	nsc := flex.NewColumn(p).
+		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)
 

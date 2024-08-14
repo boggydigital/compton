@@ -1,8 +1,9 @@
-<template id="items-col-template">
+<template id="flex-{{.Direction}}-template">
     <style>
         :host {
             display: flex;
-            flex-direction: column;
+            flex-direction: {{.Direction}};
+            flex-wrap: wrap;
             gap: var(--normal)
         }
 
