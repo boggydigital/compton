@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/directions"
@@ -44,7 +45,7 @@ func main() {
 		Open()
 
 	nso := flex_items.New(p, directions.Row).
-		//SetJustifyContent(anchors.Center).
+		//JustifyContent(anchors.Center).
 		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 
 	cdo.Append(nso)
@@ -54,17 +55,20 @@ func main() {
 		SetSummaryMargin(measures.Large)
 
 	nsc := flex_items.New(p, directions.Column).
-		//SetAlignContent(anchors.Center).
+		//AlignContent(anchors.Center).
 		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)
 
-	dv := elements.NewDiv().
-		SetClass("subtle").
-		Append(
-			elements.NewText("Last updated: "),
-			elements.NewTimeText(time.Now().Format("2006-01-02 15:04:05")))
-	s.Append(dv)
+	footer := flex_items.New(p, directions.Row).
+		JustifyContent(anchors.Center).
+		Append(elements.NewDiv().
+			SetClass("subtle").
+			Append(
+				elements.NewText("Last updated: "),
+				elements.NewTimeText(time.Now().Format("2006-01-02 15:04:05"))))
+
+	s.Append(footer)
 
 	p.Append(s)
 

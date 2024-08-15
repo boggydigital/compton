@@ -93,12 +93,12 @@ func (f *Flex) SetColumnRowGap(amount measures.Unit) *Flex {
 	return f
 }
 
-func (f *Flex) SetAlignContent(p anchors.Position) *Flex {
+func (f *Flex) AlignContent(p anchors.Position) *Flex {
 	f.SetAttr(alignContentAttr, p.String())
 	return f
 }
 
-func (f *Flex) SetJustifyContent(p anchors.Position) *Flex {
+func (f *Flex) JustifyContent(p anchors.Position) *Flex {
 	f.SetAttr(justifyContentAttr, p.String())
 	return f
 }
