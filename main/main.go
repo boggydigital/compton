@@ -3,11 +3,11 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
+	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/elements"
-	"github.com/boggydigital/compton/flex"
+	flex_items "github.com/boggydigital/compton/flex-items"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
@@ -24,7 +24,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex.NewColumn(p).SetRowGap(measures.Large)
+	s := flex_items.New(p, directions.Column).SetRowGap(measures.Large)
 
 	s.Append(elements.NewHeadingText("Success", 1).
 		SetClass("success"))
@@ -43,17 +43,18 @@ func main() {
 		SetForegroundColor(colors.Background).
 		Open()
 
-	nso := flex.NewRow(p).SetJustifyContent(anchors.Center)
-
-	nso.Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
+	nso := flex_items.New(p, directions.Row).
+		//SetJustifyContent(anchors.Center).
+		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 
 	cdo.Append(nso)
 	s.Append(cdo)
 
-	cdc := details_toggle.New(p, "Closed").SetSummaryMargin(measures.Large)
+	cdc := details_toggle.New(p, "Closed").
+		SetSummaryMargin(measures.Large)
 
-	nsc := flex.NewColumn(p).
-		SetAlignContent(anchors.Center).
+	nsc := flex_items.New(p, directions.Column).
+		//SetAlignContent(anchors.Center).
 		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)

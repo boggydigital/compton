@@ -1,4 +1,4 @@
-package flex
+package flex_items
 
 import (
 	"bytes"
@@ -7,45 +7,37 @@ import (
 	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
+	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
 	"io"
 )
 
-type direction string
-
 const (
-	column direction = "column"
-	row    direction = "row"
-)
-
-const (
-	flexElementNameTemplate = "flex-"
-	rowGapAttr              = "data-row-gap"
-	columnGapAttr           = "data-column-gap"
-	alignContentAttr        = "data-align-content"
-	justifyContentAttr      = "data-justify-content"
+	flexElementName    = "flex-items"
+	rowGapAttr         = "data-row-gap"
+	columnGapAttr      = "data-column-gap"
+	alignContentAttr   = "data-align-content"
+	justifyContentAttr = "data-justify-content"
+	flexDirectionAttr  = "data-flex-direction"
 )
 
 var (
 	//go:embed "markup/template.html"
 	markupTemplate []byte
-	//go:embed "markup/flex-column.html"
-	markupFlexColumn []byte
-	//go:embed "markup/flex-row.html"
-	markupFlexRow []byte
+	//go:embed "markup/flex-items.html"
+	markupFlexItems []byte
 )
 
 type Flex struct {
 	compton.BaseElement
 	wcr compton.Registrar
-	dir direction
+	dir directions.Direction
 }
 
 func (f *Flex) Register(w io.Writer) error {
-	elementName := flexElementNameTemplate + string(f.dir)
-	if f.wcr.RequiresRegistration(elementName) {
-		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
+	if f.wcr.RequiresRegistration(flexElementName) {
+		if err := custom_elements.Define(w, custom_elements.Defaults(flexElementName)); err != nil {
 			return err
 		}
 		if err := compton.WriteContents(bytes.NewReader(markupTemplate), w, f.templateFragmentWriter); err != nil {
@@ -58,7 +50,7 @@ func (f *Flex) Register(w io.Writer) error {
 func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Direction":
-		if _, err := io.WriteString(w, string(f.dir)); err != nil {
+		if _, err := io.WriteString(w, f.dir.String()); err != nil {
 			return err
 		}
 	case ".HostColumnGap":
@@ -75,6 +67,10 @@ func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 		}
 	case ".HostJustifyContent":
 		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostJustifyContent)); err != nil {
+			return err
+		}
+	case ".HostFlexDirection":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostFlexDirection)); err != nil {
 			return err
 		}
 	}
@@ -107,24 +103,15 @@ func (f *Flex) SetJustifyContent(p anchors.Position) *Flex {
 	return f
 }
 
-func NewColumn(wcr compton.Registrar) *Flex {
-	return &Flex{
+func New(wcr compton.Registrar, dir directions.Direction) *Flex {
+	f := &Flex{
 		BaseElement: compton.BaseElement{
-			Markup:  markupFlexColumn,
+			Markup:  markupFlexItems,
 			TagName: compton_atoms.ItemsCol,
 		},
 		wcr: wcr,
-		dir: column,
 	}
-}
 
-func NewRow(wcr compton.Registrar) *Flex {
-	return &Flex{
-		BaseElement: compton.BaseElement{
-			Markup:  markupFlexRow,
-			TagName: compton_atoms.ItemsCol,
-		},
-		wcr: wcr,
-		dir: row,
-	}
+	f.SetAttr(flexDirectionAttr, dir.String())
+	return f
 }

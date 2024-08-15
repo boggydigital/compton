@@ -1,8 +1,8 @@
-<template id="flex-{{.Direction}}-template">
+<template id="flex-items-template">
     <style>
         :host {
             display: flex;
-            flex-direction: {{.Direction}};
+            /*flex-direction: {{.Direction}};*/
             flex-wrap: wrap;
         }
 
@@ -10,6 +10,7 @@
         {{.HostColumnGap}}
         {{.HostAlignContent}}
         {{.HostJustifyContent}}
+        {{.HostFlexDirection}}
 
     </style>
     <slot></slot>

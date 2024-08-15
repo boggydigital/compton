@@ -19,4 +19,6 @@ var (
 	StyleHostAlignContent []byte
 	//go:embed "styles/host-justify-content.css"
 	StyleHostJustifyContent []byte
+	//go:embed "styles/host-flex-direction.css"
+	StyleHostFlexDirection []byte
 )
