@@ -6,15 +6,15 @@ import (
 )
 
 type Element interface {
-	Append(children ...Element) Element
+	Append(children ...Element)
 	Write(w io.Writer) error
 	Register(w io.Writer) error
 
 	GetTagName() atom.Atom
 
-	SetId(id string) Element
+	SetId(id string)
 
-	SetClass(names ...string) Element
+	SetClass(names ...string)
 	HasClass(names ...string) bool
 
 	SetAttr(name, val string)

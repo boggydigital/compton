@@ -3,7 +3,7 @@ package table
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/elements"
+	"github.com/boggydigital/compton/els"
 	"golang.org/x/net/html/atom"
 )
 
@@ -30,7 +30,7 @@ func (t *Table) AppendHead(columns ...string) *Table {
 
 	for _, col := range columns {
 		th := NewTh()
-		th.Append(elements.NewText(col))
+		th.Append(els.NewText(col))
 		thead.Append(th)
 	}
 
@@ -52,7 +52,7 @@ func (t *Table) AppendRow(data ...string) *Table {
 	tr := NewTr()
 	for _, col := range data {
 		td := NewTd()
-		td.Append(elements.NewText(col))
+		td.Append(els.NewText(col))
 		tr.Append(td)
 	}
 	tbody.Append(tr)
@@ -73,7 +73,7 @@ func (t *Table) AppendFoot(columns ...string) *Table {
 
 	for _, col := range columns {
 		td := NewTd()
-		td.Append(elements.NewText(col))
+		td.Append(els.NewText(col))
 		tfoot.Append(td)
 	}
 

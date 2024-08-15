@@ -17,7 +17,6 @@ const (
 	summaryMarginAttr   = "data-summary-margin"
 	backgroundColorAttr = "data-background-color"
 	foregroundColorAttr = "data-foreground-color"
-	openAttr            = "data-open"
 )
 
 var (
@@ -31,9 +30,9 @@ var (
 
 type Details struct {
 	compton.BaseElement
-	open    bool
-	summary string
 	wcr     compton.Registrar
+	summary string
+	open    bool
 }
 
 func openClosed(o bool) string {
@@ -81,12 +80,6 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-//func (d *Details) Open() *Details {
-//	d.open = true
-//	d.SetAttr(openAttr, compton.TrueVal)
-//	return d
-//}
-
 func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
 	d.SetAttr(summaryMarginAttr, amount.String())
 	return d
@@ -126,6 +119,8 @@ func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
 		if err := d.BaseElement.WriteFragment(t, w); err != nil {
 			return err
 		}
+	default:
+		return compton.ErrUnknownToken(t)
 	}
 	return nil
 }
@@ -137,6 +132,7 @@ func NewClosed(wcr compton.Registrar, summary string) *Details {
 			TagName: compton_atoms.DetailsClosed,
 		},
 		wcr:     wcr,
+		open:    false,
 		summary: summary,
 	}
 }

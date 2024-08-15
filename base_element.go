@@ -14,9 +14,8 @@ type BaseElement struct {
 	Markup   []byte
 }
 
-func (be *BaseElement) Append(children ...Element) Element {
+func (be *BaseElement) Append(children ...Element) {
 	be.Children = append(be.Children, children...)
-	return be
 }
 
 func (be *BaseElement) Register(w io.Writer) error {
@@ -50,14 +49,12 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (be *BaseElement) SetId(id string) Element {
+func (be *BaseElement) SetId(id string) {
 	be.SetAttr(IdAttr, id)
-	return be
 }
 
-func (be *BaseElement) SetClass(names ...string) Element {
+func (be *BaseElement) SetClass(names ...string) {
 	be.SetAttr(ClassAttr, strings.Join(names, " "))
-	return be
 }
 
 func (be *BaseElement) HasClass(names ...string) bool {

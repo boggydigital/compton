@@ -1,4 +1,4 @@
-package elements
+package els
 
 import (
 	_ "embed"
@@ -13,4 +13,10 @@ var (
 
 func NewDiv() compton.Element {
 	return compton.NewElement(atom.Div, markupDiv)
+}
+
+func NewDivText(txt string) compton.Element {
+	div := NewDiv()
+	div.Append(NewText(txt))
+	return div
 }

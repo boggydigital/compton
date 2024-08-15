@@ -1,4 +1,4 @@
-package elements
+package els
 
 import (
 	_ "embed"
@@ -13,4 +13,10 @@ var (
 
 func NewSpan() compton.Element {
 	return compton.NewElement(atom.Span, markupSpan)
+}
+
+func NewSpanText(txt string) compton.Element {
+	span := NewSpan()
+	span.Append(NewText(txt))
+	return span
 }

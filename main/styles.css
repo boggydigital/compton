@@ -6,3 +6,8 @@
     color: var(--c-subtle);
     font-size: var(--fs-x-smaller)
 }
+
+title-values a {
+    font-weight: var(--fw-bolder);
+    color: inherit
+}

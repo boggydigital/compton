@@ -1,4 +1,4 @@
-package elements
+package els
 
 import (
 	"github.com/boggydigital/compton"
@@ -10,8 +10,7 @@ type Text struct {
 	content string
 }
 
-func (t *Text) Append(_ ...compton.Element) compton.Element {
-	return t
+func (t *Text) Append(_ ...compton.Element) {
 }
 
 func (t *Text) Write(w io.Writer) error {

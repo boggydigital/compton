@@ -1,4 +1,4 @@
-package elements
+package els
 
 import (
 	_ "embed"
