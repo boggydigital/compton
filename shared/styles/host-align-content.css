@@ -1,0 +1,11 @@
+:host([data-align-content=start]) {
+    align-content: start
+}
+
+:host([data-align-content=center]) {
+    align-content: center
+}
+
+:host([data-align-content=end]) {
+    align-content: end
+}

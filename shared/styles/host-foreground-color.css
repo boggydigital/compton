@@ -1,3 +1,7 @@
+:host(:not([data-foreground-color])) {
+    --c-fg: var(--c-foreground)
+}
+
 :host([data-foreground-color=black]) {
     --c-fg: black
 }

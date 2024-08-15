@@ -1,0 +1,11 @@
+:host([data-justify-content=start]) {
+    justify-content: start
+}
+
+:host([data-justify-content=center]) {
+    justify-content: center
+}
+
+:host([data-justify-content=end]) {
+    justify-content: end
+}

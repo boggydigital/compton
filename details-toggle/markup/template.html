@@ -6,14 +6,16 @@
             & > summary {
                 display: flex;
                 align-items: center;
-                justify-items: center;
+                justify-content: center;
+                min-width: max-content;
+                max-width: calc(var(--xxx-large) * 2);
+                margin: auto;
                 font-weight: var(--fw-bolder);
                 padding: var(--small) var(--normal);
                 padding-inline-end: calc((var(--normal) + var(--large)) / 2);
                 background-color: var(--c-bg);
                 color: var(--c-fg);
                 border-radius: var(--br-large);
-                width: max-content;
                 column-gap: var(--small);
                 cursor: pointer;
                 user-select: none;

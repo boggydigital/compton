@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/measures"
@@ -22,6 +23,8 @@ const (
 	flexElementNameTemplate = "flex-"
 	rowGapAttr              = "data-row-gap"
 	columnGapAttr           = "data-column-gap"
+	alignContentAttr        = "data-align-content"
+	justifyContentAttr      = "data-justify-content"
 )
 
 var (
@@ -66,6 +69,14 @@ func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostRowGap)); err != nil {
 			return err
 		}
+	case ".HostAlignContent":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostAlignContent)); err != nil {
+			return err
+		}
+	case ".HostJustifyContent":
+		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostJustifyContent)); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -83,6 +94,16 @@ func (f *Flex) SetColumnGap(amount measures.Unit) *Flex {
 func (f *Flex) SetColumnRowGap(amount measures.Unit) *Flex {
 	f.SetColumnGap(amount)
 	f.SetRowGap(amount)
+	return f
+}
+
+func (f *Flex) SetAlignContent(p anchors.Position) *Flex {
+	f.SetAttr(alignContentAttr, p.String())
+	return f
+}
+
+func (f *Flex) SetJustifyContent(p anchors.Position) *Flex {
+	f.SetAttr(justifyContentAttr, p.String())
 	return f
 }
 

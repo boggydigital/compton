@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/elements"
@@ -23,7 +24,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex.NewColumn(p)
+	s := flex.NewColumn(p).SetRowGap(measures.Large)
 
 	s.Append(elements.NewHeadingText("Success", 1).
 		SetClass("success"))
@@ -42,7 +43,7 @@ func main() {
 		SetForegroundColor(colors.Background).
 		Open()
 
-	nso := flex.NewRow(p)
+	nso := flex.NewRow(p).SetJustifyContent(anchors.Center)
 
 	nso.Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 
@@ -52,6 +53,7 @@ func main() {
 	cdc := details_toggle.New(p, "Closed").SetSummaryMargin(measures.Large)
 
 	nsc := flex.NewColumn(p).
+		SetAlignContent(anchors.Center).
 		Append(elements.NewAText("One", "/one"), elements.NewAText("Two", "/two"))
 	cdc.Append(nsc)
 	s.Append(cdc)
