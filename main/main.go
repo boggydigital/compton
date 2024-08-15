@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/boggydigital/compton/anchors"
-	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/elements"
@@ -38,11 +37,10 @@ func main() {
 		SetClass("red")
 	s.Append(t)
 
-	cdo := details_toggle.New(p, "Open").
-		SetSummaryMargin(measures.Large).
-		SetBackgroundColor(colors.Red).
-		SetForegroundColor(colors.Background).
-		Open()
+	cdo := details_toggle.NewOpen(p, "Description").
+		SetSummaryMargin(measures.Large)
+	//SetBackgroundColor(colors.Red).
+	//SetForegroundColor(colors.Background)
 
 	nso := flex_items.New(p, directions.Row).
 		//JustifyContent(anchors.Center).
@@ -51,7 +49,7 @@ func main() {
 	cdo.Append(nso)
 	s.Append(cdo)
 
-	cdc := details_toggle.New(p, "Closed").
+	cdc := details_toggle.NewClosed(p, "Screenshots").
 		SetSummaryMargin(measures.Large)
 
 	nsc := flex_items.New(p, directions.Column).

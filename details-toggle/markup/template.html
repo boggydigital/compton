@@ -11,8 +11,7 @@
                 max-width: calc(var(--xxx-large) * 3);
                 margin: auto;
                 font-weight: var(--fw-bolder);
-                padding: var(--small) var(--normal);
-                padding-inline-end: calc((var(--normal) + var(--large)) / 2);
+                padding: var(--normal);
                 background-color: var(--c-bg);
                 color: var(--c-fg);
                 border-radius: var(--br-large);
@@ -22,12 +21,6 @@
 
                 &::-webkit-details-marker {
                     display: none;
-                }
-
-                & > h2 {
-                    display: inline;
-                    font-size: var(--fs-larger);
-                    margin: 0;
                 }
 
                 & > svg {
@@ -66,7 +59,7 @@
 
     </style>
     <svg style="display:none">
-        <symbol id="plus" viewBox="0 0 100 100" style="fill:currentColor">
+        <symbol id="plus" viewBox="0 0 100 100" style="fill:var(--c-subtle)">
             <path d="M 42.5,0h15v42.5h42.5v15h-42.5v42.5h-15v-42.5h-42.5v-15h42.5v-42.5Z"></path>
         </symbol>
     </svg>
@@ -75,9 +68,7 @@
             <svg>
                 <use xlink:href="#plus"></use>
             </svg>
-            <h2>
-                <slot name="summary"></slot>
-            </h2>
+            <slot name="summary"></slot>
         </summary>
         <slot name="details"></slot>
     </details>

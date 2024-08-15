@@ -107,7 +107,7 @@ func New(wcr compton.Registrar, dir directions.Direction) *Flex {
 	f := &Flex{
 		BaseElement: compton.BaseElement{
 			Markup:  markupFlexItems,
-			TagName: compton_atoms.ItemsCol,
+			TagName: compton_atoms.FlexItems,
 		},
 		wcr: wcr,
 	}

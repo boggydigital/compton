@@ -23,8 +23,10 @@ const (
 var (
 	//go:embed "markup/template.html"
 	markupTemplate []byte
-	//go:embed "markup/details-toggle.html"
-	markupDetails []byte
+	//go:embed "markup/details-open.html"
+	markupDetailsOpen []byte
+	//go:embed "markup/details-closed.html"
+	markupDetailsClosed []byte
 )
 
 type Details struct {
@@ -79,11 +81,11 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func (d *Details) Open() *Details {
-	d.open = true
-	d.SetAttr(openAttr, compton.TrueVal)
-	return d
-}
+//func (d *Details) Open() *Details {
+//	d.open = true
+//	d.SetAttr(openAttr, compton.TrueVal)
+//	return d
+//}
 
 func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
 	d.SetAttr(summaryMarginAttr, amount.String())
@@ -101,7 +103,11 @@ func (d *Details) SetForegroundColor(color colors.Color) *Details {
 }
 
 func (d *Details) Write(w io.Writer) error {
-	return compton.WriteContents(bytes.NewReader(markupDetails), w, d.elementFragmentWriter)
+	markup := markupDetailsClosed
+	if d.open {
+		markup = markupDetailsOpen
+	}
+	return compton.WriteContents(bytes.NewReader(markup), w, d.elementFragmentWriter)
 }
 
 func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
@@ -124,13 +130,25 @@ func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func New(wcr compton.Registrar, summary string) *Details {
+func NewClosed(wcr compton.Registrar, summary string) *Details {
 	return &Details{
 		BaseElement: compton.BaseElement{
-			Markup:  markupDetails,
-			TagName: compton_atoms.DetailsToggle,
+			Markup:  markupDetailsClosed,
+			TagName: compton_atoms.DetailsClosed,
 		},
 		wcr:     wcr,
+		summary: summary,
+	}
+}
+
+func NewOpen(wcr compton.Registrar, summary string) *Details {
+	return &Details{
+		BaseElement: compton.BaseElement{
+			Markup:  markupDetailsOpen,
+			TagName: compton_atoms.DetailsOpen,
+		},
+		wcr:     wcr,
+		open:    true,
 		summary: summary,
 	}
 }

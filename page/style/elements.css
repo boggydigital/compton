@@ -22,6 +22,19 @@ table {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+    font-weight: var(--fw-bolder);
+}
+
+h1 {
+    font-size: var(--fs-xx-larger)
+}
+
+h2 {
+    font-size: var(--fs-x-larger)
+}
+
+h3 {
+    font-size: var(--fs-larger);
 }
 
 a {

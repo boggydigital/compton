@@ -1,0 +1,14 @@
+<template id="grid-items-template">
+    <style>
+        :host {
+            display: grid;
+        }
+
+        {{.HostRowGap}}
+        {{.HostColumnGap}}
+        {{.HostAlignContent}}
+        {{.HostJustifyContent}}
+
+    </style>
+    <slot></slot>
+</template>
