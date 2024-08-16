@@ -45,10 +45,20 @@ func main() {
 	//SetBackgroundColor(colors.Red).
 	//SetForegroundColor(colors.Background)
 
-	nso := flex_items.New(p, directions.Row)
-	//JustifyContent(anchors.Center).
-	nso.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
+	nso := flex_items.New(p, directions.Column).SetRowGap(measures.Large)
+	////JustifyContent(anchors.Center).
+	//nso.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
 
+	links := map[string]string{
+		"Achievements":       "/achievements",
+		"Controller support": "/controller-support",
+		"Overlay":            "/overlay",
+		"Single-player":      "/single-player",
+	}
+	tv1 := title_values.NewText(p, "Features", maps.Keys(links)...)
+	tv2 := title_values.NewLinks(p, "Feature Links", links)
+
+	nso.Append(tv1, tv2)
 	cdo.Append(nso)
 	s.Append(cdo)
 
@@ -72,16 +82,6 @@ func main() {
 	footer.Append(div)
 
 	s.Append(footer)
-
-	links := map[string]string{
-		"Achievements":       "/achievements",
-		"Controller support": "/controller-support",
-		"Overlay":            "/overlay",
-		"Single-player":      "/single-player",
-	}
-	tv := title_values.NewText(p, "Features", maps.Keys(links)...)
-
-	s.Append(tv)
 
 	p.Append(s)
 

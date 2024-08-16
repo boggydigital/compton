@@ -69,7 +69,7 @@ func New(wcr compton.Registrar, title string) *TitleValues {
 	return &TitleValues{
 		BaseElement: compton.BaseElement{
 			Markup:  markupTitleValues,
-			TagName: compton_atoms.DetailsOpen,
+			TagName: compton_atoms.TitleValues,
 		},
 		wcr:   wcr,
 		title: title,

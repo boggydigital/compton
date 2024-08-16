@@ -7,4 +7,5 @@ const (
 	DetailsOpen
 	FlexItems
 	GridItems
+	TitleValues
 )
