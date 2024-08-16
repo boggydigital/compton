@@ -10,6 +10,7 @@ import (
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
 	"io"
+	"strings"
 )
 
 const (
@@ -107,6 +108,11 @@ func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Summary":
 		if _, err := io.WriteString(w, d.summary); err != nil {
+			return err
+		}
+	case ".SummaryUnderscored":
+		underscored := strings.Replace(d.summary, " ", "_", -1)
+		if _, err := io.WriteString(w, underscored); err != nil {
 			return err
 		}
 	case ".OpenClosed":

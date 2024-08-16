@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/boggydigital/compton/anchors"
+	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/els"
@@ -43,9 +44,9 @@ func main() {
 	s.Append(t)
 
 	cdo := details_toggle.NewOpen(p, "Description").
-		SetSummaryMargin(measures.Large)
-	//SetBackgroundColor(colors.Red).
-	//SetForegroundColor(colors.Background)
+		SetSummaryMargin(measures.Large).
+		SetBackgroundColor(colors.LightBlue).
+		SetForegroundColor(colors.Background)
 
 	gridItems := grid_items.New(p, directions.Column).
 		SetRowGap(measures.Large).
@@ -70,7 +71,7 @@ func main() {
 	cdo.Append(gridItems)
 	s.Append(cdo)
 
-	cdc := details_toggle.NewClosed(p, "Screenshots").
+	cdc := details_toggle.NewClosed(p, "Steam Deck").
 		SetSummaryMargin(measures.Large)
 
 	nsc := flex_items.New(p, directions.Column)
