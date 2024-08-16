@@ -8,6 +8,7 @@ import (
 	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
+	grid_items "github.com/boggydigital/compton/grid-items"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/table"
@@ -26,7 +27,8 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex_items.New(p, directions.Column).SetRowGap(measures.Large)
+	s := flex_items.New(p, directions.Column).
+		SetRowGap(measures.Large)
 
 	h1 := els.NewHeadingText("Success", 1)
 	h1.SetClass("success")
@@ -45,8 +47,10 @@ func main() {
 	//SetBackgroundColor(colors.Red).
 	//SetForegroundColor(colors.Background)
 
-	nso := flex_items.New(p, directions.Column).SetRowGap(measures.Large)
-	////JustifyContent(anchors.Center).
+	gridItems := grid_items.New(p, directions.Column).
+		SetRowGap(measures.Large).
+		SetColumnGap(measures.Large)
+	//AlignContent(anchors.Center)
 	//nso.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
 
 	links := map[string]string{
@@ -57,9 +61,13 @@ func main() {
 	}
 	tv1 := title_values.NewText(p, "Features", maps.Keys(links)...)
 	tv2 := title_values.NewLinks(p, "Feature Links", links)
+	tv3 := title_values.NewText(p, "Features", maps.Keys(links)...)
+	tv4 := title_values.NewLinks(p, "Feature Links", links)
+	tv5 := title_values.NewText(p, "Features", maps.Keys(links)...)
+	tv6 := title_values.NewLinks(p, "Feature Links", links)
 
-	nso.Append(tv1, tv2)
-	cdo.Append(nso)
+	gridItems.Append(tv1, tv2, tv3, tv4, tv5, tv6)
+	cdo.Append(gridItems)
 	s.Append(cdo)
 
 	cdc := details_toggle.NewClosed(p, "Screenshots").

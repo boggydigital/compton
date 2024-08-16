@@ -2,6 +2,75 @@
     <style>
         :host {
             display: grid;
+            grid-template-columns: repeat(var(--resp-grid-columns), var(--resp-grid-column-width));
+            column-gap: var(--large);
+            row-gap: var(--large);
+            justify-content: center;
+            --resp-grid-column-width: calc(5 * var(--x-large));
+            --resp-grid-columns-default: 3;
+            --resp-grid-columns: var(--resp-grid-columns-default);
+        }
+
+        @container (max-width: 700px) {
+            :host {
+                grid-template-columns: 1fr;
+                justify-content: start;
+            }
+        }
+
+        @container (max-width: 1000px) {
+            :host {
+                --resp-grid-columns: 2;
+            }
+        }
+
+
+        @container (min-width: 1200px) {
+            :host {
+                --resp-grid-columns: 3;
+            }
+        }
+
+        @container (min-width: 1400px) {
+            :host {
+                --resp-grid-columns: 4;
+            }
+        }
+
+        @container (min-width: 1800px) {
+            :host {
+                --resp-grid-columns: 5;
+            }
+        }
+
+        @container (min-width: 2200px) {
+            :host {
+                --resp-grid-columns: 6;
+            }
+        }
+
+        @container (min-width: 2600px) {
+            :host {
+                --resp-grid-columns: 7;
+            }
+        }
+
+        @container (min-width: 3000px) {
+            :host {
+                --resp-grid-columns: 8;
+            }
+        }
+
+        @container (min-width: 3400px) {
+            :host {
+                --resp-grid-columns: 9;
+            }
+        }
+
+        @container (min-width: 3800px) {
+            :host {
+                --resp-grid-columns: 10;
+            }
         }
 
         {{.HostRowGap}}

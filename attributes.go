@@ -9,6 +9,7 @@ const (
 	IdAttr    = "id"
 	ClassAttr = "class"
 	HrefAttr  = "href"
+	SrcAttr   = "src"
 )
 
 const (
