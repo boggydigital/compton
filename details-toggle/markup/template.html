@@ -46,8 +46,11 @@
         }
 
         {{.HostSummaryMargin}}
+        {{.HostDetailsMargin}}
 
         details[open] {
+            margin-block-end: var(--details-margin);
+
             & > summary {
                 margin-block-end: var(--summary-margin);
 

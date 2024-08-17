@@ -8,4 +8,6 @@ const (
 	FlexItems
 	GridItems
 	TitleValues
+	NavItems
+	NavButton
 )

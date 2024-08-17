@@ -11,8 +11,8 @@ import (
 	flex_items "github.com/boggydigital/compton/flex-items"
 	grid_items "github.com/boggydigital/compton/grid-items"
 	"github.com/boggydigital/compton/measures"
+	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
-	"github.com/boggydigital/compton/table"
 	title_values "github.com/boggydigital/compton/title-values"
 	"golang.org/x/exp/maps"
 	"os"
@@ -31,41 +31,56 @@ func main() {
 	s := flex_items.New(p, directions.Column).
 		SetRowGap(measures.Large)
 
-	h1 := els.NewHeadingText("Success", 1)
-	h1.SetClass("success")
-	s.Append(h1)
+	//h1 := els.NewHeadingText("Success", 1)
+	//h1.SetClass("success")
+	//s.Append(h1)
+	//
+	//t := table.New().
+	//	AppendHead("Property", "Value", "Another one").
+	//	AppendRow("Name", "John", "two").
+	//	AppendRow("Last Name", "Smith", "three").
+	//	AppendFoot("Summary", "123", "456")
+	//t.SetClass("red")
+	//s.Append(t)
 
-	t := table.New().
-		AppendHead("Property", "Value", "Another one").
-		AppendRow("Name", "John", "two").
-		AppendRow("Last Name", "Smith", "three").
-		AppendFoot("Summary", "123", "456")
-	t.SetClass("red")
-	s.Append(t)
+	navLinks := map[string]string{
+		"Description":   "#description",
+		"Screenshots":   "#screenshots",
+		"Videos":        "#videos",
+		"Steam News":    "#steam_news",
+		"Steam Reviews": "#steam_reviews",
+		"Steam Deck":    "#steam_deck",
+		"Downloads":     "#downloads",
+	}
+
+	nav := nav_links.NewLinks(p, navLinks)
+
+	s.Append(nav)
 
 	cdo := details_toggle.NewOpen(p, "Description").
-		SetSummaryMargin(measures.Large).
+		SetSummaryMargin(measures.XLarge).
+		SetDetailsMargin(measures.Large).
 		SetBackgroundColor(colors.LightBlue).
 		SetForegroundColor(colors.Background)
 
-	gridItems := grid_items.New(p, directions.Column).
+	gridItems := grid_items.New(p).
 		SetRowGap(measures.Large).
 		SetColumnGap(measures.Large)
 	//AlignContent(anchors.Center)
 	//nso.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
 
-	links := map[string]string{
+	tvLinks := map[string]string{
 		"Achievements":       "/achievements",
 		"Controller support": "/controller-support",
 		"Overlay":            "/overlay",
 		"Single-player":      "/single-player",
 	}
-	tv1 := title_values.NewText(p, "Features", maps.Keys(links)...)
-	tv2 := title_values.NewLinks(p, "Feature Links", links)
-	tv3 := title_values.NewText(p, "Features", maps.Keys(links)...)
-	tv4 := title_values.NewLinks(p, "Feature Links", links)
-	tv5 := title_values.NewText(p, "Features", maps.Keys(links)...)
-	tv6 := title_values.NewLinks(p, "Feature Links", links)
+	tv1 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
+	tv2 := title_values.NewLinks(p, "Feature Links", tvLinks)
+	tv3 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
+	tv4 := title_values.NewLinks(p, "Feature Links", tvLinks)
+	tv5 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
+	tv6 := title_values.NewLinks(p, "Feature Links", tvLinks)
 
 	gridItems.Append(tv1, tv2, tv3, tv4, tv5, tv6)
 	cdo.Append(gridItems)
@@ -93,8 +108,6 @@ func main() {
 	s.Append(footer)
 
 	p.Append(s)
-
-	//p.Append(tv)
 
 	tempPath := filepath.Join(os.TempDir(), "test.html")
 	tempFile, err := os.Create(tempPath)

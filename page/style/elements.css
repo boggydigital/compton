@@ -38,9 +38,9 @@ h3 {
 }
 
 a {
-    color: var(--c-blue);
+    /*color: var(--c-blue);*/
     text-decoration: none;
-    font-weight: var(--fw-bolder);
+    /*font-weight: var(--fw-bolder);*/
 }
 
 details {

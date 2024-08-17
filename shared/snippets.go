@@ -15,6 +15,8 @@ var (
 	StyleHostColumnGap []byte
 	//go:embed "styles/host-summary-margin.css"
 	StyleHostSummaryMargin []byte
+	//go:embed "styles/host-details-margin.css"
+	StyleHostDetailsMargin []byte
 	//go:embed "styles/host-align-content.css"
 	StyleHostAlignContent []byte
 	//go:embed "styles/host-justify-content.css"

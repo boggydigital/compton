@@ -87,12 +87,16 @@ func NewText(wcr compton.Registrar, title string, values ...string) *TitleValues
 	return titleValues
 }
 
-func NewLinks(wcr compton.Registrar, title string, links map[string]string) *TitleValues {
+func NewLinks(wcr compton.Registrar, title string, links map[string]string, order ...string) *TitleValues {
 	titleValues := New(wcr, title)
 	flexItems := flex_items.New(wcr, directions.Row)
-	keys := maps.Keys(links)
-	slices.Sort(keys)
-	for _, key := range keys {
+
+	if len(order) == 0 {
+		order = maps.Keys(links)
+		slices.Sort(order)
+	}
+
+	for _, key := range order {
 		flexItems.Append(els.NewAText(key, links[key]))
 	}
 	titleValues.Append(flexItems)

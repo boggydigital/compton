@@ -7,7 +7,6 @@ import (
 	"github.com/boggydigital/compton/anchors"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
 	"io"
@@ -93,7 +92,7 @@ func (g *Grid) JustifyContent(p anchors.Position) *Grid {
 	return g
 }
 
-func New(wcr compton.Registrar, dir directions.Direction) *Grid {
+func New(wcr compton.Registrar) *Grid {
 	return &Grid{
 		BaseElement: compton.BaseElement{
 			Markup:  markupGridItems,

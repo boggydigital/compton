@@ -1,0 +1,45 @@
+<template id="nav-links-template">
+    <style>
+        :host {
+            & section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                & slot {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    padding: var(--x-small);
+                    column-gap: var(--x-small);
+                    row-gap: var(--x-small);
+                    background-color: var(--c-highlight);
+                    border-radius: var(--br-large);
+                    justify-content: center;
+                }
+            }
+        }
+
+        ::slotted(a) {
+            display: block;
+            padding: var(--small);
+            border-radius: var(--br-normal);
+            font-size: var(--fs-x-smaller);
+            color: var(--c-foreground);
+            font-weight: normal;
+        }
+
+        ::slotted (a.current) {
+            background-color: var(--c-foreground);
+            color: var(--c-highlight);
+        }
+
+        ::slotted(a:hover) {
+            color: var(--c-background);
+            background-color: var(--c-subtle);
+        }
+    </style>
+    <section>
+        <slot></slot>
+    </section>
+</template>
