@@ -61,16 +61,9 @@
         }
 
     </style>
-    <svg style="display:none">
-        <symbol id="plus" viewBox="0 0 100 100" style="fill:currentColor">
-            <path d="M 42.5,0h15v42.5h42.5v15h-42.5v42.5h-15v-42.5h-42.5v-15h42.5v-42.5Z"></path>
-        </symbol>
-    </svg>
     <details {{.OpenClosed}}>
         <summary>
-            <svg>
-                <use xlink:href="#plus"></use>
-            </svg>
+            {{.SvgPlusIcon}}
             <slot name="summary"></slot>
         </summary>
         <slot name="details"></slot>

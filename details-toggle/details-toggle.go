@@ -82,6 +82,10 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostDetailsMargin)); err != nil {
 			return err
 		}
+	case ".SvgPlusIcon":
+		if _, err := io.Copy(w, bytes.NewReader(shared.MarkupSvgPlusIcon)); err != nil {
+			return err
+		}
 	}
 	return nil
 }

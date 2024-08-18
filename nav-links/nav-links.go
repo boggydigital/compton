@@ -44,7 +44,7 @@ func New(wcr compton.Registrar) *NavLinks {
 	return &NavLinks{
 		BaseElement: compton.BaseElement{
 			Markup:  markupNavLinks,
-			TagName: compton_atoms.GridItems,
+			TagName: compton_atoms.NavLinks,
 		},
 		wcr: wcr,
 	}
