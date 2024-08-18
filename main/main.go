@@ -31,6 +31,16 @@ func main() {
 	s := flex_items.New(p, directions.Column).
 		SetRowGap(measures.Large)
 
+	topNavLinks := map[string]string{
+		"Updates": "/updates",
+		"Search":  "/search",
+	}
+
+	topNav := nav_links.NewLinks(p, "Updates", topNavLinks, "Updates", "Search")
+
+	s.Append(topNav)
+	//topNav :=
+
 	//h1 := els.NewHeadingText("Success", 1)
 	//h1.SetClass("success")
 	//s.Append(h1)
@@ -53,7 +63,7 @@ func main() {
 		"Downloads":     "#downloads",
 	}
 
-	nav := nav_links.NewLinks(p, navLinks)
+	nav := nav_links.NewLinks(p, "Screenshots", navLinks)
 
 	s.Append(nav)
 

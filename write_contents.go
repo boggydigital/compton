@@ -6,29 +6,37 @@ import (
 	"io"
 )
 
-var (
-	pfxCurlyBraces = []byte("{{")
-	sfxCurlyBraces = []byte("}}")
-)
+// separators must have len == 2
+const sepLength = 2
+
+var separators = []string{
+	"{{",
+	"}}",
+	"/*",
+	"*/",
+}
 
 type TokenWriter func(token string, w io.Writer) error
 
-func scanCurlyBraces(data []byte, atEOF bool) (advance int, token []byte, err error) {
+func scanSeparators(data []byte, atEOF bool) (advance int, token []byte, err error) {
 	if atEOF && len(data) == 0 {
 		return 0, nil, nil
 	}
 
-	oi, ci := bytes.Index(data, pfxCurlyBraces), bytes.Index(data, sfxCurlyBraces)
+	indexes := make([]int, len(separators))
+	for i, sep := range separators {
+		indexes[i] = bytes.Index(data, []byte(sep))
+	}
 
-	if oi >= 0 || ci >= 0 {
-		i := min(oi, ci)
-		if oi < 0 {
-			i = ci
+	minIndex := len(data)
+	for _, index := range indexes {
+		if index >= 0 && index < minIndex {
+			minIndex = index
 		}
-		if ci < 0 {
-			i = oi
-		}
-		return i + 2, data[0:i], nil
+	}
+
+	if minIndex >= 0 && minIndex < len(data) {
+		return minIndex + sepLength, data[0:minIndex], nil
 	}
 
 	if atEOF {
@@ -40,7 +48,7 @@ func scanCurlyBraces(data []byte, atEOF bool) (advance int, token []byte, err er
 func WriteContents(r io.Reader, w io.Writer, wd TokenWriter) error {
 
 	s := bufio.NewScanner(r)
-	s.Split(scanCurlyBraces)
+	s.Split(scanSeparators)
 	for s.Scan() {
 		sbts := s.Bytes()
 		bts := sbts

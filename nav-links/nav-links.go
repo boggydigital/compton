@@ -50,7 +50,7 @@ func New(wcr compton.Registrar) *NavLinks {
 	}
 }
 
-func NewLinks(wcr compton.Registrar, links map[string]string, order ...string) *NavLinks {
+func NewLinks(wcr compton.Registrar, currentLink string, links map[string]string, order ...string) *NavLinks {
 	nl := New(wcr)
 
 	if len(order) == 0 {
@@ -59,7 +59,11 @@ func NewLinks(wcr compton.Registrar, links map[string]string, order ...string) *
 	}
 
 	for _, key := range order {
-		nl.Append(els.NewAText(key, links[key]))
+		link := els.NewAText(key, links[key])
+		if key == currentLink {
+			link.SetClass("current")
+		}
+		nl.Append(link)
 	}
 	return nl
 }
