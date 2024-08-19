@@ -5,11 +5,6 @@ import (
 )
 
 var (
-	//go:embed "markup/svg_plus_icon.html"
-	MarkupSvgPlusIcon []byte
-)
-
-var (
 	//go:embed "styles/host-background-color.css"
 	StyleHostBackgroundColor []byte
 	//go:embed "styles/host-foreground-color.css"

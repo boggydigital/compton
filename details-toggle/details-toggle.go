@@ -9,6 +9,7 @@ import (
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
+	"github.com/boggydigital/compton/svg_icons"
 	"io"
 	"strings"
 )
@@ -83,7 +84,7 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 			return err
 		}
 	case ".SvgPlusIcon":
-		if _, err := io.Copy(w, bytes.NewReader(shared.MarkupSvgPlusIcon)); err != nil {
+		if _, err := io.Copy(w, bytes.NewReader(svg_icons.MarkupSymbols[svg_icons.Plus])); err != nil {
 			return err
 		}
 	}

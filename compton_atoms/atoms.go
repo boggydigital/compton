@@ -9,4 +9,5 @@ const (
 	GridItems
 	TitleValues
 	NavLinks
+	SvgIcon
 )

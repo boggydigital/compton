@@ -13,6 +13,7 @@ import (
 	"github.com/boggydigital/compton/measures"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
+	"github.com/boggydigital/compton/svg_icons"
 	title_values "github.com/boggydigital/compton/title-values"
 	"golang.org/x/exp/maps"
 	"os"
@@ -36,10 +37,20 @@ func main() {
 		"Search":  "/search",
 	}
 
-	topNav := nav_links.NewLinks(p, "Updates", topNavLinks, "Updates", "Search")
+	topNavIcons := map[string]svg_icons.Symbol{
+		"Updates": svg_icons.Sparkle,
+		"Search":  svg_icons.Search,
+	}
+
+	targets := nav_links.TextLinks(
+		topNavLinks,
+		"Updates",
+		"Updates", "Search")
+	nav_links.SetIcons(targets, topNavIcons)
+
+	topNav := nav_links.NewLinks(p, targets...)
 
 	s.Append(topNav)
-	//topNav :=
 
 	//h1 := els.NewHeadingText("Success", 1)
 	//h1.SetClass("success")
@@ -60,10 +71,14 @@ func main() {
 		"Steam News":    "#steam_news",
 		"Steam Reviews": "#steam_reviews",
 		"Steam Deck":    "#steam_deck",
-		"Downloads":     "#downloads",
+		"Downloads":     "#download",
 	}
 
-	nav := nav_links.NewLinks(p, "Screenshots", navLinks)
+	nav := nav_links.NewLinks(p,
+		nav_links.TextLinks(
+			navLinks,
+			"",
+			"Description", "Screenshots", "Videos", "Steam News", "Steam Reviews", "Steam Deck", "Downloads")...)
 
 	s.Append(nav)
 

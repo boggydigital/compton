@@ -7,9 +7,8 @@ import (
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/els"
-	"golang.org/x/exp/maps"
+	"github.com/boggydigital/compton/svg_icons"
 	"io"
-	"sort"
 )
 
 const (
@@ -50,20 +49,33 @@ func New(wcr compton.Registrar) *NavLinks {
 	}
 }
 
-func NewLinks(wcr compton.Registrar, currentLink string, links map[string]string, order ...string) *NavLinks {
+func NewLinks(wcr compton.Registrar, targets ...*Target) *NavLinks {
 	nl := New(wcr)
 
-	if len(order) == 0 {
-		order = maps.Keys(links)
-		sort.Strings(order)
+	for _, t := range targets {
+		appendTarget(nl, t)
+
 	}
 
-	for _, key := range order {
-		link := els.NewAText(key, links[key])
-		if key == currentLink {
-			link.SetClass("current")
-		}
-		nl.Append(link)
-	}
 	return nl
+}
+
+func appendTarget(nl *NavLinks, t *Target) {
+	link := els.NewA(t.Href)
+
+	if t.Icon != svg_icons.None {
+		icon := svg_icons.NewIcon(t.Icon)
+		icon.SetClass("icon")
+		icon.SetAttr("title", t.Title)
+		link.Append(icon)
+		if t.Current {
+			link.Append(els.NewSpanText(t.Title))
+		}
+	} else {
+		link.Append(els.NewText(t.Title))
+	}
+	if t.Current {
+		link.SetClass("selected")
+	}
+	nl.Append(link)
 }
