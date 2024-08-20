@@ -13,7 +13,7 @@ import (
 	"github.com/boggydigital/compton/measures"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
-	"github.com/boggydigital/compton/svg_icons"
+	"github.com/boggydigital/compton/svg_inline"
 	title_values "github.com/boggydigital/compton/title-values"
 	"golang.org/x/exp/maps"
 	"os"
@@ -37,9 +37,9 @@ func main() {
 		"Search":  "/search",
 	}
 
-	topNavIcons := map[string]svg_icons.Symbol{
-		"Updates": svg_icons.Sparkle,
-		"Search":  svg_icons.Search,
+	topNavIcons := map[string]svg_inline.Symbol{
+		"Updates": svg_inline.Sparkle,
+		"Search":  svg_inline.Search,
 	}
 
 	targets := nav_links.TextLinks(

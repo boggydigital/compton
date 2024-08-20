@@ -7,7 +7,7 @@ import (
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/els"
-	"github.com/boggydigital/compton/svg_icons"
+	"github.com/boggydigital/compton/svg_inline"
 	"io"
 )
 
@@ -63,8 +63,8 @@ func NewLinks(wcr compton.Registrar, targets ...*Target) *NavLinks {
 func appendTarget(nl *NavLinks, t *Target) {
 	link := els.NewA(t.Href)
 
-	if t.Icon != svg_icons.None {
-		icon := svg_icons.NewIcon(t.Icon)
+	if t.Icon != svg_inline.None {
+		icon := svg_inline.New(t.Icon)
 		icon.SetClass("icon")
 		icon.SetAttr("title", t.Title)
 		link.Append(icon)

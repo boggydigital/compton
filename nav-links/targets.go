@@ -1,7 +1,7 @@
 package nav_links
 
 import (
-	"github.com/boggydigital/compton/svg_icons"
+	"github.com/boggydigital/compton/svg_inline"
 	"golang.org/x/exp/maps"
 	"sort"
 )
@@ -9,7 +9,7 @@ import (
 type Target struct {
 	Title   string
 	Href    string
-	Icon    svg_icons.Symbol
+	Icon    svg_inline.Symbol
 	Current bool
 }
 
@@ -33,7 +33,7 @@ func TextLinks(links map[string]string, selected string, order ...string) []*Tar
 	return targets
 }
 
-func SetIcons(targets []*Target, icons map[string]svg_icons.Symbol) []*Target {
+func SetIcons(targets []*Target, icons map[string]svg_inline.Symbol) []*Target {
 	for _, t := range targets {
 		t.Icon = icons[t.Title]
 	}

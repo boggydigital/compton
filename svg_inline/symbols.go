@@ -1,4 +1,4 @@
-package svg_icons
+package svg_inline
 
 import _ "embed"
 
