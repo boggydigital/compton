@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/boggydigital/compton/anchors"
-	"github.com/boggydigital/compton/colors"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/els"
@@ -82,11 +81,20 @@ func main() {
 
 	s.Append(nav)
 
-	cdo := details_toggle.NewOpen(p, "Description").
+	cdc := details_toggle.NewClosed(p, "Title Inputs").
+		SetSummaryMargin(measures.Large)
+
+	nsc := flex_items.New(p, directions.Column)
+	//AlignContent(anchors.Center).
+	nsc.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
+	cdc.Append(nsc)
+	s.Append(cdc)
+
+	cdo := details_toggle.NewOpen(p, "Title Values").
 		SetSummaryMargin(measures.XLarge).
-		SetDetailsMargin(measures.Large).
-		SetBackgroundColor(colors.LightBlue).
-		SetForegroundColor(colors.Background)
+		SetDetailsMargin(measures.Large)
+	//SetBackgroundColor(colors.LightBlue).
+	//SetForegroundColor(colors.Background)
 
 	gridItems := grid_items.New(p).
 		SetRowGap(measures.Large).
@@ -111,15 +119,6 @@ func main() {
 	cdo.Append(gridItems)
 	s.Append(cdo)
 
-	cdc := details_toggle.NewClosed(p, "Steam Deck").
-		SetSummaryMargin(measures.Large)
-
-	nsc := flex_items.New(p, directions.Column)
-	//AlignContent(anchors.Center).
-	nsc.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
-	cdc.Append(nsc)
-	s.Append(cdc)
-
 	footer := flex_items.New(p, directions.Row).
 		JustifyContent(anchors.Center)
 	div := els.NewDiv()
@@ -140,7 +139,7 @@ func main() {
 		panic(err)
 	}
 
-	if err := p.Write(tempFile); err != nil {
+	if err := p.WriteContent(tempFile); err != nil {
 		panic(err)
 	}
 

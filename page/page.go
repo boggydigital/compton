@@ -32,7 +32,7 @@ type Page struct {
 	customStyles           []byte
 }
 
-func (p *Page) Write(w io.Writer) error {
+func (p *Page) WriteContent(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupPage), w, p.writeFragment)
 }
 
@@ -68,8 +68,12 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 				return err
 			}
 		}
-	case ".Registry":
-		if err := p.Register(w); err != nil {
+	case ".Requirements":
+		if err := p.WriteRequirements(w); err != nil {
+			return err
+		}
+	case ".Deferrals":
+		if err := p.WriteDeferrals(w); err != nil {
 			return err
 		}
 	case compton.AttributesToken:

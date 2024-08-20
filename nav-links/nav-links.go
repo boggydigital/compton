@@ -27,7 +27,7 @@ type NavLinks struct {
 	wcr compton.Registrar
 }
 
-func (nl *NavLinks) Register(w io.Writer) error {
+func (nl *NavLinks) WriteRequirements(w io.Writer) error {
 	if nl.wcr.RequiresRegistration(navLinksElementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(navLinksElementName)); err != nil {
 			return err
@@ -36,7 +36,7 @@ func (nl *NavLinks) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return nl.BaseElement.Register(w)
+	return nl.BaseElement.WriteRequirements(w)
 }
 
 func New(wcr compton.Registrar) *NavLinks {

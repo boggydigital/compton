@@ -32,7 +32,7 @@ type Grid struct {
 	wcr compton.Registrar
 }
 
-func (g *Grid) Register(w io.Writer) error {
+func (g *Grid) WriteRequirements(w io.Writer) error {
 	if g.wcr.RequiresRegistration(gridElementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(gridElementName)); err != nil {
 			return err
@@ -41,7 +41,7 @@ func (g *Grid) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return g.BaseElement.Register(w)
+	return g.BaseElement.WriteRequirements(w)
 }
 
 func (g *Grid) templateFragmentWriter(t string, w io.Writer) error {

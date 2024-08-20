@@ -31,7 +31,7 @@ type TitleValues struct {
 	title string
 }
 
-func (tv *TitleValues) Register(w io.Writer) error {
+func (tv *TitleValues) WriteRequirements(w io.Writer) error {
 	if tv.wcr.RequiresRegistration(elementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
 			return err
@@ -40,10 +40,10 @@ func (tv *TitleValues) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return tv.BaseElement.Register(w)
+	return tv.BaseElement.WriteRequirements(w)
 }
 
-func (tv *TitleValues) Write(w io.Writer) error {
+func (tv *TitleValues) WriteContent(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupTitleValues), w, tv.elementFragmentWriter)
 }
 

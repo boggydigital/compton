@@ -7,8 +7,9 @@ import (
 
 type Element interface {
 	Append(children ...Element)
-	Write(w io.Writer) error
-	Register(w io.Writer) error
+	WriteRequirements(w io.Writer) error
+	WriteContent(w io.Writer) error
+	WriteDeferrals(w io.Writer) error
 
 	GetTagName() atom.Atom
 

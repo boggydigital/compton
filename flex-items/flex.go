@@ -35,7 +35,7 @@ type Flex struct {
 	dir directions.Direction
 }
 
-func (f *Flex) Register(w io.Writer) error {
+func (f *Flex) WriteRequirements(w io.Writer) error {
 	if f.wcr.RequiresRegistration(flexElementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(flexElementName)); err != nil {
 			return err
@@ -44,7 +44,7 @@ func (f *Flex) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return f.BaseElement.Register(w)
+	return f.BaseElement.WriteRequirements(w)
 }
 
 func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {

@@ -48,7 +48,7 @@ func openClosed(o bool) string {
 	return ""
 }
 
-func (d *Details) Register(w io.Writer) error {
+func (d *Details) WriteRequirements(w io.Writer) error {
 	openClosedName := elementNameTemplate + openClosed(d.open)
 	if d.wcr.RequiresRegistration(openClosedName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(openClosedName)); err != nil {
@@ -58,7 +58,7 @@ func (d *Details) Register(w io.Writer) error {
 			return err
 		}
 	}
-	return d.BaseElement.Register(w)
+	return d.BaseElement.WriteRequirements(w)
 }
 
 func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
@@ -111,7 +111,7 @@ func (d *Details) SetForegroundColor(color colors.Color) *Details {
 	return d
 }
 
-func (d *Details) Write(w io.Writer) error {
+func (d *Details) WriteContent(w io.Writer) error {
 	markup := markupDetailsClosed
 	if d.open {
 		markup = markupDetailsOpen

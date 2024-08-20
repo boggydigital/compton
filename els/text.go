@@ -13,7 +13,7 @@ type Text struct {
 func (t *Text) Append(_ ...compton.Element) {
 }
 
-func (t *Text) Write(w io.Writer) error {
+func (t *Text) WriteContent(w io.Writer) error {
 	if _, err := io.WriteString(w, t.content); err != nil {
 		return err
 	}

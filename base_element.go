@@ -18,24 +18,33 @@ func (be *BaseElement) Append(children ...Element) {
 	be.Children = append(be.Children, children...)
 }
 
-func (be *BaseElement) Register(w io.Writer) error {
+func (be *BaseElement) WriteRequirements(w io.Writer) error {
 	for _, child := range be.Children {
-		if err := child.Register(w); err != nil {
+		if err := child.WriteRequirements(w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (be *BaseElement) Write(w io.Writer) error {
+func (be *BaseElement) WriteContent(w io.Writer) error {
 	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
+}
+
+func (be *BaseElement) WriteDeferrals(w io.Writer) error {
+	for _, child := range be.Children {
+		if err := child.WriteDeferrals(w); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 	switch t {
 	case ContentToken:
 		for _, child := range be.Children {
-			if err := child.Write(w); err != nil {
+			if err := child.WriteContent(w); err != nil {
 				return err
 			}
 		}
