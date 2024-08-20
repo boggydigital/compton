@@ -10,6 +10,8 @@ const (
 	ClassAttr = "class"
 	HrefAttr  = "href"
 	SrcAttr   = "src"
+	ForAttr   = "for"
+	TypeAttr  = "type"
 )
 
 const (

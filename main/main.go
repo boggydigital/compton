@@ -81,13 +81,19 @@ func main() {
 
 	s.Append(nav)
 
-	cdc := details_toggle.NewClosed(p, "Title Inputs").
-		SetSummaryMargin(measures.Large)
+	cdc := details_toggle.NewOpen(p, "Title Inputs").
+		SetSummaryMargin(measures.XLarge).
+		SetDetailsMargin(measures.Large)
 
-	nsc := flex_items.New(p, directions.Column)
-	//AlignContent(anchors.Center).
-	nsc.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
-	cdc.Append(nsc)
+	tiGrid := grid_items.New(p).
+		SetRowGap(measures.Large).
+		SetColumnGap(measures.Large)
+
+	ti1 := title_values.NewSearchInput(p, "Title", "title")
+	ti2 := title_values.NewSearchInput(p, "Description", "description")
+	tiGrid.Append(ti1, ti2)
+
+	cdc.Append(tiGrid)
 	s.Append(cdc)
 
 	cdo := details_toggle.NewOpen(p, "Title Values").
@@ -96,7 +102,7 @@ func main() {
 	//SetBackgroundColor(colors.LightBlue).
 	//SetForegroundColor(colors.Background)
 
-	gridItems := grid_items.New(p).
+	tvGrid := grid_items.New(p).
 		SetRowGap(measures.Large).
 		SetColumnGap(measures.Large)
 	//AlignContent(anchors.Center)
@@ -115,8 +121,8 @@ func main() {
 	tv5 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
 	tv6 := title_values.NewLinks(p, "Feature Links", tvLinks)
 
-	gridItems.Append(tv1, tv2, tv3, tv4, tv5, tv6)
-	cdo.Append(gridItems)
+	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6)
+	cdo.Append(tvGrid)
 	s.Append(cdo)
 
 	footer := flex_items.New(p, directions.Row).

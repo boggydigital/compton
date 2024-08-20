@@ -70,3 +70,26 @@ svg.icon {
     width: calc(1.25 * var(--normal));
     height: calc(1.25 * var(--normal));
 }
+
+input[type=text],
+input[type=search] {
+    appearance: none;
+    border: none;
+    border-radius: var(--br-normal);
+    background-color: var(--c-highlight);
+    padding: var(--small);
+    font-size: var(--fs-x-smaller);
+    font-weight: var(--fw-bolder);
+    outline: var(--xx-small) solid var(--c-highlight);
+    margin: var(--xx-small);
+    width: calc(100% - 2*var(--xx-small));
+
+    &::placeholder {
+        font-weight: normal;
+        color: var(--c-subtle);
+    }
+
+    &:focus {
+      outline: var(--xx-small) solid var(--c-light-blue)
+    }
+}

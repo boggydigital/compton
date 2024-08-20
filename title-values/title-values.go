@@ -9,6 +9,7 @@ import (
 	"github.com/boggydigital/compton/directions"
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
+	"github.com/boggydigital/compton/input_types"
 	"golang.org/x/exp/maps"
 	"io"
 	"slices"
@@ -28,7 +29,7 @@ var (
 type TitleValues struct {
 	compton.BaseElement
 	wcr   compton.Registrar
-	title string
+	title compton.Element
 }
 
 func (tv *TitleValues) WriteRequirements(w io.Writer) error {
@@ -50,9 +51,12 @@ func (tv *TitleValues) WriteContent(w io.Writer) error {
 func (tv *TitleValues) elementFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
-		if _, err := io.WriteString(w, tv.title); err != nil {
+		if err := tv.title.WriteContent(w); err != nil {
 			return err
 		}
+		//if _, err := io.WriteString(w, tv.title); err != nil {
+		//	return err
+		//}
 	case compton.ContentToken:
 		fallthrough
 	case compton.AttributesToken:
@@ -72,7 +76,7 @@ func New(wcr compton.Registrar, title string) *TitleValues {
 			TagName: compton_atoms.TitleValues,
 		},
 		wcr:   wcr,
-		title: title,
+		title: els.NewHeadingText(title, 3),
 	}
 }
 
@@ -100,5 +104,26 @@ func NewLinks(wcr compton.Registrar, title string, links map[string]string, orde
 		flexItems.Append(els.NewAText(key, links[key]))
 	}
 	titleValues.Append(flexItems)
+	return titleValues
+}
+
+func NewSearchInput(wcr compton.Registrar, title, inputId string) *TitleValues {
+	titleValues := &TitleValues{
+		BaseElement: compton.BaseElement{
+			Markup:  markupTitleValues,
+			TagName: compton_atoms.TitleValues,
+		},
+		wcr: wcr,
+	}
+
+	label := els.NewLabel(inputId)
+	label.Append(els.NewHeadingText(title, 3))
+	titleValues.title = label
+
+	input := els.NewInput(input_types.Search)
+	input.SetPlaceholder(title).SetName(inputId).SetId(inputId)
+
+	titleValues.Append(input)
+
 	return titleValues
 }
