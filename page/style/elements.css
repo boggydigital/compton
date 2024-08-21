@@ -90,6 +90,6 @@ input[type=search] {
     }
 
     &:focus {
-      outline: var(--xx-small) solid var(--c-light-blue)
+      outline: var(--xx-small) solid var(--c-blue)
     }
 }

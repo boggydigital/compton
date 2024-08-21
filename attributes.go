@@ -12,6 +12,9 @@ const (
 	SrcAttr   = "src"
 	ForAttr   = "for"
 	TypeAttr  = "type"
+	ValueAttr = "value"
+	LabelAttr = "label"
+	ListAttr  = "list"
 )
 
 const (

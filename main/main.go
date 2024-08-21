@@ -90,7 +90,15 @@ func main() {
 		SetColumnGap(measures.Large)
 
 	ti1 := title_values.NewSearchInput(p, "Title", "title")
-	ti2 := title_values.NewSearchInput(p, "Description", "description")
+
+	tiList := map[string]string{
+		"true":  "True",
+		"false": "False",
+		"maybe": "Maybe",
+	}
+
+	ti2 := title_values.NewSearchInput(p, "Description", "description").
+		SetDataList(tiList)
 	tiGrid.Append(ti1, ti2)
 
 	cdc.Append(tiGrid)
