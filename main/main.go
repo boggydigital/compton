@@ -9,6 +9,7 @@ import (
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
 	grid_items "github.com/boggydigital/compton/grid-items"
+	"github.com/boggydigital/compton/input_types"
 	"github.com/boggydigital/compton/measures"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
@@ -77,7 +78,13 @@ func main() {
 		nav_links.TextLinks(
 			navLinks,
 			"",
-			"Description", "Screenshots", "Videos", "Steam News", "Steam Reviews", "Steam Deck", "Downloads")...)
+			"Description",
+			"Screenshots",
+			"Videos",
+			"Steam News",
+			"Steam Reviews",
+			"Steam Deck",
+			"Downloads")...)
 
 	s.Append(nav)
 
@@ -85,11 +92,23 @@ func main() {
 		SetSummaryMargin(measures.XLarge).
 		SetDetailsMargin(measures.Large)
 
+	form := els.NewForm("/action", "GET")
+
+	formStack := flex_items.New(p, directions.Column).
+		SetRowGap(measures.Large)
+
+	submitRow := flex_items.New(p, directions.Row).
+		JustifyContent(anchors.Center)
+
+	submit := els.NewInputValue(input_types.Submit, "Submit Query")
+	submitRow.Append(submit)
+	formStack.Append(submitRow)
+
 	tiGrid := grid_items.New(p).
 		SetRowGap(measures.Large).
 		SetColumnGap(measures.Large)
 
-	ti1 := title_values.NewSearchInput(p, "Title", "title")
+	ti1 := title_values.NewSearchValue(p, "Title", "title", "Hello")
 
 	tiList := map[string]string{
 		"true":  "True",
@@ -97,11 +116,14 @@ func main() {
 		"maybe": "Maybe",
 	}
 
-	ti2 := title_values.NewSearchInput(p, "Description", "description").
+	ti2 := title_values.NewSearch(p, "Description", "description").
 		SetDataList(tiList)
 	tiGrid.Append(ti1, ti2)
 
-	cdc.Append(tiGrid)
+	formStack.Append(tiGrid)
+	form.Append(formStack)
+
+	cdc.Append(form)
 	s.Append(cdc)
 
 	cdo := details_toggle.NewOpen(p, "Title Values").
@@ -113,8 +135,6 @@ func main() {
 	tvGrid := grid_items.New(p).
 		SetRowGap(measures.Large).
 		SetColumnGap(measures.Large)
-	//AlignContent(anchors.Center)
-	//nso.Append(els.NewAText("One", "/one"), els.NewAText("Two", "/two"))
 
 	tvLinks := map[string]string{
 		"Achievements":       "/achievements",

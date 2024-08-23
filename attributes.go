@@ -6,15 +6,17 @@ import (
 )
 
 const (
-	IdAttr    = "id"
-	ClassAttr = "class"
-	HrefAttr  = "href"
-	SrcAttr   = "src"
-	ForAttr   = "for"
-	TypeAttr  = "type"
-	ValueAttr = "value"
-	LabelAttr = "label"
-	ListAttr  = "list"
+	IdAttr     = "id"
+	ClassAttr  = "class"
+	HrefAttr   = "href"
+	SrcAttr    = "src"
+	ForAttr    = "for"
+	TypeAttr   = "type"
+	ValueAttr  = "value"
+	LabelAttr  = "label"
+	ListAttr   = "list"
+	ActionAttr = "action"
+	MethodAttr = "method"
 )
 
 const (

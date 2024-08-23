@@ -17,7 +17,7 @@ func (ti *TitleInput) SetDataList(list map[string]string) *TitleInput {
 	return ti
 }
 
-func NewSearchInput(wcr compton.Registrar, title, inputId string) *TitleInput {
+func NewSearch(wcr compton.Registrar, title, inputId string) *TitleInput {
 	titleInput := &TitleInput{
 		TitleValues: &TitleValues{
 			BaseElement: compton.BaseElement{
@@ -41,5 +41,11 @@ func NewSearchInput(wcr compton.Registrar, title, inputId string) *TitleInput {
 	titleInput.Append(input)
 	titleInput.input = input
 
+	return titleInput
+}
+
+func NewSearchValue(wcr compton.Registrar, title, inputId, value string) *TitleInput {
+	titleInput := NewSearch(wcr, title, inputId)
+	titleInput.input.SetAttr(compton.ValueAttr, value)
 	return titleInput
 }

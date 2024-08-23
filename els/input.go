@@ -72,3 +72,9 @@ func NewInput(it input_types.Type) *Input {
 	input.SetAttr(compton.TypeAttr, it.String())
 	return input
 }
+
+func NewInputValue(it input_types.Type, value string) *Input {
+	input := NewInput(it)
+	input.SetAttr(compton.ValueAttr, value)
+	return input
+}

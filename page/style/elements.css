@@ -93,3 +93,30 @@ input[type=search] {
       outline: var(--xx-small) solid var(--c-blue)
     }
 }
+
+button, input[type=submit] {
+    border: var(--x-small) solid var(--c-highlight);
+    background-color: var(--c-foreground);
+    text-decoration: none;
+    color: var(--c-highlight);
+    font-weight: var(--fw-bolder);
+    font-size: var(--fs-x-smaller);
+    width: 100%;
+    max-width: calc(5*var(--x-large));
+    padding: var(--small) var(--normal);
+    border-radius: var(--br-large);
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--c-subtle);
+        color: var(--c-background);
+    }
+}
+
+@container (max-width: 700px) {
+    button, input[type=submit] {
+        max-width: unset;
+    }
+}
+
+
