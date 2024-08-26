@@ -1,9 +1,9 @@
-package measures
+package size
 
-type Unit int
+type Size int
 
 const (
-	Normal Unit = iota
+	Normal Size = iota
 
 	Small
 	XSmall
@@ -16,7 +16,7 @@ const (
 	XXXLarge
 )
 
-var unitStrings = map[Unit]string{
+var unitStrings = map[Size]string{
 	Normal:   "normal",
 	Small:    "small",
 	XSmall:   "x-small",
@@ -28,6 +28,6 @@ var unitStrings = map[Unit]string{
 	XXXLarge: "xxx-large",
 }
 
-func (u Unit) String() string {
+func (u Size) String() string {
 	return unitStrings[u]
 }

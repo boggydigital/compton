@@ -1,4 +1,4 @@
-package directions
+package direction
 
 type Direction int
 

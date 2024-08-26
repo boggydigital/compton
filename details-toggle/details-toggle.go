@@ -7,8 +7,8 @@ import (
 	"github.com/boggydigital/compton/colors"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
+	"github.com/boggydigital/compton/size"
 	"github.com/boggydigital/compton/svg_inline"
 	"io"
 	"strings"
@@ -91,12 +91,12 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func (d *Details) SetSummaryMargin(amount measures.Unit) *Details {
+func (d *Details) SetSummaryMargin(amount size.Size) *Details {
 	d.SetAttr(summaryMarginAttr, amount.String())
 	return d
 }
 
-func (d *Details) SetDetailsMargin(amount measures.Unit) *Details {
+func (d *Details) SetDetailsMargin(amount size.Size) *Details {
 	d.SetAttr(detailsMarginAttr, amount.String())
 	return d
 }

@@ -6,8 +6,8 @@ table {
 
     & tr * {
         border: 1px solid var(--c-subtle);
-        padding: var(--small);
-        padding-inline-end: var(--normal)
+        padding: var(--s-s);
+        padding-inline-end: var(--s-n)
     }
 
     & th {
@@ -22,19 +22,19 @@ table {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-weight: var(--fw-bolder);
+    font-weight: var(--fw-b);
 }
 
 h1 {
-    font-size: var(--fs-xx-larger)
+    font-size: var(--fs-xxl)
 }
 
 h2 {
-    font-size: var(--fs-x-larger)
+    font-size: var(--fs-xl)
 }
 
 h3 {
-    font-size: var(--fs-larger);
+    font-size: var(--fs-l);
 }
 
 a {
@@ -42,13 +42,13 @@ a {
 
     &.action {
         color: var(--c-blue);
-        font-weight: var(--fw-bolder);
+        font-weight: var(--fw-b);
     }
 }
 
 title-values {
     & a {
-        font-weight: var(--fw-bolder);
+        font-weight: var(--fw-b);
         color: inherit
     }
 }
@@ -77,22 +77,22 @@ details[open] {
 }
 
 svg.icon {
-    width: calc(1.25 * var(--normal));
-    height: calc(1.25 * var(--normal));
+    width: calc(1.25 * var(--s-n));
+    height: calc(1.25 * var(--s-n));
 }
 
 input[type=text],
 input[type=search] {
     appearance: none;
     border: none;
-    border-radius: var(--br-normal);
+    border-radius: var(--br-n);
     background-color: var(--c-highlight);
-    padding: var(--small);
-    font-size: var(--fs-x-smaller);
-    font-weight: var(--fw-bolder);
-    outline: var(--xx-small) solid var(--c-highlight);
-    margin: var(--xx-small);
-    width: calc(100% - 2 * var(--xx-small));
+    padding: var(--s-s);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-b);
+    outline: var(--s-xxs) solid var(--c-highlight);
+    margin: var(--s-xxs);
+    width: calc(100% - 2 * var(--s-xxs));
 
     &::placeholder {
         font-weight: normal;
@@ -100,21 +100,21 @@ input[type=search] {
     }
 
     &:focus {
-        outline: var(--xx-small) solid var(--c-blue)
+        outline: var(--s-xxs) solid var(--c-blue)
     }
 }
 
 button, input[type=submit] {
-    border: var(--x-small) solid var(--c-highlight);
+    border: var(--s-xs) solid var(--c-highlight);
     background-color: var(--c-foreground);
     text-decoration: none;
     color: var(--c-highlight);
-    font-weight: var(--fw-bolder);
-    font-size: var(--fs-x-smaller);
+    font-weight: var(--fw-b);
+    font-size: var(--fs-xs);
     width: 100%;
-    max-width: calc(5 * var(--x-large));
-    padding: var(--small) var(--normal);
-    border-radius: var(--br-large);
+    max-width: calc(5 * var(--s-xl));
+    padding: var(--s-s) var(--s-n);
+    border-radius: var(--br-l);
     cursor: pointer;
 
     &:hover {

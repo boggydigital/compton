@@ -1,39 +1,39 @@
 :host(:not([data-details-margin])) {
-    --details-margin: var(--large)
+    --details-margin: var(--s-l)
 }
 
 :host([data-details-margin=normal]) {
-    --details-margin: var(--normal)
+    --details-margin: var(--s-n)
 }
 
 :host([data-details-margin=small]) {
-    --details-margin: var(--small)
+    --details-margin: var(--s-s)
 }
 
 :host([data-details-margin=x-small]) {
-    --details-margin: var(--x-small)
+    --details-margin: var(--s-xs)
 }
 
 :host([data-details-margin=xx-small]) {
-    --details-margin: var(--xx-small)
+    --details-margin: var(--s-xxs)
 }
 
 :host([data-details-margin=xxx-small]) {
-    --details-margin: var(--xxx-small)
+    --details-margin: var(--s-xxxs)
 }
 
 :host([data-details-margin=large]) {
-    --details-margin: var(--large)
+    --details-margin: var(--s-l)
 }
 
 :host([data-details-margin=x-large]) {
-    --details-margin: var(--x-large)
+    --details-margin: var(--s-xl)
 }
 
 :host([data-details-margin=xx-large]) {
-    --details-margin: var(--xx-large)
+    --details-margin: var(--s-xxl)
 }
 
 :host([data-details-margin=xxx-large]) {
-    --details-margin: var(--xxx-large)
+    --details-margin: var(--s-xxxl)
 }

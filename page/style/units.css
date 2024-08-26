@@ -1,38 +1,36 @@
 :root {
 
-    --normal: 1rem; /* 16px */
+    --s-n: 1rem; /* 16px */
 
-    --small: calc(var(--normal) / 2); /* 0.5rem == 8px */
-    --x-small: calc(var(--small) / 2); /* 0.25rem == 4px */
-    --xx-small: calc(var(--x-small) / 2); /* 0.125rem == 2px */
-    --xxx-small: calc(var(--xx-small) / 2); /* 0.0625rem == 1px */
+    --s-s: calc(var(--s-n) / 2); /* 0.5rem == 8px */
+    --s-xs: calc(var(--s-s) / 2); /* 0.25rem == 4px */
+    --s-xxs: calc(var(--s-xs) / 2); /* 0.125rem == 2px */
+    --s-xxxs: calc(var(--s-xxs) / 2); /* 0.0625rem == 1px */
 
-    --large: calc(2 * var(--normal)); /* 2rem == 32px */
-    --x-large: calc(2 * var(--large)); /* 4rem == 64px */
-    --xx-large: calc(2 * var(--x-large)); /* 8rem == 128px */
-    --xxx-large: calc(2 * var(--xx-large)); /* 16rem == 256px */
+    --s-l: calc(2 * var(--s-n)); /* 2rem == 32px */
+    --s-xl: calc(2 * var(--s-l)); /* 4rem == 64px */
+    --s-xxl: calc(2 * var(--s-xl)); /* 8rem == 128px */
+    --s-xxxl: calc(2 * var(--s-xxl)); /* 16rem == 256px */
 
-    --max-width: calc(3 * var(--xxx-large));
+    --s-maxw: calc(3 * var(--s-xxxl));
 
-    --br-normal: var(--x-small);
-    --br-large: var(--small);
+    --br-n: var(--s-xs);
+    --br-l: var(--s-s);
 
-    --bs-small: 0 0 var(--small) var(--c-shadow);
+    --fs-n: 1rem;
 
-    --fs-normal: 1rem;
+    --fs-s: 0.9rem;
+    --fs-xs: 0.8rem;
+    --fs-xxs: 0.5rem;
+    --fs-xxxs: 0.375rem;
 
-    --fs-smaller: 0.9rem;
-    --fs-x-smaller: 0.8rem;
-    --fs-xx-smaller: 0.5rem;
-    --fs-xxx-smaller: 0.375rem;
+    --fs-l: 1.2rem;
+    --fs-xl: 1.4rem;
+    --fs-xxl: 2rem;
+    --fs-xxxl: 2.4rem;
 
-    --fs-larger: 1.2rem;
-    --fs-x-larger: 1.4rem;
-    --fs-xx-larger: 2rem;
-    --fs-xxx-larger: 2.4rem;
-
-    --fw-lighter: 300;
-    --fw-bolder: 600;
+    --fw-l: 300;
+    --fw-b: 600;
 
     --du-fast: 0.1s;
     --du-slow: 0.3s;

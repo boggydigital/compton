@@ -3,9 +3,9 @@ package main
 import (
 	_ "embed"
 	"fmt"
-	"github.com/boggydigital/compton/anchors"
+	"github.com/boggydigital/compton/alignment"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
-	"github.com/boggydigital/compton/directions"
+	"github.com/boggydigital/compton/direction"
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
 	grid_items "github.com/boggydigital/compton/grid-items"
@@ -29,7 +29,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex_items.New(p, directions.Column)
+	s := flex_items.New(p, direction.Column)
 
 	topNavLinks := map[string]string{
 		"Updates": "/updates",
@@ -91,7 +91,7 @@ func main() {
 
 	form := els.NewForm("/action", "GET")
 
-	formStack := flex_items.New(p, directions.Column)
+	formStack := flex_items.New(p, direction.Column)
 
 	sh := section_highlight.New(p)
 	sh.SetClass("fs-x-smaller")
@@ -102,8 +102,8 @@ func main() {
 
 	formStack.Append(sh)
 
-	submitRow := flex_items.New(p, directions.Row).
-		JustifyContent(anchors.Center)
+	submitRow := flex_items.New(p, direction.Row).
+		JustifyContent(alignment.Center)
 
 	submit := els.NewInputValue(input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
@@ -150,8 +150,8 @@ func main() {
 	cdo.Append(tvGrid)
 	s.Append(cdo)
 
-	footer := flex_items.New(p, directions.Row).
-		JustifyContent(anchors.Center)
+	footer := flex_items.New(p, direction.Row).
+		JustifyContent(alignment.Center)
 
 	div := els.NewDiv()
 	div.SetClass("fg-subtle", "fs-x-smaller")

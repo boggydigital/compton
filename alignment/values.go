@@ -1,4 +1,4 @@
-package anchors
+package alignment
 
 type Position int
 

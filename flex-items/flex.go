@@ -4,12 +4,12 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/anchors"
+	"github.com/boggydigital/compton/alignment"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/directions"
-	"github.com/boggydigital/compton/measures"
+	"github.com/boggydigital/compton/direction"
 	"github.com/boggydigital/compton/shared"
+	"github.com/boggydigital/compton/size"
 	"io"
 )
 
@@ -32,7 +32,7 @@ var (
 type Flex struct {
 	compton.BaseElement
 	wcr compton.Registrar
-	dir directions.Direction
+	dir direction.Direction
 }
 
 func (f *Flex) WriteRequirements(w io.Writer) error {
@@ -77,33 +77,33 @@ func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func (f *Flex) SetRowGap(amount measures.Unit) *Flex {
+func (f *Flex) SetRowGap(amount size.Size) *Flex {
 	f.SetAttr(rowGapAttr, amount.String())
 	return f
 }
 
-func (f *Flex) SetColumnGap(amount measures.Unit) *Flex {
+func (f *Flex) SetColumnGap(amount size.Size) *Flex {
 	f.SetAttr(columnGapAttr, amount.String())
 	return f
 }
 
-func (f *Flex) SetColumnRowGap(amount measures.Unit) *Flex {
+func (f *Flex) SetColumnRowGap(amount size.Size) *Flex {
 	f.SetColumnGap(amount)
 	f.SetRowGap(amount)
 	return f
 }
 
-func (f *Flex) AlignContent(p anchors.Position) *Flex {
+func (f *Flex) AlignContent(p alignment.Position) *Flex {
 	f.SetAttr(alignContentAttr, p.String())
 	return f
 }
 
-func (f *Flex) JustifyContent(p anchors.Position) *Flex {
+func (f *Flex) JustifyContent(p alignment.Position) *Flex {
 	f.SetAttr(justifyContentAttr, p.String())
 	return f
 }
 
-func New(wcr compton.Registrar, dir directions.Direction) *Flex {
+func New(wcr compton.Registrar, dir direction.Direction) *Flex {
 	f := &Flex{
 		BaseElement: compton.BaseElement{
 			Markup:  markupFlexItems,

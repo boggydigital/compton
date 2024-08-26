@@ -4,11 +4,11 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/anchors"
+	"github.com/boggydigital/compton/alignment"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/measures"
 	"github.com/boggydigital/compton/shared"
+	"github.com/boggydigital/compton/size"
 	"io"
 )
 
@@ -66,28 +66,28 @@ func (g *Grid) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func (g *Grid) SetRowGap(amount measures.Unit) *Grid {
+func (g *Grid) SetRowGap(amount size.Size) *Grid {
 	g.SetAttr(rowGapAttr, amount.String())
 	return g
 }
 
-func (g *Grid) SetColumnGap(amount measures.Unit) *Grid {
+func (g *Grid) SetColumnGap(amount size.Size) *Grid {
 	g.SetAttr(columnGapAttr, amount.String())
 	return g
 }
 
-func (g *Grid) SetColumnRowGap(amount measures.Unit) *Grid {
+func (g *Grid) SetColumnRowGap(amount size.Size) *Grid {
 	g.SetColumnGap(amount)
 	g.SetRowGap(amount)
 	return g
 }
 
-func (g *Grid) AlignContent(p anchors.Position) *Grid {
+func (g *Grid) AlignContent(p alignment.Position) *Grid {
 	g.SetAttr(alignContentAttr, p.String())
 	return g
 }
 
-func (g *Grid) JustifyContent(p anchors.Position) *Grid {
+func (g *Grid) JustifyContent(p alignment.Position) *Grid {
 	g.SetAttr(justifyContentAttr, p.String())
 	return g
 }

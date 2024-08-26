@@ -6,10 +6,10 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/directions"
+	"github.com/boggydigital/compton/direction"
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
-	"github.com/boggydigital/compton/measures"
+	"github.com/boggydigital/compton/size"
 	"golang.org/x/exp/maps"
 	"io"
 	"slices"
@@ -82,9 +82,9 @@ func New(wcr compton.Registrar, title string) *TitleValues {
 
 func NewText(wcr compton.Registrar, title string, values ...string) *TitleValues {
 	titleValues := New(wcr, title)
-	flexItems := flex_items.New(wcr, directions.Row).
-		SetRowGap(measures.Normal).
-		SetColumnGap(measures.Normal)
+	flexItems := flex_items.New(wcr, direction.Row).
+		SetRowGap(size.Normal).
+		SetColumnGap(size.Normal)
 
 	slices.Sort(values)
 	for _, value := range values {
@@ -96,9 +96,9 @@ func NewText(wcr compton.Registrar, title string, values ...string) *TitleValues
 
 func NewLinks(wcr compton.Registrar, title string, links map[string]string, order ...string) *TitleValues {
 	titleValues := New(wcr, title)
-	flexItems := flex_items.New(wcr, directions.Row).
-		SetRowGap(measures.Normal).
-		SetColumnGap(measures.Normal)
+	flexItems := flex_items.New(wcr, direction.Row).
+		SetRowGap(size.Normal).
+		SetColumnGap(size.Normal)
 
 	if len(order) == 0 {
 		order = maps.Keys(links)

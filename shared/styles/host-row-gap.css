@@ -1,40 +1,40 @@
 :host(:not([data-row-gap])) {
-    row-gap: var(--large)
+    row-gap: var(--s-l)
 }
 
 :host([data-row-gap=normal]) {
-    row-gap: var(--normal)
+    row-gap: var(--s-n)
 }
 
 :host([data-row-gap=small]) {
-    row-gap: var(--small)
+    row-gap: var(--s-s)
 }
 
 :host([data-row-gap=x-small]) {
-    row-gap: var(--x-small)
+    row-gap: var(--s-xs)
 }
 
 :host([data-row-gap=xx-small]) {
-    row-gap: var(--xx-small)
+    row-gap: var(--s-xxs)
 }
 
 :host([data-row-gap=xxx-small]) {
-    row-gap: var(--xxx-small)
+    row-gap: var(--s-xxxs)
 }
 
 :host([data-row-gap=large]) {
-    row-gap: var(--large)
+    row-gap: var(--s-l)
 }
 
 :host([data-row-gap=x-large]) {
-    row-gap: var(--x-large)
+    row-gap: var(--s-xl)
 }
 
 :host([data-row-gap=xx-large]) {
-    row-gap: var(--xx-large)
+    row-gap: var(--s-xxl)
 }
 
 :host([data-row-gap=xxx-large]) {
-    row-gap: var(--xxx-large)
+    row-gap: var(--s-xxxl)
 }
 

@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    margin: var(--large);
+    margin: var(--s-l);
     container-type: inline-size;
 }
 

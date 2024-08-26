@@ -22,8 +22,6 @@ var (
 	stylePages []byte
 	//go:embed "style/elements.css"
 	styleElements []byte
-	//go:embed "style/classes.css"
-	styleClasses []byte
 )
 
 type Page struct {
@@ -62,10 +60,6 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 		}
 	case ".StyleElements":
 		if _, err := w.Write(styleElements); err != nil {
-			return err
-		}
-	case ".StyleClasses":
-		if _, err := w.Write(styleClasses); err != nil {
 			return err
 		}
 	case ".StyleCustom":
