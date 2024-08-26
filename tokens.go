@@ -1,6 +1,8 @@
 package compton
 
 const (
-	ContentToken    = ".Content"
-	AttributesToken = ".Attributes"
+	RequirementsToken = ".Requirements"
+	DeferralsToken    = ".Deferrals"
+	ContentToken      = ".Content"
+	AttributesToken   = ".Attributes"
 )

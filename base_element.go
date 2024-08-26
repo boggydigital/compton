@@ -18,26 +18,8 @@ func (be *BaseElement) Append(children ...Element) {
 	be.Children = append(be.Children, children...)
 }
 
-func (be *BaseElement) WriteRequirements(w io.Writer) error {
-	for _, child := range be.Children {
-		if err := child.WriteRequirements(w); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func (be *BaseElement) WriteContent(w io.Writer) error {
 	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
-}
-
-func (be *BaseElement) WriteDeferrals(w io.Writer) error {
-	for _, child := range be.Children {
-		if err := child.WriteDeferrals(w); err != nil {
-			return err
-		}
-	}
-	return nil
 }
 
 func (be *BaseElement) WriteFragment(t string, w io.Writer) error {

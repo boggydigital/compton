@@ -46,6 +46,13 @@ a {
     }
 }
 
+title-values {
+    & a {
+        font-weight: var(--fw-bolder);
+        color: inherit
+    }
+}
+
 details {
     content-visibility: auto;
 

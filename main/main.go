@@ -94,6 +94,8 @@ func main() {
 	formStack := flex_items.New(p, directions.Column)
 
 	sh := section_highlight.New(p)
+	sh.SetClass("fs-x-smaller")
+
 	clearAction := els.NewAText("Clear", "/clear")
 	clearAction.SetClass("action")
 	sh.Append(clearAction)
@@ -152,7 +154,7 @@ func main() {
 		JustifyContent(anchors.Center)
 
 	div := els.NewDiv()
-	div.SetClass("subtle")
+	div.SetClass("fg-subtle", "fs-x-smaller")
 
 	div.Append(els.NewText("Last updated: "),
 		els.NewTimeText(time.Now().Format("2006-01-02 15:04:05")))

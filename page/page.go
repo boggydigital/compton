@@ -22,6 +22,8 @@ var (
 	stylePages []byte
 	//go:embed "style/elements.css"
 	styleElements []byte
+	//go:embed "style/classes.css"
+	styleClasses []byte
 )
 
 type Page struct {
@@ -62,24 +64,28 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 		if _, err := w.Write(styleElements); err != nil {
 			return err
 		}
+	case ".StyleClasses":
+		if _, err := w.Write(styleClasses); err != nil {
+			return err
+		}
 	case ".StyleCustom":
 		if len(p.customStyles) > 0 {
 			if _, err := w.Write(p.customStyles); err != nil {
 				return err
 			}
 		}
-	case ".Requirements":
+	case compton.RequirementsToken:
 		if err := p.WriteRequirements(w); err != nil {
 			return err
 		}
-	case ".Deferrals":
+	case compton.DeferralsToken:
 		if err := p.WriteDeferrals(w); err != nil {
 			return err
 		}
 	case compton.AttributesToken:
 		fallthrough
 	case compton.ContentToken:
-		if err := p.BaseElement.WriteFragment(t, w); err != nil {
+		if err := p.WriteFragment(t, w); err != nil {
 			return err
 		}
 	default:
