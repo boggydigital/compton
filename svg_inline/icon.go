@@ -6,5 +6,5 @@ import (
 )
 
 func New(s Symbol) compton.Element {
-	return compton.NewElement(compton_atoms.SvgIcon, MarkupSymbols[s])
+	return compton.NewElement(compton_atoms.SvgInlineIcon, MarkupSymbols[s])
 }

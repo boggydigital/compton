@@ -38,9 +38,12 @@ h3 {
 }
 
 a {
-    /*color: var(--c-blue);*/
     text-decoration: none;
-    /*font-weight: var(--fw-bolder);*/
+
+    &.action {
+        color: var(--c-blue);
+        font-weight: var(--fw-bolder);
+    }
 }
 
 details {
@@ -82,7 +85,7 @@ input[type=search] {
     font-weight: var(--fw-bolder);
     outline: var(--xx-small) solid var(--c-highlight);
     margin: var(--xx-small);
-    width: calc(100% - 2*var(--xx-small));
+    width: calc(100% - 2 * var(--xx-small));
 
     &::placeholder {
         font-weight: normal;
@@ -90,7 +93,7 @@ input[type=search] {
     }
 
     &:focus {
-      outline: var(--xx-small) solid var(--c-blue)
+        outline: var(--xx-small) solid var(--c-blue)
     }
 }
 
@@ -102,7 +105,7 @@ button, input[type=submit] {
     font-weight: var(--fw-bolder);
     font-size: var(--fs-x-smaller);
     width: 100%;
-    max-width: calc(5*var(--x-large));
+    max-width: calc(5 * var(--x-large));
     padding: var(--small) var(--normal);
     border-radius: var(--br-large);
     cursor: pointer;

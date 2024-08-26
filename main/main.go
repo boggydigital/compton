@@ -12,6 +12,7 @@ import (
 	"github.com/boggydigital/compton/input_types"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
+	section_highlight "github.com/boggydigital/compton/section-highlight"
 	"github.com/boggydigital/compton/svg_inline"
 	title_values "github.com/boggydigital/compton/title-values"
 	"golang.org/x/exp/maps"
@@ -91,6 +92,13 @@ func main() {
 	form := els.NewForm("/action", "GET")
 
 	formStack := flex_items.New(p, directions.Column)
+
+	sh := section_highlight.New(p)
+	clearAction := els.NewAText("Clear", "/clear")
+	clearAction.SetClass("action")
+	sh.Append(clearAction)
+
+	formStack.Append(sh)
 
 	submitRow := flex_items.New(p, directions.Row).
 		JustifyContent(anchors.Center)

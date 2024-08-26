@@ -12,6 +12,8 @@
     --xx-large: calc(2 * var(--x-large)); /* 8rem == 128px */
     --xxx-large: calc(2 * var(--xx-large)); /* 16rem == 256px */
 
+    --max-width: calc(3 * var(--xxx-large));
+
     --br-normal: var(--x-small);
     --br-large: var(--small);
 

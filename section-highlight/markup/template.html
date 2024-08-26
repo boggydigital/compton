@@ -1,0 +1,24 @@
+<template id="section-highlight-template">
+    <style>
+
+        section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+
+            & slot {
+                display: block;
+                max-width: var(--max-width);
+                background: var(--c-highlight);
+                color: var(--c-foreground);
+                border-radius: var(--br-large);
+                padding: var(--normal)
+            }
+        }
+
+    </style>
+    <section>
+        <slot></slot>
+    </section>
+</template>
