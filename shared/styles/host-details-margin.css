@@ -1,5 +1,5 @@
 :host(:not([data-details-margin])) {
-    --details-margin: var(--normal)
+    --details-margin: var(--large)
 }
 
 :host([data-details-margin=normal]) {

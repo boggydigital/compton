@@ -10,7 +10,6 @@ import (
 	flex_items "github.com/boggydigital/compton/flex-items"
 	grid_items "github.com/boggydigital/compton/grid-items"
 	"github.com/boggydigital/compton/input_types"
-	"github.com/boggydigital/compton/measures"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
 	"github.com/boggydigital/compton/svg_inline"
@@ -29,8 +28,7 @@ func main() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex_items.New(p, directions.Column).
-		SetRowGap(measures.Large)
+	s := flex_items.New(p, directions.Column)
 
 	topNavLinks := map[string]string{
 		"Updates": "/updates",
@@ -88,14 +86,11 @@ func main() {
 
 	s.Append(nav)
 
-	cdc := details_toggle.NewOpen(p, "Title Inputs").
-		SetSummaryMargin(measures.XLarge).
-		SetDetailsMargin(measures.Large)
+	cdc := details_toggle.NewOpen(p, "Title Inputs")
 
 	form := els.NewForm("/action", "GET")
 
-	formStack := flex_items.New(p, directions.Column).
-		SetRowGap(measures.Large)
+	formStack := flex_items.New(p, directions.Column)
 
 	submitRow := flex_items.New(p, directions.Row).
 		JustifyContent(anchors.Center)
@@ -104,9 +99,7 @@ func main() {
 	submitRow.Append(submit)
 	formStack.Append(submitRow)
 
-	tiGrid := grid_items.New(p).
-		SetRowGap(measures.Large).
-		SetColumnGap(measures.Large)
+	tiGrid := grid_items.New(p)
 
 	ti1 := title_values.NewSearchValue(p, "Title", "title", "Hello")
 
@@ -126,15 +119,9 @@ func main() {
 	cdc.Append(form)
 	s.Append(cdc)
 
-	cdo := details_toggle.NewOpen(p, "Title Values").
-		SetSummaryMargin(measures.XLarge).
-		SetDetailsMargin(measures.Large)
-	//SetBackgroundColor(colors.LightBlue).
-	//SetForegroundColor(colors.Background)
+	cdo := details_toggle.NewOpen(p, "Title Values")
 
-	tvGrid := grid_items.New(p).
-		SetRowGap(measures.Large).
-		SetColumnGap(measures.Large)
+	tvGrid := grid_items.New(p)
 
 	tvLinks := map[string]string{
 		"Achievements":       "/achievements",
@@ -155,6 +142,7 @@ func main() {
 
 	footer := flex_items.New(p, directions.Row).
 		JustifyContent(anchors.Center)
+
 	div := els.NewDiv()
 	div.SetClass("subtle")
 

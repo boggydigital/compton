@@ -1,5 +1,5 @@
 :host(:not([data-row-gap])) {
-    row-gap: var(--normal)
+    row-gap: var(--large)
 }
 
 :host([data-row-gap=normal]) {
