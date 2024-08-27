@@ -2,10 +2,14 @@
     color: var(--c-subtle);
 }
 
-.fs-smaller {
+.fs-s {
     font-size: var(--fs-s);
 }
 
-.fs-x-smaller {
+.fs-xs {
     font-size: var(--fs-xs);
+}
+
+.fw-b {
+    font-weight: var(--fw-b);
 }

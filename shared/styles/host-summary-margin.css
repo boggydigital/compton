@@ -1,5 +1,5 @@
 :host(:not([data-summary-margin])) {
-    --summary-margin: var(--s-xl)
+    --summary-margin: var(--s-l)
 }
 
 :host([data-summary-margin=normal]) {

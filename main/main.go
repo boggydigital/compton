@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/alignment"
 	details_toggle "github.com/boggydigital/compton/details-toggle"
 	"github.com/boggydigital/compton/direction"
@@ -13,6 +14,7 @@ import (
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
 	section_highlight "github.com/boggydigital/compton/section-highlight"
+	"github.com/boggydigital/compton/size"
 	"github.com/boggydigital/compton/svg_inline"
 	title_values "github.com/boggydigital/compton/title-values"
 	"golang.org/x/exp/maps"
@@ -43,7 +45,7 @@ func main() {
 
 	targets := nav_links.TextLinks(
 		topNavLinks,
-		"Updates",
+		"Search",
 		"Updates", "Search")
 	nav_links.SetIcons(targets, topNavIcons)
 
@@ -51,56 +53,35 @@ func main() {
 
 	s.Append(topNav)
 
-	//h1 := els.NewHeadingText("Success", 1)
-	//h1.SetClass("success")
-	//s.Append(h1)
-	//
-	//t := table.New().
-	//	AppendHead("Property", "Value", "Another one").
-	//	AppendRow("Name", "John", "two").
-	//	AppendRow("Last Name", "Smith", "three").
-	//	AppendFoot("Summary", "123", "456")
-	//t.SetClass("red")
-	//s.Append(t)
-
 	navLinks := map[string]string{
-		"Description":   "#description",
-		"Screenshots":   "#screenshots",
-		"Videos":        "#videos",
-		"Steam News":    "#steam_news",
-		"Steam Reviews": "#steam_reviews",
-		"Steam Deck":    "#steam_deck",
-		"Downloads":     "#download",
+		"New":      "/new",
+		"Owned":    "/owned",
+		"Wishlist": "/wishlist",
+		"Sale":     "/sale",
+		"All":      "/all",
 	}
 
 	nav := nav_links.NewLinks(p,
 		nav_links.TextLinks(
 			navLinks,
-			"",
-			"Description",
-			"Screenshots",
-			"Videos",
-			"Steam News",
-			"Steam Reviews",
-			"Steam Deck",
-			"Downloads")...)
+			"New",
+			"New",
+			"Owned",
+			"Wishlist",
+			"Sale",
+			"All")...)
 
 	s.Append(nav)
 
-	cdc := details_toggle.NewOpen(p, "Title Inputs")
+	cdc := details_toggle.NewOpen(p, "Filter & Search")
 
 	form := els.NewForm("/action", "GET")
 
 	formStack := flex_items.New(p, direction.Column)
 
-	sh := section_highlight.New(p)
-	sh.SetClass("fs-x-smaller")
+	qf := createQueryFragment(p)
 
-	clearAction := els.NewAText("Clear", "/clear")
-	clearAction.SetClass("action")
-	sh.Append(clearAction)
-
-	formStack.Append(sh)
+	formStack.Append(qf)
 
 	submitRow := flex_items.New(p, direction.Row).
 		JustifyContent(alignment.Center)
@@ -129,6 +110,8 @@ func main() {
 	cdc.Append(form)
 	s.Append(cdc)
 
+	s.Append(qf)
+
 	cdo := details_toggle.NewOpen(p, "Title Values")
 
 	tvGrid := grid_items.New(p)
@@ -154,7 +137,7 @@ func main() {
 		JustifyContent(alignment.Center)
 
 	div := els.NewDiv()
-	div.SetClass("fg-subtle", "fs-x-smaller")
+	div.SetClass("fg-subtle", "fs-xs")
 
 	div.Append(els.NewText("Last updated: "),
 		els.NewTimeText(time.Now().Format("2006-01-02 15:04:05")))
@@ -176,4 +159,42 @@ func main() {
 	}
 
 	fmt.Println("file://" + tempPath)
+}
+
+func createQueryFragment(r compton.Registrar) compton.Element {
+	sh := section_highlight.New(r)
+	sh.SetClass("fs-xs")
+
+	shStack := flex_items.New(r, direction.Row).SetColumnGap(size.Normal)
+	sh.Append(shStack)
+
+	sp1 := els.NewSpan()
+	pt1 := els.NewSpanText("Descending:")
+	pt1.SetClass("fg-subtle")
+	pv1 := els.NewSpanText("True")
+	pv1.SetClass("fw-b")
+	sp1.Append(pt1, pv1)
+	shStack.Append(sp1)
+
+	sp2 := els.NewSpan()
+	pt2 := els.NewSpanText("Sort:")
+	pt2.SetClass("fg-subtle")
+	pv2 := els.NewSpanText("GOG Order Date")
+	pv2.SetClass("fw-b")
+	sp2.Append(pt2, pv2)
+	shStack.Append(sp2)
+
+	sp3 := els.NewSpan()
+	pt3 := els.NewSpanText("Data Type:")
+	pt3.SetClass("fg-subtle")
+	pv3 := els.NewSpanText("Account Products")
+	pv3.SetClass("fw-b")
+	sp3.Append(pt3, pv3)
+	shStack.Append(sp3)
+
+	clearAction := els.NewAText("Clear", "/clear")
+	clearAction.SetClass("action")
+	shStack.Append(clearAction)
+
+	return sh
 }
