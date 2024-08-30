@@ -28,8 +28,12 @@ import (
 //go:embed "styles.css"
 var appStyles []byte
 
+func main() {
+	writeTestPage()
+}
+
 func writeTestPage() {
-	p := page.New("test", "🤔")
+	p := page.New("test").SetFavIconEmoji("🤔")
 	p.SetCustomStyles(appStyles)
 
 	s := flex_items.New(p, direction.Column)
@@ -164,7 +168,7 @@ func writeTestPage() {
 
 func writeIframeContent() {
 
-	c := page.New("content", "😀")
+	c := page.New("content")
 	ifec := iframe_expand.NewContent("test", "whatever")
 	c.Append(ifec)
 
@@ -184,7 +188,7 @@ func writeIframeContent() {
 
 	fmt.Println("file://" + tempPath)
 
-	p := page.New("iframe", "👾")
+	p := page.New("iframe")
 
 	dc := details_toggle.NewClosed(p, "Description")
 
@@ -204,10 +208,6 @@ func writeIframeContent() {
 	}
 
 	fmt.Println("file://" + tempPath)
-}
-
-func main() {
-	writeIframeContent()
 }
 
 func createQueryFragment(r compton.Registrar) compton.Element {

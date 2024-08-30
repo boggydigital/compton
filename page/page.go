@@ -96,18 +96,23 @@ func (p *Page) RequiresRegistration(name string) bool {
 	return false
 }
 
-func (p *Page) SetCustomStyles(customStyles []byte) {
+func (p *Page) SetCustomStyles(customStyles []byte) *Page {
 	p.customStyles = customStyles
+	return p
 }
 
-func New(title, favIconEmoji string) *Page {
+func (p *Page) SetFavIconEmoji(favIconEmoji string) *Page {
+	p.favIconEmoji = favIconEmoji
+	return p
+}
+
+func New(title string) *Page {
 	return &Page{
 		BaseElement: compton.BaseElement{
 			Markup:  markupPage,
 			TagName: atom.Body,
 		},
 		title:                  title,
-		favIconEmoji:           favIconEmoji,
 		customElementsRegistry: make(map[string]any),
 	}
 }
