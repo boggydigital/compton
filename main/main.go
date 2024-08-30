@@ -10,6 +10,7 @@ import (
 	"github.com/boggydigital/compton/els"
 	flex_items "github.com/boggydigital/compton/flex-items"
 	grid_items "github.com/boggydigital/compton/grid-items"
+	iframe_expand "github.com/boggydigital/compton/iframe-expand"
 	"github.com/boggydigital/compton/input_types"
 	nav_links "github.com/boggydigital/compton/nav-links"
 	"github.com/boggydigital/compton/page"
@@ -20,14 +21,14 @@ import (
 	"golang.org/x/exp/maps"
 	"os"
 	"path/filepath"
+	"strconv"
 	"time"
 )
 
 //go:embed "styles.css"
 var appStyles []byte
 
-func main() {
-
+func writeTestPage() {
 	p := page.New("test", "🤔")
 	p.SetCustomStyles(appStyles)
 
@@ -161,6 +162,54 @@ func main() {
 	fmt.Println("file://" + tempPath)
 }
 
+func writeIframeContent() {
+
+	c := page.New("content", "😀")
+	ifec := iframe_expand.NewContent("test", "whatever")
+	c.Append(ifec)
+
+	for i := range 1000 {
+		c.Append(els.NewDivText(strconv.Itoa(i)))
+	}
+
+	tempPath := filepath.Join(os.TempDir(), "content.html")
+	tempFile, err := os.Create(tempPath)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := c.WriteContent(tempFile); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("file://" + tempPath)
+
+	p := page.New("iframe", "👾")
+
+	dc := details_toggle.NewClosed(p, "Description")
+
+	ife := iframe_expand.New(p, "test", "content.html")
+	dc.Append(ife)
+
+	p.Append(dc)
+
+	tempPath = filepath.Join(os.TempDir(), "test.html")
+	tempFile, err = os.Create(tempPath)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := p.WriteContent(tempFile); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("file://" + tempPath)
+}
+
+func main() {
+	writeIframeContent()
+}
+
 func createQueryFragment(r compton.Registrar) compton.Element {
 	sh := section_highlight.New(r)
 	sh.SetClass("fs-xs")
@@ -169,7 +218,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	sh.Append(shStack)
 
 	sp1 := els.NewSpan()
-	pt1 := els.NewSpanText("Descending:")
+	pt1 := els.NewSpanText("Descending: ")
 	pt1.SetClass("fg-subtle")
 	pv1 := els.NewSpanText("True")
 	pv1.SetClass("fw-b")
@@ -177,7 +226,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	shStack.Append(sp1)
 
 	sp2 := els.NewSpan()
-	pt2 := els.NewSpanText("Sort:")
+	pt2 := els.NewSpanText("Sort: ")
 	pt2.SetClass("fg-subtle")
 	pv2 := els.NewSpanText("GOG Order Date")
 	pv2.SetClass("fw-b")
@@ -185,7 +234,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	shStack.Append(sp2)
 
 	sp3 := els.NewSpan()
-	pt3 := els.NewSpanText("Data Type:")
+	pt3 := els.NewSpanText("Data Type: ")
 	pt3.SetClass("fg-subtle")
 	pv3 := els.NewSpanText("Account Products")
 	pv3.SetClass("fw-b")
