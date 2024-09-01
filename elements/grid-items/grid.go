@@ -4,11 +4,11 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/alignment"
-	"github.com/boggydigital/compton/compton_atoms"
+	"github.com/boggydigital/compton/consts/alignment"
+	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/shared"
-	"github.com/boggydigital/compton/size"
 	"io"
 )
 

@@ -2,9 +2,9 @@ package title_values
 
 import (
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/compton_atoms"
-	"github.com/boggydigital/compton/els"
-	"github.com/boggydigital/compton/input_types"
+	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/input_types"
+	"github.com/boggydigital/compton/elements/els"
 )
 
 type TitleInput struct {

@@ -3,7 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/input_types"
+	"github.com/boggydigital/compton/consts/input_types"
 	"golang.org/x/exp/maps"
 	"golang.org/x/net/html/atom"
 	"io"

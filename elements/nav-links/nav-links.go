@@ -4,10 +4,10 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/compton_atoms"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/els"
-	"github.com/boggydigital/compton/svg_inline"
+	"github.com/boggydigital/compton/elements/els"
+	svg_inline "github.com/boggydigital/compton/elements/svg-inline"
 	"io"
 )
 

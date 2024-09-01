@@ -3,8 +3,8 @@ package iframe_expand
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/els"
-	"github.com/boggydigital/compton/page"
+	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/page"
 )
 
 var (

@@ -3,7 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/loading"
+	"github.com/boggydigital/compton/consts/loading"
 	"golang.org/x/net/html/atom"
 )
 
