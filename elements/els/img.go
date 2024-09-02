@@ -13,7 +13,7 @@ var (
 )
 
 func NewImage(src string) compton.Element {
-	image := compton.NewElement(atom.Img, markupAnchor)
+	image := compton.NewElement(atom.Img, markupImage)
 	image.SetAttr(compton.SrcAttr, src)
 	return image
 }

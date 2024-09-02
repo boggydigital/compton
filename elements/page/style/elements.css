@@ -140,4 +140,35 @@ iframe {
     }
 }
 
+div.issa-image {
+    width: 100%;
+    justify-content: center;
+    display: grid;
+
+    & img {
+        object-fit: contain;
+        line-height: 0;
+        grid-row: 1;
+        grid-column: 1;
+        position: relative;
+        border-radius: var(--br-l);
+        width: 100%;
+
+        &.placeholder {
+            image-rendering: pixelated;
+            width: 100%;
+        }
+
+        &.poster {
+            transition: opacity var(--du-slow);
+
+            &.loading {
+                opacity: 0
+            }
+        }
+    }
+
+}
+
+
 

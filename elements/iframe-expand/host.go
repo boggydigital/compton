@@ -16,14 +16,15 @@ var (
 
 type IframeExpand struct {
 	compton.BaseElement
-	r             compton.Registrar
-	iframe        compton.Element
-	receiveScript compton.Element
+	r      compton.Registrar
+	iframe compton.Element
+	//receiveScript compton.Element
 }
 
 func (ife *IframeExpand) WriteRequirements(w io.Writer) error {
 	if ife.r.RequiresRegistration(elementName) {
-		return ife.receiveScript.WriteContent(w)
+		receiveScript := els.NewScript(markupReceiveScript)
+		return receiveScript.WriteContent(w)
 	}
 	return nil
 }
@@ -42,10 +43,8 @@ func New(r compton.Registrar, id, src string) compton.Element {
 	iframe := els.NewIframeLazy(src)
 	iframe.SetId(id)
 	iframe.SetClass("loading")
-	receiveScript := els.NewScript(markupReceiveScript)
 	return &IframeExpand{
-		r:             r,
-		iframe:        iframe,
-		receiveScript: receiveScript,
+		r:      r,
+		iframe: iframe,
 	}
 }
