@@ -1,7 +1,7 @@
 package nav_links
 
 import (
-	svg_inline "github.com/boggydigital/compton/elements/svg-inline"
+	"github.com/boggydigital/compton/elements/svg_inline"
 	"golang.org/x/exp/maps"
 	"sort"
 )

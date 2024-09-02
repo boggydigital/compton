@@ -3,7 +3,7 @@ package table
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/components/els"
+	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
 )
 

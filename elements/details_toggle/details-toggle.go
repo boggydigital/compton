@@ -8,7 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
-	svg_inline "github.com/boggydigital/compton/elements/svg-inline"
+	"github.com/boggydigital/compton/elements/svg_inline"
 	"github.com/boggydigital/compton/shared"
 	"io"
 	"strings"

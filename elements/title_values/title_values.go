@@ -9,7 +9,7 @@ import (
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/elements/els"
-	"github.com/boggydigital/compton/elements/flex-items"
+	"github.com/boggydigital/compton/elements/flex_items"
 	"golang.org/x/exp/maps"
 	"io"
 	"slices"
