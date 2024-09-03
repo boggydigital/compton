@@ -150,7 +150,7 @@ issa-image {
         grid-row: 1;
         grid-column: 1;
         position: relative;
-        border-radius: var(--br-l);
+        border-radius: var(--br-n);
         background-color: var(--c-highlight);
 
         &.placeholder {
