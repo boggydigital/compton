@@ -11,4 +11,5 @@ const (
 	NavLinks
 	SvgInlineIcon
 	SectionHighlight
+	IssaImage
 )

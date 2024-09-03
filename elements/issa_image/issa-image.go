@@ -3,6 +3,7 @@ package issa_image
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/issa"
 	"io"
@@ -17,13 +18,14 @@ var (
 	imageFadeInScript []byte
 	//go:embed "script/hydrate_images.js"
 	hydrateImageScript []byte
+	//go:embed "markup/template.html"
+	templateMarkup []byte
 )
 
 type IssaImage struct {
 	compton.BaseElement
 	r          compton.Registrar
 	dehydrated bool
-	container  compton.Element
 }
 
 func (ii *IssaImage) WriteRequirements(w io.Writer) error {
@@ -44,40 +46,43 @@ func (ii *IssaImage) WriteRequirements(w io.Writer) error {
 	return nil
 }
 
-func (ii *IssaImage) WriteContent(w io.Writer) error {
-	return ii.container.WriteContent(w)
-}
-
 func NewHydrated(r compton.Registrar, placeholder, poster string) compton.Element {
-	container := els.NewDiv()
-	container.SetClass(elementName)
-	placeholderImg := els.NewImage(placeholder)
-	placeholderImg.SetClass("placeholder")
-	posterImg := els.NewImage(poster)
-	posterImg.SetClass("poster", "loading")
-	container.Append(placeholderImg, posterImg)
 
-	return &IssaImage{
+	ii := &IssaImage{
+		BaseElement: compton.BaseElement{
+			TagName: compton_atoms.IssaImage,
+			Markup:  templateMarkup,
+		},
 		r:          r,
 		dehydrated: false,
-		container:  container,
 	}
+
+	placeholderImg := els.NewImage(placeholder)
+	placeholderImg.SetClass("placeholder")
+	posterImg := els.NewImageLazy(poster)
+	posterImg.SetClass("poster", "loading")
+	ii.Append(placeholderImg, posterImg)
+
+	return ii
 }
 
 func NewDehydrated(r compton.Registrar, placeholder, poster string) compton.Element {
 
-	container := els.NewDiv()
-	container.SetClass(elementName)
+	ii := &IssaImage{
+		BaseElement: compton.BaseElement{
+			TagName: compton_atoms.IssaImage,
+			Markup:  templateMarkup,
+		},
+		r:          r,
+		dehydrated: true,
+	}
+
 	placeholderImg := els.NewImage("")
 	placeholderImg.SetClass("placeholder")
 	placeholderImg.SetAttr("data-dehydrated", placeholder)
-	posterImg := els.NewImage(poster)
+	posterImg := els.NewImageLazy(poster)
 	posterImg.SetClass("poster", "loading")
-	container.Append(placeholderImg, posterImg)
+	ii.Append(placeholderImg, posterImg)
 
-	return &IssaImage{
-		r:          r,
-		dehydrated: true,
-		container:  container,
-	}
+	return ii
 }

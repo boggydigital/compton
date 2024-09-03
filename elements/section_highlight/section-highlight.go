@@ -41,7 +41,7 @@ func New(wcr compton.Registrar) compton.Element {
 	return &SectionHighlight{
 		BaseElement: compton.BaseElement{
 			Markup:  markupSectionHighlight,
-			TagName: compton_atoms.DetailsClosed,
+			TagName: compton_atoms.SectionHighlight,
 		},
 		wcr: wcr,
 	}

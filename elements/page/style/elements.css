@@ -140,7 +140,7 @@ iframe {
     }
 }
 
-div.issa-image {
+issa-image {
     width: 100%;
     justify-content: center;
     display: grid;
@@ -152,7 +152,6 @@ div.issa-image {
         grid-column: 1;
         position: relative;
         border-radius: var(--br-l);
-        width: 100%;
         background-color: var(--c-highlight);
 
         &.placeholder {

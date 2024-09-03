@@ -14,7 +14,9 @@ var (
 
 func NewImage(src string) compton.Element {
 	image := compton.NewElement(atom.Img, markupImage)
-	image.SetAttr(compton.SrcAttr, src)
+	if src != "" {
+		image.SetAttr(compton.SrcAttr, src)
+	}
 	return image
 }
 
