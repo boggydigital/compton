@@ -153,6 +153,7 @@ div.issa-image {
         position: relative;
         border-radius: var(--br-l);
         width: 100%;
+        background-color: var(--c-highlight);
 
         &.placeholder {
             image-rendering: pixelated;
