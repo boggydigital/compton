@@ -3,7 +3,7 @@ package compton_atoms
 import "golang.org/x/net/html/atom"
 
 const (
-	DetailsClosed atom.Atom = 0xffffff00 + iota
+	DetailsClosed atom.Atom = 0xfffff000 + iota
 	DetailsOpen
 	FlexItems
 	GridItems
