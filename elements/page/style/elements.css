@@ -159,6 +159,7 @@ issa-image {
         }
 
         &.poster {
+            width: 100%;
             transition: opacity var(--du-slow);
 
             &.loading {
