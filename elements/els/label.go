@@ -13,6 +13,8 @@ var (
 
 func NewLabel(forInput string) compton.Element {
 	label := compton.NewElement(atom.Label, markupLabel)
-	label.SetAttr(compton.ForAttr, forInput)
+	if forInput != "" {
+		label.SetAttr(compton.ForAttr, forInput)
+	}
 	return label
 }
