@@ -155,11 +155,9 @@ issa-image {
 
         &.placeholder {
             image-rendering: pixelated;
-            width: 100%;
         }
 
         &.poster {
-            width: 100%;
             transition: opacity var(--du-slow);
 
             &.loading {
