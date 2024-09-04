@@ -30,15 +30,13 @@ type IssaImage struct {
 
 func (ii *IssaImage) WriteRequirements(w io.Writer) error {
 	if ii.r.RequiresRegistration(elementName) {
-		if ii.dehydrated {
-			hcScript := els.NewScript(issa.HydrateColorScript)
-			if err := hcScript.WriteContent(w); err != nil {
-				return err
-			}
-			hiScript := els.NewScript(hydrateImageScript)
-			if err := hiScript.WriteContent(w); err != nil {
-				return err
-			}
+		hcScript := els.NewScript(issa.HydrateColorScript)
+		if err := hcScript.WriteContent(w); err != nil {
+			return err
+		}
+		hiScript := els.NewScript(hydrateImageScript)
+		if err := hiScript.WriteContent(w); err != nil {
+			return err
 		}
 		ifiScript := els.NewScript(imageFadeInScript)
 		return ifiScript.WriteContent(w)
