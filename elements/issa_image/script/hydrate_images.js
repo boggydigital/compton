@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dehydratedData = di.getAttribute("data-dehydrated")
         hydratedSrc = hydrateColor(dehydratedData)
         di.removeAttribute("data-dehydrated")
+        di.classList.remove("loading")
         di.src = hydratedSrc
     })
 });

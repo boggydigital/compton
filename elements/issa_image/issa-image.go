@@ -76,7 +76,7 @@ func NewDehydrated(r compton.Registrar, placeholder, poster string) compton.Elem
 	}
 
 	placeholderImg := els.NewImage("")
-	placeholderImg.SetClass("placeholder")
+	placeholderImg.SetClass("placeholder", "loading")
 	placeholderImg.SetAttr("data-dehydrated", placeholder)
 	posterImg := els.NewImageLazy(poster)
 	posterImg.SetClass("poster", "loading")
