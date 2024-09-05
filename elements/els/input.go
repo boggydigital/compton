@@ -78,3 +78,9 @@ func NewInputValue(it input_types.Type, value string) *Input {
 	input.SetAttr(compton.ValueAttr, value)
 	return input
 }
+
+func NewButton(text string) *Input {
+	input := NewInput(input_types.Button)
+	input.SetAttr(compton.ValueAttr, text)
+	return input
+}

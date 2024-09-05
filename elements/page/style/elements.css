@@ -102,9 +102,14 @@ input[type=search] {
     &:focus {
         outline: var(--s-xxs) solid var(--c-blue)
     }
+
+    &:not(:placeholder-shown) {
+        background-color: var(--c-subtle);
+        color: var(--c-background);
+    }
 }
 
-button, input[type=submit] {
+input[type=button], input[type=submit] {
     border: var(--s-xs) solid var(--c-highlight);
     background-color: var(--c-foreground);
     text-decoration: none;
