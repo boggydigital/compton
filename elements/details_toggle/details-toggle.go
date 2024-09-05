@@ -169,3 +169,11 @@ func NewOpen(wcr compton.Registrar, summary string) *Details {
 		summary: summary,
 	}
 }
+
+func NewToggle(wcr compton.Registrar, summary string, condition bool) *Details {
+	if condition {
+		return NewOpen(wcr, summary)
+	} else {
+		return NewClosed(wcr, summary)
+	}
+}
