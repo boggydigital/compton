@@ -11,12 +11,14 @@ var (
 	markupListItem []byte
 )
 
-func NewListItem() compton.Element {
+var Li = ListItem
+
+func ListItem() compton.Element {
 	return compton.NewElement(atom.Li, markupListItem)
 }
 
-func NewListItemText(txt string) compton.Element {
-	listItem := NewListItem()
-	listItem.Append(NewText(txt))
+func ListItemText(txt string) compton.Element {
+	listItem := ListItem()
+	listItem.Append(Text(txt))
 	return listItem
 }

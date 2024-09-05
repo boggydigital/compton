@@ -21,7 +21,7 @@ var (
 	markupH6 []byte
 )
 
-func NewHeading(level int) compton.Element {
+func Heading(level int) compton.Element {
 
 	if level < 1 {
 		level = 1
@@ -54,8 +54,22 @@ func NewHeading(level int) compton.Element {
 	return compton.NewElement(tn, markup)
 }
 
-func NewHeadingText(txt string, level int) compton.Element {
-	heading := NewHeading(level)
-	heading.Append(NewText(txt))
+func H1() compton.Element { return Heading(1) }
+func H2() compton.Element { return Heading(2) }
+func H3() compton.Element { return Heading(3) }
+func H4() compton.Element { return Heading(4) }
+func H5() compton.Element { return Heading(5) }
+func H6() compton.Element { return Heading(6) }
+
+func HeadingText(txt string, level int) compton.Element {
+	heading := Heading(level)
+	heading.Append(Text(txt))
 	return heading
 }
+
+func H1Text(txt string) compton.Element { return HeadingText(txt, 1) }
+func H2Text(txt string) compton.Element { return HeadingText(txt, 2) }
+func H3Text(txt string) compton.Element { return HeadingText(txt, 3) }
+func H4Text(txt string) compton.Element { return HeadingText(txt, 4) }
+func H5Text(txt string) compton.Element { return HeadingText(txt, 5) }
+func H6Text(txt string) compton.Element { return HeadingText(txt, 6) }

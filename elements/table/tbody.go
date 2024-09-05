@@ -11,6 +11,6 @@ var (
 	markupTbody []byte
 )
 
-func NewBody() compton.Element {
+func Tbody() compton.Element {
 	return compton.NewElement(atom.Tbody, markupTbody)
 }

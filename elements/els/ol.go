@@ -11,6 +11,8 @@ var (
 	markupOrderedList []byte
 )
 
-func NewOrderedList() compton.Element {
+var Ol = OrderedList
+
+func OrderedList() compton.Element {
 	return compton.NewElement(atom.Ol, markupOrderedList)
 }

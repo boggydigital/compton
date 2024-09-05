@@ -11,12 +11,12 @@ var (
 	markupSpan []byte
 )
 
-func NewSpan() compton.Element {
+func Span() compton.Element {
 	return compton.NewElement(atom.Span, markupSpan)
 }
 
-func NewSpanText(txt string) compton.Element {
-	span := NewSpan()
-	span.Append(NewText(txt))
+func SpanText(txt string) compton.Element {
+	span := Span()
+	span.Append(Text(txt))
 	return span
 }

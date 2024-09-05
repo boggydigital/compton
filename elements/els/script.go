@@ -11,8 +11,8 @@ var (
 	markupScript []byte
 )
 
-func NewScript(code []byte) compton.Element {
+func Script(code []byte) compton.Element {
 	script := compton.NewElement(atom.Script, markupScript)
-	script.Append(NewText(string(code)))
+	script.Append(Text(string(code)))
 	return script
 }

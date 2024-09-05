@@ -12,7 +12,10 @@ var (
 	markupImage []byte
 )
 
-func NewImage(src string) compton.Element {
+var Img = Image
+var ImgLazy = ImageLazy
+
+func Image(src string) compton.Element {
 	image := compton.NewElement(atom.Img, markupImage)
 	if src != "" {
 		image.SetAttr(compton.SrcAttr, src)
@@ -20,8 +23,8 @@ func NewImage(src string) compton.Element {
 	return image
 }
 
-func NewImageLazy(src string) compton.Element {
-	image := NewImage(src)
+func ImageLazy(src string) compton.Element {
+	image := Image(src)
 	image.SetAttr(compton.LoadingAttr, loading.Lazy.String())
 	return image
 }

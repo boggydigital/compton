@@ -22,12 +22,12 @@ var (
 	markupNavLinks []byte
 )
 
-type NavLinks struct {
+type NavLinksElement struct {
 	compton.BaseElement
 	wcr compton.Registrar
 }
 
-func (nl *NavLinks) WriteRequirements(w io.Writer) error {
+func (nl *NavLinksElement) WriteRequirements(w io.Writer) error {
 	if nl.wcr.RequiresRegistration(navLinksElementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(navLinksElementName)); err != nil {
 			return err
@@ -39,8 +39,8 @@ func (nl *NavLinks) WriteRequirements(w io.Writer) error {
 	return nl.BaseElement.WriteRequirements(w)
 }
 
-func New(wcr compton.Registrar) *NavLinks {
-	return &NavLinks{
+func NavLinks(wcr compton.Registrar) *NavLinksElement {
+	return &NavLinksElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupNavLinks,
 			TagName: compton_atoms.NavLinks,
@@ -49,8 +49,8 @@ func New(wcr compton.Registrar) *NavLinks {
 	}
 }
 
-func NewLinks(wcr compton.Registrar, targets ...*Target) *NavLinks {
-	nl := New(wcr)
+func NavLinksTargets(wcr compton.Registrar, targets ...*Target) *NavLinksElement {
+	nl := NavLinks(wcr)
 
 	for _, t := range targets {
 		appendTarget(nl, t)
@@ -60,19 +60,19 @@ func NewLinks(wcr compton.Registrar, targets ...*Target) *NavLinks {
 	return nl
 }
 
-func appendTarget(nl *NavLinks, t *Target) {
-	link := els.NewA(t.Href)
+func appendTarget(nl *NavLinksElement, t *Target) {
+	link := els.A(t.Href)
 
 	if t.Icon != svg_inline.None {
-		icon := svg_inline.New(t.Icon)
+		icon := svg_inline.SvgInline(t.Icon)
 		icon.SetClass("icon")
 		icon.SetAttr("title", t.Title)
 		link.Append(icon)
 		if t.Current {
-			link.Append(els.NewSpanText(t.Title))
+			link.Append(els.SpanText(t.Title))
 		}
 	} else {
-		link.Append(els.NewText(t.Title))
+		link.Append(els.Text(t.Title))
 	}
 	if t.Current {
 		link.SetClass("selected")

@@ -12,14 +12,14 @@ var (
 	MarkupIframe []byte
 )
 
-func NewIframe(src string) compton.Element {
+func Iframe(src string) compton.Element {
 	iframe := compton.NewElement(atom.Iframe, MarkupIframe)
 	iframe.SetAttr(compton.SrcAttr, src)
 	return iframe
 }
 
-func NewIframeLazy(src string) compton.Element {
-	iframe := NewIframe(src)
+func IframeLazy(src string) compton.Element {
+	iframe := Iframe(src)
 	iframe.SetAttr(compton.LoadingAttr, loading.Lazy.String())
 	return iframe
 }

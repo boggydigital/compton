@@ -11,7 +11,7 @@ var (
 	markupForm []byte
 )
 
-func NewForm(action, method string) compton.Element {
+func Form(action, method string) compton.Element {
 	form := compton.NewElement(atom.Form, markupForm)
 	form.SetAttr(compton.ActionAttr, action)
 	form.SetAttr(compton.MethodAttr, method)

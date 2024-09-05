@@ -23,7 +23,7 @@ type IframeExpand struct {
 
 func (ife *IframeExpand) WriteRequirements(w io.Writer) error {
 	if ife.r.RequiresRegistration(elementName) {
-		receiveScript := els.NewScript(markupReceiveScript)
+		receiveScript := els.Script(markupReceiveScript)
 		return receiveScript.WriteContent(w)
 	}
 	return nil
@@ -33,14 +33,14 @@ func (ife *IframeExpand) WriteContent(w io.Writer) error {
 	return ife.iframe.WriteContent(w)
 }
 
-// New creates iframe-expand that will expand height to content height.
+// IframeExpandHost creates iframe-expand that will expand height to content height.
 // In order to achieve that, two scripts need to be present
 // script/receive.js on the host page (the page that contains iframe element)
 // script/post.js within the iframe page. See NewContent that creates the page
 // with that script. Initially host iframe has opacity: 0 through `loading`
 // class to avoid flash of white content as iframe loads
-func New(r compton.Registrar, id, src string) compton.Element {
-	iframe := els.NewIframeLazy(src)
+func IframeExpandHost(r compton.Registrar, id, src string) compton.Element {
+	iframe := els.IframeLazy(src)
 	iframe.SetId(id)
 	iframe.SetClass("loading")
 	return &IframeExpand{

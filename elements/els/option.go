@@ -11,7 +11,7 @@ var (
 	markupOption []byte
 )
 
-func NewOption(value, label string) compton.Element {
+func Option(value, label string) compton.Element {
 	option := compton.NewElement(atom.Option, markupOption)
 	option.SetAttr(compton.ValueAttr, value)
 	if label != "" {

@@ -11,12 +11,12 @@ var (
 	markupDiv []byte
 )
 
-func NewDiv() compton.Element {
+func Div() compton.Element {
 	return compton.NewElement(atom.Div, markupDiv)
 }
 
-func NewDivText(txt string) compton.Element {
-	div := NewDiv()
-	div.Append(NewText(txt))
+func DivText(txt string) compton.Element {
+	div := Div()
+	div.Append(Text(txt))
 	return div
 }

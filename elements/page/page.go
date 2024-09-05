@@ -24,7 +24,7 @@ var (
 	styleElements []byte
 )
 
-type Page struct {
+type PageElement struct {
 	compton.BaseElement
 	customElementsRegistry map[string]any
 	title                  string
@@ -32,11 +32,11 @@ type Page struct {
 	customStyles           []byte
 }
 
-func (p *Page) WriteContent(w io.Writer) error {
+func (p *PageElement) WriteContent(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupPage), w, p.writeFragment)
 }
 
-func (p *Page) writeFragment(t string, w io.Writer) error {
+func (p *PageElement) writeFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
 		if _, err := io.WriteString(w, p.title); err != nil {
@@ -88,7 +88,7 @@ func (p *Page) writeFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func (p *Page) RequiresRegistration(name string) bool {
+func (p *PageElement) RequiresRegistration(name string) bool {
 	if _, ok := p.customElementsRegistry[name]; !ok {
 		p.customElementsRegistry[name] = nil
 		return true
@@ -96,18 +96,18 @@ func (p *Page) RequiresRegistration(name string) bool {
 	return false
 }
 
-func (p *Page) SetCustomStyles(customStyles []byte) *Page {
+func (p *PageElement) SetCustomStyles(customStyles []byte) *PageElement {
 	p.customStyles = customStyles
 	return p
 }
 
-func (p *Page) SetFavIconEmoji(favIconEmoji string) *Page {
+func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {
 	p.favIconEmoji = favIconEmoji
 	return p
 }
 
-func New(title string) *Page {
-	return &Page{
+func Page(title string) *PageElement {
+	return &PageElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupPage,
 			TagName: atom.Body,

@@ -11,6 +11,6 @@ var (
 	markupTd []byte
 )
 
-func NewTd() compton.Element {
+func Td() compton.Element {
 	return compton.NewElement(atom.Td, markupTd)
 }

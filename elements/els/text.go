@@ -5,23 +5,23 @@ import (
 	"io"
 )
 
-type Text struct {
+type TextElement struct {
 	compton.BaseElement
 	content string
 }
 
-func (t *Text) Append(_ ...compton.Element) {
+func (t *TextElement) Append(_ ...compton.Element) {
 }
 
-func (t *Text) WriteContent(w io.Writer) error {
+func (t *TextElement) WriteContent(w io.Writer) error {
 	if _, err := io.WriteString(w, t.content); err != nil {
 		return err
 	}
 	return nil
 }
 
-func NewText(content string) compton.Element {
-	return &Text{
+func Text(content string) compton.Element {
+	return &TextElement{
 		content: content,
 	}
 }

@@ -76,7 +76,7 @@ func (g *Grid) SetColumnGap(amount size.Size) *Grid {
 	return g
 }
 
-func (g *Grid) SetColumnRowGap(amount size.Size) *Grid {
+func (g *Grid) SetGap(amount size.Size) *Grid {
 	g.SetColumnGap(amount)
 	g.SetRowGap(amount)
 	return g
@@ -92,7 +92,7 @@ func (g *Grid) JustifyContent(p alignment.Position) *Grid {
 	return g
 }
 
-func New(wcr compton.Registrar) *Grid {
+func GridItems(wcr compton.Registrar) *Grid {
 	return &Grid{
 		BaseElement: compton.BaseElement{
 			Markup:  markupGridItems,

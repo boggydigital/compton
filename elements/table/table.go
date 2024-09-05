@@ -12,11 +12,11 @@ var (
 	markupTable []byte
 )
 
-type Table struct {
+type TableElement struct {
 	compton.BaseElement
 }
 
-func (t *Table) AppendHead(columns ...string) *Table {
+func (t *TableElement) AppendHead(columns ...string) *TableElement {
 
 	var thead compton.Element
 	if theads := t.GetElementsByTagName(atom.Thead); len(theads) > 0 {
@@ -24,20 +24,20 @@ func (t *Table) AppendHead(columns ...string) *Table {
 	}
 
 	if thead == nil {
-		thead = NewHead()
+		thead = Thead()
 		t.Append(thead)
 	}
 
 	for _, col := range columns {
-		th := NewTh()
-		th.Append(els.NewText(col))
+		th := Th()
+		th.Append(els.Text(col))
 		thead.Append(th)
 	}
 
 	return t
 }
 
-func (t *Table) AppendRow(data ...string) *Table {
+func (t *TableElement) AppendRow(data ...string) *TableElement {
 
 	var tbody compton.Element
 	if tbodies := t.GetElementsByTagName(atom.Tbody); len(tbodies) > 0 {
@@ -45,14 +45,14 @@ func (t *Table) AppendRow(data ...string) *Table {
 	}
 
 	if tbody == nil {
-		tbody = NewBody()
+		tbody = Tbody()
 		t.Append(tbody)
 	}
 
-	tr := NewTr()
+	tr := Tr()
 	for _, col := range data {
-		td := NewTd()
-		td.Append(els.NewText(col))
+		td := Td()
+		td.Append(els.Text(col))
 		tr.Append(td)
 	}
 	tbody.Append(tr)
@@ -60,28 +60,28 @@ func (t *Table) AppendRow(data ...string) *Table {
 	return t
 }
 
-func (t *Table) AppendFoot(columns ...string) *Table {
+func (t *TableElement) AppendFoot(columns ...string) *TableElement {
 	var tfoot compton.Element
 	if tfeet := t.GetElementsByTagName(atom.Tfoot); len(tfeet) > 0 {
 		tfoot = tfeet[0]
 	}
 
 	if tfoot == nil {
-		tfoot = NewFoot()
+		tfoot = Tfoot()
 		t.Append(tfoot)
 	}
 
 	for _, col := range columns {
-		td := NewTd()
-		td.Append(els.NewText(col))
+		td := Td()
+		td.Append(els.Text(col))
 		tfoot.Append(td)
 	}
 
 	return t
 }
 
-func New() *Table {
-	return &Table{
+func Table() *TableElement {
+	return &TableElement{
 		compton.BaseElement{
 			Markup:  markupTable,
 			TagName: atom.Table,

@@ -11,7 +11,7 @@ var (
 	markupDataList []byte
 )
 
-func NewDataList(id string) compton.Element {
+func DataList(id string) compton.Element {
 	dataList := compton.NewElement(atom.Datalist, markupDataList)
 	dataList.SetAttr(compton.IdAttr, id)
 	return dataList

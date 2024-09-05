@@ -11,6 +11,6 @@ var (
 	markupThead []byte
 )
 
-func NewHead() compton.Element {
+func Thead() compton.Element {
 	return compton.NewElement(atom.Thead, markupThead)
 }

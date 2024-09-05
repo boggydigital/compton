@@ -11,18 +11,18 @@ var (
 	markupDetails []byte
 )
 
-type Details struct {
+type DetailsElement struct {
 	compton.BaseElement
 }
 
-func (d *Details) AppendSummary(children ...compton.Element) *Details {
+func (d *DetailsElement) AppendSummary(children ...compton.Element) *DetailsElement {
 	var summary compton.Element
 	if summaries := d.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
 		summary = summaries[0]
 	}
 
 	if summary == nil {
-		summary = NewSummary()
+		summary = Summary()
 		d.Append(summary)
 	}
 
@@ -33,13 +33,13 @@ func (d *Details) AppendSummary(children ...compton.Element) *Details {
 	return d
 }
 
-func (d *Details) Open() *Details {
+func (d *DetailsElement) Open() *DetailsElement {
 	d.SetAttr("open", "")
 	return d
 }
 
-func NewDetails() *Details {
-	return &Details{
+func Details() *DetailsElement {
+	return &DetailsElement{
 		compton.BaseElement{
 			Markup:  markupDetails,
 			TagName: atom.Details,

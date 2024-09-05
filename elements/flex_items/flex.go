@@ -29,13 +29,13 @@ var (
 	markupFlexItems []byte
 )
 
-type Flex struct {
+type FlexElement struct {
 	compton.BaseElement
 	wcr compton.Registrar
 	dir direction.Direction
 }
 
-func (f *Flex) WriteRequirements(w io.Writer) error {
+func (f *FlexElement) WriteRequirements(w io.Writer) error {
 	if f.wcr.RequiresRegistration(flexElementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(flexElementName)); err != nil {
 			return err
@@ -47,7 +47,7 @@ func (f *Flex) WriteRequirements(w io.Writer) error {
 	return f.BaseElement.WriteRequirements(w)
 }
 
-func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
+func (f *FlexElement) templateFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Direction":
 		if _, err := io.WriteString(w, f.dir.String()); err != nil {
@@ -77,34 +77,40 @@ func (f *Flex) templateFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func (f *Flex) SetRowGap(amount size.Size) *Flex {
+func (f *FlexElement) SetRowGap(amount size.Size) *FlexElement {
 	f.SetAttr(rowGapAttr, amount.String())
 	return f
 }
 
-func (f *Flex) SetColumnGap(amount size.Size) *Flex {
+func (f *FlexElement) SetColumnGap(amount size.Size) *FlexElement {
 	f.SetAttr(columnGapAttr, amount.String())
 	return f
 }
 
-func (f *Flex) SetColumnRowGap(amount size.Size) *Flex {
+func (f *FlexElement) SetGap(amount size.Size) *FlexElement {
+	f.SetColumnRowGap(amount)
+	f.SetRowGap(amount)
+	return f
+}
+
+func (f *FlexElement) SetColumnRowGap(amount size.Size) *FlexElement {
 	f.SetColumnGap(amount)
 	f.SetRowGap(amount)
 	return f
 }
 
-func (f *Flex) AlignContent(p alignment.Position) *Flex {
+func (f *FlexElement) AlignContent(p alignment.Position) *FlexElement {
 	f.SetAttr(alignContentAttr, p.String())
 	return f
 }
 
-func (f *Flex) JustifyContent(p alignment.Position) *Flex {
+func (f *FlexElement) JustifyContent(p alignment.Position) *FlexElement {
 	f.SetAttr(justifyContentAttr, p.String())
 	return f
 }
 
-func New(wcr compton.Registrar, dir direction.Direction) *Flex {
-	f := &Flex{
+func FlexItems(wcr compton.Registrar, dir direction.Direction) *FlexElement {
+	f := &FlexElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupFlexItems,
 			TagName: compton_atoms.FlexItems,
@@ -114,4 +120,12 @@ func New(wcr compton.Registrar, dir direction.Direction) *Flex {
 
 	f.SetAttr(flexDirectionAttr, dir.String())
 	return f
+}
+
+func FlexItemsRow(wcr compton.Registrar) *FlexElement {
+	return FlexItems(wcr, direction.Row)
+}
+
+func FlexItemsColumn(wcr compton.Registrar) *FlexElement {
+	return FlexItems(wcr, direction.Column)
 }

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/alignment"
-	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/details_toggle"
@@ -36,10 +35,10 @@ func main() {
 }
 
 func writeTestPage() {
-	p := page.New("test").SetFavIconEmoji("🤔")
+	p := page.Page("test").SetFavIconEmoji("🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex_items.New(p, direction.Column)
+	s := flex_items.FlexItemsColumn(p)
 
 	topNavLinks := map[string]string{
 		"Updates": "/updates",
@@ -57,7 +56,7 @@ func writeTestPage() {
 		"Updates", "Search")
 	nav_links.SetIcons(targets, topNavIcons)
 
-	topNav := nav_links.NewLinks(p, targets...)
+	topNav := nav_links.NavLinksTargets(p, targets...)
 
 	s.Append(topNav)
 
@@ -69,7 +68,7 @@ func writeTestPage() {
 		"All":      "/all",
 	}
 
-	nav := nav_links.NewLinks(p,
+	nav := nav_links.NavLinksTargets(p,
 		nav_links.TextLinks(
 			navLinks,
 			"New",
@@ -81,26 +80,26 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_toggle.NewOpen(p, "Filter & Search")
+	cdc := details_toggle.Open(p, "Filter & Search")
 
-	form := els.NewForm("/action", "GET")
+	form := els.Form("/action", "GET")
 
-	formStack := flex_items.New(p, direction.Column)
+	formStack := flex_items.FlexItemsColumn(p)
 
 	qf := createQueryFragment(p)
 
 	formStack.Append(qf)
 
-	submitRow := flex_items.New(p, direction.Row).
+	submitRow := flex_items.FlexItemsRow(p).
 		JustifyContent(alignment.Center)
 
-	submit := els.NewInputValue(input_types.Submit, "Submit Query")
+	submit := els.InputValue(input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
 	formStack.Append(submitRow)
 
-	tiGrid := grid_items.New(p)
+	tiGrid := grid_items.GridItems(p)
 
-	ti1 := title_values.NewSearchValue(p, "Title", "title", "Hello")
+	ti1 := title_values.SearchValue(p, "Title", "title", "Hello")
 
 	tiList := map[string]string{
 		"true":  "True",
@@ -108,7 +107,7 @@ func writeTestPage() {
 		"maybe": "Maybe",
 	}
 
-	ti2 := title_values.NewSearch(p, "Description", "description").
+	ti2 := title_values.Search(p, "Description", "description").
 		SetDataList(tiList)
 	tiGrid.Append(ti1, ti2)
 
@@ -120,9 +119,9 @@ func writeTestPage() {
 
 	s.Append(qf)
 
-	cdo := details_toggle.NewOpen(p, "Title Values")
+	cdo := details_toggle.Open(p, "Title Values")
 
-	tvGrid := grid_items.New(p)
+	tvGrid := grid_items.GridItems(p)
 
 	tvLinks := map[string]string{
 		"Achievements":       "/achievements",
@@ -130,25 +129,25 @@ func writeTestPage() {
 		"Overlay":            "/overlay",
 		"Single-player":      "/single-player",
 	}
-	tv1 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
-	tv2 := title_values.NewLinks(p, "Feature Links", tvLinks)
-	tv3 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
-	tv4 := title_values.NewLinks(p, "Feature Links", tvLinks)
-	tv5 := title_values.NewText(p, "Features", maps.Keys(tvLinks)...)
-	tv6 := title_values.NewLinks(p, "Feature Links", tvLinks)
+	tv1 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
+	tv2 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
+	tv3 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
+	tv4 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
+	tv5 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
+	tv6 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
 
 	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6)
 	cdo.Append(tvGrid)
 	s.Append(cdo)
 
-	footer := flex_items.New(p, direction.Row).
+	footer := flex_items.FlexItemsRow(p).
 		JustifyContent(alignment.Center)
 
-	div := els.NewDiv()
+	div := els.Div()
 	div.SetClass("fg-subtle", "fs-xs")
 
-	div.Append(els.NewText("Last updated: "),
-		els.NewTimeText(time.Now().Format("2006-01-02 15:04:05")))
+	div.Append(els.Text("Last updated: "),
+		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
 
 	footer.Append(div)
 
@@ -172,12 +171,12 @@ func writeTestPage() {
 
 func writeIframeContent() {
 
-	c := page.New("content")
-	ifec := iframe_expand.NewContent("test", "whatever")
+	c := page.Page("content")
+	ifec := iframe_expand.IframeExpandContent("test", "whatever")
 	c.Append(ifec)
 
 	for i := range 1000 {
-		c.Append(els.NewDivText(strconv.Itoa(i)))
+		c.Append(els.DivText(strconv.Itoa(i)))
 	}
 
 	contentPath := filepath.Join(os.TempDir(), "content.html")
@@ -193,11 +192,11 @@ func writeIframeContent() {
 
 	fmt.Println("file://" + contentPath)
 
-	p := page.New("iframe")
+	p := page.Page("iframe")
 
-	dc := details_toggle.NewClosed(p, "Description")
+	dc := details_toggle.Closed(p, "Description")
 
-	ife := iframe_expand.New(p, "test", "content.html")
+	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)
 
 	p.Append(dc)
@@ -223,10 +222,10 @@ func writeIssaPage() {
 	//hydratedSrc := "data:image/gif;base64,R0lGODlhFQAeAAAAACwAAAAAFQAeAIcqKioqKlQqKn4qKqgqKtIqKvwqVCoqVFQqVH4qVKgqVNIqVPwqfioqflQqfn4qfqgqftIqfvwqqCoqqFQqqH4qqKgqqNIqqPwq0ioq0lQq0n4q0qgq0tIq0vwq/Coq/FQq/H4q/Kgq/NIq/PxUKipUKlRUKn5UKqhUKtJUKvxUVCpUVFRUVH5UVKhUVNJUVPxUfipUflRUfn5UfqhUftJUfvxUqCpUqFRUqH5UqKhUqNJUqPxU0ipU0lRU0n5U0qhU0tJU0vxU/CpU/FRU/H5U/KhU/NJU/Px+Kip+KlR+Kn5+Kqh+KtJ+Kvx+VCp+VFR+VH5+VKh+VNJ+VPx+fip+flR+fn5+fqh+ftJ+fvx+qCp+qFR+qH5+qKh+qNJ+qPx+0ip+0lR+0n5+0qh+0tJ+0vx+/Cp+/FR+/H5+/Kh+/NJ+/PyoKiqoKlSoKn6oKqioKtKoKvyoVCqoVFSoVH6oVKioVNKoVPyofiqoflSofn6ofqioftKofvyoqCqoqFSoqH6oqKioqNKoqPyo0iqo0lSo0n6o0qio0tKo0vyo/Cqo/FSo/H6o/Kio/NKo/PzSKirSKlTSKn7SKqjSKtLSKvzSVCrSVFTSVH7SVKjSVNLSVPzSfirSflTSfn7SfqjSftLSfvzSqCrSqFTSqH7SqKjSqNLSqPzS0irS0lTS0n7S0qjS0tLS0vzS/CrS/FTS/H7S/KjS/NLS/Pz8Kir8KlT8Kn78Kqj8KtL8Kvz8VCr8VFT8VH78VKj8VNL8VPz8fir8flT8fn78fqj8ftL8fvz8qCr8qFT8qH78qKj8qNL8qPz80ir80lT80n780qj80tL80vz8/Cr8/FT8/H78/Kj8/NL8/PwAAAAAAP8A/wAA////AAD/AP///wD///9sbGxsbJZsbMBslmxslpZslsBswGxswJZswMCWbGyWbJaWbMCWlmyWlpaWlsCWwGyWwJaWwMDAbGzAbJbAbMDAlmzAlpbAlsDAwGzAwJbAwMAAAAAAAAAAAAAAAAAAAAAI/wABCBTYZmCkFUkEJhwI4ABDSZKStElia46tSJIutYlUgiFBXpLa2LIlKdKcSxVN2uooMABFSRdHloyEcQ7GSAMDBICI8pKkJxAh2rpEFCeAFS5tgTsgwwodcFVgPnlS4slJSXPUBVghj45QWytKpLvkhufIOSRWHAgQaaS8KhZBSpKHydaTSAsBOGhwo+5TSew+zEkX44mtNm0CDNQAAgRMeeZspUsHLgPCwU8OOAQw4UOGS5E+fDA3B9yEJ0lipJuDVDEJBKop32ARzgEFhElKmJjDooTiFQ1izJlDp40SEyYElEiSJIAJdUpKAG/gIMOE4ElM5A5AYjuLPSXCr/9lAUJ0hgwHSggIgKS9gHDgwwc44KBxY+vrS7QnEQB+eBOa1WdfBg0EoB9zJRyQQ3wsNLCCA4zdtx4JSLSRjmYIuKNEEiwYAEAAEYKQAQK5LbcCOOqEsw4UVQnUQIR8TaAZCyxAQc8eV7jDom8NUQCCBiZURqB0JkBhQjiC7KhWAPUBeQOBOgWAwAE4iNGOOlCwEBaTIFBQwpMTRDnBBF3ocZwJ6Rh5AAUfeAlOAw3QiKE8x+kExRNK0AcCAtKtQGNrJtBhQpQBPAEFAA2MmCCNuiFnwhMG1tlnFTEY6KBvjkKBlBJKRNHCoMuRAAAJT1RqoE4AOucociyNmlqUBqwVtRYChALQETa2lqDCWgB4mJNOAwUEADs"
 	imageSrc := "https://gaugin.frmnt.io/image?id=0d9684e197ff3a8d34bddab41e2ef8c9f6d1050242b44b56dfab11ff69b670bb"
 
-	p := page.New("issa page")
+	p := page.Page("issa page")
 	p.SetCustomStyles(appStyles)
 
-	issaImage := issa_image.NewDehydrated(p, dehydratedSrc, imageSrc)
+	issaImage := issa_image.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
 	p.Append(issaImage)
 
 	issaPath := filepath.Join(os.TempDir(), "issa.html")
@@ -244,37 +243,37 @@ func writeIssaPage() {
 }
 
 func createQueryFragment(r compton.Registrar) compton.Element {
-	sh := section_highlight.New(r)
+	sh := section_highlight.SectionHighlight(r)
 	sh.SetClass("fs-xs")
 
-	shStack := flex_items.New(r, direction.Row).SetColumnGap(size.Normal)
+	shStack := flex_items.FlexItemsRow(r).SetColumnGap(size.Normal)
 	sh.Append(shStack)
 
-	sp1 := els.NewSpan()
-	pt1 := els.NewSpanText("Descending: ")
+	sp1 := els.Span()
+	pt1 := els.SpanText("Descending: ")
 	pt1.SetClass("fg-subtle")
-	pv1 := els.NewSpanText("True")
+	pv1 := els.SpanText("True")
 	pv1.SetClass("fw-b")
 	sp1.Append(pt1, pv1)
 	shStack.Append(sp1)
 
-	sp2 := els.NewSpan()
-	pt2 := els.NewSpanText("Sort: ")
+	sp2 := els.Span()
+	pt2 := els.SpanText("Sort: ")
 	pt2.SetClass("fg-subtle")
-	pv2 := els.NewSpanText("GOG Order Date")
+	pv2 := els.SpanText("GOG Order Date")
 	pv2.SetClass("fw-b")
 	sp2.Append(pt2, pv2)
 	shStack.Append(sp2)
 
-	sp3 := els.NewSpan()
-	pt3 := els.NewSpanText("Data Type: ")
+	sp3 := els.Span()
+	pt3 := els.SpanText("Data Type: ")
 	pt3.SetClass("fg-subtle")
-	pv3 := els.NewSpanText("Account Products")
+	pv3 := els.SpanText("Account Products")
 	pv3.SetClass("fw-b")
 	sp3.Append(pt3, pv3)
 	shStack.Append(sp3)
 
-	clearAction := els.NewAText("Clear", "/clear")
+	clearAction := els.AText("Clear", "/clear")
 	clearAction.SetClass("action")
 	shStack.Append(clearAction)
 

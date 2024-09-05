@@ -11,6 +11,8 @@ var (
 	markupUnorderedList []byte
 )
 
-func NewUnorderedList() compton.Element {
+var Ul = UnorderedList
+
+func UnorderedList() compton.Element {
 	return compton.NewElement(atom.Ul, markupUnorderedList)
 }

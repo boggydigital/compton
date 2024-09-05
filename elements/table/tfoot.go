@@ -11,6 +11,6 @@ var (
 	markupTfoot []byte
 )
 
-func NewFoot() compton.Element {
+func Tfoot() compton.Element {
 	return compton.NewElement(atom.Tfoot, markupTfoot)
 }

@@ -11,12 +11,12 @@ var (
 	markupTime []byte
 )
 
-func NewTime() compton.Element {
+func Time() compton.Element {
 	return compton.NewElement(atom.Time, markupTime)
 }
 
-func NewTimeText(txt string) compton.Element {
-	tm := NewTime()
-	tm.Append(NewText(txt))
+func TimeText(txt string) compton.Element {
+	tm := Time()
+	tm.Append(Text(txt))
 	return tm
 }

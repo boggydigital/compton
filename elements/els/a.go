@@ -11,14 +11,14 @@ var (
 	markupAnchor []byte
 )
 
-func NewA(href string) compton.Element {
+func A(href string) compton.Element {
 	anchor := compton.NewElement(atom.A, markupAnchor)
 	anchor.SetAttr(compton.HrefAttr, href)
 	return anchor
 }
 
-func NewAText(txt, href string) compton.Element {
-	anchor := NewA(href)
-	anchor.Append(NewText(txt))
+func AText(txt, href string) compton.Element {
+	anchor := A(href)
+	anchor.Append(Text(txt))
 	return anchor
 }

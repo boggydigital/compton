@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/elements/els"
@@ -26,13 +25,13 @@ var (
 	markupTitleValues []byte
 )
 
-type TitleValues struct {
+type TitleValuesElement struct {
 	compton.BaseElement
 	wcr   compton.Registrar
 	title compton.Element
 }
 
-func (tv *TitleValues) WriteRequirements(w io.Writer) error {
+func (tv *TitleValuesElement) WriteRequirements(w io.Writer) error {
 	if tv.wcr.RequiresRegistration(elementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
 			return err
@@ -44,19 +43,16 @@ func (tv *TitleValues) WriteRequirements(w io.Writer) error {
 	return tv.BaseElement.WriteRequirements(w)
 }
 
-func (tv *TitleValues) WriteContent(w io.Writer) error {
+func (tv *TitleValuesElement) WriteContent(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupTitleValues), w, tv.elementFragmentWriter)
 }
 
-func (tv *TitleValues) elementFragmentWriter(t string, w io.Writer) error {
+func (tv *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
 		if err := tv.title.WriteContent(w); err != nil {
 			return err
 		}
-		//if _, err := io.WriteString(w, tv.title); err != nil {
-		//	return err
-		//}
 	case compton.ContentToken:
 		fallthrough
 	case compton.AttributesToken:
@@ -69,34 +65,34 @@ func (tv *TitleValues) elementFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func New(wcr compton.Registrar, title string) *TitleValues {
-	return &TitleValues{
+func TitleValues(wcr compton.Registrar, title string) *TitleValuesElement {
+	return &TitleValuesElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupTitleValues,
 			TagName: compton_atoms.TitleValues,
 		},
 		wcr:   wcr,
-		title: els.NewHeadingText(title, 3),
+		title: els.HeadingText(title, 3),
 	}
 }
 
-func NewText(wcr compton.Registrar, title string, values ...string) *TitleValues {
-	titleValues := New(wcr, title)
-	flexItems := flex_items.New(wcr, direction.Row).
+func TitleValuesText(wcr compton.Registrar, title string, values ...string) *TitleValuesElement {
+	titleValues := TitleValues(wcr, title)
+	flexItems := flex_items.FlexItemsRow(wcr).
 		SetRowGap(size.Normal).
 		SetColumnGap(size.Normal)
 
 	slices.Sort(values)
 	for _, value := range values {
-		flexItems.Append(els.NewDivText(value))
+		flexItems.Append(els.DivText(value))
 	}
 	titleValues.Append(flexItems)
 	return titleValues
 }
 
-func NewLinks(wcr compton.Registrar, title string, links map[string]string, order ...string) *TitleValues {
-	titleValues := New(wcr, title)
-	flexItems := flex_items.New(wcr, direction.Row).
+func TitleValuesLinks(wcr compton.Registrar, title string, links map[string]string, order ...string) *TitleValuesElement {
+	titleValues := TitleValues(wcr, title)
+	flexItems := flex_items.FlexItemsRow(wcr).
 		SetRowGap(size.Normal).
 		SetColumnGap(size.Normal)
 
@@ -106,7 +102,7 @@ func NewLinks(wcr compton.Registrar, title string, links map[string]string, orde
 	}
 
 	for _, key := range order {
-		flexItems.Append(els.NewAText(key, links[key]))
+		flexItems.Append(els.AText(key, links[key]))
 	}
 	titleValues.Append(flexItems)
 	return titleValues

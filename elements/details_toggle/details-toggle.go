@@ -146,7 +146,7 @@ func (d *Details) elementFragmentWriter(t string, w io.Writer) error {
 	return nil
 }
 
-func NewClosed(wcr compton.Registrar, summary string) *Details {
+func Closed(wcr compton.Registrar, summary string) *Details {
 	return &Details{
 		BaseElement: compton.BaseElement{
 			Markup:  markupDetailsClosed,
@@ -158,7 +158,7 @@ func NewClosed(wcr compton.Registrar, summary string) *Details {
 	}
 }
 
-func NewOpen(wcr compton.Registrar, summary string) *Details {
+func Open(wcr compton.Registrar, summary string) *Details {
 	return &Details{
 		BaseElement: compton.BaseElement{
 			Markup:  markupDetailsOpen,
@@ -170,10 +170,13 @@ func NewOpen(wcr compton.Registrar, summary string) *Details {
 	}
 }
 
-func NewToggle(wcr compton.Registrar, summary string, condition bool) *Details {
-	if condition {
-		return NewOpen(wcr, summary)
-	} else {
-		return NewClosed(wcr, summary)
+func Toggle(wcr compton.Registrar, summary string, condition bool) *Details {
+	var toggle func(compton.Registrar, string) *Details
+	switch condition {
+	case true:
+		toggle = Open
+	case false:
+		toggle = Closed
 	}
+	return toggle(wcr, summary)
 }

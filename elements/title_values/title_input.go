@@ -7,19 +7,19 @@ import (
 	"github.com/boggydigital/compton/elements/els"
 )
 
-type TitleInput struct {
-	*TitleValues
-	input *els.Input
+type TitleInputElement struct {
+	*TitleValuesElement
+	input *els.InputElement
 }
 
-func (ti *TitleInput) SetDataList(list map[string]string) *TitleInput {
+func (ti *TitleInputElement) SetDataList(list map[string]string) *TitleInputElement {
 	ti.input.SetDataList(list)
 	return ti
 }
 
-func NewSearch(wcr compton.Registrar, title, inputId string) *TitleInput {
-	titleInput := &TitleInput{
-		TitleValues: &TitleValues{
+func Search(wcr compton.Registrar, title, inputId string) *TitleInputElement {
+	titleInput := &TitleInputElement{
+		TitleValuesElement: &TitleValuesElement{
 			BaseElement: compton.BaseElement{
 				Markup:  markupTitleValues,
 				TagName: compton_atoms.TitleValues,
@@ -28,11 +28,11 @@ func NewSearch(wcr compton.Registrar, title, inputId string) *TitleInput {
 		},
 	}
 
-	label := els.NewLabel(inputId)
-	label.Append(els.NewHeadingText(title, 3))
+	label := els.Label(inputId)
+	label.Append(els.HeadingText(title, 3))
 	titleInput.title = label
 
-	input := els.NewInput(input_types.Search)
+	input := els.Input(input_types.Search)
 	input.
 		SetPlaceholder(title).
 		SetName(inputId).
@@ -44,8 +44,8 @@ func NewSearch(wcr compton.Registrar, title, inputId string) *TitleInput {
 	return titleInput
 }
 
-func NewSearchValue(wcr compton.Registrar, title, inputId, value string) *TitleInput {
-	titleInput := NewSearch(wcr, title, inputId)
+func SearchValue(wcr compton.Registrar, title, inputId, value string) *TitleInputElement {
+	titleInput := Search(wcr, title, inputId)
 	titleInput.input.SetAttr(compton.ValueAttr, value)
 	return titleInput
 }

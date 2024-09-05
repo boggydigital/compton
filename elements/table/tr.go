@@ -11,6 +11,6 @@ var (
 	markupTr []byte
 )
 
-func NewTr() compton.Element {
+func Tr() compton.Element {
 	return compton.NewElement(atom.Tr, markupTr)
 }

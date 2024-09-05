@@ -5,6 +5,6 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
-func New(s Symbol) compton.Element {
+func SvgInline(s Symbol) compton.Element {
 	return compton.NewElement(compton_atoms.SvgInlineIcon, MarkupSymbols[s])
 }

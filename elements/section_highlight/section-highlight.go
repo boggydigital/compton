@@ -20,12 +20,12 @@ var (
 	markupSectionHighlight []byte
 )
 
-type SectionHighlight struct {
+type SectionHighlightElement struct {
 	compton.BaseElement
 	wcr compton.Registrar
 }
 
-func (sh *SectionHighlight) WriteRequirements(w io.Writer) error {
+func (sh *SectionHighlightElement) WriteRequirements(w io.Writer) error {
 	if sh.wcr.RequiresRegistration(elementName) {
 		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
 			return err
@@ -37,8 +37,8 @@ func (sh *SectionHighlight) WriteRequirements(w io.Writer) error {
 	return sh.BaseElement.WriteRequirements(w)
 }
 
-func New(wcr compton.Registrar) compton.Element {
-	return &SectionHighlight{
+func SectionHighlight(wcr compton.Registrar) compton.Element {
+	return &SectionHighlightElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupSectionHighlight,
 			TagName: compton_atoms.SectionHighlight,

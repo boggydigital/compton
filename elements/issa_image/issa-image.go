@@ -22,31 +22,31 @@ var (
 	templateMarkup []byte
 )
 
-type IssaImage struct {
+type IssaImageElement struct {
 	compton.BaseElement
 	r          compton.Registrar
 	dehydrated bool
 }
 
-func (ii *IssaImage) WriteRequirements(w io.Writer) error {
+func (ii *IssaImageElement) WriteRequirements(w io.Writer) error {
 	if ii.r.RequiresRegistration(elementName) {
-		hcScript := els.NewScript(issa.HydrateColorScript)
+		hcScript := els.Script(issa.HydrateColorScript)
 		if err := hcScript.WriteContent(w); err != nil {
 			return err
 		}
-		hiScript := els.NewScript(hydrateImageScript)
+		hiScript := els.Script(hydrateImageScript)
 		if err := hiScript.WriteContent(w); err != nil {
 			return err
 		}
-		ifiScript := els.NewScript(imageFadeInScript)
+		ifiScript := els.Script(imageFadeInScript)
 		return ifiScript.WriteContent(w)
 	}
 	return nil
 }
 
-func NewHydrated(r compton.Registrar, placeholder, poster string) compton.Element {
+func IssaImageHydrated(r compton.Registrar, placeholder, poster string) compton.Element {
 
-	ii := &IssaImage{
+	ii := &IssaImageElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.IssaImage,
 			Markup:  templateMarkup,
@@ -55,18 +55,18 @@ func NewHydrated(r compton.Registrar, placeholder, poster string) compton.Elemen
 		dehydrated: false,
 	}
 
-	placeholderImg := els.NewImage(placeholder)
+	placeholderImg := els.Image(placeholder)
 	placeholderImg.SetClass("placeholder")
-	posterImg := els.NewImageLazy(poster)
+	posterImg := els.ImageLazy(poster)
 	posterImg.SetClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
 	return ii
 }
 
-func NewDehydrated(r compton.Registrar, placeholder, poster string) compton.Element {
+func IssaImageDehydrated(r compton.Registrar, placeholder, poster string) compton.Element {
 
-	ii := &IssaImage{
+	ii := &IssaImageElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.IssaImage,
 			Markup:  templateMarkup,
@@ -75,10 +75,10 @@ func NewDehydrated(r compton.Registrar, placeholder, poster string) compton.Elem
 		dehydrated: true,
 	}
 
-	placeholderImg := els.NewImage("")
+	placeholderImg := els.Image("")
 	placeholderImg.SetClass("placeholder", "loading")
 	placeholderImg.SetAttr("data-dehydrated", placeholder)
-	posterImg := els.NewImageLazy(poster)
+	posterImg := els.ImageLazy(poster)
 	posterImg.SetClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 

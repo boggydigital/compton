@@ -11,6 +11,6 @@ var (
 	markupSummary []byte
 )
 
-func NewSummary() compton.Element {
+func Summary() compton.Element {
 	return compton.NewElement(atom.Summary, markupSummary)
 }

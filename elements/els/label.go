@@ -11,7 +11,7 @@ var (
 	markupLabel []byte
 )
 
-func NewLabel(forInput string) compton.Element {
+func Label(forInput string) compton.Element {
 	label := compton.NewElement(atom.Label, markupLabel)
 	if forInput != "" {
 		label.SetAttr(compton.ForAttr, forInput)
