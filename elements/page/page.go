@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
 	"io"
 )
@@ -29,7 +30,7 @@ type PageElement struct {
 	customElementsRegistry map[string]any
 	title                  string
 	favIconEmoji           string
-	customStyles           []byte
+	customStyles           [][]byte
 }
 
 func (p *PageElement) WriteContent(w io.Writer) error {
@@ -63,8 +64,9 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 			return err
 		}
 	case ".StyleCustom":
-		if len(p.customStyles) > 0 {
-			if _, err := w.Write(p.customStyles); err != nil {
+		for _, customStyle := range p.customStyles {
+			style := els.Style(customStyle)
+			if err := style.WriteContent(w); err != nil {
 				return err
 			}
 		}
@@ -96,7 +98,7 @@ func (p *PageElement) RequiresRegistration(name string) bool {
 	return false
 }
 
-func (p *PageElement) SetCustomStyles(customStyles []byte) *PageElement {
+func (p *PageElement) SetCustomStyles(customStyles ...[]byte) *PageElement {
 	p.customStyles = customStyles
 	return p
 }
