@@ -1,0 +1,34 @@
+@scope (issa-image) {
+    :scope {
+        justify-content: center;
+        align-content: center;
+        display: grid;
+        background-color: var(--c-background);
+        border-radius: var(--br-n);
+
+        & img {
+            object-fit: contain;
+            line-height: 0;
+            grid-row: 1;
+            grid-column: 1;
+            border-radius: var(--br-n);
+
+            &.placeholder {
+                image-rendering: pixelated;
+                transition: opacity var(--du-fast);
+
+                &.loading {
+                    opacity: 0;
+                }
+            }
+
+            &.poster {
+                transition: opacity var(--du-slow);
+
+                &.loading {
+                    opacity: 0
+                }
+            }
+        }
+    }
+}

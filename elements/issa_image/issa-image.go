@@ -10,16 +10,20 @@ import (
 )
 
 const (
-	elementName = "issa-image"
+	registrationName       = "issa-image"
+	styleRegistrationName  = "style-" + registrationName
+	scriptRegistrationName = "script-" + registrationName
 )
 
 var (
 	//go:embed "script/image_fadein.js"
-	imageFadeInScript []byte
+	scriptImageFadeIn []byte
 	//go:embed "script/hydrate_images.js"
-	hydrateImageScript []byte
-	//go:embed "markup/template.html"
-	templateMarkup []byte
+	scriptHydrateImage []byte
+	//go:embed "markup/issa-image.html"
+	markupIssaImage []byte
+	//go:embed "style/issa-image.css"
+	styleIssaImage []byte
 )
 
 type IssaImageElement struct {
@@ -28,17 +32,26 @@ type IssaImageElement struct {
 	dehydrated bool
 }
 
-func (ii *IssaImageElement) WriteRequirements(w io.Writer) error {
-	if ii.r.RequiresRegistration(elementName) {
+func (ii *IssaImageElement) WriteStyles(w io.Writer) error {
+	if ii.r.RequiresRegistration(styleRegistrationName) {
+		if err := els.Style(styleIssaImage).WriteContent(w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (ii *IssaImageElement) WriteDeferrals(w io.Writer) error {
+	if ii.r.RequiresRegistration(scriptRegistrationName) {
 		hcScript := els.Script(issa.HydrateColorScript)
 		if err := hcScript.WriteContent(w); err != nil {
 			return err
 		}
-		hiScript := els.Script(hydrateImageScript)
+		hiScript := els.Script(scriptHydrateImage)
 		if err := hiScript.WriteContent(w); err != nil {
 			return err
 		}
-		ifiScript := els.Script(imageFadeInScript)
+		ifiScript := els.Script(scriptImageFadeIn)
 		return ifiScript.WriteContent(w)
 	}
 	return nil
@@ -49,7 +62,7 @@ func IssaImageHydrated(r compton.Registrar, placeholder, poster string) compton.
 	ii := &IssaImageElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.IssaImage,
-			Markup:  templateMarkup,
+			Markup:  markupIssaImage,
 		},
 		r:          r,
 		dehydrated: false,
@@ -69,7 +82,7 @@ func IssaImageDehydrated(r compton.Registrar, placeholder, poster string) compto
 	ii := &IssaImageElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.IssaImage,
-			Markup:  templateMarkup,
+			Markup:  markupIssaImage,
 		},
 		r:          r,
 		dehydrated: true,

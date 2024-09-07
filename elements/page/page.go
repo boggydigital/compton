@@ -63,12 +63,16 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 		if _, err := w.Write(styleElements); err != nil {
 			return err
 		}
-	case ".StyleCustom":
+	case ".StyleApp":
 		for _, customStyle := range p.customStyles {
 			style := els.Style(customStyle)
 			if err := style.WriteContent(w); err != nil {
 				return err
 			}
+		}
+	case ".ElementsStyles":
+		if err := p.WriteStyles(w); err != nil {
+			return err
 		}
 	case compton.RequirementsToken:
 		if err := p.WriteRequirements(w); err != nil {

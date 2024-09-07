@@ -1,0 +1,16 @@
+@scope (c-section) {
+    :scope {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+
+        & > * {
+            max-width: var(--s-maxw);
+            background: var(--c-highlight);
+            color: var(--c-foreground);
+            border-radius: var(--br-l);
+            padding: var(--s-n)
+        }
+    }
+}

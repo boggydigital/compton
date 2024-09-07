@@ -10,6 +10,6 @@ const (
 	TitleValues
 	NavLinks
 	SvgInlineIcon
-	SectionHighlight
+	CSection
 	IssaImage
 )

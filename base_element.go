@@ -27,6 +27,15 @@ func (be *BaseElement) WriteRequirements(w io.Writer) error {
 	return nil
 }
 
+func (be *BaseElement) WriteStyles(w io.Writer) error {
+	for _, child := range be.Children {
+		if err := child.WriteStyles(w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (be *BaseElement) WriteContent(w io.Writer) error {
 	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
 }

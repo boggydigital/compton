@@ -7,6 +7,7 @@ import (
 
 type Element interface {
 	Append(children ...Element)
+	WriteStyles(w io.Writer) error
 	WriteRequirements(w io.Writer) error
 	WriteContent(w io.Writer) error
 	WriteDeferrals(w io.Writer) error
