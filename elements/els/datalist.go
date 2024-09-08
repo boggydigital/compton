@@ -13,6 +13,6 @@ var (
 
 func DataList(id string) compton.Element {
 	dataList := compton.NewElement(atom.Datalist, markupDataList)
-	dataList.SetAttr(compton.IdAttr, id)
+	dataList.SetAttribute(compton.IdAttr, id)
 	return dataList
 }

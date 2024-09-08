@@ -13,9 +13,9 @@ var (
 
 func Option(value, label string) compton.Element {
 	option := compton.NewElement(atom.Option, markupOption)
-	option.SetAttr(compton.ValueAttr, value)
+	option.SetAttribute(compton.ValueAttr, value)
 	if label != "" {
-		option.SetAttr(compton.LabelAttr, label)
+		option.SetAttribute(compton.LabelAttr, label)
 	}
 	return option
 }

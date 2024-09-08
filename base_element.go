@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"golang.org/x/net/html/atom"
 	"io"
-	"strings"
 )
 
 type BaseElement struct {
 	Attributes
+	ClassList
 	Children []Element
 	TagName  atom.Atom
 	Markup   []byte
@@ -58,6 +58,11 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 			}
 		}
 	case AttributesToken:
+		// set class attribute
+		if be.Attributes.attributes == nil {
+			be.Attributes.attributes = make(map[string]string)
+		}
+		be.Attributes.attributes[ClassAttr] = be.ClassList.String()
 		if err := be.Attributes.Write(w); err != nil {
 			return err
 		}
@@ -68,21 +73,7 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 }
 
 func (be *BaseElement) SetId(id string) {
-	be.SetAttr(IdAttr, id)
-}
-
-func (be *BaseElement) SetClass(names ...string) {
-	be.SetAttr(ClassAttr, strings.Join(names, " "))
-}
-
-func (be *BaseElement) HasClass(names ...string) bool {
-	class := be.GetAttr(ClassAttr)
-	for _, name := range names {
-		if !strings.Contains(class, name) {
-			return false
-		}
-	}
-	return true
+	be.SetAttribute(IdAttr, id)
 }
 
 func (be *BaseElement) GetTagName() atom.Atom {
@@ -91,7 +82,7 @@ func (be *BaseElement) GetTagName() atom.Atom {
 
 func (be *BaseElement) GetElementById(id string) Element {
 	for _, child := range be.Children {
-		if cid := child.GetAttr(IdAttr); cid == id {
+		if cid := child.GetAttribute(IdAttr); cid == id {
 			return child
 		}
 		if el := child.GetElementById(id); el != nil {

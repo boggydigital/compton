@@ -13,7 +13,7 @@ var (
 
 func A(href string) compton.Element {
 	anchor := compton.NewElement(atom.A, markupAnchor)
-	anchor.SetAttr(compton.HrefAttr, href)
+	anchor.SetAttribute(compton.HrefAttr, href)
 	return anchor
 }
 

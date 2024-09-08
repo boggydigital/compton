@@ -24,18 +24,18 @@ type InputElement struct {
 }
 
 func (i *InputElement) SetPlaceholder(placeholder string) *InputElement {
-	i.SetAttr("placeholder", placeholder)
+	i.SetAttribute("placeholder", placeholder)
 	return i
 }
 
 func (i *InputElement) SetName(name string) *InputElement {
-	i.SetAttr("name", name)
+	i.SetAttribute("name", name)
 	return i
 }
 
 func (i *InputElement) SetDataList(list map[string]string) *InputElement {
 
-	listId := i.GetAttr(compton.IdAttr)
+	listId := i.GetAttribute(compton.IdAttr)
 	if listId == "" {
 		listId = strconv.FormatInt(time.Now().Unix(), 10)
 	}
@@ -49,7 +49,7 @@ func (i *InputElement) SetDataList(list map[string]string) *InputElement {
 		dataList.Append(Option(value, list[value]))
 	}
 	i.dataList = dataList
-	i.SetAttr(compton.ListAttr, listId)
+	i.SetAttribute(compton.ListAttr, listId)
 
 	return i
 }
@@ -69,12 +69,12 @@ func Input(it input_types.Type) *InputElement {
 		},
 		it: it,
 	}
-	input.SetAttr(compton.TypeAttr, it.String())
+	input.SetAttribute(compton.TypeAttr, it.String())
 	return input
 }
 
 func InputValue(it input_types.Type, value string) *InputElement {
 	input := Input(it)
-	input.SetAttr(compton.ValueAttr, value)
+	input.SetAttribute(compton.ValueAttr, value)
 	return input
 }

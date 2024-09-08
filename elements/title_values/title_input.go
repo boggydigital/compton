@@ -46,6 +46,6 @@ func Search(wcr compton.Registrar, title, inputId string) *TitleInputElement {
 
 func SearchValue(wcr compton.Registrar, title, inputId, value string) *TitleInputElement {
 	titleInput := Search(wcr, title, inputId)
-	titleInput.input.SetAttr(compton.ValueAttr, value)
+	titleInput.input.SetAttribute(compton.ValueAttr, value)
 	return titleInput
 }

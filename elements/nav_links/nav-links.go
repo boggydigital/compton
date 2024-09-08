@@ -65,8 +65,8 @@ func appendTarget(nl *NavLinksElement, t *Target) {
 
 	if t.Icon != svg_inline.None {
 		icon := svg_inline.SvgInline(t.Icon)
-		icon.SetClass("icon")
-		icon.SetAttr("title", t.Title)
+		icon.AddClass("icon")
+		icon.SetAttribute("title", t.Title)
 		link.Append(icon)
 		if t.Current {
 			link.Append(els.SpanText(t.Title))
@@ -75,7 +75,7 @@ func appendTarget(nl *NavLinksElement, t *Target) {
 		link.Append(els.Text(t.Title))
 	}
 	if t.Current {
-		link.SetClass("selected")
+		link.AddClass("selected")
 	}
 	nl.Append(link)
 }

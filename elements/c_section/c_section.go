@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	elementName = "c-section"
+	registrationName      = "c-section"
+	styleRegistrationName = "style-" + registrationName
 )
 
 var (
@@ -25,7 +26,7 @@ type CSectionElement struct {
 }
 
 func (cs *CSectionElement) WriteStyles(w io.Writer) error {
-	if cs.r.RequiresRegistration(elementName) {
+	if cs.r.RequiresRegistration(styleRegistrationName) {
 		if err := els.Style(styleCSection).WriteContent(w); err != nil {
 			return err
 		}

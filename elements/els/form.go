@@ -13,7 +13,7 @@ var (
 
 func Form(action, method string) compton.Element {
 	form := compton.NewElement(atom.Form, markupForm)
-	form.SetAttr(compton.ActionAttr, action)
-	form.SetAttr(compton.MethodAttr, method)
+	form.SetAttribute(compton.ActionAttr, action)
+	form.SetAttribute(compton.MethodAttr, method)
 	return form
 }

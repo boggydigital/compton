@@ -1,4 +1,9 @@
-package colors
+package color
+
+import (
+	"iter"
+	"maps"
+)
 
 type Color int
 
@@ -58,4 +63,12 @@ var colorStrings = map[Color]string{
 
 func (c Color) String() string {
 	return colorStrings[c]
+}
+
+func (c Color) CssValue() string {
+	return "var(--c-" + c.String() + ")"
+}
+
+func AllColors() iter.Seq[Color] {
+	return maps.Keys(colorStrings)
 }

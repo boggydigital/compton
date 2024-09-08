@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -61,6 +62,10 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 		}
 	case ".StyleElements":
 		if _, err := w.Write(styleElements); err != nil {
+			return err
+		}
+	case ".StyleClasses":
+		if _, err := w.Write(class.StyleClasses()); err != nil {
 			return err
 		}
 	case ".StyleApp":

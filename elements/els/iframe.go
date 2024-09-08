@@ -14,12 +14,12 @@ var (
 
 func Iframe(src string) compton.Element {
 	iframe := compton.NewElement(atom.Iframe, MarkupIframe)
-	iframe.SetAttr(compton.SrcAttr, src)
+	iframe.SetAttribute(compton.SrcAttr, src)
 	return iframe
 }
 
 func IframeLazy(src string) compton.Element {
 	iframe := Iframe(src)
-	iframe.SetAttr(compton.LoadingAttr, loading.Lazy.String())
+	iframe.SetAttribute(compton.LoadingAttr, loading.Lazy.String())
 	return iframe
 }

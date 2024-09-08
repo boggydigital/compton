@@ -4,7 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/consts/colors"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
@@ -92,22 +92,22 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 }
 
 func (d *Details) SetSummaryMargin(amount size.Size) *Details {
-	d.SetAttr(summaryMarginAttr, amount.String())
+	d.SetAttribute(summaryMarginAttr, amount.String())
 	return d
 }
 
 func (d *Details) SetDetailsMargin(amount size.Size) *Details {
-	d.SetAttr(detailsMarginAttr, amount.String())
+	d.SetAttribute(detailsMarginAttr, amount.String())
 	return d
 }
 
-func (d *Details) SetBackgroundColor(color colors.Color) *Details {
-	d.SetAttr(backgroundColorAttr, color.String())
+func (d *Details) SetBackgroundColor(color color.Color) *Details {
+	d.SetAttribute(backgroundColorAttr, color.String())
 	return d
 }
 
-func (d *Details) SetForegroundColor(color colors.Color) *Details {
-	d.SetAttr(foregroundColorAttr, color.String())
+func (d *Details) SetForegroundColor(color color.Color) *Details {
+	d.SetAttribute(foregroundColorAttr, color.String())
 	return d
 }
 

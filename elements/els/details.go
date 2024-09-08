@@ -34,7 +34,7 @@ func (d *DetailsElement) AppendSummary(children ...compton.Element) *DetailsElem
 }
 
 func (d *DetailsElement) Open() *DetailsElement {
-	d.SetAttr("open", "")
+	d.SetAttribute("open", "")
 	return d
 }
 

@@ -16,11 +16,13 @@ type Element interface {
 
 	SetId(id string)
 
-	SetClass(names ...string)
+	AddClass(names ...string)
+	RemoveClass(names ...string)
 	HasClass(names ...string) bool
+	ToggleClass(names ...string)
 
-	SetAttr(name, val string)
-	GetAttr(name string) string
+	SetAttribute(name, val string)
+	GetAttribute(name string) string
 
 	GetElementById(id string) Element
 	GetElementsByTagName(tagName atom.Atom) []Element

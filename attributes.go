@@ -29,14 +29,17 @@ type Attributes struct {
 	attributes map[string]string
 }
 
-func (a *Attributes) SetAttr(name, val string) {
+func (a *Attributes) SetAttribute(name, val string) {
+	if name == ClassAttr {
+		panic("class attribute should be set with ClassList methods")
+	}
 	if a.attributes == nil {
 		a.attributes = make(map[string]string)
 	}
 	a.attributes[name] = val
 }
 
-func (a *Attributes) GetAttr(name string) string {
+func (a *Attributes) GetAttribute(name string) string {
 	return a.attributes[name]
 }
 

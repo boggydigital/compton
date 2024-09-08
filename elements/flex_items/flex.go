@@ -4,7 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/consts/alignment"
+	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
@@ -78,12 +78,12 @@ func (f *FlexElement) templateFragmentWriter(t string, w io.Writer) error {
 }
 
 func (f *FlexElement) SetRowGap(amount size.Size) *FlexElement {
-	f.SetAttr(rowGapAttr, amount.String())
+	f.SetAttribute(rowGapAttr, amount.String())
 	return f
 }
 
 func (f *FlexElement) SetColumnGap(amount size.Size) *FlexElement {
-	f.SetAttr(columnGapAttr, amount.String())
+	f.SetAttribute(columnGapAttr, amount.String())
 	return f
 }
 
@@ -99,13 +99,13 @@ func (f *FlexElement) SetColumnRowGap(amount size.Size) *FlexElement {
 	return f
 }
 
-func (f *FlexElement) AlignContent(p alignment.Position) *FlexElement {
-	f.SetAttr(alignContentAttr, p.String())
+func (f *FlexElement) AlignContent(a align.Align) *FlexElement {
+	f.SetAttribute(alignContentAttr, a.String())
 	return f
 }
 
-func (f *FlexElement) JustifyContent(p alignment.Position) *FlexElement {
-	f.SetAttr(justifyContentAttr, p.String())
+func (f *FlexElement) JustifyContent(a align.Align) *FlexElement {
+	f.SetAttribute(justifyContentAttr, a.String())
 	return f
 }
 
@@ -118,7 +118,7 @@ func FlexItems(wcr compton.Registrar, dir direction.Direction) *FlexElement {
 		wcr: wcr,
 	}
 
-	f.SetAttr(flexDirectionAttr, dir.String())
+	f.SetAttribute(flexDirectionAttr, dir.String())
 	return f
 }
 

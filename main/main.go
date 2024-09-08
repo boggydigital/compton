@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/consts/alignment"
+	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/c_section"
@@ -91,7 +91,7 @@ func writeTestPage() {
 	formStack.Append(qf)
 
 	submitRow := flex_items.FlexItemsRow(p).
-		JustifyContent(alignment.Center)
+		JustifyContent(align.Center)
 
 	submit := els.InputValue(input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
@@ -141,10 +141,10 @@ func writeTestPage() {
 	s.Append(cdo)
 
 	footer := flex_items.FlexItemsRow(p).
-		JustifyContent(alignment.Center)
+		JustifyContent(align.Center)
 
 	div := els.Div()
-	div.SetClass("fg-subtle", "fs-xs")
+	div.AddClass("fg-subtle", "fs-xs")
 
 	div.Append(els.Text("Last updated: "),
 		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
@@ -244,37 +244,37 @@ func writeIssaPage() {
 
 func createQueryFragment(r compton.Registrar) compton.Element {
 	sh := c_section.CSection(r)
-	sh.SetClass("fs-xs")
+	sh.AddClass("fs-xs")
 
 	shStack := flex_items.FlexItemsRow(r).SetColumnGap(size.Normal)
 	sh.Append(shStack)
 
 	sp1 := els.Span()
 	pt1 := els.SpanText("Descending: ")
-	pt1.SetClass("fg-subtle")
+	pt1.AddClass("fg-subtle")
 	pv1 := els.SpanText("True")
-	pv1.SetClass("fw-b")
+	pv1.AddClass("fw-b")
 	sp1.Append(pt1, pv1)
 	shStack.Append(sp1)
 
 	sp2 := els.Span()
 	pt2 := els.SpanText("Sort: ")
-	pt2.SetClass("fg-subtle")
+	pt2.AddClass("fg-subtle")
 	pv2 := els.SpanText("GOG Order Date")
-	pv2.SetClass("fw-b")
+	pv2.AddClass("fw-b")
 	sp2.Append(pt2, pv2)
 	shStack.Append(sp2)
 
 	sp3 := els.Span()
 	pt3 := els.SpanText("Data Type: ")
-	pt3.SetClass("fg-subtle")
+	pt3.AddClass("fg-subtle")
 	pv3 := els.SpanText("Account Products")
-	pv3.SetClass("fw-b")
+	pv3.AddClass("fw-b")
 	sp3.Append(pt3, pv3)
 	shStack.Append(sp3)
 
 	clearAction := els.AText("Clear", "/clear")
-	clearAction.SetClass("action")
+	clearAction.AddClass("action")
 	shStack.Append(clearAction)
 
 	return sh

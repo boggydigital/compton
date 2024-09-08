@@ -18,13 +18,13 @@ var ImgLazy = ImageLazy
 func Image(src string) compton.Element {
 	image := compton.NewElement(atom.Img, markupImage)
 	if src != "" {
-		image.SetAttr(compton.SrcAttr, src)
+		image.SetAttribute(compton.SrcAttr, src)
 	}
 	return image
 }
 
 func ImageLazy(src string) compton.Element {
 	image := Image(src)
-	image.SetAttr(compton.LoadingAttr, loading.Lazy.String())
+	image.SetAttribute(compton.LoadingAttr, loading.Lazy.String())
 	return image
 }

@@ -12,7 +12,15 @@
     --s-xxl: calc(2 * var(--s-xl)); /* 8rem == 128px */
     --s-xxxl: calc(2 * var(--s-xxl)); /* 16rem == 256px */
 
+    --s-cw: calc(9 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
+
+    --cg: var(--s-n);
+    --rg: var(--s-n);
+    --jc: center;
+    --ji: center;
+    --ac: center;
+    --ai: center;
 
     --br-n: var(--s-xs);
     --br-l: var(--s-s);

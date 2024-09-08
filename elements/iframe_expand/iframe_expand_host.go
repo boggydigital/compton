@@ -42,7 +42,7 @@ func (ife *IframeExpand) WriteContent(w io.Writer) error {
 func IframeExpandHost(r compton.Registrar, id, src string) compton.Element {
 	iframe := els.IframeLazy(src)
 	iframe.SetId(id)
-	iframe.SetClass("loading")
+	iframe.AddClass("loading")
 	return &IframeExpand{
 		r:      r,
 		iframe: iframe,

@@ -69,9 +69,9 @@ func IssaImageHydrated(r compton.Registrar, placeholder, poster string) compton.
 	}
 
 	placeholderImg := els.Image(placeholder)
-	placeholderImg.SetClass("placeholder")
+	placeholderImg.AddClass("placeholder")
 	posterImg := els.ImageLazy(poster)
-	posterImg.SetClass("poster", "loading")
+	posterImg.AddClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
 	return ii
@@ -89,10 +89,10 @@ func IssaImageDehydrated(r compton.Registrar, placeholder, poster string) compto
 	}
 
 	placeholderImg := els.Image("")
-	placeholderImg.SetClass("placeholder", "loading")
-	placeholderImg.SetAttr("data-dehydrated", placeholder)
+	placeholderImg.AddClass("placeholder", "loading")
+	placeholderImg.SetAttribute("data-dehydrated", placeholder)
 	posterImg := els.ImageLazy(poster)
-	posterImg.SetClass("poster", "loading")
+	posterImg.AddClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
 	return ii
