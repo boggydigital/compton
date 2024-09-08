@@ -1,0 +1,54 @@
+@scope (details-toggle) {
+    /* TODO: re-enable when https://bugs.webkit.org/show_bug.cgi?id=277573 is fixed */
+    /*content-visibility: auto;*/
+
+    & > summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: max-content;
+        max-width: var(--s-maxw);
+        margin: auto;
+        font-weight: var(--fw-b);
+        padding: calc((var(--s-s) + var(--s-n)) / 2) var(--s-n);
+        background-color: var(--c-bg);
+        color: var(--c-fg);
+        border-radius: var(--br-l);
+        column-gap: var(--s-s);
+        cursor: pointer;
+        user-select: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        & > svg {
+            width: calc((var(--s-n) + var(--s-s)) / 2);
+            height: calc((var(--s-n) + var(--s-s)) / 2);
+            transform-origin: 50% 50%;
+            transition: rotate var(--du-fast) ease-in-out;
+        }
+    }
+}
+
+:host(:not([data-background-color])) {
+    --c-bg: var(--c-highlight)
+}
+
+:host([data-background-color]) {
+    details > summary {
+        background-color: var(--c-bg);
+    }
+}
+
+details[open] {
+    margin-block-end: var(--details-margin);
+
+    & > summary {
+        margin-block-end: var(--summary-margin);
+
+        & > svg {
+            rotate: -45deg;
+        }
+    }
+}

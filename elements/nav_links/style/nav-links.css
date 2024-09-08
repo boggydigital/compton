@@ -26,6 +26,11 @@
                 color: var(--c-foreground);
                 font-weight: normal;
 
+                & svg {
+                    width: calc(1.25 * var(--s-n));
+                    height: calc(1.25 * var(--s-n));
+                }
+
                 &.selected {
                     background-color: var(--c-foreground);
                     color: var(--c-highlight);

@@ -5,7 +5,7 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/elements/els"
-	"github.com/boggydigital/compton/elements/svg_inline"
+	"github.com/boggydigital/compton/elements/svg_use"
 	"io"
 )
 
@@ -56,9 +56,9 @@ func NavLinksTargets(r compton.Registrar, targets ...*Target) *NavLinksElement {
 func appendTarget(nl *NavLinksElement, t *Target) {
 	link := els.A(t.Href)
 
-	if t.Icon != svg_inline.None {
-		icon := svg_inline.SvgInline(t.Icon)
-		icon.AddClass("icon")
+	if t.Icon != svg_use.None {
+		icon := svg_use.SvgUse(nl.r, t.Icon)
+		//icon.AddClass("icon")
 		icon.SetAttribute("title", t.Title)
 		link.Append(icon)
 		if t.Current {

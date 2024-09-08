@@ -16,7 +16,7 @@ import (
 	"github.com/boggydigital/compton/elements/issa_image"
 	"github.com/boggydigital/compton/elements/nav_links"
 	"github.com/boggydigital/compton/elements/page"
-	"github.com/boggydigital/compton/elements/svg_inline"
+	"github.com/boggydigital/compton/elements/svg_use"
 	"github.com/boggydigital/compton/elements/title_values"
 	"golang.org/x/exp/maps"
 	"os"
@@ -31,7 +31,8 @@ var appStyles []byte
 func main() {
 	//writeTestPage()
 	//writeIframeContent()
-	writeIssaPage()
+	//writeIssaPage()
+	writeSvgUsePage()
 }
 
 func writeTestPage() {
@@ -45,9 +46,9 @@ func writeTestPage() {
 		"Search":  "/search",
 	}
 
-	topNavIcons := map[string]svg_inline.Symbol{
-		"Updates": svg_inline.Sparkle,
-		"Search":  svg_inline.Search,
+	topNavIcons := map[string]svg_use.Symbol{
+		"Updates": svg_use.Sparkle,
+		"Search":  svg_use.Search,
 	}
 
 	targets := nav_links.TextLinks(
@@ -276,4 +277,24 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	shStack.Append(clearAction)
 
 	return sh
+}
+
+func writeSvgUsePage() {
+	p := page.Page("svg use page")
+
+	p.Append(svg_use.SvgUse(p, svg_use.MacOS))
+
+	svgUsePath := filepath.Join(os.TempDir(), "svg_use.html")
+	svgUseFile, err := os.Create(svgUsePath)
+	if err != nil {
+		panic(err)
+	}
+	defer svgUseFile.Close()
+
+	if err := p.WriteContent(svgUseFile); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("file://" + svgUsePath)
+
 }

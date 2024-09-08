@@ -77,11 +77,6 @@ details[open] {
     }
 }
 
-svg.icon {
-    width: calc(1.25 * var(--s-n));
-    height: calc(1.25 * var(--s-n));
-}
-
 input[type=text],
 input[type=search] {
     appearance: none;

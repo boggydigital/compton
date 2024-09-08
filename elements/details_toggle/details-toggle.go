@@ -8,7 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/custom_elements"
-	"github.com/boggydigital/compton/elements/svg_inline"
+	"github.com/boggydigital/compton/elements/svg_use"
 	"github.com/boggydigital/compton/shared"
 	"io"
 	"strings"
@@ -84,7 +84,8 @@ func (d *Details) templateFragmentWriter(t string, w io.Writer) error {
 			return err
 		}
 	case ".SvgPlusIcon":
-		if _, err := io.Copy(w, bytes.NewReader(svg_inline.MarkupSymbols[svg_inline.Plus])); err != nil {
+		plusSymbol := svg_use.SvgUse(d.wcr, svg_use.Plus)
+		if err := plusSymbol.WriteContent(w); err != nil {
 			return err
 		}
 	}
