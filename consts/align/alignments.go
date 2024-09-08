@@ -1,11 +1,5 @@
 package align
 
-import (
-	"iter"
-	"maps"
-	"strings"
-)
-
 type Align int
 
 const (
@@ -27,13 +21,9 @@ func (a Align) String() string {
 
 func Parse(s string) Align {
 	for a, str := range alignStrings {
-		if strings.HasPrefix(str, s) {
+		if str == s {
 			return a
 		}
 	}
 	return Unknown
-}
-
-func AllAligns() iter.Seq[Align] {
-	return maps.Keys(alignStrings)
 }

@@ -17,10 +17,11 @@
 
     --cg: var(--s-n);
     --rg: var(--s-n);
-    --jc: center;
-    --ji: center;
-    --ac: center;
-    --ai: center;
+    --jc: unset;
+    --ji: unset;
+    --ac: unset;
+    --ai: unset;
+    --fd: unset;
 
     --br-n: var(--s-xs);
     --br-l: var(--s-s);

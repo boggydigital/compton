@@ -5,7 +5,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"github.com/boggydigital/compton/consts/size"
+	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/flex_items"
@@ -76,11 +76,11 @@ func TitleValues(wcr compton.Registrar, title string) *TitleValuesElement {
 	}
 }
 
-func TitleValuesText(wcr compton.Registrar, title string, values ...string) *TitleValuesElement {
-	titleValues := TitleValues(wcr, title)
-	flexItems := flex_items.FlexItemsRow(wcr).
-		SetRowGap(size.Normal).
-		SetColumnGap(size.Normal)
+func TitleValuesText(r compton.Registrar, title string, values ...string) *TitleValuesElement {
+	titleValues := TitleValues(r, title)
+	flexItems := flex_items.FlexItems(r, direction.Row)
+	//RowGap(size.Normal).
+	//ColumnGap(size.Normal)
 
 	slices.Sort(values)
 	for _, value := range values {
@@ -90,11 +90,11 @@ func TitleValuesText(wcr compton.Registrar, title string, values ...string) *Tit
 	return titleValues
 }
 
-func TitleValuesLinks(wcr compton.Registrar, title string, links map[string]string, order ...string) *TitleValuesElement {
-	titleValues := TitleValues(wcr, title)
-	flexItems := flex_items.FlexItemsRow(wcr).
-		SetRowGap(size.Normal).
-		SetColumnGap(size.Normal)
+func TitleValuesLinks(r compton.Registrar, title string, links map[string]string, order ...string) *TitleValuesElement {
+	titleValues := TitleValues(r, title)
+	flexItems := flex_items.FlexItems(r, direction.Row)
+	//SetRowGap(size.Normal).
+	//SetColumnGap(size.Normal)
 
 	if len(order) == 0 {
 		order = maps.Keys(links)

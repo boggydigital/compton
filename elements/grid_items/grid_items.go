@@ -14,11 +14,6 @@ import (
 const (
 	registrationName      = "grid-items"
 	styleRegistrationName = "style-" + registrationName
-
-	rowGapAttr         = "data-row-gap"
-	columnGapAttr      = "data-column-gap"
-	alignContentAttr   = "data-align-content"
-	justifyContentAttr = "data-justify-content"
 )
 
 var (
@@ -33,58 +28,57 @@ type GridItemsElement struct {
 	r compton.Registrar
 }
 
-func (gi *GridItemsElement) WriteStyles(w io.Writer) error {
-	if gi.r.RequiresRegistration(styleRegistrationName) {
+func (gie *GridItemsElement) WriteStyles(w io.Writer) error {
+	if gie.r.RequiresRegistration(styleRegistrationName) {
 		if err := els.Style(styleGridItems).WriteContent(w); err != nil {
 			return err
 		}
 	}
-	return gi.BaseElement.WriteStyles(w)
+	return gie.BaseElement.WriteStyles(w)
 }
 
-func (g *GridItemsElement) RowGap(sz size.Size) *GridItemsElement {
-	g.AddClass(class.RowGap(sz))
-	return g
+func (gie *GridItemsElement) RowGap(sz size.Size) *GridItemsElement {
+	gie.AddClass(class.RowGap(sz))
+	return gie
 }
 
-func (g *GridItemsElement) ColumnGap(sz size.Size) *GridItemsElement {
-	g.AddClass(class.ColumnGap(sz))
-	return g
+func (gie *GridItemsElement) ColumnGap(sz size.Size) *GridItemsElement {
+	gie.AddClass(class.ColumnGap(sz))
+	return gie
 }
 
-func (g *GridItemsElement) Gap(sz size.Size) *GridItemsElement {
-	g.ColumnGap(sz)
-	g.RowGap(sz)
-	return g
+func (gie *GridItemsElement) Gap(sz size.Size) *GridItemsElement {
+	gie.ColumnGap(sz)
+	gie.RowGap(sz)
+	return gie
 }
 
-func (g *GridItemsElement) AlignContent(a align.Align) *GridItemsElement {
-	g.AddClass(class.AlignContent(a))
-	return g
+func (gie *GridItemsElement) AlignContent(a align.Align) *GridItemsElement {
+	gie.AddClass(class.AlignContent(a))
+	return gie
 }
 
-func (g *GridItemsElement) AlignItems(a align.Align) *GridItemsElement {
-	g.AddClass(class.AlignItems(a))
-	return g
+func (gie *GridItemsElement) AlignItems(a align.Align) *GridItemsElement {
+	gie.AddClass(class.AlignItems(a))
+	return gie
 }
 
-func (g *GridItemsElement) JustifyContent(a align.Align) *GridItemsElement {
-	g.AddClass(class.JustifyContent(a))
-	return g
+func (gie *GridItemsElement) JustifyContent(a align.Align) *GridItemsElement {
+	gie.AddClass(class.JustifyContent(a))
+	return gie
 }
 
-func (g *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
-	g.AddClass(class.JustifyItems(a))
-	return g
+func (gie *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
+	gie.AddClass(class.JustifyItems(a))
+	return gie
 }
 
 func GridItems(wcr compton.Registrar) *GridItemsElement {
-	gi := &GridItemsElement{
+	return &GridItemsElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupGridItems,
 			TagName: compton_atoms.GridItems,
 		},
 		r: wcr,
 	}
-	return gi
 }

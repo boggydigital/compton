@@ -1,0 +1,13 @@
+@scope (flex-items) {
+    :scope {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: var(--rg);
+        column-gap: var(--cg);
+        flex-direction: var(--fd);
+        align-content: var(--ac);
+        align-items: var(--ai);
+        justify-content: var(--jc);
+        justify-items: var(--ji);
+    }
+}

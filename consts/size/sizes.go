@@ -1,10 +1,5 @@
 package size
 
-import (
-	"iter"
-	"maps"
-)
-
 type Size int
 
 const (
@@ -50,8 +45,4 @@ func Parse(s string) Size {
 		}
 	}
 	return Unknown
-}
-
-func AllSizes() iter.Seq[Size] {
-	return maps.Keys(sizeStrings)
 }

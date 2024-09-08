@@ -1,7 +1,0 @@
-:host([data-flex-direction=column]) {
-    flex-direction: column;
-}
-
-:host([data-flex-direction=row]) {
-    flex-direction: row;
-}

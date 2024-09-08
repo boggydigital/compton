@@ -3,7 +3,8 @@ package direction
 type Direction int
 
 const (
-	Column Direction = iota
+	Unknown Direction = iota
+	Column
 	Row
 )
 
@@ -14,4 +15,13 @@ var directionStrings = map[Direction]string{
 
 func (d Direction) String() string {
 	return directionStrings[d]
+}
+
+func Parse(s string) Direction {
+	for d, str := range directionStrings {
+		if str == s {
+			return d
+		}
+	}
+	return Unknown
 }

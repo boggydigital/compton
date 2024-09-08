@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/input_types"
-	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/c_section"
 	"github.com/boggydigital/compton/elements/details_toggle"
 	"github.com/boggydigital/compton/elements/els"
@@ -38,7 +38,7 @@ func writeTestPage() {
 	p := page.Page("test").SetFavIconEmoji("🤔")
 	p.SetCustomStyles(appStyles)
 
-	s := flex_items.FlexItemsColumn(p)
+	s := flex_items.FlexItems(p, direction.Column)
 
 	topNavLinks := map[string]string{
 		"Updates": "/updates",
@@ -84,14 +84,13 @@ func writeTestPage() {
 
 	form := els.Form("/action", "GET")
 
-	formStack := flex_items.FlexItemsColumn(p)
+	formStack := flex_items.FlexItems(p, direction.Row).FlexDirection(direction.Column)
 
 	qf := createQueryFragment(p)
 
 	formStack.Append(qf)
 
-	submitRow := flex_items.FlexItemsRow(p).
-		JustifyContent(align.Center)
+	submitRow := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
 	submit := els.InputValue(input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
@@ -140,8 +139,7 @@ func writeTestPage() {
 	cdo.Append(tvGrid)
 	s.Append(cdo)
 
-	footer := flex_items.FlexItemsRow(p).
-		JustifyContent(align.Center)
+	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
 	div := els.Div()
 	div.AddClass("fg-subtle", "fs-xs")
@@ -246,7 +244,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	sh := c_section.CSection(r)
 	sh.AddClass("fs-xs")
 
-	shStack := flex_items.FlexItemsRow(r).SetColumnGap(size.Normal)
+	shStack := flex_items.FlexItems(r, direction.Row)
 	sh.Append(shStack)
 
 	sp1 := els.Span()

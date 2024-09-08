@@ -2,6 +2,7 @@ package class
 
 import (
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
 	"maps"
 	"strings"
@@ -17,6 +18,7 @@ const (
 	alignItemsPfx     = "ai"
 	justifyContentPfx = "jc"
 	justifyItemsPfx   = "ji"
+	flexDirectionPfx  = "fd"
 )
 
 var setClasses = make(map[string]any)
@@ -59,6 +61,10 @@ func JustifyItems(a align.Align) string {
 	return joinClassName(justifyItemsPfx, a.String())
 }
 
+func FlexDirection(d direction.Direction) string {
+	return joinClassName(flexDirectionPfx, d.String())
+}
+
 func StyleClasses() []byte {
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
@@ -93,6 +99,11 @@ func parsePropertyValue(className string) (string, string) {
 	case rowGapPfx:
 		sz := size.Parse(sfx)
 		value = sz.CssValue()
+	case flexDirectionPfx:
+		dr := direction.Parse(sfx)
+		value = dr.String()
+	default:
+		panic("class support not implemented for " + pfx)
 	}
 
 	return property, value
