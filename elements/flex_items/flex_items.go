@@ -38,48 +38,6 @@ func (fie *FlexItemsElement) WriteStyles(w io.Writer) error {
 	return fie.BaseElement.WriteStyles(w)
 }
 
-//func (f *FlexItemsElement) WriteRequirements(w io.Writer) error {
-//	if f.wcr.RequiresRegistration(registrationName) {
-//		if err := custom_elements.Define(w, custom_elements.Defaults(registrationName)); err != nil {
-//			return err
-//		}
-//		if err := compton.WriteContents(bytes.NewReader(markupTemplate), w, f.templateFragmentWriter); err != nil {
-//			return err
-//		}
-//	}
-//	return f.BaseElement.WriteRequirements(w)
-//}
-
-//func (f *FlexItemsElement) templateFragmentWriter(t string, w io.Writer) error {
-//	switch t {
-//	case ".Direction":
-//		if _, err := io.WriteString(w, f.dir.String()); err != nil {
-//			return err
-//		}
-//	case ".HostColumnGap":
-//		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostColumnGap)); err != nil {
-//			return err
-//		}
-//	case ".HostRowGap":
-//		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostRowGap)); err != nil {
-//			return err
-//		}
-//	case ".HostAlignContent":
-//		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostAlignContent)); err != nil {
-//			return err
-//		}
-//	case ".HostJustifyContent":
-//		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostJustifyContent)); err != nil {
-//			return err
-//		}
-//	case ".HostFlexDirection":
-//		if _, err := io.Copy(w, bytes.NewReader(shared.StyleHostFlexDirection)); err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
-
 func (fie *FlexItemsElement) RowGap(sz size.Size) *FlexItemsElement {
 	fie.AddClass(class.RowGap(sz))
 	return fie

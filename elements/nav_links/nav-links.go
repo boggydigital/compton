@@ -1,62 +1,55 @@
 package nav_links
 
 import (
-	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/svg_inline"
 	"io"
 )
 
 const (
-	navLinksElementName = "nav-links"
+	registrationName      = "nav-links"
+	styleRegistrationName = "style-" + registrationName
 )
 
 var (
-	//go:embed "markup/template.html"
-	markupTemplate []byte
 	//go:embed "markup/nav-links.html"
 	markupNavLinks []byte
+	//go:embed "style/nav-links.css"
+	styleNavLinks []byte
 )
 
 type NavLinksElement struct {
 	compton.BaseElement
-	wcr compton.Registrar
+	r compton.Registrar
 }
 
-func (nl *NavLinksElement) WriteRequirements(w io.Writer) error {
-	if nl.wcr.RequiresRegistration(navLinksElementName) {
-		if err := custom_elements.Define(w, custom_elements.Defaults(navLinksElementName)); err != nil {
-			return err
-		}
-		if _, err := io.Copy(w, bytes.NewReader(markupTemplate)); err != nil {
+func (nle *NavLinksElement) WriteStyles(w io.Writer) error {
+	if nle.r.RequiresRegistration(styleRegistrationName) {
+		if err := els.Style(styleNavLinks).WriteContent(w); err != nil {
 			return err
 		}
 	}
-	return nl.BaseElement.WriteRequirements(w)
+	return nle.BaseElement.WriteStyles(w)
 }
 
-func NavLinks(wcr compton.Registrar) *NavLinksElement {
+func NavLinks(r compton.Registrar) *NavLinksElement {
 	return &NavLinksElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupNavLinks,
 			TagName: compton_atoms.NavLinks,
 		},
-		wcr: wcr,
+		r: r,
 	}
 }
 
-func NavLinksTargets(wcr compton.Registrar, targets ...*Target) *NavLinksElement {
-	nl := NavLinks(wcr)
-
+func NavLinksTargets(r compton.Registrar, targets ...*Target) *NavLinksElement {
+	nl := NavLinks(r)
 	for _, t := range targets {
 		appendTarget(nl, t)
-
 	}
-
 	return nl
 }
 
