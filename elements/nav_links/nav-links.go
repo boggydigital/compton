@@ -54,6 +54,7 @@ func NavLinksTargets(r compton.Registrar, targets ...*Target) *NavLinksElement {
 }
 
 func appendTarget(nl *NavLinksElement, t *Target) {
+	li := els.ListItem()
 	link := els.A(t.Href)
 
 	if t.Icon != svg_use.None {
@@ -70,5 +71,6 @@ func appendTarget(nl *NavLinksElement, t *Target) {
 	if t.Current {
 		link.AddClass("selected")
 	}
-	nl.Append(link)
+	li.Append(link)
+	nl.Append(li)
 }

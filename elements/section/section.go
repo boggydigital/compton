@@ -1,4 +1,4 @@
-package c_section
+package section
 
 import (
 	_ "embed"
@@ -9,24 +9,24 @@ import (
 )
 
 const (
-	registrationName      = "c-section"
+	registrationName      = "section"
 	styleRegistrationName = "style-" + registrationName
 )
 
 var (
-	//go:embed "markup/c-section.html"
+	//go:embed "markup/section.html"
 	markupCSection []byte
-	//go:embed "style/c-section.css"
+	//go:embed "style/section.css"
 	styleCSection []byte
 )
 
-type CSectionElement struct {
+type SectionElement struct {
 	compton.BaseElement
 	r compton.Registrar
 }
 
-func (cs *CSectionElement) WriteStyles(w io.Writer) error {
-	if cs.r.RequiresRegistration(styleRegistrationName) {
+func (se *SectionElement) WriteStyles(w io.Writer) error {
+	if se.r.RequiresRegistration(styleRegistrationName) {
 		if err := els.Style(styleCSection).WriteContent(w); err != nil {
 			return err
 		}
@@ -34,8 +34,8 @@ func (cs *CSectionElement) WriteStyles(w io.Writer) error {
 	return nil
 }
 
-func CSection(r compton.Registrar) compton.Element {
-	return &CSectionElement{
+func Section(r compton.Registrar) compton.Element {
+	return &SectionElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupCSection,
 			TagName: compton_atoms.CSection,

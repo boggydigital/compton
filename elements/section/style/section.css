@@ -1,4 +1,4 @@
-@scope (c-section) {
+@scope (section) {
     :scope {
         display: flex;
         flex-direction: column;

@@ -7,7 +7,6 @@ import (
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/input_types"
-	"github.com/boggydigital/compton/elements/c_section"
 	"github.com/boggydigital/compton/elements/details_toggle"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/flex_items"
@@ -16,6 +15,7 @@ import (
 	"github.com/boggydigital/compton/elements/issa_image"
 	"github.com/boggydigital/compton/elements/nav_links"
 	"github.com/boggydigital/compton/elements/page"
+	"github.com/boggydigital/compton/elements/section"
 	"github.com/boggydigital/compton/elements/svg_use"
 	"github.com/boggydigital/compton/elements/title_values"
 	"golang.org/x/exp/maps"
@@ -242,7 +242,7 @@ func writeIssaPage() {
 }
 
 func createQueryFragment(r compton.Registrar) compton.Element {
-	sh := c_section.CSection(r)
+	sh := section.Section(r)
 	sh.AddClass("fs-xs")
 
 	shStack := flex_items.FlexItems(r, direction.Row)
