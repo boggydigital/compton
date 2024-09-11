@@ -7,6 +7,7 @@ import (
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
+	"github.com/boggydigital/compton/consts/weight"
 	"github.com/boggydigital/compton/elements/els"
 	"io"
 )
@@ -18,9 +19,9 @@ const (
 
 var (
 	//go:embed "markup/section.html"
-	markupCSection []byte
+	markupSection []byte
 	//go:embed "style/section.css"
-	styleCSection []byte
+	styleSection []byte
 )
 
 type SectionElement struct {
@@ -30,7 +31,7 @@ type SectionElement struct {
 
 func (se *SectionElement) WriteStyles(w io.Writer) error {
 	if se.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleCSection).WriteContent(w); err != nil {
+		if err := els.Style(styleSection).WriteContent(w); err != nil {
 			return err
 		}
 	}
@@ -49,6 +50,11 @@ func (se *SectionElement) ForegroundColor(c color.Color) *SectionElement {
 
 func (se *SectionElement) FontSize(s size.Size) *SectionElement {
 	se.AddClass(class.FontSize(s))
+	return se
+}
+
+func (se *SectionElement) FontWeight(w weight.Weight) *SectionElement {
+	se.AddClass(class.FontWeight(w))
 	return se
 }
 
@@ -71,7 +77,7 @@ func (se *SectionElement) Gap(s size.Size) *SectionElement {
 func Section(r compton.Registrar) *SectionElement {
 	return &SectionElement{
 		BaseElement: compton.BaseElement{
-			Markup:  markupCSection,
+			Markup:  markupSection,
 			TagName: compton_atoms.Section,
 		},
 		r: r,

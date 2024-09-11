@@ -5,6 +5,7 @@
         width: 100%;
         align-items: center;
         font-size: var(--fs);
+        font-weight: var(--fw);
 
         & > * {
             max-width: var(--s-maxw);

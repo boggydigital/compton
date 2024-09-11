@@ -5,6 +5,7 @@ import (
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
+	"github.com/boggydigital/compton/consts/weight"
 	"maps"
 	"strings"
 )
@@ -23,6 +24,7 @@ const (
 	backgroundColorPfx = "bg"
 	foregroundColorPfx = "fg"
 	fontSizePfx        = "fs"
+	fontWeightPfx      = "fw"
 )
 
 var setClasses = make(map[string]any)
@@ -77,8 +79,12 @@ func ForegroundColor(c color.Color) string {
 	return joinClassName(foregroundColorPfx, c.String())
 }
 
-func FontSize(size size.Size) string {
-	return joinClassName(fontSizePfx, size.String())
+func FontSize(s size.Size) string {
+	return joinClassName(fontSizePfx, s.String())
+}
+
+func FontWeight(w weight.Weight) string {
+	return joinClassName(fontWeightPfx, w.String())
 }
 
 func StyleClasses() []byte {
@@ -126,6 +132,9 @@ func parsePropertyValue(className string) (string, string) {
 	case backgroundColorPfx:
 		cl := color.Parse(sfx)
 		value = cl.CssValue()
+	case fontWeightPfx:
+		wt := weight.Parse(sfx)
+		value = wt.CssValue()
 	default:
 		panic("class support not implemented for " + pfx)
 	}

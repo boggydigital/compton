@@ -24,7 +24,8 @@
     --fd: unset;
     --fg: var(--c-foreground);
     --bg: var(--c-background);
-    --fs: var(--fs-n);
+    --fs: unset;
+    --fw: unset;
 
     --br-n: var(--s-xs);
     --br-l: var(--s-s);
@@ -40,6 +41,8 @@
     --fs-xl: 1.4rem;
     --fs-xxl: 2rem;
     --fs-xxxl: 2.4rem;
+
+    --fw-n: 450;
 
     --fw-l: 300;
     --fw-b: 600;

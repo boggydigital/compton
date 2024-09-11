@@ -3,5 +3,6 @@
         color: var(--fg);
         background-color: var(--bg);
         font-size: var(--fs);
+        font-weight: var(--fw);
     }
 }
