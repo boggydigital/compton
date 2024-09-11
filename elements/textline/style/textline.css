@@ -1,0 +1,13 @@
+@scope (textline) {
+    :scope {
+        & flex-items {
+            flex-direction: row;
+
+            > * {
+                color: var(--fg);
+                background-color: var(--bg);
+                font-size: var(--fs);
+            }
+        }
+    }
+}

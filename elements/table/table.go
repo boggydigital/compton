@@ -5,27 +5,45 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
+	"io"
+)
+
+const (
+	registrationName      = "table"
+	styleRegistrationName = "style" + registrationName
 )
 
 var (
 	//go:embed "markup/table.html"
 	markupTable []byte
+	//go:embed "style/table.css"
+	styleTable []byte
 )
 
 type TableElement struct {
 	compton.BaseElement
+	r compton.Registrar
 }
 
-func (t *TableElement) AppendHead(columns ...string) *TableElement {
+func (te *TableElement) WriteStyles(w io.Writer) error {
+	if te.r.RequiresRegistration(styleRegistrationName) {
+		if _, err := w.Write(styleTable); err != nil {
+			return err
+		}
+	}
+	return te.BaseElement.WriteStyles(w)
+}
+
+func (te *TableElement) AppendHead(columns ...string) *TableElement {
 
 	var thead compton.Element
-	if theads := t.GetElementsByTagName(atom.Thead); len(theads) > 0 {
+	if theads := te.GetElementsByTagName(atom.Thead); len(theads) > 0 {
 		thead = theads[0]
 	}
 
 	if thead == nil {
 		thead = Thead()
-		t.Append(thead)
+		te.Append(thead)
 	}
 
 	for _, col := range columns {
@@ -34,19 +52,19 @@ func (t *TableElement) AppendHead(columns ...string) *TableElement {
 		thead.Append(th)
 	}
 
-	return t
+	return te
 }
 
-func (t *TableElement) AppendRow(data ...string) *TableElement {
+func (te *TableElement) AppendRow(data ...string) *TableElement {
 
 	var tbody compton.Element
-	if tbodies := t.GetElementsByTagName(atom.Tbody); len(tbodies) > 0 {
+	if tbodies := te.GetElementsByTagName(atom.Tbody); len(tbodies) > 0 {
 		tbody = tbodies[0]
 	}
 
 	if tbody == nil {
 		tbody = Tbody()
-		t.Append(tbody)
+		te.Append(tbody)
 	}
 
 	tr := Tr()
@@ -57,18 +75,18 @@ func (t *TableElement) AppendRow(data ...string) *TableElement {
 	}
 	tbody.Append(tr)
 
-	return t
+	return te
 }
 
-func (t *TableElement) AppendFoot(columns ...string) *TableElement {
+func (te *TableElement) AppendFoot(columns ...string) *TableElement {
 	var tfoot compton.Element
-	if tfeet := t.GetElementsByTagName(atom.Tfoot); len(tfeet) > 0 {
+	if tfeet := te.GetElementsByTagName(atom.Tfoot); len(tfeet) > 0 {
 		tfoot = tfeet[0]
 	}
 
 	if tfoot == nil {
 		tfoot = Tfoot()
-		t.Append(tfoot)
+		te.Append(tfoot)
 	}
 
 	for _, col := range columns {
@@ -77,14 +95,15 @@ func (t *TableElement) AppendFoot(columns ...string) *TableElement {
 		tfoot.Append(td)
 	}
 
-	return t
+	return te
 }
 
-func Table() *TableElement {
+func Table(r compton.Registrar) *TableElement {
 	return &TableElement{
-		compton.BaseElement{
+		BaseElement: compton.BaseElement{
 			Markup:  markupTable,
 			TagName: atom.Table,
 		},
+		r: r,
 	}
 }

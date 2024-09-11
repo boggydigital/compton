@@ -34,8 +34,12 @@ func (u Size) String() string {
 	return sizeStrings[u]
 }
 
-func (u Size) CssValue() string {
+func (u Size) SizeCssValue() string {
 	return "var(--s-" + u.String() + ")"
+}
+
+func (u Size) FontSizeCssValue() string {
+	return "var(--fs-" + u.String() + ")"
 }
 
 func Parse(s string) Size {

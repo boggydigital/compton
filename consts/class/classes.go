@@ -2,6 +2,7 @@ package class
 
 import (
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
 	"maps"
@@ -9,16 +10,19 @@ import (
 )
 
 const (
-	classSelectorPfx  = "."
-	classNameSep      = "-"
-	customPropertyPfx = "--"
-	rowGapPfx         = "rg"
-	columnGapPfx      = "cg"
-	alignContentPfx   = "ac"
-	alignItemsPfx     = "ai"
-	justifyContentPfx = "jc"
-	justifyItemsPfx   = "ji"
-	flexDirectionPfx  = "fd"
+	classSelectorPfx   = "."
+	classNameSep       = "-"
+	customPropertyPfx  = "--"
+	rowGapPfx          = "rg"
+	columnGapPfx       = "cg"
+	alignContentPfx    = "ac"
+	alignItemsPfx      = "ai"
+	justifyContentPfx  = "jc"
+	justifyItemsPfx    = "ji"
+	flexDirectionPfx   = "fd"
+	backgroundColorPfx = "bg"
+	foregroundColorPfx = "fg"
+	fontSizePfx        = "fs"
 )
 
 var setClasses = make(map[string]any)
@@ -65,6 +69,18 @@ func FlexDirection(d direction.Direction) string {
 	return joinClassName(flexDirectionPfx, d.String())
 }
 
+func BackgroundColor(c color.Color) string {
+	return joinClassName(backgroundColorPfx, c.String())
+}
+
+func ForegroundColor(c color.Color) string {
+	return joinClassName(foregroundColorPfx, c.String())
+}
+
+func FontSize(size size.Size) string {
+	return joinClassName(fontSizePfx, size.String())
+}
+
 func StyleClasses() []byte {
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
@@ -94,14 +110,22 @@ func parsePropertyValue(className string) (string, string) {
 	case justifyItemsPfx:
 		al := align.Parse(sfx)
 		value = al.String()
+	case fontSizePfx:
+		sz := size.Parse(sfx)
+		value = sz.FontSizeCssValue()
 	case columnGapPfx:
 		fallthrough
 	case rowGapPfx:
 		sz := size.Parse(sfx)
-		value = sz.CssValue()
+		value = sz.SizeCssValue()
 	case flexDirectionPfx:
 		dr := direction.Parse(sfx)
 		value = dr.String()
+	case foregroundColorPfx:
+		fallthrough
+	case backgroundColorPfx:
+		cl := color.Parse(sfx)
+		value = cl.CssValue()
 	default:
 		panic("class support not implemented for " + pfx)
 	}

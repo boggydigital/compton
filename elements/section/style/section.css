@@ -4,11 +4,12 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
+        font-size: var(--fs);
 
         & > * {
             max-width: var(--s-maxw);
-            background: var(--c-highlight);
-            color: var(--c-foreground);
+            background: var(--bg);
+            color: var(--fg);
             border-radius: var(--br-l);
             padding: var(--s-n)
         }

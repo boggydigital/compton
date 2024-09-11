@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -16,8 +17,6 @@ var (
 )
 
 var (
-	//go:embed "style/colors.css"
-	styleColors []byte
 	//go:embed "style/units.css"
 	styleUnits []byte
 	//go:embed "style/page.css"
@@ -49,7 +48,7 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 			return err
 		}
 	case ".StyleColors":
-		if _, err := w.Write(styleColors); err != nil {
+		if _, err := w.Write(color.StyleSheet); err != nil {
 			return err
 		}
 	case ".StyleUnits":

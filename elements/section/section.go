@@ -3,7 +3,10 @@ package section
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/els"
 	"io"
 )
@@ -34,11 +37,26 @@ func (se *SectionElement) WriteStyles(w io.Writer) error {
 	return nil
 }
 
-func Section(r compton.Registrar) compton.Element {
+func (se *SectionElement) BackgroundColor(c color.Color) *SectionElement {
+	se.AddClass(class.BackgroundColor(c))
+	return se
+}
+
+func (se *SectionElement) ForegroundColor(c color.Color) *SectionElement {
+	se.AddClass(class.ForegroundColor(c))
+	return se
+}
+
+func (se *SectionElement) FontSize(s size.Size) *SectionElement {
+	se.AddClass(class.FontSize(s))
+	return se
+}
+
+func Section(r compton.Registrar) *SectionElement {
 	return &SectionElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupCSection,
-			TagName: compton_atoms.CSection,
+			TagName: compton_atoms.Section,
 		},
 		r: r,
 	}

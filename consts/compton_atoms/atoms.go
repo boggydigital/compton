@@ -9,7 +9,7 @@ const (
 	GridItems
 	TitleValues
 	NavLinks
-	SvgInlineIcon
-	CSection
+	Section
 	IssaImage
+	TextLine
 )

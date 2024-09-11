@@ -22,6 +22,9 @@
     --ac: unset;
     --ai: unset;
     --fd: unset;
+    --fg: var(--c-foreground);
+    --bg: var(--c-background);
+    --fs: var(--fs-n);
 
     --br-n: var(--s-xs);
     --br-l: var(--s-s);

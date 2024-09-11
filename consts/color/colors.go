@@ -1,14 +1,19 @@
 package color
 
 import (
+	_ "embed"
 	"iter"
 	"maps"
 )
 
+//go:embed "style/colors.css"
+var StyleSheet []byte
+
 type Color int
 
 const (
-	Black Color = iota
+	Unknown Color = iota
+	Black
 	White
 	Red
 	Pink
@@ -40,19 +45,19 @@ var colorStrings = map[Color]string{
 	Red:        "red",
 	Pink:       "pink",
 	Purple:     "purple",
-	DeepPurple: "deep-purple",
+	DeepPurple: "deeppurple",
 	Indigo:     "indigo",
 	Blue:       "blue",
-	LightBlue:  "light-blue",
+	LightBlue:  "lightblue",
 	Cyan:       "cyan",
 	Teal:       "teal",
 	Green:      "green",
-	LightGreen: "light-green",
+	LightGreen: "lightgreen",
 	Lime:       "lime",
 	Yellow:     "yellow",
 	Amber:      "amber",
 	Orange:     "orange",
-	DeepOrange: "deep-orange",
+	DeepOrange: "deeporange",
 	Brown:      "brown",
 	Background: "background",
 	Foreground: "foreground",
@@ -71,4 +76,13 @@ func (c Color) CssValue() string {
 
 func AllColors() iter.Seq[Color] {
 	return maps.Keys(colorStrings)
+}
+
+func Parse(s string) Color {
+	for c, str := range colorStrings {
+		if s == str {
+			return c
+		}
+	}
+	return Unknown
 }
