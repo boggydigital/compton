@@ -31,7 +31,7 @@ type FspanElement struct {
 
 func (fse *FspanElement) WriteStyles(w io.Writer) error {
 	if fse.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleFspan).WriteContent(w); err != nil {
+		if err := els.Style(styleFspan, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

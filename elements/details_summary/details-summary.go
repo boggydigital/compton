@@ -35,7 +35,7 @@ func (dse *DetailsSummaryElement) Append(children ...compton.Element) {
 
 func (dse *DetailsSummaryElement) WriteStyles(w io.Writer) error {
 	if dse.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleDetailsSummary).WriteContent(w); err != nil {
+		if err := els.Style(styleDetailsSummary, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

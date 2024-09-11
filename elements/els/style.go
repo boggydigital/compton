@@ -11,8 +11,11 @@ var (
 	markupStyle []byte
 )
 
-func Style(styles []byte) compton.Element {
+func Style(styles []byte, id string) compton.Element {
 	style := compton.NewElement(atom.Style, markupStyle)
 	style.Append(Text(string(styles)))
+	if id != "" {
+		style.SetId(id)
+	}
 	return style
 }

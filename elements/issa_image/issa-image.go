@@ -34,7 +34,7 @@ type IssaImageElement struct {
 
 func (ii *IssaImageElement) WriteStyles(w io.Writer) error {
 	if ii.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleIssaImage).WriteContent(w); err != nil {
+		if err := els.Style(styleIssaImage, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

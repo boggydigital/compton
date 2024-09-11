@@ -62,7 +62,9 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 		if be.Attributes.attributes == nil {
 			be.Attributes.attributes = make(map[string]string)
 		}
-		be.Attributes.attributes[ClassAttr] = be.ClassList.String()
+		if len(be.ClassList.classList) > 0 {
+			be.Attributes.attributes[ClassAttr] = be.ClassList.String()
+		}
 		if err := be.Attributes.Write(w); err != nil {
 			return err
 		}

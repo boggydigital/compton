@@ -31,7 +31,7 @@ type FlexItemsElement struct {
 
 func (fie *FlexItemsElement) WriteStyles(w io.Writer) error {
 	if fie.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleFlexItems).WriteContent(w); err != nil {
+		if err := els.Style(styleFlexItems, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

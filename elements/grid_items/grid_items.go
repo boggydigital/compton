@@ -30,7 +30,7 @@ type GridItemsElement struct {
 
 func (gie *GridItemsElement) WriteStyles(w io.Writer) error {
 	if gie.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleGridItems).WriteContent(w); err != nil {
+		if err := els.Style(styleGridItems, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

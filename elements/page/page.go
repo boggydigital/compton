@@ -9,6 +9,7 @@ import (
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
 	"io"
+	"strconv"
 )
 
 var (
@@ -68,8 +69,9 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 			return err
 		}
 	case ".StyleApp":
-		for _, customStyle := range p.customStyles {
-			style := els.Style(customStyle)
+		for ii, customStyle := range p.customStyles {
+			id := "style-app-" + strconv.Itoa(ii)
+			style := els.Style(customStyle, id)
 			if err := style.WriteContent(w); err != nil {
 				return err
 			}

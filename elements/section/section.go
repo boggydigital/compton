@@ -31,7 +31,7 @@ type SectionElement struct {
 
 func (se *SectionElement) WriteStyles(w io.Writer) error {
 	if se.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleSection).WriteContent(w); err != nil {
+		if err := els.Style(styleSection, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}

@@ -28,7 +28,7 @@ type NavLinksElement struct {
 
 func (nle *NavLinksElement) WriteStyles(w io.Writer) error {
 	if nle.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleNavLinks).WriteContent(w); err != nil {
+		if err := els.Style(styleNavLinks, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}
