@@ -52,6 +52,22 @@ func (se *SectionElement) FontSize(s size.Size) *SectionElement {
 	return se
 }
 
+func (se *SectionElement) RowGap(s size.Size) *SectionElement {
+	se.AddClass(class.RowGap(s))
+	return se
+}
+
+func (se *SectionElement) ColumnGap(s size.Size) *SectionElement {
+	se.AddClass(class.ColumnGap(s))
+	return se
+}
+
+func (se *SectionElement) Gap(s size.Size) *SectionElement {
+	se.ColumnGap(s)
+	se.RowGap(s)
+	return se
+}
+
 func Section(r compton.Registrar) *SectionElement {
 	return &SectionElement{
 		BaseElement: compton.BaseElement{

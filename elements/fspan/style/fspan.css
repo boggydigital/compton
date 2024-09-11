@@ -1,0 +1,7 @@
+@scope (fspan) {
+    :scope {
+        color: var(--fg);
+        background-color: var(--bg);
+        font-size: var(--fs);
+    }
+}

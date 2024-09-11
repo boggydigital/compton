@@ -11,5 +11,5 @@ const (
 	NavLinks
 	Section
 	IssaImage
-	TextLine
+	Fspan
 )
