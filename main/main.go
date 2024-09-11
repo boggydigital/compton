@@ -5,11 +5,15 @@ import (
 	"fmt"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/input_types"
-	"github.com/boggydigital/compton/elements/details_toggle"
+	"github.com/boggydigital/compton/consts/size"
+	"github.com/boggydigital/compton/consts/weight"
+	"github.com/boggydigital/compton/elements/details_summary"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/flex_items"
+	"github.com/boggydigital/compton/elements/fspan"
 	"github.com/boggydigital/compton/elements/grid_items"
 	"github.com/boggydigital/compton/elements/iframe_expand"
 	"github.com/boggydigital/compton/elements/issa_image"
@@ -29,10 +33,10 @@ import (
 var appStyles []byte
 
 func main() {
-	//writeTestPage()
+	writeTestPage()
 	//writeIframeContent()
 	//writeIssaPage()
-	writeSvgUsePage()
+	//writeSvgUsePage()
 }
 
 func writeTestPage() {
@@ -81,11 +85,15 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_toggle.Open(p, "Filter & Search")
+	cdc := details_summary.
+		Open(p, "Filter & Search").
+		BackgroundColor(color.LightGreen).
+		ForegroundColor(color.Background)
 
 	form := els.Form("/action", "GET")
 
-	formStack := flex_items.FlexItems(p, direction.Row).FlexDirection(direction.Column)
+	formStack := flex_items.
+		FlexItems(p, direction.Column)
 
 	qf := createQueryFragment(p)
 
@@ -119,7 +127,7 @@ func writeTestPage() {
 
 	s.Append(qf)
 
-	cdo := details_toggle.Open(p, "Title Values")
+	cdo := details_summary.Closed(p, "Title Values")
 
 	tvGrid := grid_items.GridItems(p)
 
@@ -193,7 +201,7 @@ func writeIframeContent() {
 
 	p := page.Page("iframe")
 
-	dc := details_toggle.Closed(p, "Description")
+	dc := details_summary.Closed(p, "Description")
 
 	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)
@@ -242,33 +250,34 @@ func writeIssaPage() {
 }
 
 func createQueryFragment(r compton.Registrar) compton.Element {
-	sh := section.Section(r)
-	sh.AddClass("fs-xs")
+	sh := section.Section(r).
+		BackgroundColor(color.Highlight).
+		FontSize(size.XSmall)
 
 	shStack := flex_items.FlexItems(r, direction.Row)
 	sh.Append(shStack)
 
 	sp1 := els.Span()
-	pt1 := els.SpanText("Descending: ")
-	pt1.AddClass("fg-subtle")
-	pv1 := els.SpanText("True")
-	pv1.AddClass("fw-b")
+	pt1 := fspan.Text(r, "Descending: ").
+		ForegroundColor(color.Subtle)
+	pv1 := fspan.Text(r, "True").
+		FontWeight(weight.Bolder)
 	sp1.Append(pt1, pv1)
 	shStack.Append(sp1)
 
 	sp2 := els.Span()
-	pt2 := els.SpanText("Sort: ")
-	pt2.AddClass("fg-subtle")
-	pv2 := els.SpanText("GOG Order Date")
-	pv2.AddClass("fw-b")
+	pt2 := fspan.Text(r, "Sort: ").
+		ForegroundColor(color.Subtle)
+	pv2 := fspan.Text(r, "GOG Order Date").
+		FontWeight(weight.Bolder)
 	sp2.Append(pt2, pv2)
 	shStack.Append(sp2)
 
 	sp3 := els.Span()
-	pt3 := els.SpanText("Data Type: ")
-	pt3.AddClass("fg-subtle")
-	pv3 := els.SpanText("Account Products")
-	pv3.AddClass("fw-b")
+	pt3 := fspan.Text(r, "Data Type: ").
+		ForegroundColor(color.Subtle)
+	pv3 := fspan.Text(r, "Account Products").
+		FontWeight(weight.Bolder)
 	sp3.Append(pt3, pv3)
 	shStack.Append(sp3)
 

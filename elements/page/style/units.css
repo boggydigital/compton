@@ -26,6 +26,7 @@
     --bg: var(--c-background);
     --fs: unset;
     --fw: unset;
+    --mbe: var(--s-n);
 
     --br-n: var(--s-xs);
     --br-l: var(--s-s);

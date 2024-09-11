@@ -32,29 +32,6 @@ title-values {
     }
 }
 
-details {
-    content-visibility: auto;
-
-    & summary {
-        display: flex;
-
-        &::marker {
-            display: none;
-        }
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-    }
-
-}
-
-details[open] {
-    & svg.details-marker {
-        rotate: -45deg;
-    }
-}
-
 input[type=text],
 input[type=search] {
     appearance: none;

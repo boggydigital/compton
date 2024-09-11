@@ -3,7 +3,7 @@ package align
 type Align int
 
 const (
-	Unknown Align = iota
+	Unset Align = iota
 	Start
 	Center
 	End
@@ -25,5 +25,5 @@ func Parse(s string) Align {
 			return a
 		}
 	}
-	return Unknown
+	return Unset
 }

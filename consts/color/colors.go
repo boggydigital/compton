@@ -12,7 +12,7 @@ var StyleSheet []byte
 type Color int
 
 const (
-	Unknown Color = iota
+	Unset Color = iota
 	Black
 	White
 	Red
@@ -84,5 +84,5 @@ func Parse(s string) Color {
 			return c
 		}
 	}
-	return Unknown
+	return Unset
 }

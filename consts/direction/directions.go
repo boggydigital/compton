@@ -3,7 +3,7 @@ package direction
 type Direction int
 
 const (
-	Unknown Direction = iota
+	Unset Direction = iota
 	Column
 	Row
 )
@@ -23,5 +23,5 @@ func Parse(s string) Direction {
 			return d
 		}
 	}
-	return Unknown
+	return Unset
 }

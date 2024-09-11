@@ -74,12 +74,12 @@ func (fie *FlexItemsElement) JustifyItems(a align.Align) *FlexItemsElement {
 	return fie
 }
 
-func (fie *FlexItemsElement) FlexDirection(d direction.Direction) *FlexItemsElement {
-	fie.AddClass(class.FlexDirection(d))
-	return fie
-}
+//func (fie *FlexItemsElement) FlexDirection(d direction.Direction) *FlexItemsElement {
+//	fie.AddClass(class.FlexDirection(d))
+//	return fie
+//}
 
-func FlexItems(r compton.Registrar, dir direction.Direction) *FlexItemsElement {
+func FlexItems(r compton.Registrar, d direction.Direction) *FlexItemsElement {
 	fie := &FlexItemsElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupFlexItems,
@@ -87,6 +87,6 @@ func FlexItems(r compton.Registrar, dir direction.Direction) *FlexItemsElement {
 		},
 		r: r,
 	}
-	fie.AddClass(class.FlexDirection(dir))
+	fie.AddClass(class.FlexDirection(d))
 	return fie
 }

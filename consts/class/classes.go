@@ -25,6 +25,7 @@ const (
 	foregroundColorPfx = "fg"
 	fontSizePfx        = "fs"
 	fontWeightPfx      = "fw"
+	marginBlockEndPfx  = "mbe"
 )
 
 var setClasses = make(map[string]any)
@@ -87,6 +88,10 @@ func FontWeight(w weight.Weight) string {
 	return joinClassName(fontWeightPfx, w.String())
 }
 
+func MarginBlockEnd(s size.Size) string {
+	return joinClassName(marginBlockEndPfx, s.String())
+}
+
 func StyleClasses() []byte {
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
@@ -119,6 +124,8 @@ func parsePropertyValue(className string) (string, string) {
 	case fontSizePfx:
 		sz := size.Parse(sfx)
 		value = sz.FontSizeCssValue()
+	case marginBlockEndPfx:
+		fallthrough
 	case columnGapPfx:
 		fallthrough
 	case rowGapPfx:

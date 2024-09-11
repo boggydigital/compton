@@ -3,15 +3,12 @@ package size
 type Size int
 
 const (
-	Unknown Size = iota
-
+	Unset Size = iota
 	Normal
-
 	Small
 	XSmall
 	XXSmall
 	XXXSmall
-
 	Large
 	XLarge
 	XXLarge
@@ -48,5 +45,5 @@ func Parse(s string) Size {
 			return sz
 		}
 	}
-	return Unknown
+	return Unset
 }
