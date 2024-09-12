@@ -14,19 +14,6 @@
     --s-cw: calc(9 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
 
-    --cg: var(--s-n);
-    --rg: var(--s-n);
-    --jc: unset;
-    --ji: unset;
-    --ac: unset;
-    --ai: unset;
-    --fd: unset;
-    --fg: var(--c-foreground);
-    --bg: var(--c-background);
-    --fs: unset;
-    --fw: unset;
-    --mbe: var(--s-n);
-
     --br-n: var(--s-xs);
     --br-l: var(--s-s);
 
@@ -49,4 +36,19 @@
 
     --du-fast: 0.1s;
     --du-slow: 2s;
+
+    /* customizable properties */
+
+    --cg: var(--s-n); /*column-gap*/
+    --rg: var(--s-n); /*row-gap*/
+    --ac: unset; /*align-content*/
+    --ai: unset; /*align-items*/
+    --jc: unset; /*justify-content*/
+    --ji: unset; /*justify-items*/
+    --fd: unset; /*flex-direction*/
+    --fg: var(--c-foreground); /*color*/
+    --bg: var(--c-background); /*background-color*/
+    --fs: unset; /*font-size*/
+    --fw: unset; /*font-weight*/
+    --mbe: var(--s-n); /*margin-block-end*/
 }

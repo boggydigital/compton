@@ -13,3 +13,25 @@ body {
 * {
     font-family: -apple-system, sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: var(--fw-b);
+}
+
+h1 {
+    font-size: var(--fs-xxl)
+}
+
+h2 {
+    font-size: var(--fs-xl)
+}
+
+h3 {
+    font-size: var(--fs-l);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
