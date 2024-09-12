@@ -9,7 +9,7 @@ import (
 
 var (
 	//go:embed "script/post.js"
-	postScript []byte
+	scriptPost []byte
 )
 
 // IframeExpandContent creates an iframe content page and attaches
@@ -19,6 +19,6 @@ var (
 func IframeExpandContent(id, title string) compton.Element {
 	p := page.Page(title)
 	p.SetId(id)
-	p.Append(els.Script(postScript))
+	p.Append(els.Script(scriptPost))
 	return p
 }

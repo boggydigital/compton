@@ -33,8 +33,8 @@ import (
 var appStyles []byte
 
 func main() {
-	writeTestPage()
-	//writeIframeContent()
+	//writeTestPage()
+	writeIframeContent()
 	//writeIssaPage()
 	//writeSvgUsePage()
 }
@@ -202,7 +202,7 @@ func writeIframeContent() {
 
 	p := page.Page("iframe")
 
-	dc := details_summary.Closed(p, "Description")
+	dc := details_summary.Open(p, "Description")
 
 	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)

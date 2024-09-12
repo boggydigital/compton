@@ -7,29 +7,42 @@ import (
 	"io"
 )
 
-const elementName = "iframe-expand"
+const (
+	registrationName      = "iframe-expand"
+	styleRegistrationName = "style-" + registrationName
+)
 
 var (
 	//go:embed "script/receive.js"
-	markupReceiveScript []byte
+	scriptReceive []byte
+	//go:embed "style/iframe-host.css"
+	styleIframeHost []byte
 )
 
-type IframeExpand struct {
+type IframeExpandElement struct {
 	compton.BaseElement
 	r      compton.Registrar
 	iframe compton.Element
-	//receiveScript compton.Element
 }
 
-func (ife *IframeExpand) WriteRequirements(w io.Writer) error {
-	if ife.r.RequiresRegistration(elementName) {
-		receiveScript := els.Script(markupReceiveScript)
+func (ife *IframeExpandElement) WriteStyles(w io.Writer) error {
+	if ife.r.RequiresRegistration(styleRegistrationName) {
+		if err := els.Style(styleIframeHost, styleRegistrationName).WriteContent(w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (ife *IframeExpandElement) WriteRequirements(w io.Writer) error {
+	if ife.r.RequiresRegistration(registrationName) {
+		receiveScript := els.Script(scriptReceive)
 		return receiveScript.WriteContent(w)
 	}
 	return nil
 }
 
-func (ife *IframeExpand) WriteContent(w io.Writer) error {
+func (ife *IframeExpandElement) WriteContent(w io.Writer) error {
 	return ife.iframe.WriteContent(w)
 }
 
@@ -43,7 +56,7 @@ func IframeExpandHost(r compton.Registrar, id, src string) compton.Element {
 	iframe := els.IframeLazy(src)
 	iframe.SetId(id)
 	iframe.AddClass("loading")
-	return &IframeExpand{
+	return &IframeExpandElement{
 		r:      r,
 		iframe: iframe,
 	}
