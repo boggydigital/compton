@@ -17,14 +17,14 @@ func (ti *TitleInputElement) SetDataList(list map[string]string) *TitleInputElem
 	return ti
 }
 
-func Search(wcr compton.Registrar, title, inputId string) *TitleInputElement {
+func Search(r compton.Registrar, title, inputId string) *TitleInputElement {
 	titleInput := &TitleInputElement{
 		TitleValuesElement: &TitleValuesElement{
 			BaseElement: compton.BaseElement{
 				Markup:  markupTitleValues,
 				TagName: compton_atoms.TitleValues,
 			},
-			wcr: wcr,
+			r: r,
 		},
 	}
 

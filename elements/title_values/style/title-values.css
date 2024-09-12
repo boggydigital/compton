@@ -1,0 +1,16 @@
+@scope (title-values) {
+    :scope {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--s-n);
+
+        & h3 {
+            margin: 0
+        }
+
+        & > div {
+            color: var(--c-subtle);
+            font-size: var(--fs-s)
+        }
+    }
+}

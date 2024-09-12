@@ -8,7 +8,6 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/custom_elements"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/flex_items"
 	"golang.org/x/exp/maps"
@@ -17,48 +16,46 @@ import (
 )
 
 const (
-	elementName = "title-values"
+	registrationName      = "title-values"
+	styleRegistrationName = "style-" + registrationName
 )
 
 var (
-	//go:embed "markup/template.html"
-	markupTemplate []byte
 	//go:embed "markup/title-values.html"
 	markupTitleValues []byte
+	//go:embed "style/title-values.css"
+	styleTitleValues []byte
 )
 
 type TitleValuesElement struct {
 	compton.BaseElement
-	wcr   compton.Registrar
+	r     compton.Registrar
 	title compton.Element
 }
 
-func (tv *TitleValuesElement) WriteRequirements(w io.Writer) error {
-	if tv.wcr.RequiresRegistration(elementName) {
-		if err := custom_elements.Define(w, custom_elements.Defaults(elementName)); err != nil {
-			return err
-		}
-		if _, err := io.Copy(w, bytes.NewReader(markupTemplate)); err != nil {
+func (tve *TitleValuesElement) WriteStyles(w io.Writer) error {
+	if tve.r.RequiresRegistration(styleRegistrationName) {
+		if err := els.Style(styleTitleValues, styleRegistrationName).WriteContent(w); err != nil {
 			return err
 		}
 	}
-	return tv.BaseElement.WriteRequirements(w)
+	return tve.BaseElement.WriteStyles(w)
 }
 
-func (tv *TitleValuesElement) WriteContent(w io.Writer) error {
-	return compton.WriteContents(bytes.NewReader(markupTitleValues), w, tv.elementFragmentWriter)
+func (tve *TitleValuesElement) WriteContent(w io.Writer) error {
+	return compton.WriteContents(bytes.NewReader(markupTitleValues), w, tve.elementFragmentWriter)
 }
 
-func (tv *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error {
+func (tve *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
-		if err := tv.title.WriteContent(w); err != nil {
+		if err := tve.title.WriteContent(w); err != nil {
 			return err
 		}
 	case compton.ContentToken:
 		fallthrough
 	case compton.AttributesToken:
-		if err := tv.BaseElement.WriteFragment(t, w); err != nil {
+		if err := tve.BaseElement.WriteFragment(t, w); err != nil {
 			return err
 		}
 	default:
@@ -67,13 +64,13 @@ func (tv *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error
 	return nil
 }
 
-func TitleValues(wcr compton.Registrar, title string) *TitleValuesElement {
+func TitleValues(r compton.Registrar, title string) *TitleValuesElement {
 	return &TitleValuesElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupTitleValues,
 			TagName: compton_atoms.TitleValues,
 		},
-		wcr:   wcr,
+		r:     r,
 		title: els.HeadingText(title, 3),
 	}
 }
