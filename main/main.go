@@ -16,6 +16,7 @@ import (
 	"github.com/boggydigital/compton/elements/fspan"
 	"github.com/boggydigital/compton/elements/grid_items"
 	"github.com/boggydigital/compton/elements/iframe_expand"
+	"github.com/boggydigital/compton/elements/inputs"
 	"github.com/boggydigital/compton/elements/issa_image"
 	"github.com/boggydigital/compton/elements/nav_links"
 	"github.com/boggydigital/compton/elements/section"
@@ -33,8 +34,8 @@ import (
 var appStyles []byte
 
 func main() {
-	//writeTestPage()
-	writeIframeContent()
+	writeTestPage()
+	//writeIframeContent()
 	//writeIssaPage()
 	//writeSvgUsePage()
 }
@@ -100,7 +101,7 @@ func writeTestPage() {
 
 	submitRow := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	submit := els.InputValue(input_types.Submit, "Submit Query")
+	submit := inputs.InputValue(p, input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
 	formStack.Append(submitRow)
 

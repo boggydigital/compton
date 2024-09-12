@@ -5,11 +5,12 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/inputs"
 )
 
 type TitleInputElement struct {
 	*TitleValuesElement
-	input *els.InputElement
+	input *inputs.InputElement
 }
 
 func (ti *TitleInputElement) SetDataList(list map[string]string) *TitleInputElement {
@@ -32,7 +33,7 @@ func Search(r compton.Registrar, title, inputId string) *TitleInputElement {
 	label.Append(els.HeadingText(title, 3))
 	titleInput.title = label
 
-	input := els.Input(input_types.Search)
+	input := inputs.Input(r, input_types.Search)
 	input.
 		SetPlaceholder(title).
 		SetName(inputId).
