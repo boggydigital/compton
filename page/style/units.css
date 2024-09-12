@@ -1,5 +1,4 @@
 :root {
-
     --s-n: 1rem; /* 16px */
 
     --s-s: calc(var(--s-n) / 2); /* 0.5rem == 8px */

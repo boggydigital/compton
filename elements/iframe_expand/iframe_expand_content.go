@@ -4,7 +4,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/elements/els"
-	"github.com/boggydigital/compton/elements/page"
+	"github.com/boggydigital/compton/page"
 )
 
 var (
