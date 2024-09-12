@@ -26,7 +26,6 @@ type DetailsSummaryElement struct {
 	compton.BaseElement
 	r       compton.Registrar
 	details compton.Element
-	summary compton.Element
 }
 
 func (dse *DetailsSummaryElement) Append(children ...compton.Element) {
@@ -51,7 +50,9 @@ func (dse *DetailsSummaryElement) WriteDeferrals(w io.Writer) error {
 }
 
 func (dse *DetailsSummaryElement) SummaryMarginBlockEnd(s size.Size) *DetailsSummaryElement {
-	dse.summary.AddClass(class.MarginBlockEnd(s))
+	if summaries := dse.details.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
+		summaries[0].AddClass(class.MarginBlockEnd(s))
+	}
 	return dse
 }
 
@@ -61,13 +62,24 @@ func (dse *DetailsSummaryElement) DetailsMarginBlockEnd(s size.Size) *DetailsSum
 }
 
 func (dse *DetailsSummaryElement) BackgroundColor(c color.Color) *DetailsSummaryElement {
-	dse.summary.AddClass(class.BackgroundColor(c))
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.BackgroundColor(c))
+	}
 	return dse
 }
 
 func (dse *DetailsSummaryElement) ForegroundColor(c color.Color) *DetailsSummaryElement {
-	dse.summary.AddClass(class.ForegroundColor(c))
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.ForegroundColor(c))
+	}
 	return dse
+}
+
+func (dse *DetailsSummaryElement) getSummary() compton.Element {
+	if summaries := dse.details.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
+		return summaries[0]
+	}
+	return nil
 }
 
 func (dse *DetailsSummaryElement) WriteContent(w io.Writer) error {
@@ -80,17 +92,15 @@ func Closed(r compton.Registrar, summary string) *DetailsSummaryElement {
 			TagName: atom.Details,
 		},
 		details: els.Details(),
-		summary: els.Summary(),
 		r:       r,
 	}
 
 	dse.details.SetId(summary)
-
-	dse.summary.Append(
+	summaryElement := els.Summary()
+	summaryElement.Append(
 		svg_use.SvgUse(r, svg_use.Plus),
 		els.HeadingText(summary, 2))
-
-	dse.details.Append(dse.summary)
+	dse.details.Append(summaryElement)
 
 	return dse
 }

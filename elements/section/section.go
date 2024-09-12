@@ -35,7 +35,7 @@ func (se *SectionElement) WriteStyles(w io.Writer) error {
 			return err
 		}
 	}
-	return nil
+	return se.BaseElement.WriteStyles(w)
 }
 
 func (se *SectionElement) BackgroundColor(c color.Color) *SectionElement {

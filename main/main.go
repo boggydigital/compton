@@ -86,9 +86,8 @@ func writeTestPage() {
 	s.Append(nav)
 
 	cdc := details_summary.
-		Open(p, "Filter & Search").
-		BackgroundColor(color.LightGreen).
-		ForegroundColor(color.Background)
+		Closed(p, "Filter & Search").
+		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
 
@@ -105,7 +104,7 @@ func writeTestPage() {
 	submitRow.Append(submit)
 	formStack.Append(submitRow)
 
-	tiGrid := grid_items.GridItems(p)
+	tiGrid := grid_items.GridItems(p).JustifyContent(align.Center)
 
 	ti1 := title_values.SearchValue(p, "Title", "title", "Hello")
 
@@ -127,9 +126,12 @@ func writeTestPage() {
 
 	s.Append(qf)
 
-	cdo := details_summary.Closed(p, "Title Values")
+	cdo := details_summary.
+		Open(p, "Title Values").
+		BackgroundColor(color.Purple).
+		ForegroundColor(color.Background)
 
-	tvGrid := grid_items.GridItems(p)
+	tvGrid := grid_items.GridItems(p).JustifyContent(align.Center)
 
 	tvLinks := map[string]string{
 		"Achievements":       "/achievements",
@@ -150,8 +152,7 @@ func writeTestPage() {
 
 	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	div := els.Div()
-	div.AddClass("fg-subtle", "fs-xs")
+	div := fspan.Text(p, "").ForegroundColor(color.Subtle).FontSize(size.XSmall)
 
 	div.Append(els.Text("Last updated: "),
 		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
