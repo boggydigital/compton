@@ -15,6 +15,7 @@ func Label(forInput string) compton.Element {
 	label := compton.NewElement(atom.Label, markupLabel)
 	if forInput != "" {
 		label.SetAttribute(compton.ForAttr, forInput)
+		label.SetId(forInput)
 	}
 	return label
 }

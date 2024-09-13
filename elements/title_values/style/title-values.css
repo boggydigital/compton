@@ -2,7 +2,7 @@
     :scope {
         display: flex;
         flex-direction: column;
-        row-gap: var(--s-n);
+        row-gap: var(--rg);
 
         & h3 {
             margin: 0

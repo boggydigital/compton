@@ -64,6 +64,7 @@ func H6() compton.Element { return Heading(6) }
 func HeadingText(txt string, level int) compton.Element {
 	heading := Heading(level)
 	heading.Append(Text(txt))
+	heading.SetId(txt)
 	return heading
 }
 

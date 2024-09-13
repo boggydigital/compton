@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
@@ -64,8 +65,13 @@ func (tve *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) erro
 	return nil
 }
 
+func (tve *TitleValuesElement) RowGap(s size.Size) *TitleValuesElement {
+	tve.AddClass(class.RowGap(s))
+	return tve
+}
+
 func TitleValues(r compton.Registrar, title string) *TitleValuesElement {
-	return &TitleValuesElement{
+	tve := &TitleValuesElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupTitleValues,
 			TagName: compton_atoms.TitleValues,
@@ -73,6 +79,8 @@ func TitleValues(r compton.Registrar, title string) *TitleValuesElement {
 		r:     r,
 		title: els.HeadingText(title, 3),
 	}
+	tve.RowGap(size.Small)
+	return tve
 }
 
 func TitleValuesText(r compton.Registrar, title string, values ...string) *TitleValuesElement {
