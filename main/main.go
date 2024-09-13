@@ -86,8 +86,7 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_summary.
-		Closed(p, "Filter & Search").
+	cdc := details_summary.Open(p, "Filter & Search").
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -117,7 +116,12 @@ func writeTestPage() {
 
 	ti2 := title_values.Search(p, "Description", "description").
 		SetDataList(tiList)
-	tiGrid.Append(ti1, ti2)
+
+	ti3 := title_values.Search(p, "Descending", "desc")
+	ti4 := title_values.Search(p, "Sort", "sort")
+	ti5 := title_values.SearchValue(p, "Data Type", "data-type", "Account Products")
+
+	tiGrid.Append(ti1, ti2, ti3, ti4, ti5)
 
 	formStack.Append(tiGrid)
 	form.Append(formStack)

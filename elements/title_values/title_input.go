@@ -23,7 +23,9 @@ func Search(r compton.Registrar, title, inputId string) *TitleInputElement {
 	}
 
 	label := els.Label(inputId)
-	label.Append(els.HeadingText(title, 3))
+	heading := els.HeadingText(title, 3)
+	heading.SetId(title)
+	label.Append(heading)
 	titleInput.title = label
 
 	input := inputs.Input(r, input_types.Search)
