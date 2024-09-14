@@ -51,22 +51,28 @@ func (ie *InputElement) SetName(name string) *InputElement {
 	return ie
 }
 
-func (ie *InputElement) SetDataList(list map[string]string) *InputElement {
+func (ie *InputElement) SetDataList(list map[string]string, listId string) *InputElement {
 
-	listId := ie.GetAttribute(compton.IdAttr)
 	if listId == "" {
-		listId = strconv.FormatInt(time.Now().Unix(), 10)
+		listId = ie.GetAttribute(compton.IdAttr)
+		if listId == "" {
+			listId = strconv.FormatInt(time.Now().Unix(), 10)
+		}
+		listId += "-list"
 	}
-	listId += "-list"
-	dataList := els.DataList(listId)
 
-	values := maps.Keys(list)
-	slices.Sort(values)
+	if len(list) > 0 {
+		dataList := els.DataList(listId)
 
-	for _, value := range values {
-		dataList.Append(els.Option(value, list[value]))
+		values := maps.Keys(list)
+		slices.Sort(values)
+
+		for _, value := range values {
+			dataList.Append(els.Option(value, list[value]))
+		}
+		ie.dataList = dataList
 	}
-	ie.dataList = dataList
+
 	ie.SetAttribute(compton.ListAttr, listId)
 
 	return ie
