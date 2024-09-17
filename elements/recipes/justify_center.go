@@ -7,10 +7,11 @@ import (
 	"github.com/boggydigital/compton/elements/flex_items"
 )
 
-func JustifyCenter(r compton.Registrar, elements ...compton.Element) compton.Element {
+func Center(r compton.Registrar, elements ...compton.Element) compton.Element {
 	row := flex_items.
 		FlexItems(r, direction.Row).
-		JustifyContent(align.Center)
+		JustifyContent(align.Center).
+		AlignItems(align.Center)
 	row.Append(elements...)
 	return row
 }
