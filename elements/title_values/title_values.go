@@ -49,16 +49,10 @@ func (tve *TitleValuesElement) AppendValues(elements ...compton.Element) *TitleV
 }
 
 func (tve *TitleValuesElement) AppendTextValues(values ...string) *TitleValuesElement {
-	//flexItems := flex_items.FlexItems(tve.r, direction.Row).
-	//	JustifyContent(align.Start).
-	//	RowGap(size.Small).
-	//	ColumnGap(size.Normal)
-
 	slices.Sort(values)
 	for _, value := range values {
 		tve.AppendValues(els.DivText(value))
 	}
-	//tve.Append(flexItems)
 	return tve
 }
 
@@ -69,7 +63,12 @@ func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order .
 	}
 
 	for _, key := range order {
-		tve.AppendValues(els.AText(key, links[key]))
+		if links[key] != "" {
+			tve.AppendValues(els.AText(key, links[key]))
+		} else {
+			// fallback to text if the link is empty
+			tve.AppendTextValues(key)
+		}
 	}
 	return tve
 }
