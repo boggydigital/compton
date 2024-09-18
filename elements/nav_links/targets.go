@@ -22,6 +22,9 @@ func TextLinks(links map[string]string, selected string, order ...string) []*Tar
 	targets := make([]*Target, 0, len(links))
 
 	for _, key := range order {
+		if _, ok := links[key]; !ok {
+			continue
+		}
 		t := &Target{
 			Title:   key,
 			Href:    links[key],
