@@ -144,12 +144,12 @@ func writeTestPage() {
 		"Overlay":            "/overlay",
 		"Single-player":      "/single-player",
 	}
-	tv1 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
-	tv2 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
-	tv3 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
-	tv4 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
-	tv5 := title_values.TitleValuesText(p, "Features", maps.Keys(tvLinks)...)
-	tv6 := title_values.TitleValuesLinks(p, "Feature Links", tvLinks)
+	tv1 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv2 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv3 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv4 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv5 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv6 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
 
 	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6)
 	cdo.Append(tvGrid)

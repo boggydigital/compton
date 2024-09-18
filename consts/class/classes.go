@@ -8,6 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/weight"
 	"maps"
 	"strings"
+	"sync"
 )
 
 const (
@@ -29,9 +30,12 @@ const (
 )
 
 var setClasses = make(map[string]any)
+var mtx = sync.Mutex{}
 
 func joinClassName(parts ...string) string {
 	cn := strings.Join(parts, classNameSep)
+	mtx.Lock()
+	defer mtx.Unlock()
 	setClasses[cn] = nil
 	return cn
 }

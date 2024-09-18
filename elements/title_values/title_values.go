@@ -34,6 +34,46 @@ type TitleValuesElement struct {
 	title compton.Element
 }
 
+func (tve *TitleValuesElement) AppendValues(elements ...compton.Element) *TitleValuesElement {
+	if flexItemsElements := tve.GetElementsByTagName(compton_atoms.FlexItems); len(flexItemsElements) > 0 {
+		flexItemsElements[0].Append(elements...)
+	} else {
+		flexItems := flex_items.FlexItems(tve.r, direction.Row).
+			JustifyContent(align.Start).
+			RowGap(size.Small).
+			ColumnGap(size.Normal)
+		flexItems.Append(elements...)
+		tve.Append(flexItems)
+	}
+	return tve
+}
+
+func (tve *TitleValuesElement) AppendTextValues(values ...string) *TitleValuesElement {
+	//flexItems := flex_items.FlexItems(tve.r, direction.Row).
+	//	JustifyContent(align.Start).
+	//	RowGap(size.Small).
+	//	ColumnGap(size.Normal)
+
+	slices.Sort(values)
+	for _, value := range values {
+		tve.AppendValues(els.DivText(value))
+	}
+	//tve.Append(flexItems)
+	return tve
+}
+
+func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order ...string) *TitleValuesElement {
+	if len(order) == 0 {
+		order = maps.Keys(links)
+		slices.Sort(order)
+	}
+
+	for _, key := range order {
+		tve.AppendValues(els.AText(key, links[key]))
+	}
+	return tve
+}
+
 func (tve *TitleValuesElement) WriteStyles(w io.Writer) error {
 	if tve.r.RequiresRegistration(styleRegistrationName) {
 		if err := els.Style(styleTitleValues, styleRegistrationName).WriteContent(w); err != nil {
@@ -83,36 +123,36 @@ func TitleValues(r compton.Registrar, title string) *TitleValuesElement {
 	return tve
 }
 
-func TitleValuesText(r compton.Registrar, title string, values ...string) *TitleValuesElement {
-	titleValues := TitleValues(r, title)
-	flexItems := flex_items.FlexItems(r, direction.Row).
-		JustifyContent(align.Start).
-		RowGap(size.Small).
-		ColumnGap(size.Normal)
+//func TitleValuesText(r compton.Registrar, title string, values ...string) *TitleValuesElement {
+//	titleValues := TitleValues(r, title)
+//	flexItems := flex_items.FlexItems(r, direction.Row).
+//		JustifyContent(align.Start).
+//		RowGap(size.Small).
+//		ColumnGap(size.Normal)
+//
+//	slices.Sort(values)
+//	for _, value := range values {
+//		flexItems.Append(els.DivText(value))
+//	}
+//	titleValues.Append(flexItems)
+//	return titleValues
+//}
 
-	slices.Sort(values)
-	for _, value := range values {
-		flexItems.Append(els.DivText(value))
-	}
-	titleValues.Append(flexItems)
-	return titleValues
-}
-
-func TitleValuesLinks(r compton.Registrar, title string, links map[string]string, order ...string) *TitleValuesElement {
-	titleValues := TitleValues(r, title)
-	flexItems := flex_items.FlexItems(r, direction.Row).
-		JustifyContent(align.Start).
-		RowGap(size.Small).
-		ColumnGap(size.Normal)
-
-	if len(order) == 0 {
-		order = maps.Keys(links)
-		slices.Sort(order)
-	}
-
-	for _, key := range order {
-		flexItems.Append(els.AText(key, links[key]))
-	}
-	titleValues.Append(flexItems)
-	return titleValues
-}
+//func TitleValuesLinks(r compton.Registrar, title string, links map[string]string, order ...string) *TitleValuesElement {
+//	titleValues := TitleValues(r, title)
+//	flexItems := flex_items.FlexItems(r, direction.Row).
+//		JustifyContent(align.Start).
+//		RowGap(size.Small).
+//		ColumnGap(size.Normal)
+//
+//	if len(order) == 0 {
+//		order = maps.Keys(links)
+//		slices.Sort(order)
+//	}
+//
+//	for _, key := range order {
+//		flexItems.Append(els.AText(key, links[key]))
+//	}
+//	titleValues.Append(flexItems)
+//	return titleValues
+//}
