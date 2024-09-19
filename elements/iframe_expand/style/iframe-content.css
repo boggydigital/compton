@@ -1,0 +1,5 @@
+body {
+    overflow: hidden;
+    max-width: var(--s-maxw);
+    margin: 0 auto;
+}

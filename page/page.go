@@ -28,7 +28,7 @@ type PageElement struct {
 	customElementsRegistry map[string]any
 	title                  string
 	favIconEmoji           string
-	customStyles           [][]byte
+	appStyles              [][]byte
 }
 
 func (p *PageElement) WriteContent(w io.Writer) error {
@@ -62,9 +62,9 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 			return err
 		}
 	case ".StyleApp":
-		for ii, customStyle := range p.customStyles {
+		for ii, appStyle := range p.appStyles {
 			id := "style-app-" + strconv.Itoa(ii)
-			style := els.Style(customStyle, id)
+			style := els.Style(appStyle, id)
 			if err := style.WriteContent(w); err != nil {
 				return err
 			}
@@ -101,8 +101,8 @@ func (p *PageElement) RequiresRegistration(name string) bool {
 	return false
 }
 
-func (p *PageElement) SetCustomStyles(customStyles ...[]byte) *PageElement {
-	p.customStyles = customStyles
+func (p *PageElement) AppendStyle(styles ...[]byte) *PageElement {
+	p.appStyles = append(p.appStyles, styles...)
 	return p
 }
 

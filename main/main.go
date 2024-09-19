@@ -42,7 +42,7 @@ func main() {
 
 func writeTestPage() {
 	p := page.Page("test").SetFavIconEmoji("🤔")
-	p.SetCustomStyles(appStyles)
+	p.AppendStyle(appStyles)
 
 	s := flex_items.FlexItems(p, direction.Column)
 
@@ -236,7 +236,7 @@ func writeIssaPage() {
 	imageSrc := "https://gaugin.frmnt.io/image?id=0d9684e197ff3a8d34bddab41e2ef8c9f6d1050242b44b56dfab11ff69b670bb"
 
 	p := page.Page("issa page")
-	p.SetCustomStyles(appStyles)
+	p.AppendStyle(appStyles)
 
 	issaImage := issa_image.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
 	p.Append(issaImage)
