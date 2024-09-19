@@ -12,7 +12,7 @@
             background: var(--bg);
             color: var(--fg);
             border-radius: var(--br-l);
-            padding: var(--s-n)
+            padding: var(--s-s)
         }
     }
 }

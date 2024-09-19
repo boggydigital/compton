@@ -19,7 +19,7 @@ details {
             max-width: var(--s-maxw);
             margin: auto;
             font-weight: var(--fw-b);
-            padding: calc((var(--s-s) + var(--s-n)) / 2) var(--s-n);
+            padding: calc((var(--s-s) + var(--s-s)) / 2) var(--s-n);
             background-color: var(--bg);
             color: var(--fg);
             border-radius: var(--br-l);

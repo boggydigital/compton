@@ -11,8 +11,8 @@
             flex-direction: row;
             flex-wrap: wrap;
             padding: var(--s-xs);
-            column-gap: var(--s-xs);
-            row-gap: var(--s-xs);
+            column-gap: var(--s-xxs);
+            /*row-gap: var(--s-xxs);*/
             background-color: var(--c-highlight);
             border-radius: var(--br-l);
             justify-content: center;
@@ -22,15 +22,15 @@
                 flex-direction: row;
                 align-items: center;
                 column-gap: var(--s-s);
-                padding: var(--s-s);
+                padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
                 border-radius: var(--br-n);
                 font-size: var(--fs-xs);
                 color: var(--c-foreground);
                 font-weight: normal;
 
                 & svg {
-                    width: calc(1.25 * var(--s-n));
-                    height: calc(1.25 * var(--s-n));
+                    width: calc(var(--s-n));
+                    height: calc(var(--s-n));
                 }
 
                 &.selected {
