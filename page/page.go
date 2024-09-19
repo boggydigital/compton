@@ -102,7 +102,11 @@ func (p *PageElement) RequiresRegistration(name string) bool {
 }
 
 func (p *PageElement) AppendStyle(styles ...[]byte) *PageElement {
-	p.appStyles = append(p.appStyles, styles...)
+	for _, style := range styles {
+		if len(style) > 0 {
+			p.appStyles = append(p.appStyles, style)
+		}
+	}
 	return p
 }
 
