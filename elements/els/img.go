@@ -12,8 +12,11 @@ var (
 	markupImage []byte
 )
 
-var Img = Image
-var ImgLazy = ImageLazy
+var (
+	Img      = Image
+	ImgLazy  = ImageLazy
+	ImgEager = ImageEager
+)
 
 func Image(src string) compton.Element {
 	image := compton.NewElement(atom.Img, markupImage)
@@ -26,5 +29,11 @@ func Image(src string) compton.Element {
 func ImageLazy(src string) compton.Element {
 	image := Image(src)
 	image.SetAttribute(compton.LoadingAttr, loading.Lazy.String())
+	return image
+}
+
+func ImageEager(src string) compton.Element {
+	image := Image(src)
+	image.SetAttribute(compton.LoadingAttr, loading.Eager.String())
 	return image
 }
