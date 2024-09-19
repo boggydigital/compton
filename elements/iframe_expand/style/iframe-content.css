@@ -1,5 +1,13 @@
+html {
+    margin-inline: var(--s-n);
+}
+
 body {
     overflow: hidden;
     max-width: var(--s-maxw);
     margin: 0 auto;
+}
+
+img, video {
+    max-width: 100%;
 }
