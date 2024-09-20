@@ -16,3 +16,9 @@ func Script(code []byte) compton.Element {
 	script.Append(Text(string(code)))
 	return script
 }
+
+func ScriptAsync(code []byte) compton.Element {
+	script := Script(code)
+	script.SetAttribute("async", "")
+	return script
+}

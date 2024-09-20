@@ -20,6 +20,6 @@ var (
 func IframeExpandContent(id, title string) *page.PageElement {
 	p := page.Page(title).AppendStyle(styleIframeContent)
 	p.SetId(id)
-	p.Append(els.Script(scriptPost))
+	p.Append(els.ScriptAsync(scriptPost))
 	return p
 }

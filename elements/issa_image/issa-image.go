@@ -43,15 +43,15 @@ func (ii *IssaImageElement) WriteStyles(w io.Writer) error {
 
 func (ii *IssaImageElement) WriteDeferrals(w io.Writer) error {
 	if ii.r.RequiresRegistration(scriptRegistrationName) {
-		hcScript := els.Script(issa.HydrateColorScript)
+		hcScript := els.ScriptAsync(issa.HydrateColorScript)
 		if err := hcScript.WriteContent(w); err != nil {
 			return err
 		}
-		hiScript := els.Script(scriptHydrateImage)
+		hiScript := els.ScriptAsync(scriptHydrateImage)
 		if err := hiScript.WriteContent(w); err != nil {
 			return err
 		}
-		ifiScript := els.Script(scriptImageFadeIn)
+		ifiScript := els.ScriptAsync(scriptImageFadeIn)
 		return ifiScript.WriteContent(w)
 	}
 	return nil
