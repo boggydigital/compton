@@ -12,7 +12,7 @@
             flex-wrap: wrap;
             padding: var(--s-xs);
             column-gap: var(--s-xxs);
-            /*row-gap: var(--s-xxs);*/
+            row-gap: var(--s-xxxs);
             background-color: var(--c-highlight);
             border-radius: var(--br-l);
             justify-content: center;
