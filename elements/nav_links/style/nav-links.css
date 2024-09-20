@@ -11,8 +11,8 @@
             flex-direction: row;
             flex-wrap: wrap;
             padding: var(--s-xs);
-            column-gap: var(--s-xxs);
-            row-gap: var(--s-xxxs);
+            column-gap: var(--s-xs);
+            row-gap: var(--s-xxs);
             background-color: var(--c-highlight);
             border-radius: var(--br-l);
             justify-content: center;

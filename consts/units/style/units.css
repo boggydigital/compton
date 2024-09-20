@@ -14,6 +14,7 @@
     --s-cw: calc(9 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
 
+    --br-s: var(--s-xxs);
     --br-n: var(--s-xs);
     --br-l: var(--s-s);
 

@@ -258,7 +258,7 @@ func writeIssaPage() {
 func createQueryFragment(r compton.Registrar) compton.Element {
 	sh := section.Section(r).
 		BackgroundColor(color.Highlight).
-		FontSize(size.XSmall)
+		FontSize(size.Small)
 
 	shStack := flex_items.FlexItems(r, direction.Row)
 	sh.Append(shStack)
