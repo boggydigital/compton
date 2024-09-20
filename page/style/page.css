@@ -31,6 +31,10 @@ h3 {
     font-size: var(--fs-l);
 }
 
+h4,h5,h6 {
+    font-size: var(--fs-n);
+}
+
 a {
     text-decoration: none;
     color: inherit;

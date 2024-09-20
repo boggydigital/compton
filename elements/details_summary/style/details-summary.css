@@ -27,6 +27,10 @@ details {
             cursor: pointer;
             user-select: none;
 
+            & h2 {
+                font-weight: var(--fw-b);
+            }
+
             & > svg {
                 width: calc((var(--s-n) + var(--s-s)) / 2);
                 height: calc((var(--s-n) + var(--s-s)) / 2);

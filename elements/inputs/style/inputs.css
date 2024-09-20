@@ -5,7 +5,7 @@
         text-decoration: none;
         color: var(--c-highlight);
         font-weight: var(--fw-b);
-        font-size: var(--fs-xs);
+        font-size: var(--fs-s);
         width: var(--s-cw);
         padding: var(--s-s) var(--s-n);
         border-radius: var(--br-l);

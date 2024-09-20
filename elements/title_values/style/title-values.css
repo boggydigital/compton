@@ -5,7 +5,8 @@
         row-gap: var(--rg);
 
         & h3 {
-            margin: 0
+            margin: 0;
+            font-weight: var(--fw-n);
         }
 
         & a {
@@ -25,7 +26,7 @@
             border-radius: var(--br-n);
             background-color: var(--c-highlight);
             padding: var(--s-s);
-            font-size: var(--fs-xs);
+            font-size: var(--fs-s);
             font-weight: var(--fw-b);
             outline: var(--s-xxs) solid var(--c-highlight);
             margin: var(--s-xxs);
