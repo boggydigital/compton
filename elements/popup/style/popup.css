@@ -1,0 +1,7 @@
+[data-popup="hide"] {
+    display: none;
+}
+
+[data-popup="show"] {
+    display: unset;
+}

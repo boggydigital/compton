@@ -3,6 +3,7 @@
     :scope {
         min-height: var(--s-n);
         overflow: hidden;
+        cursor: default;
 
         & ul {
             display: flex;
