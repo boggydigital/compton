@@ -3,7 +3,9 @@ package inputs
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/input_types"
+	"github.com/boggydigital/compton/consts/weight"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/exp/maps"
 	"golang.org/x/net/html/atom"
@@ -83,6 +85,11 @@ func (ie *InputElement) WriteDeferrals(w io.Writer) error {
 		return ie.dataList.WriteContent(w)
 	}
 	return nil
+}
+
+func (ie *InputElement) FontWeight(w weight.Weight) *InputElement {
+	ie.AddClass(class.FontWeight(w))
+	return ie
 }
 
 func Input(r compton.Registrar, it input_types.Type) *InputElement {
