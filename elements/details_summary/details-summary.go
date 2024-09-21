@@ -5,6 +5,7 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/svg_use"
@@ -89,7 +90,7 @@ func (dse *DetailsSummaryElement) WriteContent(w io.Writer) error {
 func Closed(r compton.Registrar, summary string) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: compton.BaseElement{
-			TagName: atom.Details,
+			TagName: compton_atoms.DetailsSummary,
 		},
 		details: els.Details(),
 		r:       r,

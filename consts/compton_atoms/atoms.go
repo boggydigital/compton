@@ -11,4 +11,5 @@ const (
 	Section
 	IssaImage
 	Fspan
+	Labels
 )
