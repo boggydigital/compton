@@ -36,7 +36,7 @@ func (ife *IframeExpandElement) WriteStyles(w io.Writer) error {
 
 func (ife *IframeExpandElement) WriteRequirements(w io.Writer) error {
 	if ife.r.RequiresRegistration(registrationName) {
-		receiveScript := els.ScriptAsync(scriptReceive)
+		receiveScript := els.Script(scriptReceive)
 		return receiveScript.WriteContent(w)
 	}
 	return nil
