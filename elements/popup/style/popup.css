@@ -1,7 +1,7 @@
 [data-popup="hide"] {
-    display: none;
+    display: none !important;
 }
 
 [data-popup="show"] {
-    display: unset;
+    display: unset !important;
 }
