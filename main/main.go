@@ -86,7 +86,7 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_summary.Open(p, "", els.HeadingText("Filter & Search", 2)).
+	cdc := details_summary.Open(p, els.HeadingText("Filter & Search", 3)).
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -132,7 +132,7 @@ func writeTestPage() {
 	s.Append(qf)
 
 	cdo := details_summary.
-		Open(p, "", "Title Values").
+		Open(p, els.HeadingText("Title Values", 2)).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background)
 
@@ -207,7 +207,7 @@ func writeIframeContent() {
 
 	p := page.Page("iframe")
 
-	dc := details_summary.Open(p, "Description")
+	dc := details_summary.Open(p, els.HeadingText("Description", 2))
 
 	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)
