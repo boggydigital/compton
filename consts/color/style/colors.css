@@ -3,58 +3,48 @@
     --c-black: black;
 }
 
-@media screen and (prefers-color-scheme: light) {
-    :root {
-        --c-red: #B71C1C; /*red-900*/
-        --c-pink: #880E4F; /*pink-900*/
-        --c-purple: #7B1FA2; /*purple-700*/
-        --c-deeppurple: #512DA8; /*deep-purple-700*/
-        --c-indigo: #3949AB; /*indigo-600*/
-        --c-blue: #0D47A1; /*blue-900*/
-        --c-lightblue: #01579B; /*light-blue-900*/
-        --c-cyan: #006064; /*cyan-900*/
-        --c-teal: #00796B; /*teal-700*/
-        --c-green: #1B5E20; /*green-900*/
-        --c-lightgreen: #33691E; /*light-green-900*/
-        --c-lime: #827717; /*lime-900*/
-        --c-yellow: #F57F17; /*yellow-900*/
-        --c-amber: #FF6F00; /*amber-900*/
-        --c-orange: #E65100; /*orange-900*/
-        --c-deeporange: #BF360C; /*deep-orange-900*/
-        --c-brown: #3E2723; /*brown-900*/
+/* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */
 
-        --c-background: #F5F5F5; /*gray-100*/
+@media screen and (prefers-color-scheme:light) {
+    :root {
+        --c-red: rgb(255,59,48);
+        --c-orange: rgb(255,149,0);
+        --c-yellow: rgb(255,204,0);
+        --c-green: rgb(40,205,65);
+        --c-mint: rgb(0,199,190);
+        --c-teal: rgb(89,173,196);
+        --c-cyan: rgb(85,190,240);
+        --c-blue: rgb(0,122,255);
+        --c-indigo: rgb(88,86,214);
+        --c-purple: rgb(175,82,222);
+        --c-pink: rgb(255,45,85);
+        --c-brown: rgb(162,132,94);
+
+        --c-subtle: rgb(142,142,147); /* gray */
+        --c-background: rgb(242,242,247); /* systemGray6 */
+        --c-foreground: rgb(28,28,30); /* systemGray6 (Dark) */
         --c-highlight: white;
-        --c-foreground: #424242; /*gray-800*/
-        --c-subtle: #757575; /*gray-600*/
-        --c-shadow: #E0E0E0; /*gray-300*/
     }
 }
 
-@media screen and (prefers-color-scheme: dark) {
+@media screen and (prefers-color-scheme:dark) {
     :root {
-        --c-red: #EF5350; /*red-400*/
-        --c-pink: #F06292; /*pink-300*/
-        --c-purple: #BA68C8; /*purple-300*/
-        --c-deeppurple: #B39DDB; /*deep-purple-200*/
-        --c-indigo: #7986CB; /*indigo-300*/
-        --c-blue: #2196F3; /*blue-500*/
-        --c-lightblue: #4FC3F7; /*light-blue-300*/
-        --c-cyan: #00BCD4; /*cyan-500*/
-        --c-teal: #26A69A; /*teal-400*/
-        --c-green: #4CAF50; /*green-500*/
-        --c-lightgreen: #AED581; /*light-green-300*/
-        --c-lime: #C0CA33; /*lime-600*/
-        --c-yellow: #FDD835; /*yellow-600*/
-        --c-amber:  #FFB300; /*amber-600*/
-        --c-orange: #FB8C00; /*orange-600*/
-        --c-deeporange: #F4511E; /*deep-orange-600*/
-        --c-brown: #A1887F; /*brown-300*/
+        --c-red: rgb(255,69,58);
+        --c-orange: rgb(255,159,10);
+        --c-yellow: rgb(255,214,10);
+        --c-green: rgb(50,215,75);
+        --c-mint: rgb(102,212,207);
+        --c-teal: rgb(106,196,220);
+        --c-cyan: rgb(90,200,245);
+        --c-blue: rgb(10,132,255);
+        --c-indigo: rgb(94,92,230);
+        --c-purple: rgb(191,90,242);
+        --c-pink: rgb(255,55,95);
+        --c-brown: rgb(172,142,104);
 
-        --c-background: #212121; /*gray-900*/
-        --c-foreground: #F5F5F5; /*gray-100*/
-        --c-subtle:  #9E9E9E; /*gray-500*/
+        --c-subtle: rgb(152,152,157); /* gray */
+        --c-background: rgb(28,28,30); /* systemGray6 */
+        --c-foreground: rgb(242,242,247); /* systemGray6 (Light) */
         --c-highlight: black;
-        --c-shadow: black;
     }
 }

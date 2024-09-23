@@ -16,54 +16,42 @@ const (
 	Black
 	White
 	Red
-	Pink
-	Purple
-	DeepPurple
-	Indigo
-	Blue
-	LightBlue
-	Cyan
-	Teal
-	Green
-	LightGreen
-	Lime
-	Yellow
-	Amber
 	Orange
-	DeepOrange
+	Yellow
+	Green
+	Mint
+	Teal
+	Cyan
+	Blue
+	Indigo
+	Purple
+	Pink
 	Brown
 	Background
 	Foreground
 	Subtle
 	Highlight
-	Shadow
 )
 
 var colorStrings = map[Color]string{
 	Black:      "black",
 	White:      "white",
 	Red:        "red",
-	Pink:       "pink",
-	Purple:     "purple",
-	DeepPurple: "deeppurple",
-	Indigo:     "indigo",
-	Blue:       "blue",
-	LightBlue:  "lightblue",
-	Cyan:       "cyan",
-	Teal:       "teal",
-	Green:      "green",
-	LightGreen: "lightgreen",
-	Lime:       "lime",
-	Yellow:     "yellow",
-	Amber:      "amber",
 	Orange:     "orange",
-	DeepOrange: "deeporange",
+	Yellow:     "yellow",
+	Green:      "green",
+	Mint:       "mint",
+	Teal:       "teal",
+	Cyan:       "cyan",
+	Blue:       "blue",
+	Indigo:     "indigo",
+	Purple:     "purple",
+	Pink:       "pink",
 	Brown:      "brown",
 	Background: "background",
 	Foreground: "foreground",
 	Subtle:     "subtle",
 	Highlight:  "highlight",
-	Shadow:     "shadow",
 }
 
 func (c Color) String() string {
