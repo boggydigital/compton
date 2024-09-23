@@ -76,6 +76,13 @@ func (dse *DetailsSummaryElement) ForegroundColor(c color.Color) *DetailsSummary
 	return dse
 }
 
+func (dse *DetailsSummaryElement) MarkerColor(c color.Color) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.MarkerColor(c))
+	}
+	return dse
+}
+
 func (dse *DetailsSummaryElement) getSummary() compton.Element {
 	if summaries := dse.details.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
 		return summaries[0]

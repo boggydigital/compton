@@ -24,6 +24,7 @@ const (
 	flexDirectionPfx   = "fd"
 	backgroundColorPfx = "bg"
 	foregroundColorPfx = "fg"
+	markerColorPfx     = "cm"
 	fontSizePfx        = "fs"
 	fontWeightPfx      = "fw"
 	marginBlockEndPfx  = "mbe"
@@ -84,6 +85,10 @@ func ForegroundColor(c color.Color) string {
 	return joinClassName(foregroundColorPfx, c.String())
 }
 
+func MarkerColor(c color.Color) string {
+	return joinClassName(markerColorPfx, c.String())
+}
+
 func FontSize(s size.Size) string {
 	return joinClassName(fontSizePfx, s.String())
 }
@@ -138,6 +143,8 @@ func parsePropertyValue(className string) (string, string) {
 	case flexDirectionPfx:
 		dr := direction.Parse(sfx)
 		value = dr.String()
+	case markerColorPfx:
+		fallthrough
 	case foregroundColorPfx:
 		fallthrough
 	case backgroundColorPfx:

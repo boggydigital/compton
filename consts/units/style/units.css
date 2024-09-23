@@ -49,6 +49,7 @@
     --fd: unset; /*flex-direction*/
     --fg: var(--c-foreground); /*color*/
     --bg: var(--c-background); /*background-color*/
+    --cm: var(--c-subtle); /*marker color*/
     --fs: unset; /*font-size*/
     --fw: unset; /*font-weight*/
     --mbe: var(--s-n); /*margin-block-end*/

@@ -32,6 +32,7 @@ details {
                 height: calc((var(--s-n) + var(--s-s)) / 2);
                 transform-origin: 50% 50%;
                 transition: rotate var(--du-fast) ease-in-out;
+                color: var(--cm)
             }
         }
 

@@ -134,7 +134,8 @@ func writeTestPage() {
 	cdo := details_summary.
 		Open(p, els.HeadingText("Title Values", 2)).
 		BackgroundColor(color.Purple).
-		ForegroundColor(color.Background)
+		ForegroundColor(color.Background).
+		MarkerColor(color.Yellow)
 
 	tvGrid := grid_items.GridItems(p).JustifyContent(align.Center)
 
