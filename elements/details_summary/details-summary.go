@@ -87,7 +87,7 @@ func (dse *DetailsSummaryElement) WriteContent(w io.Writer) error {
 	return dse.details.WriteContent(w)
 }
 
-func Closed(r compton.Registrar, summary string) *DetailsSummaryElement {
+func Closed(r compton.Registrar, summary compton.Element) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.DetailsSummary,
