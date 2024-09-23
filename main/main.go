@@ -86,7 +86,11 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_summary.Open(p, els.HeadingText("Filter & Search", 3)).
+	fssTitle := fspan.Text(p, "Filter & Search").
+		FontWeight(weight.Bolder).
+		FontSize(size.Large)
+
+	cdc := details_summary.Open(p, fssTitle).
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -131,8 +135,11 @@ func writeTestPage() {
 
 	s.Append(qf)
 
+	tvsTitle := fspan.Text(p, "Title Values").
+		FontWeight(weight.Bolder).
+		FontSize(size.Large)
 	cdo := details_summary.
-		Open(p, els.HeadingText("Title Values", 2)).
+		Open(p, tvsTitle).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background).
 		MarkerColor(color.Yellow)
@@ -158,7 +165,7 @@ func writeTestPage() {
 
 	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	div := fspan.Text(p, "").ForegroundColor(color.Subtle).FontSize(size.XSmall)
+	div := fspan.Text(p, "").ForegroundColor(color.Subtle).FontSize(size.Small)
 
 	div.Append(els.Text("Last updated: "),
 		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
