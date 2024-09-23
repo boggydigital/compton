@@ -86,7 +86,7 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	cdc := details_summary.Open(p, "Filter & Search").
+	cdc := details_summary.Open(p, "", els.HeadingText("Filter & Search", 2)).
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -132,7 +132,7 @@ func writeTestPage() {
 	s.Append(qf)
 
 	cdo := details_summary.
-		Open(p, "Title Values").
+		Open(p, "", "Title Values").
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background)
 

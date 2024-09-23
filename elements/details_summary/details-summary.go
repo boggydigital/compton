@@ -87,6 +87,10 @@ func (dse *DetailsSummaryElement) WriteContent(w io.Writer) error {
 	return dse.details.WriteContent(w)
 }
 
+func (dse *DetailsSummaryElement) SetId(id string) {
+	dse.details.SetId(id)
+}
+
 func Closed(r compton.Registrar, summary compton.Element) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: compton.BaseElement{
@@ -96,24 +100,21 @@ func Closed(r compton.Registrar, summary compton.Element) *DetailsSummaryElement
 		r:       r,
 	}
 
-	dse.details.SetId(summary)
 	summaryElement := els.Summary()
-	summaryElement.Append(
-		svg_use.SvgUse(r, svg_use.Plus),
-		els.HeadingText(summary, 2))
+	summaryElement.Append(svg_use.SvgUse(r, svg_use.Plus), summary)
 	dse.details.Append(summaryElement)
 
 	return dse
 }
 
-func Open(r compton.Registrar, summary string) *DetailsSummaryElement {
+func Open(r compton.Registrar, summary compton.Element) *DetailsSummaryElement {
 	dse := Closed(r, summary)
 	dse.details.SetAttribute("open", "")
 	return dse
 }
 
-func Toggle(r compton.Registrar, summary string, condition bool) *DetailsSummaryElement {
-	var toggle func(compton.Registrar, string) *DetailsSummaryElement
+func Toggle(r compton.Registrar, summary compton.Element, condition bool) *DetailsSummaryElement {
+	var toggle func(compton.Registrar, compton.Element) *DetailsSummaryElement
 	switch condition {
 	case true:
 		toggle = Open
