@@ -2,8 +2,6 @@ package color
 
 import (
 	_ "embed"
-	"iter"
-	"maps"
 )
 
 //go:embed "style/colors.css"
@@ -60,10 +58,6 @@ func (c Color) String() string {
 
 func (c Color) CssValue() string {
 	return "var(--c-" + c.String() + ")"
-}
-
-func AllColors() iter.Seq[Color] {
-	return maps.Keys(colorStrings)
 }
 
 func Parse(s string) Color {
