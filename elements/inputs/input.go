@@ -65,6 +65,13 @@ func (ie *InputElement) SetChecked(condition bool) *InputElement {
 	return ie
 }
 
+func (ie *InputElement) SetDisabled(condition bool) *InputElement {
+	if condition {
+		ie.SetAttribute("disabled", "")
+	}
+	return ie
+}
+
 func (ie *InputElement) SetDataList(list map[string]string, listId string) *InputElement {
 
 	if listId == "" {
