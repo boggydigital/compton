@@ -11,7 +11,7 @@
         cursor: pointer;
 
         &:hover {
-            background-color: var(--c-subtle);
+            background-color: var(--c-gray);
             color: var(--c-background);
         }
     }
@@ -33,7 +33,7 @@
 
         &::placeholder {
             font-weight: normal;
-            color: var(--c-subtle);
+            color: var(--c-gray);
         }
 
         &:focus {
@@ -41,7 +41,7 @@
         }
 
         &:not(:placeholder-shown) {
-            background-color: var(--c-subtle);
+            background-color: var(--c-gray);
             color: var(--c-background);
         }
     }

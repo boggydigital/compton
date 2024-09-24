@@ -1,12 +1,12 @@
 @scope (table) {
     :scope {
         border-collapse: collapse;
-        border: 1px solid var(--c-subtle);
+        border: 1px solid var(--c-gray);
         width: max-content;
         margin: 0;
 
         & tr * {
-            border: 1px solid var(--c-subtle);
+            border: 1px solid var(--c-gray);
             padding: var(--s-s);
             padding-inline-end: var(--s-n)
         }
@@ -17,7 +17,7 @@
         }
 
         & tfoot {
-            color: var(--c-subtle)
+            color: var(--c-gray)
         }
     }
 }

@@ -182,7 +182,7 @@ func writeTestPage() {
 
 	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	div := fspan.Text(p, "").ForegroundColor(color.Subtle).FontSize(size.Small)
+	div := fspan.Text(p, "").ForegroundColor(color.Gray).FontSize(size.Small)
 
 	div.Append(els.Text("Last updated: "),
 		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
@@ -304,7 +304,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 
 	sp1 := els.Span()
 	pt1 := fspan.Text(r, "Descending: ").
-		ForegroundColor(color.Subtle)
+		ForegroundColor(color.Gray)
 	pv1 := fspan.Text(r, "True").
 		FontWeight(weight.Bolder)
 	sp1.Append(pt1, pv1)
@@ -312,7 +312,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 
 	sp2 := els.Span()
 	pt2 := fspan.Text(r, "Sort: ").
-		ForegroundColor(color.Subtle)
+		ForegroundColor(color.Gray)
 	pv2 := fspan.Text(r, "GOG Order Date").
 		FontWeight(weight.Bolder)
 	sp2.Append(pt2, pv2)
@@ -320,7 +320,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 
 	sp3 := els.Span()
 	pt3 := fspan.Text(r, "Data Type: ").
-		ForegroundColor(color.Subtle)
+		ForegroundColor(color.Gray)
 	pv3 := fspan.Text(r, "Account Products").
 		FontWeight(weight.Bolder)
 	sp3.Append(pt3, pv3)

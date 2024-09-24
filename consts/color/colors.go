@@ -27,7 +27,7 @@ const (
 	Brown
 	Background
 	Foreground
-	Subtle
+	Gray
 	Highlight
 )
 
@@ -46,9 +46,9 @@ var colorStrings = map[Color]string{
 	Purple:     "purple",
 	Pink:       "pink",
 	Brown:      "brown",
+	Gray:       "gray",
 	Background: "background",
 	Foreground: "foreground",
-	Subtle:     "subtle",
 	Highlight:  "highlight",
 }
 

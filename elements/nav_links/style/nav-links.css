@@ -40,7 +40,7 @@
 
                 &:hover {
                     color: var(--c-background);
-                    background-color: var(--c-subtle);
+                    background-color: var(--c-gray);
                 }
             }
         }

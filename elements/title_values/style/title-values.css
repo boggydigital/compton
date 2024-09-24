@@ -15,7 +15,7 @@
         }
 
         & > div {
-            color: var(--c-subtle);
+            color: var(--c-gray);
             font-size: var(--fs-s)
         }
     }
