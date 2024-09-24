@@ -53,6 +53,18 @@ func (ie *InputElement) SetName(name string) *InputElement {
 	return ie
 }
 
+func (ie *InputElement) SetValue(value string) *InputElement {
+	ie.SetAttribute("value", value)
+	return ie
+}
+
+func (ie *InputElement) SetChecked(condition bool) *InputElement {
+	if condition {
+		ie.SetAttribute("checked", "")
+	}
+	return ie
+}
+
 func (ie *InputElement) SetDataList(list map[string]string, listId string) *InputElement {
 
 	if listId == "" {
@@ -108,5 +120,11 @@ func Input(r compton.Registrar, it input_types.Type) *InputElement {
 func InputValue(r compton.Registrar, it input_types.Type, value string) *InputElement {
 	input := Input(r, it)
 	input.SetAttribute(compton.ValueAttr, value)
+	return input
+}
+
+func Switch(r compton.Registrar) *InputElement {
+	input := Input(r, input_types.Checkbox)
+	input.SetAttribute("switch", "")
 	return input
 }

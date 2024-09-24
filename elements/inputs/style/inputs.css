@@ -17,5 +17,35 @@
     }
 }
 
+@scope (input[type=text],input[type=search]) {
+    :scope {
+        appearance: none;
+        border: none;
+        border-radius: var(--br-n);
+        background-color: var(--c-highlight);
+        padding: var(--s-s);
+        font-size: var(--fs-s);
+        font-weight: var(--fw-b);
+        outline: var(--s-xxs) solid var(--c-highlight);
+        margin: var(--s-xxs);
+        width: calc(100% - 2 * var(--s-xxs));
+        max-width: var(--s-cw);
+
+        &::placeholder {
+            font-weight: normal;
+            color: var(--c-subtle);
+        }
+
+        &:focus {
+            outline: var(--s-xxs) solid var(--c-blue)
+        }
+
+        &:not(:placeholder-shown) {
+            background-color: var(--c-subtle);
+            color: var(--c-background);
+        }
+    }
+}
+
 
 

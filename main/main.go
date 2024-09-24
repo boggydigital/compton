@@ -86,11 +86,11 @@ func writeTestPage() {
 
 	s.Append(nav)
 
-	fssTitle := fspan.Text(p, "Filter & Search").
+	filterSearchTitle := fspan.Text(p, "Filter & Search").
 		FontWeight(weight.Bolder).
 		FontSize(size.Large)
 
-	cdc := details_summary.Open(p, fssTitle).
+	dsFilterSearch := details_summary.Open(p, filterSearchTitle).
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -130,15 +130,15 @@ func writeTestPage() {
 	formStack.Append(tiGrid)
 	form.Append(formStack)
 
-	cdc.Append(form)
-	s.Append(cdc)
+	dsFilterSearch.Append(form)
+	s.Append(dsFilterSearch)
 
 	s.Append(qf)
 
 	tvsTitle := fspan.Text(p, "Title Values").
 		FontWeight(weight.Bolder).
 		FontSize(size.Large)
-	cdo := details_summary.
+	dsTitleValues := details_summary.
 		Open(p, tvsTitle).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background).
@@ -160,8 +160,25 @@ func writeTestPage() {
 	tv6 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
 
 	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6)
-	cdo.Append(tvGrid)
-	s.Append(cdo)
+	dsTitleValues.Append(tvGrid)
+	s.Append(dsTitleValues)
+
+	switchesTitle := fspan.Text(p, "Switches").
+		FontWeight(weight.Bolder).
+		FontSize(size.Large)
+	dsSwitches := details_summary.Open(p, switchesTitle).BackgroundColor(color.Highlight)
+
+	swColumn := flex_items.FlexItems(p, direction.Column).AlignContent(align.Center)
+
+	sw1 := switchLabel(p, "test1", "Some very important switch")
+	sw2 := switchLabel(p, "test2", "Another, equally important switch")
+	sw3 := switchLabel(p, "test3", "The last important switch")
+
+	swColumn.Append(sw1, sw2, sw3)
+
+	dsSwitches.Append(swColumn)
+
+	s.Append(dsSwitches)
 
 	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
@@ -188,6 +205,20 @@ func writeTestPage() {
 	}
 
 	fmt.Println("file://" + testPath)
+}
+
+func switchLabel(r compton.Registrar, id, label string) compton.Element {
+	row := flex_items.FlexItems(r, direction.Row)
+
+	switchElement := inputs.Switch(r)
+	switchElement.SetId(id)
+
+	labelElement := els.Label(id)
+	labelElement.Append(els.Text(label))
+
+	row.Append(switchElement, labelElement)
+
+	return row
 }
 
 func writeIframeContent() {

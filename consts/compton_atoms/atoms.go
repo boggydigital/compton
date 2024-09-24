@@ -12,4 +12,5 @@ const (
 	IssaImage
 	Fspan
 	Labels
+	Switch
 )
