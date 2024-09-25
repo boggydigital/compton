@@ -20,10 +20,10 @@
         --c-purple: rgb(173,68,171);
         --c-pink: rgb(211,15,69);
         --c-brown: rgb(127,101,69);
-        --c-gray: rgb(105,105,110);
+        --c-gray: rgb(105,105,105);
 
         --c-background: rgb(242,242,242); /* systemGray6 adjusted from rgb(242,242,247) */
-        --c-foreground: rgb(28,28,30); /* systemGray6 (Dark) */
+        --c-foreground: rgb(28,28,28); /* systemGray6 (Dark) */
         --c-highlight: white;
     }
 }
@@ -44,9 +44,9 @@
         --c-purple: rgb(191,90,242);
         --c-pink: rgb(255,55,95);
         --c-brown: rgb(172,142,104);
-        --c-gray: rgb(152,152,157);
+        --c-gray: rgb(152,152,152);
 
-        --c-background: rgb(28,28,30); /* systemGray6 adjusted from rgb(242,242,247) */
+        --c-background: rgb(28,28,28);
         --c-foreground: rgb(242,242,242); /* systemGray6 (Light) */
         --c-highlight: black;
     }
