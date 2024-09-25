@@ -18,6 +18,10 @@ func (be *BaseElement) Append(children ...Element) {
 	be.Children = append(be.Children, children...)
 }
 
+func (be *BaseElement) HasChildren() bool {
+	return len(be.Children) > 0
+}
+
 func (be *BaseElement) WriteRequirements(w io.Writer) error {
 	for _, child := range be.Children {
 		if err := child.WriteRequirements(w); err != nil {
