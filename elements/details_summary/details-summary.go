@@ -98,7 +98,7 @@ func (dse *DetailsSummaryElement) SetId(id string) {
 	dse.details.SetId(id)
 }
 
-func Larger(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
+func create(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.DetailsSummary,
@@ -106,7 +106,6 @@ func Larger(r compton.Registrar, summary compton.Element, open bool) *DetailsSum
 		details: els.Details(),
 		r:       r,
 	}
-	dse.details.AddClass("larger")
 
 	if open {
 		dse.details.SetAttribute("open", "")
@@ -119,23 +118,14 @@ func Larger(r compton.Registrar, summary compton.Element, open bool) *DetailsSum
 	return dse
 }
 
+func Larger(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
+	dse := create(r, summary, open)
+	dse.details.AddClass("larger")
+	return dse
+}
+
 func Smaller(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
-	dse := &DetailsSummaryElement{
-		BaseElement: compton.BaseElement{
-			TagName: compton_atoms.DetailsSummary,
-		},
-		details: els.Details(),
-		r:       r,
-	}
+	dse := create(r, summary, open)
 	dse.details.AddClass("smaller")
-
-	if open {
-		dse.details.SetAttribute("open", "")
-	}
-
-	summaryElement := els.Summary()
-	summaryElement.Append(summary)
-	dse.details.Append(summaryElement)
-
 	return dse
 }

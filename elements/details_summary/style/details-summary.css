@@ -14,9 +14,17 @@ details {
 
         & > summary {
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            user-select: none;
 
             &::marker {
                 display: none;
+            }
+
+            & > svg {
+                transform-origin: 50% 50%;
+                transition: rotate var(--du-fast) ease-in-out;
             }
         }
 
@@ -37,8 +45,6 @@ details {
 @scope (details.larger) {
     :scope {
         & > summary {
-            display: flex;
-            align-items: center;
             justify-content: center;
             min-width: max-content;
             max-width: var(--s-maxw);
@@ -49,13 +55,10 @@ details {
             color: var(--fg);
             border-radius: var(--br-l);
             column-gap: var(--s-s);
-            user-select: none;
 
             & > svg {
                 width: calc((var(--s-n) + var(--s-s)) / 2);
                 height: calc((var(--s-n) + var(--s-s)) / 2);
-                transform-origin: 50% 50%;
-                transition: rotate var(--du-fast) ease-in-out;
                 color: var(--cm)
             }
         }
@@ -71,10 +74,16 @@ details {
         }
 
         & > summary {
-            display: flex;
             justify-content: start;
+            column-gap: var(--s-xs);
             padding: 0;
             color: unset;
+
+            & > svg {
+                width: calc(2em / 3);
+                height: calc(2em / 3);
+                color: var(--cm)
+            }
         }
     }
 }
