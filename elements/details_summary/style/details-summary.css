@@ -1,4 +1,4 @@
-/* Safari specific fix, need to file a bug (or find existing one) */
+/* Safari specific fix, need to file a bug (or find existing one) to track */
 details {
     & > summary {
         &::-webkit-details-marker {
