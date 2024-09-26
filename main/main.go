@@ -90,7 +90,7 @@ func writeTestPage() {
 		FontWeight(weight.Bolder).
 		FontSize(size.Large)
 
-	dsFilterSearch := details_summary.Open(p, filterSearchTitle).
+	dsFilterSearch := details_summary.Larger(p, filterSearchTitle, true).
 		BackgroundColor(color.Highlight)
 
 	form := els.Form("/action", "GET")
@@ -139,7 +139,7 @@ func writeTestPage() {
 		FontWeight(weight.Bolder).
 		FontSize(size.Large)
 	dsTitleValues := details_summary.
-		Open(p, tvsTitle).
+		Larger(p, tvsTitle, true).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background).
 		MarkerColor(color.Yellow)
@@ -158,15 +158,26 @@ func writeTestPage() {
 	tv4 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
 	tv5 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
 	tv6 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv7 := title_values.TitleValues(p, "Lots of values")
+	dsTitle := fspan.Text(p, "Expand all...").
+		ForegroundColor(color.Blue).
+		FontWeight(weight.Bolder)
+	dsValues := details_summary.Smaller(p, dsTitle, false)
+	for ii := range 10 {
+		element := fspan.Text(p, "Element "+strconv.Itoa(ii)).ForegroundColor(color.Gray)
+		dsValues.Append(element)
+	}
+	tv7.Append(dsValues)
 
-	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6)
+	tvGrid.Append(tv1, tv2, tv3, tv4, tv5, tv6, tv7)
 	dsTitleValues.Append(tvGrid)
 	s.Append(dsTitleValues)
 
 	switchesTitle := fspan.Text(p, "Switches").
 		FontWeight(weight.Bolder).
 		FontSize(size.Large)
-	dsSwitches := details_summary.Open(p, switchesTitle).BackgroundColor(color.Highlight)
+	dsSwitches := details_summary.Larger(p, switchesTitle, true).
+		BackgroundColor(color.Highlight)
 
 	swColumn := flex_items.FlexItems(p, direction.Column).AlignContent(align.Center)
 
@@ -246,7 +257,7 @@ func writeIframeContent() {
 
 	p := page.Page("iframe")
 
-	dc := details_summary.Open(p, els.HeadingText("Description", 2))
+	dc := details_summary.Larger(p, els.HeadingText("Description", 2), true)
 
 	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)

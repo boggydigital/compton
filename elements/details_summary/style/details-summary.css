@@ -1,3 +1,4 @@
+/* Safari specific fix, need to file a bug (or find existing one) */
 details {
     & > summary {
         &::-webkit-details-marker {
@@ -12,27 +13,10 @@ details {
         /*content-visibility: auto;*/
 
         & > summary {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: max-content;
-            max-width: var(--s-maxw);
-            margin: auto;
-            font-weight: var(--fw-b);
-            padding: calc((var(--s-n) + var(--s-s)) / 2) var(--s-n);
-            background-color: var(--bg);
-            color: var(--fg);
-            border-radius: var(--br-l);
-            column-gap: var(--s-s);
             cursor: pointer;
-            user-select: none;
 
-            & > svg {
-                width: calc((var(--s-n) + var(--s-s)) / 2);
-                height: calc((var(--s-n) + var(--s-s)) / 2);
-                transform-origin: 50% 50%;
-                transition: rotate var(--du-fast) ease-in-out;
-                color: var(--cm)
+            &::marker {
+                display: none;
             }
         }
 
@@ -46,6 +30,51 @@ details {
                     rotate: -45deg;
                 }
             }
+        }
+    }
+}
+
+@scope (details.larger) {
+    :scope {
+        & > summary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: max-content;
+            max-width: var(--s-maxw);
+            margin: auto;
+            font-weight: var(--fw-b);
+            padding: calc((var(--s-n) + var(--s-s)) / 2) var(--s-n);
+            background-color: var(--bg);
+            color: var(--fg);
+            border-radius: var(--br-l);
+            column-gap: var(--s-s);
+            user-select: none;
+
+            & > svg {
+                width: calc((var(--s-n) + var(--s-s)) / 2);
+                height: calc((var(--s-n) + var(--s-s)) / 2);
+                transform-origin: 50% 50%;
+                transition: rotate var(--du-fast) ease-in-out;
+                color: var(--cm)
+            }
+        }
+    }
+}
+
+@scope (details.smaller) {
+    :scope {
+        width: 100%;
+
+        &[open] {
+            margin-block-end: 0;
+        }
+
+        & > summary {
+            display: flex;
+            justify-content: start;
+            padding: 0;
+            color: unset;
         }
     }
 }

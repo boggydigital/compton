@@ -98,13 +98,18 @@ func (dse *DetailsSummaryElement) SetId(id string) {
 	dse.details.SetId(id)
 }
 
-func Closed(r compton.Registrar, summary compton.Element) *DetailsSummaryElement {
+func Larger(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.DetailsSummary,
 		},
 		details: els.Details(),
 		r:       r,
+	}
+	dse.details.AddClass("larger")
+
+	if open {
+		dse.details.SetAttribute("open", "")
 	}
 
 	summaryElement := els.Summary()
@@ -114,19 +119,23 @@ func Closed(r compton.Registrar, summary compton.Element) *DetailsSummaryElement
 	return dse
 }
 
-func Open(r compton.Registrar, summary compton.Element) *DetailsSummaryElement {
-	dse := Closed(r, summary)
-	dse.details.SetAttribute("open", "")
-	return dse
-}
-
-func Toggle(r compton.Registrar, summary compton.Element, condition bool) *DetailsSummaryElement {
-	var toggle func(compton.Registrar, compton.Element) *DetailsSummaryElement
-	switch condition {
-	case true:
-		toggle = Open
-	case false:
-		toggle = Closed
+func Smaller(r compton.Registrar, summary compton.Element, open bool) *DetailsSummaryElement {
+	dse := &DetailsSummaryElement{
+		BaseElement: compton.BaseElement{
+			TagName: compton_atoms.DetailsSummary,
+		},
+		details: els.Details(),
+		r:       r,
 	}
-	return toggle(r, summary)
+	dse.details.AddClass("smaller")
+
+	if open {
+		dse.details.SetAttribute("open", "")
+	}
+
+	summaryElement := els.Summary()
+	summaryElement.Append(summary)
+	dse.details.Append(summaryElement)
+
+	return dse
 }
