@@ -42,7 +42,7 @@ a {
 
 hr {
     padding: 0;
-    border: var(--s-xxxs) solid var(--c-gray);
+    border: var(--s-xxs) solid var(--c-highlight);
 }
 
 ul {

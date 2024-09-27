@@ -6,8 +6,8 @@ import (
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/consts/weight"
 	"github.com/boggydigital/compton/elements/els"
 	"io"
 )
@@ -53,7 +53,7 @@ func (se *SectionElement) FontSize(s size.Size) *SectionElement {
 	return se
 }
 
-func (se *SectionElement) FontWeight(w weight.Weight) *SectionElement {
+func (se *SectionElement) FontWeight(w font_weight.Weight) *SectionElement {
 	se.AddClass(class.FontWeight(w))
 	return se
 }

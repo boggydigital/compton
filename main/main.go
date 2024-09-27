@@ -7,9 +7,9 @@ import (
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/consts/weight"
 	"github.com/boggydigital/compton/elements/details_summary"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/flex_items"
@@ -87,7 +87,7 @@ func writeTestPage() {
 	s.Append(nav)
 
 	filterSearchTitle := fspan.Text(p, "Filter & Search").
-		FontWeight(weight.Bolder).
+		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
 
 	dsFilterSearch := details_summary.Larger(p, filterSearchTitle, true).
@@ -136,7 +136,7 @@ func writeTestPage() {
 	s.Append(qf)
 
 	tvsTitle := fspan.Text(p, "Title Values").
-		FontWeight(weight.Bolder).
+		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
 	dsTitleValues := details_summary.
 		Larger(p, tvsTitle, true).
@@ -161,7 +161,7 @@ func writeTestPage() {
 	tv7 := title_values.TitleValues(p, "Lots of values")
 	dsTitle := fspan.Text(p, "Expand all...").
 		ForegroundColor(color.Blue).
-		FontWeight(weight.Bolder)
+		FontWeight(font_weight.Bolder)
 	dsValues := details_summary.Smaller(p, dsTitle, false)
 	for ii := range 10 {
 		element := fspan.Text(p, "Element "+strconv.Itoa(ii)).ForegroundColor(color.Gray)
@@ -174,7 +174,7 @@ func writeTestPage() {
 	s.Append(dsTitleValues)
 
 	switchesTitle := fspan.Text(p, "Switches").
-		FontWeight(weight.Bolder).
+		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
 	dsSwitches := details_summary.Larger(p, switchesTitle, true).
 		BackgroundColor(color.Highlight)
@@ -317,7 +317,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	pt1 := fspan.Text(r, "Descending: ").
 		ForegroundColor(color.Gray)
 	pv1 := fspan.Text(r, "True").
-		FontWeight(weight.Bolder)
+		FontWeight(font_weight.Bolder)
 	sp1.Append(pt1, pv1)
 	shStack.Append(sp1)
 
@@ -325,7 +325,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	pt2 := fspan.Text(r, "Sort: ").
 		ForegroundColor(color.Gray)
 	pv2 := fspan.Text(r, "GOG Order Date").
-		FontWeight(weight.Bolder)
+		FontWeight(font_weight.Bolder)
 	sp2.Append(pt2, pv2)
 	shStack.Append(sp2)
 
@@ -333,7 +333,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	pt3 := fspan.Text(r, "Data Type: ").
 		ForegroundColor(color.Gray)
 	pv3 := fspan.Text(r, "Account Products").
-		FontWeight(weight.Bolder)
+		FontWeight(font_weight.Bolder)
 	sp3.Append(pt3, pv3)
 	shStack.Append(sp3)
 

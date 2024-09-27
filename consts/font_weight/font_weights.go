@@ -1,4 +1,4 @@
-package weight
+package font_weight
 
 type Weight int
 

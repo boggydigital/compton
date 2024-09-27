@@ -4,8 +4,8 @@ import (
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/consts/weight"
 	"maps"
 	"strings"
 	"sync"
@@ -93,7 +93,7 @@ func FontSize(s size.Size) string {
 	return joinClassName(fontSizePfx, s.String())
 }
 
-func FontWeight(w weight.Weight) string {
+func FontWeight(w font_weight.Weight) string {
 	return joinClassName(fontWeightPfx, w.String())
 }
 
@@ -151,7 +151,7 @@ func parsePropertyValue(className string) (string, string) {
 		cl := color.Parse(sfx)
 		value = cl.CssValue()
 	case fontWeightPfx:
-		wt := weight.Parse(sfx)
+		wt := font_weight.Parse(sfx)
 		value = wt.CssValue()
 	default:
 		panic("class support not implemented for " + pfx)

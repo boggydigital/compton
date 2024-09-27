@@ -6,8 +6,8 @@ import (
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/consts/weight"
 	"github.com/boggydigital/compton/elements/els"
 	"io"
 )
@@ -53,7 +53,7 @@ func (fse *FspanElement) FontSize(s size.Size) *FspanElement {
 	return fse
 }
 
-func (fse *FspanElement) FontWeight(w weight.Weight) *FspanElement {
+func (fse *FspanElement) FontWeight(w font_weight.Weight) *FspanElement {
 	fse.AddClass(class.FontWeight(w))
 	return fse
 }
