@@ -64,8 +64,6 @@ func writeTestPage() {
 
 	topNav := nav_links.NavLinksTargets(p, targets...)
 
-	s.Append(topNav)
-
 	navLinks := map[string]string{
 		"New":      "/new",
 		"Owned":    "/owned",
@@ -84,7 +82,7 @@ func writeTestPage() {
 			"Sale",
 			"All")...)
 
-	s.Append(nav)
+	s.Append(flex_items.Center(p, topNav, nav))
 
 	filterSearchTitle := fspan.Text(p, "Filter & Search").
 		FontWeight(font_weight.Bolder).

@@ -27,10 +27,11 @@
                 font-size: var(--fs-s);
                 color: var(--c-foreground);
                 font-weight: normal;
+                height: var(--s-n);
 
                 & svg {
-                    width: calc(var(--s-n));
-                    height: calc(var(--s-n));
+                    width: var(--s-n);
+                    height: var(--s-n);
                 }
 
                 &.selected {
