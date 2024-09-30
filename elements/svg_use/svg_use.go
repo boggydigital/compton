@@ -19,6 +19,7 @@ const (
 	Sparkle
 	Stack
 	Search
+	Circle
 )
 
 var symbolStrings = map[Symbol]string{
@@ -30,6 +31,7 @@ var symbolStrings = map[Symbol]string{
 	Sparkle: "sparkle",
 	Stack:   "stack",
 	Search:  "search",
+	Circle:  "circle",
 }
 
 const registrationName = "symbols"
