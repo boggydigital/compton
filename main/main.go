@@ -158,11 +158,10 @@ func writeTestPage() {
 	tv6 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
 	tv7 := title_values.TitleValues(p, "Lots of values")
 	dsTitle := fspan.Text(p, "Expand all...").
-		ForegroundColor(color.Blue).
 		FontWeight(font_weight.Bolder)
 	dsValues := details_summary.Smaller(p, dsTitle, false)
 	for ii := range 10 {
-		element := fspan.Text(p, "Element "+strconv.Itoa(ii)).ForegroundColor(color.Gray)
+		element := fspan.Text(p, "Element "+strconv.Itoa(ii)+"&nbsp;").ForegroundColor(color.Gray)
 		dsValues.Append(element)
 	}
 	tv7.Append(dsValues)
@@ -175,7 +174,15 @@ func writeTestPage() {
 		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
 	dsSwitches := details_summary.Larger(p, switchesTitle, true).
-		BackgroundColor(color.Highlight)
+		BackgroundColor(color.Highlight).
+		SummaryRowGap(size.XSmall)
+
+	subTitle := fspan.Text(p, "This section has subtitle").
+		FontSize(size.XSmall).
+		FontWeight(font_weight.Normal).
+		ForegroundColor(color.Gray)
+
+	dsSwitches.AppendSummary(subTitle)
 
 	swColumn := flex_items.FlexItems(p, direction.Column).AlignContent(align.Center)
 

@@ -16,13 +16,14 @@ details {
             cursor: pointer;
             display: flex;
             align-items: center;
+            /*align-content: start;*/
             user-select: none;
 
             &::marker {
                 display: none;
             }
 
-            & > svg {
+            & svg.details-summary-marker {
                 transform-origin: 50% 50%;
                 transition: rotate var(--du-fast) ease-in-out;
             }
@@ -34,7 +35,7 @@ details {
             & > summary {
                 margin-block-end: var(--mbe);
 
-                & > svg {
+                & svg.details-summary-marker {
                     rotate: -45deg;
                 }
             }
@@ -55,8 +56,10 @@ details {
             color: var(--fg);
             border-radius: var(--br-l);
             column-gap: var(--s-s);
+            row-gap: var(--rg);
+            flex-direction: column;
 
-            & > svg {
+            & svg.details-summary-marker {
                 width: calc((var(--s-n) + var(--s-s)) / 2);
                 height: calc((var(--s-n) + var(--s-s)) / 2);
                 color: var(--cm)
@@ -79,7 +82,7 @@ details {
             padding: 0;
             color: unset;
 
-            & > svg {
+            & svg.details-summary-marker {
                 width: calc(2em / 3);
                 height: calc(2em / 3);
                 color: var(--cm)

@@ -3,11 +3,14 @@ package details_summary
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/flex_items"
 	"github.com/boggydigital/compton/elements/svg_use"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -31,6 +34,12 @@ type DetailsSummaryElement struct {
 
 func (dse *DetailsSummaryElement) Append(children ...compton.Element) {
 	dse.details.Append(children...)
+}
+
+func (dse *DetailsSummaryElement) AppendSummary(children ...compton.Element) {
+	if summary := dse.getSummary(); summary != nil {
+		summary.Append(children...)
+	}
 }
 
 func (dse *DetailsSummaryElement) WriteStyles(w io.Writer) error {
@@ -59,6 +68,13 @@ func (dse *DetailsSummaryElement) SummaryMarginBlockEnd(s size.Size) *DetailsSum
 
 func (dse *DetailsSummaryElement) DetailsMarginBlockEnd(s size.Size) *DetailsSummaryElement {
 	dse.details.AddClass(class.MarginBlockEnd(s))
+	return dse
+}
+
+func (dse *DetailsSummaryElement) SummaryRowGap(s size.Size) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.RowGap(s))
+	}
 	return dse
 }
 
@@ -111,8 +127,15 @@ func create(r compton.Registrar, summary compton.Element, open bool) *DetailsSum
 		dse.details.SetAttribute("open", "")
 	}
 
+	svgPlus := svg_use.SvgUse(r, svg_use.Plus)
+	svgPlus.AddClass("details-summary-marker")
+
 	summaryElement := els.Summary()
-	summaryElement.Append(svg_use.SvgUse(r, svg_use.Plus), summary)
+	summaryTitleRow := flex_items.FlexItems(r, direction.Row).
+		ColumnGap(size.Small).
+		AlignItems(align.Center)
+	summaryTitleRow.Append(svgPlus, summary)
+	summaryElement.Append(summaryTitleRow)
 	dse.details.Append(summaryElement)
 
 	return dse

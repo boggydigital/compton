@@ -68,6 +68,10 @@ func (sue *SvgUseElement) fragmentWriter(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, symbolStrings[sue.s]); err != nil {
 			return err
 		}
+	case compton.AttributesToken:
+		if err := sue.BaseElement.WriteFragment(t, w); err != nil {
+			return err
+		}
 	default:
 		return compton.ErrUnknownToken(t)
 	}
@@ -75,8 +79,10 @@ func (sue *SvgUseElement) fragmentWriter(t string, w io.Writer) error {
 }
 
 func SvgUse(r compton.Registrar, s Symbol) compton.Element {
-	return &SvgUseElement{
+	sue := &SvgUseElement{
 		r: r,
 		s: s,
 	}
+	sue.AddClass(symbolStrings[s])
+	return sue
 }
