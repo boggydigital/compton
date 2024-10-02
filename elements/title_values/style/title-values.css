@@ -10,11 +10,13 @@
         }
 
         & a {
+            height: var(--s-n);
             font-weight: var(--fw-b);
             color: inherit
         }
 
         & > div {
+            line-height: var(--s-n);
             color: var(--c-gray);
             font-size: var(--fs-s)
         }
