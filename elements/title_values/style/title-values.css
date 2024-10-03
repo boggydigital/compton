@@ -11,7 +11,7 @@
         }
 
         & a {
-            height: var(--s-n);
+            line-height: var(--s-n);
             font-weight: var(--fw-b);
             color: inherit
         }
