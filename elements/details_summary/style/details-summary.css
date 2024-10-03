@@ -51,7 +51,7 @@ details {
             max-width: var(--s-maxw);
             margin: auto;
             font-weight: var(--fw-b);
-            padding: calc((var(--s-n) + var(--s-s)) / 2) var(--s-n);
+            padding: var(--s-s);
             background-color: var(--bg);
             color: var(--fg);
             border-radius: var(--br-l);
@@ -60,8 +60,8 @@ details {
             flex-direction: column;
 
             & svg.details-summary-marker {
-                width: calc((var(--s-n) + var(--s-s)) / 2);
-                height: calc((var(--s-n) + var(--s-s)) / 2);
+                width: var(--s-s);
+                height: var(--s-s);
                 color: var(--cm)
             }
         }
@@ -83,8 +83,8 @@ details {
             color: unset;
 
             & svg.details-summary-marker {
-                width: calc(2em / 3);
-                height: calc(2em / 3);
+                width: var(--s-s);
+                height: var(--s-s);
                 color: var(--cm)
             }
         }
