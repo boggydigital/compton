@@ -12,8 +12,8 @@ type TitleInputElement struct {
 	input *inputs.InputElement
 }
 
-func (ti *TitleInputElement) SetDataList(list map[string]string, listId string) *TitleInputElement {
-	ti.input.SetDataList(list, listId)
+func (ti *TitleInputElement) SetDatalist(list map[string]string, listId string) *TitleInputElement {
+	ti.input.SetDatalist(list, listId)
 	return ti
 }
 

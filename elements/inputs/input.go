@@ -73,7 +73,7 @@ func (ie *InputElement) SetDisabled(condition bool) *InputElement {
 	return ie
 }
 
-func (ie *InputElement) SetDataList(list map[string]string, listId string) *InputElement {
+func (ie *InputElement) SetDatalist(list map[string]string, listId string) *InputElement {
 
 	if listId == "" {
 		listId = ie.GetAttribute(compton.IdAttr)
@@ -84,7 +84,7 @@ func (ie *InputElement) SetDataList(list map[string]string, listId string) *Inpu
 	}
 
 	if len(list) > 0 {
-		dataList := els.DataList(listId)
+		dataList := els.Datalist(listId)
 
 		values := maps.Keys(list)
 		slices.Sort(values)

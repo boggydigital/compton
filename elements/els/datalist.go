@@ -8,11 +8,11 @@ import (
 
 var (
 	//go:embed "markup/datalist.html"
-	markupDataList []byte
+	markupDatalist []byte
 )
 
-func DataList(id string) compton.Element {
-	dataList := compton.NewElement(atom.Datalist, markupDataList)
+func Datalist(id string) compton.Element {
+	dataList := compton.NewElement(atom.Datalist, markupDatalist)
 	dataList.SetAttribute(compton.IdAttr, id)
 	return dataList
 }
