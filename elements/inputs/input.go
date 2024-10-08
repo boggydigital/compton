@@ -16,8 +16,9 @@ import (
 )
 
 const (
-	registrationName      = "input"
-	styleRegistrationName = "style-" + registrationName
+	registrationName        = "input"
+	styleRegistrationName   = "style-" + registrationName
+	datalistRegistrationPfx = "datalist-"
 )
 
 var (
@@ -101,7 +102,10 @@ func (ie *InputElement) SetDataList(list map[string]string, listId string) *Inpu
 
 func (ie *InputElement) WriteDeferrals(w io.Writer) error {
 	if ie.dataList != nil {
-		return ie.dataList.WriteContent(w)
+		listId := ie.dataList.GetAttribute(compton.IdAttr)
+		if ie.r.RequiresRegistration(datalistRegistrationPfx + listId) {
+			return ie.dataList.WriteContent(w)
+		}
 	}
 	return nil
 }
