@@ -29,6 +29,7 @@ type PageElement struct {
 	title                  string
 	favIconEmoji           string
 	appStyles              [][]byte
+	manifest               bool
 }
 
 func (p *PageElement) WriteContent(w io.Writer) error {
@@ -44,6 +45,15 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 	case ".FavIconEmoji":
 		if _, err := io.WriteString(w, p.favIconEmoji); err != nil {
 			return err
+		}
+	case ".Manifest":
+		if p.manifest {
+			manifestLink := els.Link()
+			manifestLink.SetAttribute("rel", "manifest")
+			manifestLink.SetAttribute("href", "manifest.json")
+			if err := manifestLink.WriteContent(w); err != nil {
+				return err
+			}
 		}
 	case ".StyleColors":
 		if _, err := w.Write(color.StyleSheet); err != nil {
@@ -108,6 +118,10 @@ func (p *PageElement) AppendStyle(styles ...[]byte) *PageElement {
 		}
 	}
 	return p
+}
+
+func (p *PageElement) AppendManifest() {
+	p.manifest = true
 }
 
 func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {
