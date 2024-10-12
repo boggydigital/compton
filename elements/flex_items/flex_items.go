@@ -90,3 +90,11 @@ func FlexItems(r compton.Registrar, d direction.Direction) *FlexItemsElement {
 	fie.AddClass(class.FlexDirection(d))
 	return fie
 }
+
+func Center(r compton.Registrar, elements ...compton.Element) *FlexItemsElement {
+	row := FlexItems(r, direction.Row).
+		JustifyContent(align.Center).
+		AlignItems(align.Center)
+	row.Append(elements...)
+	return row
+}
