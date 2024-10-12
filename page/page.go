@@ -27,9 +27,10 @@ type PageElement struct {
 	compton.BaseElement
 	customElementsRegistry map[string]any
 	title                  string
-	favIconEmoji           string
-	appStyles              [][]byte
-	manifest               bool
+	//favIconEmoji           string
+	appStyles [][]byte
+	favIcon   bool
+	manifest  bool
 }
 
 func (p *PageElement) WriteContent(w io.Writer) error {
@@ -42,9 +43,19 @@ func (p *PageElement) writeFragment(t string, w io.Writer) error {
 		if _, err := io.WriteString(w, p.title); err != nil {
 			return err
 		}
-	case ".FavIconEmoji":
-		if _, err := io.WriteString(w, p.favIconEmoji); err != nil {
-			return err
+	//case ".FavIconEmoji":
+	//	if _, err := io.WriteString(w, p.favIconEmoji); err != nil {
+	//		return err
+	//	}
+	case ".FavIcon":
+		if p.favIcon {
+			favIconLink := els.Link()
+			favIconLink.SetAttribute("rel", "icon")
+			favIconLink.SetAttribute("type", "image/png")
+			favIconLink.SetAttribute("href", "icon.png")
+			if err := favIconLink.WriteContent(w); err != nil {
+				return err
+			}
 		}
 	case ".Manifest":
 		if p.manifest {
@@ -120,14 +131,20 @@ func (p *PageElement) AppendStyle(styles ...[]byte) *PageElement {
 	return p
 }
 
-func (p *PageElement) AppendManifest() {
+func (p *PageElement) AppendManifest() *PageElement {
 	p.manifest = true
-}
-
-func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {
-	p.favIconEmoji = favIconEmoji
 	return p
 }
+
+func (p *PageElement) AppendFavIcon() *PageElement {
+	p.favIcon = true
+	return p
+}
+
+//func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {
+//	p.favIconEmoji = favIconEmoji
+//	return p
+//}
 
 func Page(title string) *PageElement {
 	return &PageElement{
