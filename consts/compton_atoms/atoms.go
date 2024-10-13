@@ -8,9 +8,7 @@ const (
 	GridItems
 	TitleValues
 	NavLinks
-	Section
 	IssaImage
 	Fspan
 	Labels
-	Switch
 )
