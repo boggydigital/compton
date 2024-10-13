@@ -6,6 +6,7 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
@@ -106,6 +107,16 @@ func (tve *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) erro
 
 func (tve *TitleValuesElement) RowGap(s size.Size) *TitleValuesElement {
 	tve.AddClass(class.RowGap(s))
+	return tve
+}
+
+func (tve *TitleValuesElement) ForegroundColor(c color.Color) *TitleValuesElement {
+	tve.AddClass(class.ForegroundColor(c))
+	return tve
+}
+
+func (tve *TitleValuesElement) TitleForegroundColor(c color.Color) *TitleValuesElement {
+	tve.title.AddClass(class.ForegroundColor(c))
 	return tve
 }
 

@@ -40,7 +40,8 @@
         }
 
         &:not(:placeholder-shown) {
-            background-color: var(--c-gray);
+            background-color: var(--c-foreground);
+            outline-color: var(--c-foreground);
             color: var(--c-background);
         }
     }

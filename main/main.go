@@ -19,7 +19,6 @@ import (
 	"github.com/boggydigital/compton/elements/inputs"
 	"github.com/boggydigital/compton/elements/issa_image"
 	"github.com/boggydigital/compton/elements/nav_links"
-	"github.com/boggydigital/compton/elements/section"
 	"github.com/boggydigital/compton/elements/svg_use"
 	"github.com/boggydigital/compton/elements/title_values"
 	"github.com/boggydigital/compton/page"
@@ -41,7 +40,7 @@ func main() {
 }
 
 func writeTestPage() {
-	p := page.Page("test").SetFavIconEmoji("🤔")
+	p := page.Page("test")
 	p.AppendStyle(appStyles)
 
 	s := flex_items.FlexItems(p, direction.Column)
@@ -311,12 +310,8 @@ func writeIssaPage() {
 }
 
 func createQueryFragment(r compton.Registrar) compton.Element {
-	sh := section.Section(r).
-		BackgroundColor(color.Highlight).
-		FontSize(size.Small)
 
-	shStack := flex_items.FlexItems(r, direction.Row)
-	sh.Append(shStack)
+	shStack := flex_items.FlexItems(r, direction.Row).FontSize(size.Small)
 
 	sp1 := els.Span()
 	pt1 := fspan.Text(r, "Descending: ").
@@ -346,7 +341,7 @@ func createQueryFragment(r compton.Registrar) compton.Element {
 	clearAction.AddClass("action")
 	shStack.Append(clearAction)
 
-	return sh
+	return flex_items.Center(r, shStack)
 }
 
 func writeSvgUsePage() {

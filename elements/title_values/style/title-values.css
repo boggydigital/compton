@@ -8,6 +8,7 @@
             margin: 0;
             font-weight: var(--fw-n);
             font-size: var(--fs-n);
+            color: var(--fg);
         }
 
         & a {
@@ -20,6 +21,11 @@
             line-height: var(--s-n);
             color: var(--c-gray);
             font-size: var(--fs-s)
+        }
+
+        & svg {
+            width: var(--s-n);
+            height: var(--s-n);
         }
     }
 }

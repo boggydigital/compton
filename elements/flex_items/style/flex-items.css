@@ -9,5 +9,9 @@
         align-items: var(--ai);
         justify-content: var(--jc);
         justify-items: var(--ji);
+        font-size: var(--fs);
+        font-weight: var(--fw);
+        color: var(--fg);
+        background-color: var(--bg);
     }
 }
