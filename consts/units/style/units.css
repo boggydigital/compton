@@ -35,8 +35,8 @@
     --fw-l: 300;
     --fw-b: 600;
 
-    --du-fast: 0.1s;
-    --du-slow: 2s;
+    --du-fast: 256ms;
+    --du-slow: 1024ms;
 
     /* customizable properties */
 

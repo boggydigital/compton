@@ -2,7 +2,7 @@ package iframe_expand
 
 import (
 	_ "embed"
-	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/script"
 	"github.com/boggydigital/compton/page"
 )
 
@@ -20,6 +20,6 @@ var (
 func IframeExpandContent(id, title string) *page.PageElement {
 	p := page.Page(title).AppendStyle(styleIframeContent)
 	p.SetId(id)
-	p.Append(els.ScriptAsync(scriptPost))
+	p.Append(script.ScriptAsync(scriptPost))
 	return p
 }

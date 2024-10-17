@@ -8,6 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/units"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/script"
 	"golang.org/x/net/html/atom"
 	"io"
 	"strconv"
@@ -139,6 +140,20 @@ func (p *PageElement) AppendManifest() *PageElement {
 func (p *PageElement) AppendFavIcon() *PageElement {
 	p.favIcon = true
 	return p
+}
+
+func (p *PageElement) ScriptDigests() []string {
+
+	if scripts := p.GetElementsByTagName(atom.Script); len(scripts) > 0 {
+		digests := make([]string, 0, len(scripts))
+		for _, s := range scripts {
+			if se, ok := s.(*script.ScriptElement); ok {
+				digests = append(digests, se.Sha256())
+			}
+		}
+		return digests
+	}
+	return nil
 }
 
 //func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {

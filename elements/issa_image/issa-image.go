@@ -5,6 +5,7 @@ import (
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/script"
 	"github.com/boggydigital/issa"
 	"io"
 )
@@ -43,15 +44,15 @@ func (ii *IssaImageElement) WriteStyles(w io.Writer) error {
 
 func (ii *IssaImageElement) WriteDeferrals(w io.Writer) error {
 	if ii.r.RequiresRegistration(scriptRegistrationName) {
-		hcScript := els.ScriptAsync(issa.HydrateColorScript)
+		hcScript := script.ScriptAsync(issa.HydrateColorScript)
 		if err := hcScript.WriteContent(w); err != nil {
 			return err
 		}
-		hiScript := els.ScriptAsync(scriptHydrateImage)
+		hiScript := script.ScriptAsync(scriptHydrateImage)
 		if err := hiScript.WriteContent(w); err != nil {
 			return err
 		}
-		ifiScript := els.ScriptAsync(scriptImageFadeIn)
+		ifiScript := script.ScriptAsync(scriptImageFadeIn)
 		return ifiScript.WriteContent(w)
 	}
 	return nil

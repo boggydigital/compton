@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/script"
 	"io"
 )
 
@@ -36,7 +37,7 @@ func (ife *IframeExpandElement) WriteStyles(w io.Writer) error {
 
 func (ife *IframeExpandElement) WriteRequirements(w io.Writer) error {
 	if ife.r.RequiresRegistration(registrationName) {
-		receiveScript := els.Script(scriptReceive)
+		receiveScript := script.Script(scriptReceive)
 		return receiveScript.WriteContent(w)
 	}
 	return nil

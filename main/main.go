@@ -33,8 +33,8 @@ import (
 var appStyles []byte
 
 func main() {
-	writeTestPage()
-	//writeIframeContent()
+	//writeTestPage()
+	writeIframeContent()
 	//writeIssaPage()
 	//writeSvgUsePage()
 }

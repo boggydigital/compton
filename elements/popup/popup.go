@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/elements/els"
+	"github.com/boggydigital/compton/elements/script"
 	"io"
 )
 
@@ -33,7 +34,7 @@ func (pe *PopupElement) WriteStyles(w io.Writer) error {
 
 func (pe *PopupElement) WriteDeferrals(w io.Writer) error {
 	if pe.r.RequiresRegistration(registrationName) {
-		return els.ScriptAsync(scriptPopup).WriteContent(w)
+		return script.ScriptAsync(scriptPopup).WriteContent(w)
 	}
 	return nil
 }
