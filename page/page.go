@@ -15,11 +15,6 @@ import (
 )
 
 var (
-	//go:embed "markup/page.html"
-	markupPage []byte
-)
-
-var (
 	//go:embed "style/page.css"
 	stylePage []byte
 )
@@ -30,14 +25,16 @@ type PageElement struct {
 	document compton.Element
 }
 
-func (p *PageElement) Write(w io.Writer) error {
-
+func (p *PageElement) Finalize() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		if styleClasses := head.GetElementById("style-classes"); styleClasses == nil {
 			p.AppendStyle("style-classes", class.StyleClasses())
 		}
 	}
+}
 
+func (p *PageElement) Write(w io.Writer) error {
+	p.Finalize()
 	return p.document.Write(w)
 }
 
@@ -156,8 +153,7 @@ func (p *PageElement) appendColorScheme() {
 func Page(title string) *PageElement {
 	page := &PageElement{
 		BaseElement: compton.BaseElement{
-			Markup:  markupPage,
-			TagName: atom.Body,
+			TagName: compton_atoms.Page,
 		},
 		registry: make(map[string]any),
 	}

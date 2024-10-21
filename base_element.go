@@ -23,39 +23,17 @@ func (be *BaseElement) HasChildren() bool {
 	return len(be.Children) > 0
 }
 
-//func (be *BaseElement) WriteRequirements(w io.Writer) error {
-//	for _, child := range be.Children {
-//		if err := child.WriteRequirements(w); err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
-
-//func (be *BaseElement) WriteStyles(w io.Writer) error {
-//	for _, child := range be.Children {
-//		if err := child.WriteStyles(w); err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
+func (be *BaseElement) Finalize() {
+	// do nothing
+}
 
 func (be *BaseElement) Write(w io.Writer) error {
+	be.Finalize()
 	if be.Markup == nil {
 		return be.WriteFragment(ContentToken, w)
 	}
 	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
 }
-
-//func (be *BaseElement) WriteDeferrals(w io.Writer) error {
-//	for _, child := range be.Children {
-//		if err := child.WriteDeferrals(w); err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
 
 func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 	switch t {
