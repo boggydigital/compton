@@ -33,15 +33,15 @@ import (
 var appStyles []byte
 
 func main() {
-	//writeTestPage()
-	writeIframeContent()
+	writeTestPage()
+	//writeIframeContent()
 	//writeIssaPage()
 	//writeSvgUsePage()
 }
 
 func writeTestPage() {
 	p := page.Page("test")
-	p.AppendStyle(appStyles)
+	p.AppendStyle("app-style", appStyles)
 
 	s := flex_items.FlexItems(p, direction.Column)
 
@@ -215,7 +215,7 @@ func writeTestPage() {
 	}
 	defer testFile.Close()
 
-	if err := p.WriteContent(testFile); err != nil {
+	if err := p.Write(testFile); err != nil {
 		panic(err)
 	}
 
@@ -253,7 +253,7 @@ func writeIframeContent() {
 	}
 	defer contentFile.Close()
 
-	if err := c.WriteContent(contentFile); err != nil {
+	if err := c.Write(contentFile); err != nil {
 		panic(err)
 	}
 
@@ -274,7 +274,7 @@ func writeIframeContent() {
 		panic(err)
 	}
 
-	if err := p.WriteContent(iframeFile); err != nil {
+	if err := p.Write(iframeFile); err != nil {
 		panic(err)
 	}
 
@@ -290,7 +290,7 @@ func writeIssaPage() {
 	imageSrc := "https://gaugin.frmnt.io/image?id=0d9684e197ff3a8d34bddab41e2ef8c9f6d1050242b44b56dfab11ff69b670bb"
 
 	p := page.Page("issa page")
-	p.AppendStyle(appStyles)
+	p.AppendStyle("app-style", appStyles)
 
 	issaImage := issa_image.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
 	p.Append(issaImage)
@@ -302,7 +302,7 @@ func writeIssaPage() {
 	}
 	defer issaFile.Close()
 
-	if err := p.WriteContent(issaFile); err != nil {
+	if err := p.Write(issaFile); err != nil {
 		panic(err)
 	}
 
@@ -356,7 +356,7 @@ func writeSvgUsePage() {
 	}
 	defer svgUseFile.Close()
 
-	if err := p.WriteContent(svgUseFile); err != nil {
+	if err := p.Write(svgUseFile); err != nil {
 		panic(err)
 	}
 

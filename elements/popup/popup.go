@@ -3,9 +3,7 @@ package popup
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
-	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/script"
-	"io"
 )
 
 const (
@@ -22,33 +20,36 @@ var (
 
 type PopupElement struct {
 	compton.BaseElement
-	r compton.Registrar
+	//r compton.Registrar
 }
 
-func (pe *PopupElement) WriteStyles(w io.Writer) error {
-	if pe.r.RequiresRegistration(styleRegistrationName) {
-		return els.Style(stylePopup, styleRegistrationName).WriteContent(w)
-	}
-	return nil
-}
-
-func (pe *PopupElement) WriteDeferrals(w io.Writer) error {
-	if pe.r.RequiresRegistration(registrationName) {
-		return script.ScriptAsync(scriptPopup).WriteContent(w)
-	}
-	return nil
-}
+//func (pe *PopupElement) WriteStyles(w io.Writer) error {
+//	if pe.r.RequiresRegistration(styleRegistrationName) {
+//		return els.Style(stylePopup, styleRegistrationName).Write(w)
+//	}
+//	return nil
+//}
+//
+//func (pe *PopupElement) WriteDeferrals(w io.Writer) error {
+//	if pe.r.RequiresRegistration(registrationName) {
+//		return script.ScriptAsync(scriptPopup).Write(w)
+//	}
+//	return nil
+//}
 
 func Attach(r compton.Registrar, actor, target compton.Element) *PopupElement {
 	pe := &PopupElement{
 		BaseElement: compton.BaseElement{},
-		r:           r,
+		//r:           r,
 	}
 
 	if targetId := target.GetAttribute("id"); targetId != "" {
 		actor.SetAttribute("data-popup-target", targetId)
 		target.SetAttribute("data-popup", "hide")
 	}
+
+	r.RegisterStyle(styleRegistrationName, stylePopup)
+	r.RegisterDeferral(registrationName, script.ScriptAsync(scriptPopup))
 
 	return pe
 }

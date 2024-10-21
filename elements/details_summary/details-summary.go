@@ -28,7 +28,7 @@ var (
 
 type DetailsSummaryElement struct {
 	compton.BaseElement
-	r       compton.Registrar
+	//r       compton.Registrar
 	details compton.Element
 }
 
@@ -42,22 +42,22 @@ func (dse *DetailsSummaryElement) AppendSummary(children ...compton.Element) {
 	}
 }
 
-func (dse *DetailsSummaryElement) WriteStyles(w io.Writer) error {
-	if dse.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleDetailsSummary, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return dse.details.WriteStyles(w)
-}
+//func (dse *DetailsSummaryElement) WriteStyles(w io.Writer) error {
+//	if dse.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleDetailsSummary, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return dse.details.WriteStyles(w)
+//}
 
-func (dse *DetailsSummaryElement) WriteRequirements(w io.Writer) error {
-	return dse.details.WriteRequirements(w)
-}
-
-func (dse *DetailsSummaryElement) WriteDeferrals(w io.Writer) error {
-	return dse.details.WriteDeferrals(w)
-}
+//func (dse *DetailsSummaryElement) WriteRequirements(w io.Writer) error {
+//	return dse.details.WriteRequirements(w)
+//}
+//
+//func (dse *DetailsSummaryElement) WriteDeferrals(w io.Writer) error {
+//	return dse.details.WriteDeferrals(w)
+//}
 
 func (dse *DetailsSummaryElement) SummaryMarginBlockEnd(s size.Size) *DetailsSummaryElement {
 	if summaries := dse.details.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
@@ -106,8 +106,8 @@ func (dse *DetailsSummaryElement) getSummary() compton.Element {
 	return nil
 }
 
-func (dse *DetailsSummaryElement) WriteContent(w io.Writer) error {
-	return dse.details.WriteContent(w)
+func (dse *DetailsSummaryElement) Write(w io.Writer) error {
+	return dse.details.Write(w)
 }
 
 func (dse *DetailsSummaryElement) SetId(id string) {
@@ -120,7 +120,7 @@ func create(r compton.Registrar, summary compton.Element, open bool) *DetailsSum
 			TagName: compton_atoms.DetailsSummary,
 		},
 		details: els.Details(),
-		r:       r,
+		//r:       r,
 	}
 
 	if open {
@@ -137,6 +137,8 @@ func create(r compton.Registrar, summary compton.Element, open bool) *DetailsSum
 	summaryTitleRow.Append(svgPlus, summary)
 	summaryElement.Append(summaryTitleRow)
 	dse.details.Append(summaryElement)
+
+	r.RegisterStyle(styleRegistrationName, styleDetailsSummary)
 
 	return dse
 }

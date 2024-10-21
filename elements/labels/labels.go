@@ -29,20 +29,8 @@ type FormattedLabel struct {
 
 type LabelsElement struct {
 	compton.BaseElement
-	r         compton.Registrar
+	//r         compton.Registrar
 	container compton.Element
-}
-
-func (lse *LabelsElement) WriteStyles(w io.Writer) error {
-	if lse.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleLabels, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	if err := lse.container.WriteStyles(w); err != nil {
-		return err
-	}
-	return lse.BaseElement.WriteStyles(w)
 }
 
 func createLabelElement(fmtLabel FormattedLabel) compton.Element {
@@ -60,8 +48,8 @@ func (lse *LabelsElement) unorderedList() compton.Element {
 	}
 }
 
-func (lse *LabelsElement) WriteContent(w io.Writer) error {
-	return lse.container.WriteContent(w)
+func (lse *LabelsElement) Write(w io.Writer) error {
+	return lse.container.Write(w)
 }
 
 func (lse *LabelsElement) FontSize(s size.Size) *LabelsElement {
@@ -84,7 +72,7 @@ func Labels(r compton.Registrar, fmtLabels ...FormattedLabel) *LabelsElement {
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.Labels,
 		},
-		r: r,
+		//r: r,
 	}
 
 	lse.container = els.Span()
@@ -97,6 +85,8 @@ func Labels(r compton.Registrar, fmtLabels ...FormattedLabel) *LabelsElement {
 		}
 	}
 	lse.container.Append(ul)
+
+	r.RegisterStyle(styleRegistrationName, styleLabels)
 
 	return lse
 }

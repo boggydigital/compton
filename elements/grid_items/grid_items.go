@@ -7,8 +7,6 @@ import (
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/elements/els"
-	"io"
 )
 
 const (
@@ -25,17 +23,17 @@ var (
 
 type GridItemsElement struct {
 	compton.BaseElement
-	r compton.Registrar
+	//r compton.Registrar
 }
 
-func (gie *GridItemsElement) WriteStyles(w io.Writer) error {
-	if gie.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleGridItems, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return gie.BaseElement.WriteStyles(w)
-}
+//func (gie *GridItemsElement) WriteStyles(w io.Writer) error {
+//	if gie.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleGridItems, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return gie.BaseElement.WriteStyles(w)
+//}
 
 func (gie *GridItemsElement) RowGap(sz size.Size) *GridItemsElement {
 	gie.AddClass(class.RowGap(sz))
@@ -73,12 +71,16 @@ func (gie *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
 	return gie
 }
 
-func GridItems(wcr compton.Registrar) *GridItemsElement {
-	return &GridItemsElement{
+func GridItems(r compton.Registrar) *GridItemsElement {
+	grid := &GridItemsElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupGridItems,
 			TagName: compton_atoms.GridItems,
 		},
-		r: wcr,
+		//r: wcr,
 	}
+
+	r.RegisterStyle(styleRegistrationName, styleGridItems)
+
+	return grid
 }

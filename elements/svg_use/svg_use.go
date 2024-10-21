@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/elements/els"
 	"io"
 )
 
@@ -45,20 +46,20 @@ var (
 
 type SvgUseElement struct {
 	compton.BaseElement
-	r compton.Registrar
+	//r compton.Registrar
 	s Symbol
 }
 
-func (sue *SvgUseElement) WriteRequirements(w io.Writer) error {
-	if sue.r.RequiresRegistration(registrationName) {
-		if _, err := w.Write(markupAtlas); err != nil {
-			return err
-		}
-	}
-	return nil
-}
+//func (sue *SvgUseElement) WriteRequirements(w io.Writer) error {
+//	if sue.r.RequiresRegistration(registrationName) {
+//		if _, err := w.Write(markupAtlas); err != nil {
+//			return err
+//		}
+//	}
+//	return nil
+//}
 
-func (sue *SvgUseElement) WriteContent(w io.Writer) error {
+func (sue *SvgUseElement) Write(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupSvgUse), w, sue.fragmentWriter)
 }
 
@@ -80,9 +81,12 @@ func (sue *SvgUseElement) fragmentWriter(t string, w io.Writer) error {
 
 func SvgUse(r compton.Registrar, s Symbol) compton.Element {
 	sue := &SvgUseElement{
-		r: r,
+		//r: r,
 		s: s,
 	}
 	sue.AddClass(symbolStrings[s])
+
+	r.RegisterRequirement(registrationName, els.TextBytes(markupAtlas))
+
 	return sue
 }

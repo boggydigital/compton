@@ -3,6 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"golang.org/x/net/html/atom"
 )
 
@@ -13,6 +14,6 @@ var (
 
 func Datalist(id string) compton.Element {
 	dataList := compton.NewElement(atom.Datalist, markupDatalist)
-	dataList.SetAttribute(compton.IdAttr, id)
+	dataList.SetAttribute(attr.Id, id)
 	return dataList
 }

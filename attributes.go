@@ -1,28 +1,9 @@
 package compton
 
 import (
+	"github.com/boggydigital/compton/consts/attr"
 	"io"
 	"strings"
-)
-
-const (
-	IdAttr      = "id"
-	ClassAttr   = "class"
-	HrefAttr    = "href"
-	SrcAttr     = "src"
-	ForAttr     = "for"
-	TypeAttr    = "type"
-	ValueAttr   = "value"
-	LabelAttr   = "label"
-	ListAttr    = "list"
-	ActionAttr  = "action"
-	MethodAttr  = "method"
-	LoadingAttr = "loading"
-)
-
-const (
-	TrueVal  = "true"
-	FalseVal = "false"
 )
 
 type Attributes struct {
@@ -30,7 +11,7 @@ type Attributes struct {
 }
 
 func (a *Attributes) SetAttribute(name, val string) {
-	if name == ClassAttr {
+	if name == attr.Class {
 		panic("class attribute should be set with ClassList methods")
 	}
 	if a.attributes == nil {

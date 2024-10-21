@@ -9,7 +9,6 @@ import (
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/compton/elements/els"
-	"io"
 )
 
 const (
@@ -26,17 +25,17 @@ var (
 
 type FspanElement struct {
 	compton.BaseElement
-	r compton.Registrar
+	//r compton.Registrar
 }
 
-func (fse *FspanElement) WriteStyles(w io.Writer) error {
-	if fse.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleFspan, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return fse.BaseElement.WriteStyles(w)
-}
+//func (fse *FspanElement) WriteStyles(w io.Writer) error {
+//	if fse.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleFspan, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return fse.BaseElement.WriteStyles(w)
+//}
 
 func (fse *FspanElement) ForegroundColor(c color.Color) *FspanElement {
 	fse.AddClass(class.ForegroundColor(c))
@@ -64,8 +63,11 @@ func Text(r compton.Registrar, t string) *FspanElement {
 			TagName: compton_atoms.Fspan,
 			Markup:  markupFspan,
 		},
-		r: r,
+		//r: r,
 	}
 	fse.Append(els.Text(t))
+
+	r.RegisterStyle(styleRegistrationName, styleFspan)
+
 	return fse
 }

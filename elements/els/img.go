@@ -3,6 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/loading"
 	"golang.org/x/net/html/atom"
 )
@@ -21,19 +22,19 @@ var (
 func Image(src string) compton.Element {
 	image := compton.NewElement(atom.Img, markupImage)
 	if src != "" {
-		image.SetAttribute(compton.SrcAttr, src)
+		image.SetAttribute(attr.Src, src)
 	}
 	return image
 }
 
 func ImageLazy(src string) compton.Element {
 	image := Image(src)
-	image.SetAttribute(compton.LoadingAttr, loading.Lazy.String())
+	image.SetAttribute(attr.Loading, loading.Lazy.String())
 	return image
 }
 
 func ImageEager(src string) compton.Element {
 	image := Image(src)
-	image.SetAttribute(compton.LoadingAttr, loading.Eager.String())
+	image.SetAttribute(attr.Loading, loading.Eager.String())
 	return image
 }

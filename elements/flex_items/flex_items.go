@@ -10,8 +10,6 @@ import (
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/elements/els"
-	"io"
 )
 
 const (
@@ -28,17 +26,17 @@ var (
 
 type FlexItemsElement struct {
 	compton.BaseElement
-	r compton.Registrar
+	//r compton.Registrar
 }
 
-func (fie *FlexItemsElement) WriteStyles(w io.Writer) error {
-	if fie.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleFlexItems, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return fie.BaseElement.WriteStyles(w)
-}
+//func (fie *FlexItemsElement) WriteStyles(w io.Writer) error {
+//	if fie.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleFlexItems, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return fie.BaseElement.WriteStyles(w)
+//}
 
 func (fie *FlexItemsElement) RowGap(sz size.Size) *FlexItemsElement {
 	fie.AddClass(class.RowGap(sz))
@@ -102,9 +100,12 @@ func FlexItems(r compton.Registrar, d direction.Direction) *FlexItemsElement {
 			Markup:  markupFlexItems,
 			TagName: compton_atoms.FlexItems,
 		},
-		r: r,
+		//r: r,
 	}
 	fie.AddClass(class.FlexDirection(d))
+
+	r.RegisterStyle(styleRegistrationName, styleFlexItems)
+
 	return fie
 }
 

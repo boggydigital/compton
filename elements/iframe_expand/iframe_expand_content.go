@@ -18,8 +18,8 @@ var (
 // to the host page that contains script/receive.js to size host
 // iframe element and remove `loading` class
 func IframeExpandContent(id, title string) *page.PageElement {
-	p := page.Page(title).AppendStyle(styleIframeContent)
-	p.SetId(id)
+	p := page.Page(title).AppendStyle("style-iframe-content", styleIframeContent)
+	p.SetBodyId(id)
 	p.Append(script.ScriptAsync(scriptPost))
 	return p
 }

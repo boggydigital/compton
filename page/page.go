@@ -1,17 +1,17 @@
 package page
 
 import (
-	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/units"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/script"
 	"golang.org/x/net/html/atom"
 	"io"
-	"strconv"
 )
 
 var (
@@ -21,124 +21,97 @@ var (
 
 var (
 	//go:embed "style/page.css"
-	stylePages []byte
+	stylePage []byte
 )
 
 type PageElement struct {
 	compton.BaseElement
-	customElementsRegistry map[string]any
-	title                  string
-	//favIconEmoji           string
-	appStyles [][]byte
-	favIcon   bool
-	manifest  bool
+	registry map[string]any
+	document compton.Element
 }
 
-func (p *PageElement) WriteContent(w io.Writer) error {
-	return compton.WriteContents(bytes.NewReader(markupPage), w, p.writeFragment)
-}
+func (p *PageElement) Write(w io.Writer) error {
 
-func (p *PageElement) writeFragment(t string, w io.Writer) error {
-	switch t {
-	case ".Title":
-		if _, err := io.WriteString(w, p.title); err != nil {
-			return err
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		if styleClasses := head.GetElementById("style-classes"); styleClasses == nil {
+			p.AppendStyle("style-classes", class.StyleClasses())
 		}
-	//case ".FavIconEmoji":
-	//	if _, err := io.WriteString(w, p.favIconEmoji); err != nil {
-	//		return err
-	//	}
-	case ".FavIcon":
-		if p.favIcon {
-			favIconLink := els.Link()
-			favIconLink.SetAttribute("rel", "icon")
-			favIconLink.SetAttribute("type", "image/png")
-			favIconLink.SetAttribute("href", "icon.png")
-			if err := favIconLink.WriteContent(w); err != nil {
-				return err
-			}
-		}
-	case ".Manifest":
-		if p.manifest {
-			manifestLink := els.Link()
-			manifestLink.SetAttribute("rel", "manifest")
-			manifestLink.SetAttribute("href", "manifest.json")
-			if err := manifestLink.WriteContent(w); err != nil {
-				return err
-			}
-		}
-	case ".StyleColors":
-		if _, err := w.Write(color.StyleSheet); err != nil {
-			return err
-		}
-	case ".StyleUnits":
-		if _, err := w.Write(units.StyleSheet); err != nil {
-			return err
-		}
-	case ".StylePage":
-		if _, err := w.Write(stylePages); err != nil {
-			return err
-		}
-	case ".StyleClasses":
-		if _, err := w.Write(class.StyleClasses()); err != nil {
-			return err
-		}
-	case ".StyleApp":
-		for ii, appStyle := range p.appStyles {
-			id := "style-app-" + strconv.Itoa(ii)
-			style := els.Style(appStyle, id)
-			if err := style.WriteContent(w); err != nil {
-				return err
-			}
-		}
-	case ".ElementsStyles":
-		if err := p.WriteStyles(w); err != nil {
-			return err
-		}
-	case compton.RequirementsToken:
-		if err := p.WriteRequirements(w); err != nil {
-			return err
-		}
-	case compton.DeferralsToken:
-		if err := p.WriteDeferrals(w); err != nil {
-			return err
-		}
-	case compton.AttributesToken:
-		fallthrough
-	case compton.ContentToken:
-		if err := p.WriteFragment(t, w); err != nil {
-			return err
-		}
-	default:
-		return compton.ErrUnknownToken(t)
 	}
-	return nil
+
+	return p.document.Write(w)
 }
 
-func (p *PageElement) RequiresRegistration(name string) bool {
-	if _, ok := p.customElementsRegistry[name]; !ok {
-		p.customElementsRegistry[name] = nil
-		return true
+func (p *PageElement) Append(children ...compton.Element) {
+	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+		if content := body.GetFirstElementByTagName(compton_atoms.Content); content != nil {
+			content.Append(children...)
+		}
 	}
-	return false
 }
 
-func (p *PageElement) AppendStyle(styles ...[]byte) *PageElement {
-	for _, style := range styles {
-		if len(style) > 0 {
-			p.appStyles = append(p.appStyles, style)
+func (p *PageElement) RegisterStyle(name string, style []byte) {
+	if _, ok := p.registry[name]; !ok {
+		p.registry[name] = nil
+		p.AppendStyle(name, style)
+	}
+}
+
+func (p *PageElement) RegisterRequirement(name string, element compton.Element) {
+	if _, ok := p.registry[name]; !ok {
+		p.registry[name] = nil
+		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+			if req := body.GetFirstElementByTagName(compton_atoms.Requirements); req != nil {
+				req.Append(element)
+			}
+		}
+	}
+}
+
+func (p *PageElement) RegisterDeferral(name string, element compton.Element) {
+	if _, ok := p.registry[name]; !ok {
+		p.registry[name] = nil
+		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+			if def := body.GetFirstElementByTagName(compton_atoms.Deferrals); def != nil {
+				def.Append(element)
+			}
+		}
+	}
+}
+
+func (p *PageElement) IsRegistered(name string) bool {
+	_, ok := p.registry[name]
+	return ok
+}
+
+func (p *PageElement) AppendStyle(id string, style []byte) *PageElement {
+	if len(style) > 0 {
+		if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+			head.Append(els.Style(style, id))
 		}
 	}
 	return p
 }
 
 func (p *PageElement) AppendManifest() *PageElement {
-	p.manifest = true
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Link(map[string]string{attr.Rel: attr.Manifest, attr.Href: attr.ManifestJson}))
+		head.Append(els.Meta(map[string]string{attr.Name: attr.MobileWebAppCapable, attr.Content: attr.Yes}))
+		head.Append(els.Meta(map[string]string{attr.Name: attr.AppleMobileWebAppStatusBarStyle, attr.Content: attr.BlackTranslucent}))
+	}
 	return p
 }
 
-func (p *PageElement) AppendFavIcon() *PageElement {
-	p.favIcon = true
+func (p *PageElement) AppendIcon() *PageElement {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Link(map[string]string{attr.Rel: attr.Icon, attr.Href: attr.IconPng, attr.Type: attr.ImagePng}))
+	}
+	return p
+}
+
+func (p *PageElement) SetBodyId(id string) *PageElement {
+	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+		body.SetId(id)
+	}
 	return p
 }
 
@@ -156,18 +129,57 @@ func (p *PageElement) ScriptDigests() []string {
 	return nil
 }
 
-//func (p *PageElement) SetFavIconEmoji(favIconEmoji string) *PageElement {
-//	p.favIconEmoji = favIconEmoji
-//	return p
-//}
+func (p *PageElement) appendMetaCharset() {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Meta(map[string]string{attr.Charset: attr.Utf8}))
+	}
+}
+
+func (p *PageElement) appendTitle(title string) {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Title(title))
+	}
+}
+
+func (p *PageElement) appendViewport() {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Meta(map[string]string{attr.Viewport: attr.ViewportDefaults}))
+	}
+}
+
+func (p *PageElement) appendColorScheme() {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(els.Meta(map[string]string{attr.ColorScheme: attr.DarkLight}))
+	}
+}
 
 func Page(title string) *PageElement {
-	return &PageElement{
+	page := &PageElement{
 		BaseElement: compton.BaseElement{
 			Markup:  markupPage,
 			TagName: atom.Body,
 		},
-		title:                  title,
-		customElementsRegistry: make(map[string]any),
+		registry: make(map[string]any),
 	}
+
+	page.document = els.Document()
+	html := els.Html("en")
+	page.document.Append(els.Doctype(), html)
+
+	head := els.Head()
+	body := els.Body()
+	html.Append(head, body)
+
+	body.Append(els.Requirements(), els.Content(), els.Deferrals())
+
+	page.appendMetaCharset()
+	page.appendTitle(title)
+	page.appendViewport()
+	page.appendColorScheme()
+
+	page.AppendStyle("style-colors", color.StyleSheet)
+	page.AppendStyle("style-units", units.StyleSheet)
+	page.AppendStyle("style-page", stylePage)
+
+	return page
 }

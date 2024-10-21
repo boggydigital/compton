@@ -2,6 +2,7 @@ package title_values
 
 import (
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/elements/els"
 	"github.com/boggydigital/compton/elements/inputs"
@@ -41,6 +42,6 @@ func Search(r compton.Registrar, title, inputId string) *TitleInputElement {
 
 func SearchValue(wcr compton.Registrar, title, inputId, value string) *TitleInputElement {
 	titleInput := Search(wcr, title, inputId)
-	titleInput.input.SetAttribute(compton.ValueAttr, value)
+	titleInput.input.SetAttribute(attr.Value, value)
 	return titleInput
 }

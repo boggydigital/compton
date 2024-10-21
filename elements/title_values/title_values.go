@@ -74,23 +74,23 @@ func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order .
 	return tve
 }
 
-func (tve *TitleValuesElement) WriteStyles(w io.Writer) error {
-	if tve.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleTitleValues, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return tve.BaseElement.WriteStyles(w)
-}
+//func (tve *TitleValuesElement) WriteStyles(w io.Writer) error {
+//	if tve.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleTitleValues, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return tve.BaseElement.WriteStyles(w)
+//}
 
-func (tve *TitleValuesElement) WriteContent(w io.Writer) error {
+func (tve *TitleValuesElement) Write(w io.Writer) error {
 	return compton.WriteContents(bytes.NewReader(markupTitleValues), w, tve.elementFragmentWriter)
 }
 
 func (tve *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error {
 	switch t {
 	case ".Title":
-		if err := tve.title.WriteContent(w); err != nil {
+		if err := tve.title.Write(w); err != nil {
 			return err
 		}
 	case compton.ContentToken:
@@ -130,6 +130,9 @@ func TitleValues(r compton.Registrar, title string) *TitleValuesElement {
 		title: els.HeadingText(title, 3),
 	}
 	tve.RowGap(size.Small)
+
+	r.RegisterStyle(styleRegistrationName, styleTitleValues)
+
 	return tve
 }
 

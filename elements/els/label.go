@@ -3,6 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"golang.org/x/net/html/atom"
 )
 
@@ -14,7 +15,7 @@ var (
 func Label(forInput string) compton.Element {
 	label := compton.NewElement(atom.Label, markupLabel)
 	if forInput != "" {
-		label.SetAttribute(compton.ForAttr, forInput)
+		label.SetAttribute(attr.For, forInput)
 	}
 	return label
 }

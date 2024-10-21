@@ -3,6 +3,7 @@ package els
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"golang.org/x/net/html/atom"
 )
 
@@ -13,7 +14,7 @@ var (
 
 func A(href string) compton.Element {
 	anchor := compton.NewElement(atom.A, markupAnchor)
-	anchor.SetAttribute(compton.HrefAttr, href)
+	anchor.SetAttribute(attr.Href, href)
 	return anchor
 }
 

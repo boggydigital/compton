@@ -26,25 +26,25 @@ type IframeExpandElement struct {
 	iframe compton.Element
 }
 
-func (ife *IframeExpandElement) WriteStyles(w io.Writer) error {
-	if ife.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleIframeHost, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return nil
-}
+//func (ife *IframeExpandElement) WriteStyles(w io.Writer) error {
+//	if ife.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleIframeHost, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return nil
+//}
 
-func (ife *IframeExpandElement) WriteRequirements(w io.Writer) error {
-	if ife.r.RequiresRegistration(registrationName) {
-		receiveScript := script.Script(scriptReceive)
-		return receiveScript.WriteContent(w)
-	}
-	return nil
-}
+//func (ife *IframeExpandElement) WriteRequirements(w io.Writer) error {
+//	if ife.r.RequiresRegistration(registrationName) {
+//		receiveScript := script.Script(scriptReceive)
+//		return receiveScript.Write(w)
+//	}
+//	return nil
+//}
 
-func (ife *IframeExpandElement) WriteContent(w io.Writer) error {
-	return ife.iframe.WriteContent(w)
+func (ife *IframeExpandElement) Write(w io.Writer) error {
+	return ife.iframe.Write(w)
 }
 
 // IframeExpandHost creates iframe-expand that will expand height to content height.
@@ -57,6 +57,10 @@ func IframeExpandHost(r compton.Registrar, id, src string) compton.Element {
 	iframe := els.IframeLazy(src)
 	iframe.SetId(id)
 	iframe.AddClass("loading")
+
+	r.RegisterStyle(styleRegistrationName, styleIframeHost)
+	r.RegisterRequirement(registrationName, script.Script(scriptReceive))
+
 	return &IframeExpandElement{
 		r:      r,
 		iframe: iframe,

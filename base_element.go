@@ -2,6 +2,7 @@ package compton
 
 import (
 	"bytes"
+	"github.com/boggydigital/compton/consts/attr"
 	"golang.org/x/net/html/atom"
 	"io"
 )
@@ -22,42 +23,45 @@ func (be *BaseElement) HasChildren() bool {
 	return len(be.Children) > 0
 }
 
-func (be *BaseElement) WriteRequirements(w io.Writer) error {
-	for _, child := range be.Children {
-		if err := child.WriteRequirements(w); err != nil {
-			return err
-		}
-	}
-	return nil
-}
+//func (be *BaseElement) WriteRequirements(w io.Writer) error {
+//	for _, child := range be.Children {
+//		if err := child.WriteRequirements(w); err != nil {
+//			return err
+//		}
+//	}
+//	return nil
+//}
 
-func (be *BaseElement) WriteStyles(w io.Writer) error {
-	for _, child := range be.Children {
-		if err := child.WriteStyles(w); err != nil {
-			return err
-		}
-	}
-	return nil
-}
+//func (be *BaseElement) WriteStyles(w io.Writer) error {
+//	for _, child := range be.Children {
+//		if err := child.WriteStyles(w); err != nil {
+//			return err
+//		}
+//	}
+//	return nil
+//}
 
-func (be *BaseElement) WriteContent(w io.Writer) error {
+func (be *BaseElement) Write(w io.Writer) error {
+	if be.Markup == nil {
+		return be.WriteFragment(ContentToken, w)
+	}
 	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
 }
 
-func (be *BaseElement) WriteDeferrals(w io.Writer) error {
-	for _, child := range be.Children {
-		if err := child.WriteDeferrals(w); err != nil {
-			return err
-		}
-	}
-	return nil
-}
+//func (be *BaseElement) WriteDeferrals(w io.Writer) error {
+//	for _, child := range be.Children {
+//		if err := child.WriteDeferrals(w); err != nil {
+//			return err
+//		}
+//	}
+//	return nil
+//}
 
 func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 	switch t {
 	case ContentToken:
 		for _, child := range be.Children {
-			if err := child.WriteContent(w); err != nil {
+			if err := child.Write(w); err != nil {
 				return err
 			}
 		}
@@ -67,7 +71,7 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 			be.Attributes.attributes = make(map[string]string)
 		}
 		if len(be.ClassList.classList) > 0 {
-			be.Attributes.attributes[ClassAttr] = be.ClassList.String()
+			be.Attributes.attributes[attr.Class] = be.ClassList.String()
 		}
 		if err := be.Attributes.Write(w); err != nil {
 			return err
@@ -79,7 +83,7 @@ func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
 }
 
 func (be *BaseElement) SetId(id string) {
-	be.SetAttribute(IdAttr, id)
+	be.SetAttribute(attr.Id, id)
 }
 
 func (be *BaseElement) GetTagName() atom.Atom {
@@ -88,7 +92,7 @@ func (be *BaseElement) GetTagName() atom.Atom {
 
 func (be *BaseElement) GetElementById(id string) Element {
 	for _, child := range be.Children {
-		if cid := child.GetAttribute(IdAttr); cid == id {
+		if cid := child.GetAttribute(attr.Id); cid == id {
 			return child
 		}
 		if el := child.GetElementById(id); el != nil {
@@ -107,6 +111,13 @@ func (be *BaseElement) GetElementsByTagName(tagName atom.Atom) []Element {
 		matches = append(matches, child.GetElementsByTagName(tagName)...)
 	}
 	return matches
+}
+
+func (be *BaseElement) GetFirstElementByTagName(tagName atom.Atom) Element {
+	if matches := be.GetElementsByTagName(tagName); len(matches) > 0 {
+		return matches[0]
+	}
+	return nil
 }
 
 func (be *BaseElement) GetElementsByClassName(names ...string) []Element {

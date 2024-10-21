@@ -13,7 +13,7 @@ type TextElement struct {
 func (t *TextElement) Append(_ ...compton.Element) {
 }
 
-func (t *TextElement) WriteContent(w io.Writer) error {
+func (t *TextElement) Write(w io.Writer) error {
 	if _, err := io.WriteString(w, t.content); err != nil {
 		return err
 	}
@@ -23,5 +23,11 @@ func (t *TextElement) WriteContent(w io.Writer) error {
 func Text(content string) compton.Element {
 	return &TextElement{
 		content: content,
+	}
+}
+
+func TextBytes(content []byte) compton.Element {
+	return &TextElement{
+		content: string(content),
 	}
 }

@@ -3,13 +3,13 @@ package inputs
 import (
 	_ "embed"
 	"github.com/boggydigital/compton"
+	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/exp/maps"
 	"golang.org/x/net/html/atom"
-	"io"
 	"slices"
 	"strconv"
 	"time"
@@ -35,14 +35,14 @@ type InputElement struct {
 	dataList compton.Element
 }
 
-func (ie *InputElement) WriteStyles(w io.Writer) error {
-	if ie.r.RequiresRegistration(styleRegistrationName) {
-		if err := els.Style(styleInputs, styleRegistrationName).WriteContent(w); err != nil {
-			return err
-		}
-	}
-	return ie.BaseElement.WriteStyles(w)
-}
+//func (ie *InputElement) WriteStyles(w io.Writer) error {
+//	if ie.r.RequiresRegistration(styleRegistrationName) {
+//		if err := els.Style(styleInputs, styleRegistrationName).Write(w); err != nil {
+//			return err
+//		}
+//	}
+//	return ie.BaseElement.WriteStyles(w)
+//}
 
 func (ie *InputElement) SetPlaceholder(placeholder string) *InputElement {
 	ie.SetAttribute("placeholder", placeholder)
@@ -76,7 +76,7 @@ func (ie *InputElement) SetDisabled(condition bool) *InputElement {
 func (ie *InputElement) SetDatalist(list map[string]string, listId string) *InputElement {
 
 	if listId == "" {
-		listId = ie.GetAttribute(compton.IdAttr)
+		listId = ie.GetAttribute(attr.Id)
 		if listId == "" {
 			listId = strconv.FormatInt(time.Now().Unix(), 10)
 		}
@@ -95,20 +95,22 @@ func (ie *InputElement) SetDatalist(list map[string]string, listId string) *Inpu
 		ie.dataList = dataList
 	}
 
-	ie.SetAttribute(compton.ListAttr, listId)
+	ie.SetAttribute(attr.List, listId)
+
+	ie.r.RegisterDeferral(datalistRegistrationPfx+listId, ie.dataList)
 
 	return ie
 }
 
-func (ie *InputElement) WriteDeferrals(w io.Writer) error {
-	if ie.dataList != nil {
-		listId := ie.dataList.GetAttribute(compton.IdAttr)
-		if ie.r.RequiresRegistration(datalistRegistrationPfx + listId) {
-			return ie.dataList.WriteContent(w)
-		}
-	}
-	return nil
-}
+//func (ie *InputElement) WriteDeferrals(w io.Writer) error {
+//	if ie.dataList != nil {
+//		listId := ie.dataList.GetAttribute(attr.Id)
+//		if ie.r.RequiresRegistration(datalistRegistrationPfx + listId) {
+//			return ie.dataList.Write(w)
+//		}
+//	}
+//	return nil
+//}
 
 func (ie *InputElement) FontWeight(w font_weight.Weight) *InputElement {
 	ie.AddClass(class.FontWeight(w))
@@ -124,13 +126,16 @@ func Input(r compton.Registrar, it input_types.Type) *InputElement {
 		r:  r,
 		it: it,
 	}
-	input.SetAttribute(compton.TypeAttr, it.String())
+	input.SetAttribute(attr.Type, it.String())
+
+	r.RegisterStyle(styleRegistrationName, styleInputs)
+
 	return input
 }
 
 func InputValue(r compton.Registrar, it input_types.Type, value string) *InputElement {
 	input := Input(r, it)
-	input.SetAttribute(compton.ValueAttr, value)
+	input.SetAttribute(attr.Value, value)
 	return input
 }
 
