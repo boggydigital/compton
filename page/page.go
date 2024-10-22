@@ -96,16 +96,26 @@ func (p *PageElement) AppendStyle(id string, style []byte) *PageElement {
 
 func (p *PageElement) AppendManifest() *PageElement {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
-		head.Append(els.Link(map[string]string{attr.Rel: attr.Manifest, attr.Href: attr.ManifestJson}))
-		head.Append(els.Meta(map[string]string{attr.Name: attr.MobileWebAppCapable, attr.Content: attr.Yes}))
-		head.Append(els.Meta(map[string]string{attr.Name: attr.AppleMobileWebAppStatusBarStyle, attr.Content: attr.BlackTranslucent}))
+		head.Append(els.Link(map[string]string{
+			attr.Rel: attr.Manifest, attr.Href: attr.ManifestJson,
+		}))
+		head.Append(els.Meta(map[string]string{
+			attr.Name: attr.MobileWebAppCapable, attr.Content: attr.Yes,
+		}))
+		head.Append(els.Meta(map[string]string{
+			attr.Name: attr.AppleMobileWebAppStatusBarStyle, attr.Content: attr.BlackTranslucent,
+		}))
 	}
 	return p
 }
 
 func (p *PageElement) AppendIcon() *PageElement {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
-		head.Append(els.Link(map[string]string{attr.Rel: attr.Icon, attr.Href: attr.IconPng, attr.Type: attr.ImagePng}))
+		head.Append(els.Link(map[string]string{
+			attr.Rel:  attr.Icon,
+			attr.Href: attr.IconPng,
+			attr.Type: attr.ImagePng,
+		}))
 	}
 	return p
 }
@@ -144,13 +154,18 @@ func (p *PageElement) appendTitle(title string) {
 
 func (p *PageElement) appendViewport() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
-		head.Append(els.Meta(map[string]string{attr.Viewport: attr.ViewportDefaults}))
+		head.Append(els.Meta(map[string]string{
+			attr.Name:    attr.Viewport,
+			attr.Content: attr.ViewportDefaults,
+		}))
 	}
 }
 
 func (p *PageElement) appendColorScheme() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
-		head.Append(els.Meta(map[string]string{attr.ColorScheme: attr.DarkLight}))
+		head.Append(els.Meta(map[string]string{
+			attr.ColorScheme: attr.DarkLight,
+		}))
 	}
 }
 
