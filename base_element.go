@@ -1,10 +1,16 @@
 package compton
 
 import (
-	"bytes"
+	"embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"golang.org/x/net/html/atom"
 	"io"
+	"path"
+)
+
+const (
+	htmlExt = ".html"
+	cssExt  = ".css"
 )
 
 type BaseElement struct {
@@ -12,7 +18,8 @@ type BaseElement struct {
 	ClassList
 	Children []Element
 	TagName  atom.Atom
-	Markup   []byte
+	Markup   embed.FS
+	Filename string
 }
 
 func (be *BaseElement) Append(children ...Element) {
@@ -23,16 +30,13 @@ func (be *BaseElement) HasChildren() bool {
 	return len(be.Children) > 0
 }
 
-func (be *BaseElement) Finalize() {
-	// do nothing
-}
-
 func (be *BaseElement) Write(w io.Writer) error {
-	be.Finalize()
-	if be.Markup == nil {
-		return be.WriteFragment(ContentToken, w)
+	file, err := be.Markup.Open(be.Filename)
+	if err != nil {
+		return err
 	}
-	return WriteContents(bytes.NewReader(be.Markup), w, be.WriteFragment)
+	defer file.Close()
+	return WriteContents(file, w, be.WriteFragment)
 }
 
 func (be *BaseElement) WriteFragment(t string, w io.Writer) error {
@@ -109,6 +113,28 @@ func (be *BaseElement) GetElementsByClassName(names ...string) []Element {
 	return matches
 }
 
-func NewElement(a atom.Atom, markup []byte) Element {
-	return &BaseElement{Markup: markup, TagName: a}
+func NewElement(a atom.Atom, markup embed.FS, fn string) Element {
+	return &BaseElement{
+		Markup:   markup,
+		TagName:  a,
+		Filename: fn,
+	}
+}
+
+func atomMarkupFilename(a atom.Atom) string {
+	if an := a.String(); an != "" {
+		return path.Join("markup", a.String()+htmlExt)
+	}
+	panic("unknown atom markup")
+}
+
+func atomStyleFilename(a atom.Atom) string {
+	if an := a.String(); an != "" {
+		return path.Join("style", a.String()+cssExt)
+	}
+	panic("unknown atom style")
+}
+
+func newElementAtom(a atom.Atom, markup embed.FS) Element {
+	return NewElement(a, markup, atomMarkupFilename(a))
 }

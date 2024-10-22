@@ -10,18 +10,6 @@ import (
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/compton/elements/details_summary"
-	"github.com/boggydigital/compton/elements/els"
-	"github.com/boggydigital/compton/elements/flex_items"
-	"github.com/boggydigital/compton/elements/fspan"
-	"github.com/boggydigital/compton/elements/grid_items"
-	"github.com/boggydigital/compton/elements/iframe_expand"
-	"github.com/boggydigital/compton/elements/inputs"
-	"github.com/boggydigital/compton/elements/issa_image"
-	"github.com/boggydigital/compton/elements/nav_links"
-	"github.com/boggydigital/compton/elements/svg_use"
-	"github.com/boggydigital/compton/elements/title_values"
-	"github.com/boggydigital/compton/page"
 	"golang.org/x/exp/maps"
 	"os"
 	"path/filepath"
@@ -40,28 +28,28 @@ func main() {
 }
 
 func writeTestPage() {
-	p := page.Page("test")
+	p := compton.Page("test")
 	p.AppendStyle("app-style", appStyles)
 
-	s := flex_items.FlexItems(p, direction.Column)
+	s := compton.FlexItems(p, direction.Column)
 
 	topNavLinks := map[string]string{
 		"Updates": "/updates",
 		"Search":  "/search",
 	}
 
-	topNavIcons := map[string]svg_use.Symbol{
-		"Updates": svg_use.Sparkle,
-		"Search":  svg_use.Search,
+	topNavIcons := map[string]compton.Symbol{
+		"Updates": compton.Sparkle,
+		"Search":  compton.Search,
 	}
 
-	targets := nav_links.TextLinks(
+	targets := compton.TextLinks(
 		topNavLinks,
 		"Search",
 		"Updates", "Search")
-	nav_links.SetIcons(targets, topNavIcons)
+	compton.SetIcons(targets, topNavIcons)
 
-	topNav := nav_links.NavLinksTargets(p, targets...)
+	topNav := compton.NavLinksTargets(p, targets...)
 
 	navLinks := map[string]string{
 		"New":      "/new",
@@ -71,8 +59,8 @@ func writeTestPage() {
 		"All":      "/all",
 	}
 
-	nav := nav_links.NavLinksTargets(p,
-		nav_links.TextLinks(
+	nav := compton.NavLinksTargets(p,
+		compton.TextLinks(
 			navLinks,
 			"New",
 			"New",
@@ -81,33 +69,32 @@ func writeTestPage() {
 			"Sale",
 			"All")...)
 
-	s.Append(flex_items.Center(p, topNav, nav))
+	s.Append(compton.FICenter(p, topNav, nav))
 
-	filterSearchTitle := fspan.Text(p, "Filter & Search").
+	filterSearchTitle := compton.Fspan(p, "Filter & Search").
 		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
 
-	dsFilterSearch := details_summary.Larger(p, filterSearchTitle, true).
+	dsFilterSearch := compton.DSLarge(p, filterSearchTitle, true).
 		BackgroundColor(color.Highlight)
 
-	form := els.Form("/action", "GET")
+	form := compton.Form("/action", "GET")
 
-	formStack := flex_items.
-		FlexItems(p, direction.Column)
+	formStack := compton.FlexItems(p, direction.Column)
 
 	qf := createQueryFragment(p)
 
 	formStack.Append(qf)
 
-	submitRow := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
+	submitRow := compton.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	submit := inputs.InputValue(p, input_types.Submit, "Submit Query")
+	submit := compton.InputValue(p, input_types.Submit, "Submit Query")
 	submitRow.Append(submit)
 	formStack.Append(submitRow)
 
-	tiGrid := grid_items.GridItems(p).JustifyContent(align.Center)
+	tiGrid := compton.GridItems(p).JustifyContent(align.Center)
 
-	ti1 := title_values.SearchValue(p, "Title", "title", "Hello")
+	ti1 := compton.TISearchValue(p, "Title", "title", "Hello")
 
 	tiList := map[string]string{
 		"true":  "True",
@@ -115,12 +102,12 @@ func writeTestPage() {
 		"maybe": "Maybe",
 	}
 
-	ti2 := title_values.Search(p, "Description", "description").
+	ti2 := compton.TISearch(p, "Description", "description").
 		SetDatalist(tiList, "")
 
-	ti3 := title_values.Search(p, "Descending", "desc")
-	ti4 := title_values.Search(p, "Sort", "sort")
-	ti5 := title_values.SearchValue(p, "Data Type", "data-type", "Account Products")
+	ti3 := compton.TISearch(p, "Descending", "desc")
+	ti4 := compton.TISearch(p, "Sort", "sort")
+	ti5 := compton.TISearchValue(p, "Data Type", "data-type", "Account Products")
 
 	tiGrid.Append(ti1, ti2, ti3, ti4, ti5)
 
@@ -132,16 +119,15 @@ func writeTestPage() {
 
 	s.Append(qf)
 
-	tvsTitle := fspan.Text(p, "Title Values").
+	tvsTitle := compton.Fspan(p, "Title Values").
 		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
-	dsTitleValues := details_summary.
-		Larger(p, tvsTitle, true).
+	dsTitleValues := compton.DSLarge(p, tvsTitle, true).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background).
 		MarkerColor(color.Yellow)
 
-	tvGrid := grid_items.GridItems(p).JustifyContent(align.Center)
+	tvGrid := compton.GridItems(p).JustifyContent(align.Center)
 
 	tvLinks := map[string]string{
 		"Achievements":       "/achievements",
@@ -149,18 +135,18 @@ func writeTestPage() {
 		"Overlay":            "/overlay",
 		"Single-player":      "/single-player",
 	}
-	tv1 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
-	tv2 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
-	tv3 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
-	tv4 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
-	tv5 := title_values.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
-	tv6 := title_values.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
-	tv7 := title_values.TitleValues(p, "Lots of values")
-	dsTitle := fspan.Text(p, "Expand all...").
+	tv1 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv2 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv3 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv4 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv5 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv6 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
+	tv7 := compton.TitleValues(p, "Lots of values")
+	dsTitle := compton.Fspan(p, "Expand all...").
 		FontWeight(font_weight.Bolder)
-	dsValues := details_summary.Smaller(p, dsTitle, false)
+	dsValues := compton.DSSmall(p, dsTitle, false)
 	for ii := range 10 {
-		element := fspan.Text(p, "Element "+strconv.Itoa(ii)+"&nbsp;").ForegroundColor(color.Gray)
+		element := compton.Fspan(p, "Element "+strconv.Itoa(ii)+"&nbsp;").ForegroundColor(color.Gray)
 		dsValues.Append(element)
 	}
 	tv7.Append(dsValues)
@@ -169,21 +155,21 @@ func writeTestPage() {
 	dsTitleValues.Append(tvGrid)
 	s.Append(dsTitleValues)
 
-	switchesTitle := fspan.Text(p, "Switches").
+	switchesTitle := compton.Fspan(p, "Switches").
 		FontWeight(font_weight.Bolder).
 		FontSize(size.Large)
-	dsSwitches := details_summary.Larger(p, switchesTitle, true).
+	dsSwitches := compton.DSLarge(p, switchesTitle, true).
 		BackgroundColor(color.Highlight).
 		SummaryRowGap(size.XSmall)
 
-	subTitle := fspan.Text(p, "This section has subtitle").
+	subTitle := compton.Fspan(p, "This section has subtitle").
 		FontSize(size.XSmall).
 		FontWeight(font_weight.Normal).
 		ForegroundColor(color.Gray)
 
 	dsSwitches.AppendSummary(subTitle)
 
-	swColumn := flex_items.FlexItems(p, direction.Column).AlignContent(align.Center)
+	swColumn := compton.FlexItems(p, direction.Column).AlignContent(align.Center)
 
 	sw1 := switchLabel(p, "test1", "Some very important switch")
 	sw2 := switchLabel(p, "test2", "Another, equally important switch")
@@ -195,12 +181,12 @@ func writeTestPage() {
 
 	s.Append(dsSwitches)
 
-	footer := flex_items.FlexItems(p, direction.Row).JustifyContent(align.Center)
+	footer := compton.FlexItems(p, direction.Row).JustifyContent(align.Center)
 
-	div := fspan.Text(p, "").ForegroundColor(color.Gray).FontSize(size.Small)
+	div := compton.Fspan(p, "").ForegroundColor(color.Gray).FontSize(size.Small)
 
-	div.Append(els.Text("Last updated: "),
-		els.TimeText(time.Now().Format("2006-01-02 15:04:05")))
+	div.Append(compton.Text("Last updated: "),
+		compton.TimeText(time.Now().Format("2006-01-02 15:04:05")))
 
 	footer.Append(div)
 
@@ -223,13 +209,13 @@ func writeTestPage() {
 }
 
 func switchLabel(r compton.Registrar, id, label string) compton.Element {
-	row := flex_items.FlexItems(r, direction.Row)
+	row := compton.FlexItems(r, direction.Row)
 
-	switchElement := inputs.Switch(r)
+	switchElement := compton.Switch(r)
 	switchElement.SetId(id)
 
-	labelElement := els.Label(id)
-	labelElement.Append(els.Text(label))
+	labelElement := compton.Label(id)
+	labelElement.Append(compton.Text(label))
 
 	row.Append(switchElement, labelElement)
 
@@ -238,12 +224,12 @@ func switchLabel(r compton.Registrar, id, label string) compton.Element {
 
 func writeIframeContent() {
 
-	c := page.Page("content")
-	ifec := iframe_expand.IframeExpandContent("test", "whatever")
+	c := compton.Page("content")
+	ifec := compton.IframeExpandContent("test", "whatever")
 	c.Append(ifec)
 
 	for i := range 1000 {
-		c.Append(els.DivText(strconv.Itoa(i)))
+		c.Append(compton.DivText(strconv.Itoa(i)))
 	}
 
 	contentPath := filepath.Join(os.TempDir(), "content.html")
@@ -259,11 +245,11 @@ func writeIframeContent() {
 
 	fmt.Println("file://" + contentPath)
 
-	p := page.Page("iframe")
+	p := compton.Page("iframe")
 
-	dc := details_summary.Larger(p, els.HeadingText("Description", 2), true)
+	dc := compton.DSLarge(p, compton.HeadingText("Description", 2), true)
 
-	ife := iframe_expand.IframeExpandHost(p, "test", "content.html")
+	ife := compton.IframeExpandHost(p, "test", "content.html")
 	dc.Append(ife)
 
 	p.Append(dc)
@@ -289,10 +275,10 @@ func writeIssaPage() {
 	//hydratedSrc := "data:image/gif;base64,R0lGODlhFQAeAAAAACwAAAAAFQAeAIcqKioqKlQqKn4qKqgqKtIqKvwqVCoqVFQqVH4qVKgqVNIqVPwqfioqflQqfn4qfqgqftIqfvwqqCoqqFQqqH4qqKgqqNIqqPwq0ioq0lQq0n4q0qgq0tIq0vwq/Coq/FQq/H4q/Kgq/NIq/PxUKipUKlRUKn5UKqhUKtJUKvxUVCpUVFRUVH5UVKhUVNJUVPxUfipUflRUfn5UfqhUftJUfvxUqCpUqFRUqH5UqKhUqNJUqPxU0ipU0lRU0n5U0qhU0tJU0vxU/CpU/FRU/H5U/KhU/NJU/Px+Kip+KlR+Kn5+Kqh+KtJ+Kvx+VCp+VFR+VH5+VKh+VNJ+VPx+fip+flR+fn5+fqh+ftJ+fvx+qCp+qFR+qH5+qKh+qNJ+qPx+0ip+0lR+0n5+0qh+0tJ+0vx+/Cp+/FR+/H5+/Kh+/NJ+/PyoKiqoKlSoKn6oKqioKtKoKvyoVCqoVFSoVH6oVKioVNKoVPyofiqoflSofn6ofqioftKofvyoqCqoqFSoqH6oqKioqNKoqPyo0iqo0lSo0n6o0qio0tKo0vyo/Cqo/FSo/H6o/Kio/NKo/PzSKirSKlTSKn7SKqjSKtLSKvzSVCrSVFTSVH7SVKjSVNLSVPzSfirSflTSfn7SfqjSftLSfvzSqCrSqFTSqH7SqKjSqNLSqPzS0irS0lTS0n7S0qjS0tLS0vzS/CrS/FTS/H7S/KjS/NLS/Pz8Kir8KlT8Kn78Kqj8KtL8Kvz8VCr8VFT8VH78VKj8VNL8VPz8fir8flT8fn78fqj8ftL8fvz8qCr8qFT8qH78qKj8qNL8qPz80ir80lT80n780qj80tL80vz8/Cr8/FT8/H78/Kj8/NL8/PwAAAAAAP8A/wAA////AAD/AP///wD///9sbGxsbJZsbMBslmxslpZslsBswGxswJZswMCWbGyWbJaWbMCWlmyWlpaWlsCWwGyWwJaWwMDAbGzAbJbAbMDAlmzAlpbAlsDAwGzAwJbAwMAAAAAAAAAAAAAAAAAAAAAI/wABCBTYZmCkFUkEJhwI4ABDSZKStElia46tSJIutYlUgiFBXpLa2LIlKdKcSxVN2uooMABFSRdHloyEcQ7GSAMDBICI8pKkJxAh2rpEFCeAFS5tgTsgwwodcFVgPnlS4slJSXPUBVghj45QWytKpLvkhufIOSRWHAgQaaS8KhZBSpKHydaTSAsBOGhwo+5TSew+zEkX44mtNm0CDNQAAgRMeeZspUsHLgPCwU8OOAQw4UOGS5E+fDA3B9yEJ0lipJuDVDEJBKop32ARzgEFhElKmJjDooTiFQ1izJlDp40SEyYElEiSJIAJdUpKAG/gIMOE4ElM5A5AYjuLPSXCr/9lAUJ0hgwHSggIgKS9gHDgwwc44KBxY+vrS7QnEQB+eBOa1WdfBg0EoB9zJRyQQ3wsNLCCA4zdtx4JSLSRjmYIuKNEEiwYAEAAEYKQAQK5LbcCOOqEsw4UVQnUQIR8TaAZCyxAQc8eV7jDom8NUQCCBiZURqB0JkBhQjiC7KhWAPUBeQOBOgWAwAE4iNGOOlCwEBaTIFBQwpMTRDnBBF3ocZwJ6Rh5AAUfeAlOAw3QiKE8x+kExRNK0AcCAtKtQGNrJtBhQpQBPAEFAA2MmCCNuiFnwhMG1tlnFTEY6KBvjkKBlBJKRNHCoMuRAAAJT1RqoE4AOucociyNmlqUBqwVtRYChALQETa2lqDCWgB4mJNOAwUEADs"
 	imageSrc := "https://gaugin.frmnt.io/image?id=0d9684e197ff3a8d34bddab41e2ef8c9f6d1050242b44b56dfab11ff69b670bb"
 
-	p := page.Page("issa page")
+	p := compton.Page("issa page")
 	p.AppendStyle("app-style", appStyles)
 
-	issaImage := issa_image.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
+	issaImage := compton.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
 	p.Append(issaImage)
 
 	issaPath := filepath.Join(os.TempDir(), "issa.html")
@@ -311,43 +297,43 @@ func writeIssaPage() {
 
 func createQueryFragment(r compton.Registrar) compton.Element {
 
-	shStack := flex_items.FlexItems(r, direction.Row).FontSize(size.Small)
+	shStack := compton.FlexItems(r, direction.Row).FontSize(size.Small)
 
-	sp1 := els.Span()
-	pt1 := fspan.Text(r, "Descending: ").
+	sp1 := compton.Span()
+	pt1 := compton.Fspan(r, "Descending: ").
 		ForegroundColor(color.Gray)
-	pv1 := fspan.Text(r, "True").
+	pv1 := compton.Fspan(r, "True").
 		FontWeight(font_weight.Bolder)
 	sp1.Append(pt1, pv1)
 	shStack.Append(sp1)
 
-	sp2 := els.Span()
-	pt2 := fspan.Text(r, "Sort: ").
+	sp2 := compton.Span()
+	pt2 := compton.Fspan(r, "Sort: ").
 		ForegroundColor(color.Gray)
-	pv2 := fspan.Text(r, "GOG Order Date").
+	pv2 := compton.Fspan(r, "GOG Order Date").
 		FontWeight(font_weight.Bolder)
 	sp2.Append(pt2, pv2)
 	shStack.Append(sp2)
 
-	sp3 := els.Span()
-	pt3 := fspan.Text(r, "Data Type: ").
+	sp3 := compton.Span()
+	pt3 := compton.Fspan(r, "Data Type: ").
 		ForegroundColor(color.Gray)
-	pv3 := fspan.Text(r, "Account Products").
+	pv3 := compton.Fspan(r, "Account Products").
 		FontWeight(font_weight.Bolder)
 	sp3.Append(pt3, pv3)
 	shStack.Append(sp3)
 
-	clearAction := els.AText("Clear", "/clear")
+	clearAction := compton.AText("Clear", "/clear")
 	clearAction.AddClass("action")
 	shStack.Append(clearAction)
 
-	return flex_items.Center(r, shStack)
+	return compton.FICenter(r, shStack)
 }
 
 func writeSvgUsePage() {
-	p := page.Page("svg use page")
+	p := compton.Page("svg use page")
 
-	p.Append(svg_use.SvgUse(p, svg_use.MacOS))
+	p.Append(compton.SvgUse(p, compton.MacOS))
 
 	svgUsePath := filepath.Join(os.TempDir(), "svg_use.html")
 	svgUseFile, err := os.Create(svgUsePath)
