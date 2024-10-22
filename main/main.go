@@ -215,6 +215,8 @@ func writeTestPage() {
 	}
 	defer testFile.Close()
 
+	fmt.Println(p.ScriptDigests())
+
 	if err := p.Write(testFile); err != nil {
 		panic(err)
 	}
@@ -253,6 +255,8 @@ func writeIframeContent() {
 	}
 	defer contentFile.Close()
 
+	fmt.Println("content script digests:", ifec.ScriptDigests())
+
 	if err := c.Write(contentFile); err != nil {
 		panic(err)
 	}
@@ -273,6 +277,8 @@ func writeIframeContent() {
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println("iframe script digests:", p.ScriptDigests())
 
 	if err := p.Write(iframeFile); err != nil {
 		panic(err)

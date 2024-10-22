@@ -114,7 +114,7 @@ func (p *PageElement) SetBodyId(id string) *PageElement {
 
 func (p *PageElement) ScriptDigests() []string {
 
-	if scripts := p.GetElementsByTagName(atom.Script); len(scripts) > 0 {
+	if scripts := p.document.GetElementsByTagName(atom.Script); len(scripts) > 0 {
 		digests := make([]string, 0, len(scripts))
 		for _, s := range scripts {
 			if se, ok := s.(*script.ScriptElement); ok {
