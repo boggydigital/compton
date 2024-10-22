@@ -21,13 +21,13 @@ var (
 	stylePage []byte
 )
 
-type PageElement struct {
+type pageElement struct {
 	compton.BaseElement
 	registry map[string]any
 	document compton.Element
 }
 
-func (p *PageElement) appendStyleClasses() {
+func (p *pageElement) appendStyleClasses() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		if styleClasses := head.GetElementById("style-classes"); styleClasses == nil {
 			p.AppendStyle("style-classes", class.StyleClasses())
@@ -35,30 +35,31 @@ func (p *PageElement) appendStyleClasses() {
 	}
 }
 
-func (p *PageElement) Append(children ...compton.Element) {
+func (p *pageElement) Append(children ...compton.Element) {
 	p.document.Append(children...)
 }
 
-func (p *PageElement) WriteResponse(w http.ResponseWriter) error {
-	if policy := p.ContentSecurityPolicy(); policy != "" {
+func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
+	if policy := p.contentSecurityPolicy(); policy != "" {
 		w.Header().Set("Content-Security-Policy", policy)
 	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	return p.Write(w)
 }
 
-func (p *PageElement) Write(w io.Writer) error {
+func (p *pageElement) Write(w io.Writer) error {
 	p.appendStyleClasses()
 	return p.document.Write(w)
 }
 
-func (p *PageElement) RegisterStyle(name string, style []byte) {
+func (p *pageElement) RegisterStyle(name string, style []byte) {
 	if _, ok := p.registry[name]; !ok {
 		p.registry[name] = nil
 		p.AppendStyle(name, style)
 	}
 }
 
-func (p *PageElement) RegisterRequirement(name string, element compton.Element) {
+func (p *pageElement) RegisterRequirement(name string, element compton.Element) {
 	if _, ok := p.registry[name]; !ok {
 		p.registry[name] = nil
 		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
@@ -69,7 +70,7 @@ func (p *PageElement) RegisterRequirement(name string, element compton.Element) 
 	}
 }
 
-func (p *PageElement) RegisterDeferral(name string, element compton.Element) {
+func (p *pageElement) RegisterDeferral(name string, element compton.Element) {
 	if _, ok := p.registry[name]; !ok {
 		p.registry[name] = nil
 		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
@@ -80,12 +81,12 @@ func (p *PageElement) RegisterDeferral(name string, element compton.Element) {
 	}
 }
 
-func (p *PageElement) IsRegistered(name string) bool {
+func (p *pageElement) IsRegistered(name string) bool {
 	_, ok := p.registry[name]
 	return ok
 }
 
-func (p *PageElement) AppendStyle(id string, style []byte) *PageElement {
+func (p *pageElement) AppendStyle(id string, style []byte) compton.PageElement {
 	if len(style) > 0 {
 		if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 			head.Append(els.Style(style, id))
@@ -94,7 +95,7 @@ func (p *PageElement) AppendStyle(id string, style []byte) *PageElement {
 	return p
 }
 
-func (p *PageElement) AppendManifest() *PageElement {
+func (p *pageElement) AppendManifest() compton.PageElement {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Link(map[string]string{
 			attr.Rel: attr.Manifest, attr.Href: attr.ManifestJson,
@@ -109,7 +110,7 @@ func (p *PageElement) AppendManifest() *PageElement {
 	return p
 }
 
-func (p *PageElement) AppendIcon() *PageElement {
+func (p *pageElement) AppendIcon() compton.PageElement {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Link(map[string]string{
 			attr.Rel:  attr.Icon,
@@ -120,14 +121,14 @@ func (p *PageElement) AppendIcon() *PageElement {
 	return p
 }
 
-func (p *PageElement) SetBodyId(id string) *PageElement {
+func (p *pageElement) SetBodyId(id string) compton.PageElement {
 	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
 		body.SetId(id)
 	}
 	return p
 }
 
-func (p *PageElement) ContentSecurityPolicy() string {
+func (p *pageElement) contentSecurityPolicy() string {
 	if scripts := p.document.GetElementsByTagName(atom.Script); len(scripts) > 0 {
 		digests := make([]string, 0, len(scripts))
 		for _, s := range scripts {
@@ -140,19 +141,19 @@ func (p *PageElement) ContentSecurityPolicy() string {
 	return ""
 }
 
-func (p *PageElement) appendMetaCharset() {
+func (p *pageElement) appendMetaCharset() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Meta(map[string]string{attr.Charset: attr.Utf8}))
 	}
 }
 
-func (p *PageElement) appendTitle(title string) {
+func (p *pageElement) appendTitle(title string) {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Title(title))
 	}
 }
 
-func (p *PageElement) appendViewport() {
+func (p *pageElement) appendViewport() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Meta(map[string]string{
 			attr.Name:    attr.Viewport,
@@ -161,7 +162,7 @@ func (p *PageElement) appendViewport() {
 	}
 }
 
-func (p *PageElement) appendColorScheme() {
+func (p *pageElement) appendColorScheme() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(els.Meta(map[string]string{
 			attr.ColorScheme: attr.DarkLight,
@@ -169,8 +170,8 @@ func (p *PageElement) appendColorScheme() {
 	}
 }
 
-func Page(title string) *PageElement {
-	page := &PageElement{
+func Page(title string) compton.PageElement {
+	page := &pageElement{
 		BaseElement: compton.BaseElement{
 			TagName: compton_atoms.Page,
 		},
