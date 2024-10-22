@@ -9,7 +9,6 @@ type Element interface {
 	Append(children ...Element)
 	HasChildren() bool
 
-	Finalize()
 	Write(w io.Writer) error
 
 	GetTagName() atom.Atom

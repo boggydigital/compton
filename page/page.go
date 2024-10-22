@@ -12,6 +12,8 @@ import (
 	"github.com/boggydigital/compton/elements/script"
 	"golang.org/x/net/html/atom"
 	"io"
+	"net/http"
+	"strings"
 )
 
 var (
@@ -25,7 +27,7 @@ type PageElement struct {
 	document compton.Element
 }
 
-func (p *PageElement) Finalize() {
+func (p *PageElement) appendStyleClasses() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		if styleClasses := head.GetElementById("style-classes"); styleClasses == nil {
 			p.AppendStyle("style-classes", class.StyleClasses())
@@ -33,17 +35,20 @@ func (p *PageElement) Finalize() {
 	}
 }
 
-func (p *PageElement) Write(w io.Writer) error {
-	p.Finalize()
-	return p.document.Write(w)
+func (p *PageElement) Append(children ...compton.Element) {
+	p.document.Append(children...)
 }
 
-func (p *PageElement) Append(children ...compton.Element) {
-	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
-		if content := body.GetFirstElementByTagName(compton_atoms.Content); content != nil {
-			content.Append(children...)
-		}
+func (p *PageElement) WriteResponse(w http.ResponseWriter) error {
+	if policy := p.ContentSecurityPolicy(); policy != "" {
+		w.Header().Set("Content-Security-Policy", policy)
 	}
+	return p.Write(w)
+}
+
+func (p *PageElement) Write(w io.Writer) error {
+	p.appendStyleClasses()
+	return p.document.Write(w)
 }
 
 func (p *PageElement) RegisterStyle(name string, style []byte) {
@@ -112,18 +117,17 @@ func (p *PageElement) SetBodyId(id string) *PageElement {
 	return p
 }
 
-func (p *PageElement) ScriptDigests() []string {
-
+func (p *PageElement) ContentSecurityPolicy() string {
 	if scripts := p.document.GetElementsByTagName(atom.Script); len(scripts) > 0 {
 		digests := make([]string, 0, len(scripts))
 		for _, s := range scripts {
 			if se, ok := s.(*script.ScriptElement); ok {
-				digests = append(digests, se.Sha256())
+				digests = append(digests, "'"+se.Sha256()+"'")
 			}
 		}
-		return digests
+		return "script-src " + strings.Join(digests, " ")
 	}
-	return nil
+	return ""
 }
 
 func (p *PageElement) appendMetaCharset() {

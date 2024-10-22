@@ -5,7 +5,6 @@ import (
 	"crypto/sha256"
 	_ "embed"
 	"encoding/base64"
-	"fmt"
 	"github.com/boggydigital/compton"
 	"github.com/boggydigital/compton/elements/els"
 	"golang.org/x/net/html/atom"
@@ -17,25 +16,25 @@ var (
 	markupScript []byte
 )
 
-var b64 = base64.RawURLEncoding
+var b64 = base64.StdEncoding
 
 type ScriptElement struct {
 	compton.BaseElement
-	hash string
+	hash []byte
 }
 
-func computeSha256(reader io.Reader) (string, error) {
+func computeSha256(reader io.Reader) ([]byte, error) {
 	h := sha256.New()
 	var err error
 	if _, err = io.Copy(h, reader); err == nil {
-		return fmt.Sprintf("%x", h.Sum(nil)), nil
+		return h.Sum(nil), nil
 	}
-	return "", err
+	return nil, err
 }
 
 func (se *ScriptElement) Sha256() string {
-	if se.hash != "" {
-		return "sha256-" + b64.EncodeToString([]byte(se.hash))
+	if len(se.hash) > 0 {
+		return "sha256-" + b64.EncodeToString(se.hash)
 	}
 	return ""
 }

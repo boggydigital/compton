@@ -11,12 +11,6 @@ var (
 	markupMeta []byte
 )
 
-const (
-	NameAttr    = "name"
-	ContentAttr = "content"
-	CharsetAttr = "charset"
-)
-
 func Meta(kv map[string]string) compton.Element {
 	meta := compton.NewElement(atom.Meta, markupMeta)
 	for k, v := range kv {
