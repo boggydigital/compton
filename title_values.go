@@ -14,17 +14,8 @@ import (
 	"slices"
 )
 
-const (
-	rnTitleValues = "title-values"
-)
-
-var (
-	//go:embed "markup/title-values.html"
-	markupTitleValues []byte
-)
-
 type TitleValuesElement struct {
-	BaseElement
+	*BaseElement
 	r     Registrar
 	title Element
 }
@@ -69,7 +60,11 @@ func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order .
 }
 
 func (tve *TitleValuesElement) Write(w io.Writer) error {
-	return WriteContents(bytes.NewReader(markupTitleValues), w, tve.elementFragmentWriter)
+	bts, err := tve.BaseElement.MarkupProvider.GetMarkup()
+	if err != nil {
+		return err
+	}
+	return WriteContents(bytes.NewReader(bts), w, tve.elementFragmentWriter)
 }
 
 func (tve *TitleValuesElement) elementFragmentWriter(t string, w io.Writer) error {
@@ -107,17 +102,14 @@ func (tve *TitleValuesElement) TitleForegroundColor(c color.Color) *TitleValuesE
 
 func TitleValues(r Registrar, title string) *TitleValuesElement {
 	tve := &TitleValuesElement{
-		BaseElement: BaseElement{
-			TagName:  compton_atoms.TitleValues,
-			Markup:   markup,
-			Filename: compton_atoms.MarkupName(compton_atoms.TitleValues),
-		},
-		r:     r,
-		title: HeadingText(title, 3),
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.TitleValues, comptonAtomsMarkup)),
+		r:           r,
+		title:       HeadingText(title, 3),
 	}
 	tve.RowGap(size.Small)
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.TitleValues), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.TitleValues))
 
 	return tve
 }

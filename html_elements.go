@@ -14,15 +14,15 @@ import (
 
 var (
 	//go:embed "markup/*.html"
-	markup embed.FS
+	comptonAtomsMarkup embed.FS
 	//go:embed "style/*.css"
-	style embed.FS
+	comptonAtomStyle embed.FS
 )
 
 /* https://developer.mozilla.org/en-US/docs/Web/API/Text */
 
 type TextElement struct {
-	BaseElement
+	*BaseElement
 	content string
 }
 
@@ -38,20 +38,15 @@ func (t *TextElement) Write(w io.Writer) error {
 
 func Text(content string) Element {
 	return &TextElement{
-		content: content,
-	}
-}
-
-func TextBytes(content []byte) Element {
-	return &TextElement{
-		content: string(content),
+		BaseElement: NewElement(contentMarkup(atom.Plaintext)),
+		content:     content,
 	}
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a */
 
 func A(href string) Element {
-	anchor := newElementAtom(atom.A, markup)
+	anchor := NewElement(tacMarkup(atom.A))
 	anchor.SetAttribute(attr.Href, href)
 	return anchor
 }
@@ -67,19 +62,19 @@ func AText(txt, href string) Element {
 var Br = Break
 
 func Break() Element {
-	return newElementAtom(atom.Br, markup)
+	return NewElement(voidTacMarkup(atom.Br))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body */
 
 func Body() Element {
-	return newElementAtom(atom.Body, markup)
+	return NewElement(tacMarkup(atom.Body))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist */
 
 func Datalist(id string) Element {
-	dataList := newElementAtom(atom.Datalist, markup)
+	dataList := NewElement(tacMarkup(atom.Datalist))
 	dataList.SetAttribute(attr.Id, id)
 	return dataList
 }
@@ -87,7 +82,7 @@ func Datalist(id string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details */
 
 type DetailsElement struct {
-	BaseElement
+	*BaseElement
 }
 
 func (d *DetailsElement) AppendSummary(children ...Element) *DetailsElement {
@@ -115,18 +110,14 @@ func (d *DetailsElement) Open() *DetailsElement {
 
 func Details() *DetailsElement {
 	return &DetailsElement{
-		BaseElement{
-			TagName:  atom.Details,
-			Markup:   markup,
-			Filename: atomMarkupFilename(atom.Details),
-		},
+		BaseElement: NewElement(tacMarkup(atom.Details)),
 	}
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div */
 
 func Div() Element {
-	return newElementAtom(atom.Div, markup)
+	return NewElement(tacMarkup(atom.Div))
 }
 
 func DivText(txt string) Element {
@@ -138,7 +129,7 @@ func DivText(txt string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form */
 
 func Form(action, method string) Element {
-	form := newElementAtom(atom.Form, markup)
+	form := NewElement(tacMarkup(atom.Form))
 	form.SetAttribute(attr.Action, action)
 	form.SetAttribute(attr.Method, method)
 	return form
@@ -147,7 +138,7 @@ func Form(action, method string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head */
 
 func Head() Element {
-	return newElementAtom(atom.Head, markup)
+	return NewElement(tacMarkup(atom.Head))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements */
@@ -175,7 +166,7 @@ func Heading(level int) Element {
 	case 6:
 		tn = atom.H6
 	}
-	return newElementAtom(tn, markup)
+	return NewElement(tacMarkup(tn))
 }
 
 func H1() Element { return Heading(1) }
@@ -203,13 +194,13 @@ func H6Text(txt string) Element { return HeadingText(txt, 6) }
 var Hr = HorizontalRule
 
 func HorizontalRule() Element {
-	return newElementAtom(atom.Hr, markup)
+	return NewElement(voidTacMarkup(atom.Hr))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html */
 
 func Html(lang string) Element {
-	html := newElementAtom(atom.Html, markup)
+	html := NewElement(tacMarkup(atom.Html))
 	if lang != "" {
 		html.SetAttribute("lang", lang)
 	}
@@ -219,7 +210,7 @@ func Html(lang string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe */
 
 func Iframe(src string) Element {
-	iframe := newElementAtom(atom.Iframe, markup)
+	iframe := NewElement(tacMarkup(atom.Iframe))
 	iframe.SetAttribute(attr.Src, src)
 	return iframe
 }
@@ -239,7 +230,7 @@ var (
 )
 
 func Image(src string) Element {
-	image := newElementAtom(atom.Img, markup)
+	image := NewElement(tacMarkup(atom.Img))
 	if src != "" {
 		image.SetAttribute(attr.Src, src)
 	}
@@ -261,7 +252,7 @@ func ImageEager(src string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label */
 
 func Label(forInput string) Element {
-	label := newElementAtom(atom.Label, markup)
+	label := NewElement(tacMarkup(atom.Label))
 	if forInput != "" {
 		label.SetAttribute(attr.For, forInput)
 	}
@@ -273,7 +264,7 @@ func Label(forInput string) Element {
 var Li = ListItem
 
 func ListItem() Element {
-	return newElementAtom(atom.Li, markup)
+	return NewElement(tacMarkup(atom.Li))
 }
 
 func ListItemText(txt string) Element {
@@ -285,7 +276,7 @@ func ListItemText(txt string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link */
 
 func Link(kv map[string]string) Element {
-	link := newElementAtom(atom.Link, markup)
+	link := NewElement(voidTacMarkup(atom.Link))
 	for k, v := range kv {
 		link.SetAttribute(k, v)
 	}
@@ -295,7 +286,7 @@ func Link(kv map[string]string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta */
 
 func Meta(kv map[string]string) Element {
-	meta := newElementAtom(atom.Meta, markup)
+	meta := NewElement(voidTacMarkup(atom.Meta))
 	for k, v := range kv {
 		meta.SetAttribute(k, v)
 	}
@@ -307,13 +298,13 @@ func Meta(kv map[string]string) Element {
 var Ol = OrderedList
 
 func OrderedList() Element {
-	return newElementAtom(atom.Ol, markup)
+	return NewElement(tacMarkup(atom.Ol))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option */
 
 func Option(value, label string) Element {
-	option := newElementAtom(atom.Option, markup)
+	option := NewElement(tacMarkup(atom.Option))
 	option.SetAttribute(attr.Value, value)
 	if label != "" {
 		option.SetAttribute(attr.Label, label)
@@ -326,7 +317,7 @@ func Option(value, label string) Element {
 var b64 = base64.StdEncoding
 
 type ScriptElement struct {
-	BaseElement
+	*BaseElement
 	hash []byte
 }
 
@@ -348,11 +339,7 @@ func (se *ScriptElement) Sha256() string {
 
 func Script(code []byte) *ScriptElement {
 	script := &ScriptElement{
-		BaseElement: BaseElement{
-			TagName:  atom.Script,
-			Markup:   markup,
-			Filename: atomMarkupFilename(atom.Script),
-		},
+		BaseElement: NewElement(tacMarkup(atom.Script)),
 	}
 
 	if hash, err := computeSha256(bytes.NewReader(code)); err == nil {
@@ -372,13 +359,13 @@ func ScriptAsync(code []byte) *ScriptElement {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section */
 
 func Section() Element {
-	return newElementAtom(atom.Section, markup)
+	return NewElement(tacMarkup(atom.Section))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span */
 
 func Span() Element {
-	return newElementAtom(atom.Span, markup)
+	return NewElement(tacMarkup(atom.Span))
 }
 
 func SpanText(txt string) Element {
@@ -389,55 +376,52 @@ func SpanText(txt string) Element {
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style */
 
-func Style(styles []byte, id string) Element {
-	style := newElementAtom(atom.Style, markup)
+func Style(styles []byte) Element {
+	style := NewElement(tacMarkup(atom.Style))
 	style.Append(Text(string(styles)))
-	if id != "" {
-		style.SetId(id)
-	}
 	return style
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary */
 
 func Summary() Element {
-	return newElementAtom(atom.Summary, markup)
+	return NewElement(tacMarkup(atom.Summary))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody */
 
 func Tbody() Element {
-	return newElementAtom(atom.Tbody, markup)
+	return NewElement(tacMarkup(atom.Tbody))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td */
 
 func Td() Element {
-	return newElementAtom(atom.Td, markup)
+	return NewElement(tacMarkup(atom.Td))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot */
 
 func Tfoot() Element {
-	return newElementAtom(atom.Tfoot, markup)
+	return NewElement(tacMarkup(atom.Tfoot))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th */
 
 func Th() Element {
-	return newElementAtom(atom.Th, markup)
+	return NewElement(tacMarkup(atom.Th))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead */
 
 func Thead() Element {
-	return newElementAtom(atom.Thead, markup)
+	return NewElement(tacMarkup(atom.Thead))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time */
 
 func Time() Element {
-	return newElementAtom(atom.Time, markup)
+	return NewElement(tacMarkup(atom.Time))
 }
 
 func TimeText(txt string) Element {
@@ -449,7 +433,7 @@ func TimeText(txt string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title */
 
 func Title(txt string) Element {
-	title := newElementAtom(atom.Title, markup)
+	title := NewElement(tacMarkup(atom.Title))
 	title.Append(Text(txt))
 	return title
 }
@@ -457,7 +441,7 @@ func Title(txt string) Element {
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr */
 
 func Tr() Element {
-	return newElementAtom(atom.Tr, markup)
+	return NewElement(tacMarkup(atom.Tr))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul */
@@ -465,37 +449,43 @@ func Tr() Element {
 var Ul = UnorderedList
 
 func UnorderedList() Element {
-	return newElementAtom(atom.Ul, markup)
+	return NewElement(tacMarkup(atom.Ul))
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video */
 
 func Video(src string) Element {
-	video := newElementAtom(atom.Video, markup)
+	video := NewElement(tacMarkup(atom.Video))
 	if src != "" {
 		video.SetAttribute(attr.Src, src)
 	}
 	return video
 }
 
+/* this allows creating any HTML element that has atom.Atom */
+
+func AtomicElement(a atom.Atom) Element {
+	return NewElement(tacMarkup(a))
+}
+
 /* required by compton.Page */
 
-func Content() Element {
-	return NewElement(compton_atoms.Content, markup, compton_atoms.MarkupName(compton_atoms.Content))
-}
-
-func Deferrals() Element {
-	return NewElement(compton_atoms.Deferrals, markup, compton_atoms.MarkupName(compton_atoms.Deferrals))
-}
-
 func Doctype() Element {
-	return NewElement(compton_atoms.Doctype, markup, compton_atoms.MarkupName(compton_atoms.Doctype))
+	return NewElement(atomsEmbedMarkup(compton_atoms.Doctype, comptonAtomsMarkup))
 }
 
 func Document() Element {
-	return NewElement(compton_atoms.Document, markup, compton_atoms.MarkupName(compton_atoms.Document))
+	return NewElement(contentMarkup(compton_atoms.Document))
+}
+
+func Content() Element {
+	return NewElement(contentMarkup(compton_atoms.Content))
+}
+
+func Deferrals() Element {
+	return NewElement(contentMarkup(compton_atoms.Deferrals))
 }
 
 func Requirements() Element {
-	return NewElement(compton_atoms.Requirements, markup, compton_atoms.MarkupName(compton_atoms.Requirements))
+	return NewElement(contentMarkup(compton_atoms.Requirements))
 }

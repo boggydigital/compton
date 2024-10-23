@@ -4,9 +4,6 @@ import (
 	_ "embed"
 )
 
-//go:embed "style/colors.css"
-var StyleSheet []byte
-
 type Color int
 
 const (

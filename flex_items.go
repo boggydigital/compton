@@ -12,7 +12,7 @@ import (
 )
 
 type FlexItemsElement struct {
-	BaseElement
+	*BaseElement
 }
 
 func (fie *FlexItemsElement) RowGap(sz size.Size) *FlexItemsElement {
@@ -73,15 +73,12 @@ func (fie *FlexItemsElement) BackgroundColor(c color.Color) *FlexItemsElement {
 
 func FlexItems(r Registrar, d direction.Direction) *FlexItemsElement {
 	fie := &FlexItemsElement{
-		BaseElement: BaseElement{
-			TagName:  compton_atoms.FlexItems,
-			Markup:   markup,
-			Filename: compton_atoms.MarkupName(compton_atoms.FlexItems),
-		},
+		BaseElement: NewElement(tacMarkup(compton_atoms.FlexItems)),
 	}
 	fie.AddClass(class.FlexDirection(d))
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.FlexItems), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.FlexItems))
 
 	return fie
 }

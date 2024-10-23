@@ -21,18 +21,14 @@ var (
 )
 
 type IssaImageElement struct {
-	BaseElement
+	*BaseElement
 	dehydrated bool
 }
 
 func issaImage(r Registrar, placeholder, poster string, dehydrated bool) Element {
 	ii := &IssaImageElement{
-		BaseElement: BaseElement{
-			TagName:  compton_atoms.IssaImage,
-			Markup:   markup,
-			Filename: compton_atoms.MarkupName(compton_atoms.IssaImage),
-		},
-		dehydrated: dehydrated,
+		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),
+		dehydrated:  dehydrated,
 	}
 
 	placeholderImg := Image("")
@@ -51,10 +47,12 @@ func issaImage(r Registrar, placeholder, poster string, dehydrated bool) Element
 	posterImg.AddClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.IssaImage), style)
-	r.RegisterDeferral(scriptHydrateImageRegistrationName, ScriptAsync(scriptHydrateImage))
-	r.RegisterDeferral(scriptImageFadeInRegistrationName, ScriptAsync(scriptImageFadeIn))
-	r.RegisterDeferral(scriptHydrateColorRegistrationName, ScriptAsync(issa.HydrateColorScript))
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.IssaImage))
+	r.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IssaImage),
+		ScriptAsync(scriptHydrateImage),
+		ScriptAsync(scriptImageFadeIn),
+		ScriptAsync(issa.HydrateColorScript))
 
 	return ii
 }

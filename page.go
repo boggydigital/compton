@@ -5,18 +5,11 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
-	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"github.com/boggydigital/compton/consts/units"
 	"golang.org/x/net/html/atom"
 	"io"
 	"net/http"
 	"strings"
-)
-
-var (
-	//go:embed "style/page.css"
-	stylePage []byte
 )
 
 type pageElement struct {
@@ -28,7 +21,9 @@ type pageElement struct {
 func (p *pageElement) appendStyleClasses() {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		if styleClasses := head.GetElementById("style-classes"); styleClasses == nil {
-			p.AppendStyle("style-classes", class.StyleClasses())
+			classesStyle := Style(class.StyleClasses())
+			classesStyle.SetId("style-classes")
+			head.Append(classesStyle)
 		}
 	}
 }
@@ -50,35 +45,40 @@ func (p *pageElement) Write(w io.Writer) error {
 	return p.document.Write(w)
 }
 
-func (p *pageElement) RegisterStyle(name string, efs embed.FS) {
-
-	if _, ok := p.registry[name]; !ok {
-		p.registry[name] = nil
-		if content, err := efs.ReadFile(name); err == nil {
-			p.AppendStyle(name, content)
-		} else {
-			panic(err)
-		}
-	}
-}
-
-func (p *pageElement) RegisterRequirement(name string, element Element) {
-	if _, ok := p.registry[name]; !ok {
-		p.registry[name] = nil
-		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
-			if req := body.GetFirstElementByTagName(compton_atoms.Requirements); req != nil {
-				req.Append(element)
+func (p *pageElement) RegisterStyles(efs embed.FS, names ...string) {
+	for _, name := range names {
+		if _, ok := p.registry[name]; !ok {
+			p.registry[name] = nil
+			if content, err := efs.ReadFile(name); err == nil {
+				if len(content) > 0 {
+					if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+						head.Append(Style(content))
+					}
+				}
+			} else {
+				panic(err)
 			}
 		}
 	}
 }
 
-func (p *pageElement) RegisterDeferral(name string, element Element) {
+func (p *pageElement) RegisterRequirements(name string, elements ...Element) {
+	if _, ok := p.registry[name]; !ok {
+		p.registry[name] = nil
+		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+			if req := body.GetFirstElementByTagName(compton_atoms.Requirements); req != nil {
+				req.Append(elements...)
+			}
+		}
+	}
+}
+
+func (p *pageElement) RegisterDeferrals(name string, elements ...Element) {
 	if _, ok := p.registry[name]; !ok {
 		p.registry[name] = nil
 		if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
 			if def := body.GetFirstElementByTagName(compton_atoms.Deferrals); def != nil {
-				def.Append(element)
+				def.Append(elements...)
 			}
 		}
 	}
@@ -87,15 +87,6 @@ func (p *pageElement) RegisterDeferral(name string, element Element) {
 func (p *pageElement) IsRegistered(name string) bool {
 	_, ok := p.registry[name]
 	return ok
-}
-
-func (p *pageElement) AppendStyle(id string, style []byte) PageElement {
-	if len(style) > 0 {
-		if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
-			head.Append(Style(style, id))
-		}
-	}
-	return p
 }
 
 func (p *pageElement) AppendManifest() PageElement {
@@ -195,9 +186,8 @@ func Page(title string) PageElement {
 	page.appendViewport()
 	page.appendColorScheme()
 
-	page.AppendStyle("style-colors", color.StyleSheet)
-	page.AppendStyle("style-units", units.StyleSheet)
-	page.AppendStyle("style-page", stylePage)
+	page.RegisterStyles(comptonAtomStyle,
+		"style/colors.css", "style/units.css", "style/page.css")
 
 	return page
 }

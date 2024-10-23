@@ -3,6 +3,7 @@ package compton
 import (
 	"bytes"
 	_ "embed"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"io"
 )
 
@@ -33,35 +34,25 @@ var symbolStrings = map[Symbol]string{
 	Circle:  "circle",
 }
 
-const registrationName = "symbols"
-
 var (
 	//go:embed "markup/atlas.html"
-	markupAtlas []byte
-	//go:embed "markup/svg-use.html"
-	markupSvgUse []byte
+	markupAtlas string
 )
 
 type SvgUseElement struct {
-	BaseElement
-	//r compton.Registrar
+	*BaseElement
 	s Symbol
 }
 
-//func (sue *SvgUseElement) WriteRequirements(w io.Writer) error {
-//	if sue.r.RequiresRegistration(registrationName) {
-//		if _, err := w.Write(markupAtlas); err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
-
 func (sue *SvgUseElement) Write(w io.Writer) error {
-	return WriteContents(bytes.NewReader(markupSvgUse), w, sue.fragmentWriter)
+	bts, err := sue.BaseElement.MarkupProvider.GetMarkup()
+	if err != nil {
+		return err
+	}
+	return WriteContents(bytes.NewReader(bts), w, sue.WriteFragment)
 }
 
-func (sue *SvgUseElement) fragmentWriter(t string, w io.Writer) error {
+func (sue *SvgUseElement) WriteFragment(t string, w io.Writer) error {
 	switch t {
 	case ".Symbol":
 		if _, err := io.WriteString(w, symbolStrings[sue.s]); err != nil {
@@ -79,12 +70,13 @@ func (sue *SvgUseElement) fragmentWriter(t string, w io.Writer) error {
 
 func SvgUse(r Registrar, s Symbol) Element {
 	sue := &SvgUseElement{
-		//r: r,
-		s: s,
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.SvgUse, comptonAtomsMarkup)),
+		s:           s,
 	}
+
 	sue.AddClass(symbolStrings[s])
 
-	r.RegisterRequirement(registrationName, TextBytes(markupAtlas))
+	r.RegisterRequirements(compton_atoms.MarkupName(compton_atoms.SvgUse), Text(markupAtlas))
 
 	return sue
 }

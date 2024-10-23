@@ -23,6 +23,7 @@ const (
 	IframeExpandHost
 	IframeExpandContent
 	Popup
+	SvgUse
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -43,19 +44,26 @@ var atomStrings = map[atom.Atom]string{
 	IframeExpandHost:    "iframe-expand-host",
 	IframeExpandContent: "iframe-expand-content",
 	Popup:               "popup",
+	SvgUse:              "svg-use",
 }
 
-func String(ca atom.Atom) string {
-	if str, ok := atomStrings[ca]; ok {
+func Atos(a atom.Atom) string {
+	if str, ok := atomStrings[a]; ok {
 		return str
+	} else if an := a.String(); an != "" {
+		return an
 	}
 	panic("no string for atom")
 }
 
-func MarkupName(ca atom.Atom) string {
-	return path.Join("markup", String(ca)) + ".html"
+func MarkupName(a atom.Atom) string {
+	return path.Join("markup", Atos(a)+".html")
 }
 
-func StyleName(ca atom.Atom) string {
-	return path.Join("style", String(ca)) + ".css"
+func StyleName(a atom.Atom) string {
+	return path.Join("style", Atos(a)+".css")
+}
+
+func ScriptName(a atom.Atom) string {
+	return path.Join("script", Atos(a)+".js")
 }

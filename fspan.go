@@ -10,7 +10,7 @@ import (
 )
 
 type FspanElement struct {
-	BaseElement
+	*BaseElement
 }
 
 func (fse *FspanElement) ForegroundColor(c color.Color) *FspanElement {
@@ -35,15 +35,12 @@ func (fse *FspanElement) FontWeight(w font_weight.Weight) *FspanElement {
 
 func Fspan(r Registrar, t string) *FspanElement {
 	fse := &FspanElement{
-		BaseElement: BaseElement{
-			TagName:  compton_atoms.Fspan,
-			Markup:   markup,
-			Filename: compton_atoms.MarkupName(compton_atoms.Fspan),
-		},
+		BaseElement: NewElement(tacMarkup(compton_atoms.Fspan)),
 	}
 	fse.Append(Text(t))
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.Fspan), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.Fspan))
 
 	return fse
 }

@@ -9,7 +9,7 @@ import (
 )
 
 type GridItemsElement struct {
-	BaseElement
+	*BaseElement
 }
 
 func (gie *GridItemsElement) RowGap(sz size.Size) *GridItemsElement {
@@ -50,14 +50,11 @@ func (gie *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
 
 func GridItems(r Registrar) *GridItemsElement {
 	grid := &GridItemsElement{
-		BaseElement: BaseElement{
-			Markup:   markup,
-			TagName:  compton_atoms.GridItems,
-			Filename: compton_atoms.MarkupName(compton_atoms.GridItems),
-		},
+		BaseElement: NewElement(tacMarkup(compton_atoms.GridItems)),
 	}
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.GridItems), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.GridItems))
 
 	return grid
 }

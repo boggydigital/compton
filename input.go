@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
 	"golang.org/x/exp/maps"
@@ -24,7 +25,7 @@ var (
 )
 
 type InputElement struct {
-	BaseElement
+	*BaseElement
 	r        Registrar
 	it       input_types.Type
 	dataList Element
@@ -83,7 +84,7 @@ func (ie *InputElement) SetDatalist(list map[string]string, listId string) *Inpu
 
 	ie.SetAttribute(attr.List, listId)
 
-	ie.r.RegisterDeferral(rnDatalistPfx+listId, ie.dataList)
+	ie.r.RegisterDeferrals(rnDatalistPfx+listId, ie.dataList)
 
 	return ie
 }
@@ -95,17 +96,14 @@ func (ie *InputElement) FontWeight(w font_weight.Weight) *InputElement {
 
 func Input(r Registrar, it input_types.Type) *InputElement {
 	input := &InputElement{
-		BaseElement: BaseElement{
-			TagName:  atom.Input,
-			Markup:   markup,
-			Filename: atomMarkupFilename(atom.Input),
-		},
-		r:  r,
-		it: it,
+		BaseElement: NewElement(tacMarkup(atom.Input)),
+		r:           r,
+		it:          it,
 	}
 	input.SetAttribute(attr.Type, it.String())
 
-	r.RegisterStyle(atomStyleFilename(atom.Input), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(atom.Input))
 
 	return input
 }

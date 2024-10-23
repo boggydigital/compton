@@ -6,19 +6,16 @@ import (
 )
 
 type NavLinksElement struct {
-	BaseElement
+	*BaseElement
 }
 
 func NavLinks(r Registrar) *NavLinksElement {
 	navLinks := &NavLinksElement{
-		BaseElement: BaseElement{
-			Markup:   markup,
-			TagName:  compton_atoms.NavLinks,
-			Filename: compton_atoms.MarkupName(compton_atoms.NavLinks),
-		},
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.NavLinks, comptonAtomsMarkup)),
 	}
 
-	r.RegisterStyle(compton_atoms.StyleName(compton_atoms.NavLinks), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(compton_atoms.NavLinks))
 
 	return navLinks
 }

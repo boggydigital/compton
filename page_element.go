@@ -10,7 +10,6 @@ type PageElement interface {
 
 	SetBodyId(id string) PageElement
 
-	AppendStyle(id string, style []byte) PageElement
 	AppendManifest() PageElement
 	AppendIcon() PageElement
 

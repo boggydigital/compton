@@ -7,7 +7,7 @@ import (
 )
 
 type TableElement struct {
-	BaseElement
+	*BaseElement
 	r Registrar
 }
 
@@ -77,15 +77,12 @@ func (te *TableElement) AppendFoot(columns ...string) *TableElement {
 
 func Table(r Registrar) *TableElement {
 	table := &TableElement{
-		BaseElement: BaseElement{
-			TagName:  atom.Table,
-			Markup:   markup,
-			Filename: atomMarkupFilename(atom.Table),
-		},
-		r: r,
+		BaseElement: NewElement(tacMarkup(atom.Table)),
+		r:           r,
 	}
 
-	r.RegisterStyle(compton_atoms.StyleName(atom.Table), style)
+	r.RegisterStyles(comptonAtomStyle,
+		compton_atoms.StyleName(atom.Table))
 
 	return table
 }

@@ -2,6 +2,7 @@ package compton
 
 import (
 	_ "embed"
+	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
 var (
@@ -17,8 +18,10 @@ var (
 // iframe element and remove `loading` class
 func IframeExpandContent(id, title string) PageElement {
 	p := Page(title).
-		AppendStyle("style-iframe-content", styleIframeContent).
 		SetBodyId(id)
-	p.Append(ScriptAsync(scriptIframeExpandPost))
+
+	p.RegisterStyles(comptonAtomStyle, compton_atoms.StyleName(compton_atoms.IframeExpandContent))
+	p.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IframeExpandContent),
+		ScriptAsync(scriptIframeExpandPost))
 	return p
 }

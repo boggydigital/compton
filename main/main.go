@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	_ "embed"
 	"fmt"
 	"github.com/boggydigital/compton"
@@ -18,7 +19,7 @@ import (
 )
 
 //go:embed "styles.css"
-var appStyles []byte
+var appStyles embed.FS
 
 func main() {
 	writeTestPage()
@@ -29,7 +30,7 @@ func main() {
 
 func writeTestPage() {
 	p := compton.Page("test")
-	p.AppendStyle("app-style", appStyles)
+	p.RegisterStyles(appStyles, "styles.css")
 
 	s := compton.FlexItems(p, direction.Column)
 
@@ -276,7 +277,7 @@ func writeIssaPage() {
 	imageSrc := "https://gaugin.frmnt.io/image?id=0d9684e197ff3a8d34bddab41e2ef8c9f6d1050242b44b56dfab11ff69b670bb"
 
 	p := compton.Page("issa page")
-	p.AppendStyle("app-style", appStyles)
+	p.RegisterStyles(appStyles, "styles.css")
 
 	issaImage := compton.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
 	p.Append(issaImage)
