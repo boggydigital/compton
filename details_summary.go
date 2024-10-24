@@ -12,10 +12,6 @@ import (
 	"io"
 )
 
-//func scriptRegName(rn string) string {
-//	return "script-" + rn
-//}
-
 type DetailsSummaryElement struct {
 	BaseElement
 	details Element
