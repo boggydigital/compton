@@ -182,7 +182,15 @@ func writeTestPage() {
 
 	s.Append(dsSwitches)
 
-	footer := compton.FlexItems(p, direction.Row).JustifyContent(align.Center)
+	fr := compton.Frow(p)
+	fr.IconColor(color.Indigo).
+		Heading("Heading").
+		PropVal("Property", "Value").
+		Highlight("Highlight")
+
+	s.Append(compton.FICenter(p, fr))
+
+	footer := compton.FICenter(p)
 
 	div := compton.Fspan(p, "").ForegroundColor(color.Gray).FontSize(size.Small)
 

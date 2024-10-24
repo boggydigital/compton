@@ -2,6 +2,7 @@ package compton
 
 import (
 	_ "embed"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
@@ -37,6 +38,7 @@ func appendTarget(r Registrar, nl *NavLinksElement, t *Target) {
 		icon.SetAttribute("title", t.Title)
 		link.Append(icon)
 		if t.Current {
+			icon.ForegroundColor(color.Background)
 			link.Append(SpanText(t.Title))
 		}
 	} else {

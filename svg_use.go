@@ -3,6 +3,8 @@ package compton
 import (
 	"bytes"
 	_ "embed"
+	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"io"
 )
@@ -68,7 +70,12 @@ func (sue *SvgUseElement) WriteFragment(t string, w io.Writer) error {
 	return nil
 }
 
-func SvgUse(r Registrar, s Symbol) Element {
+func (sue *SvgUseElement) ForegroundColor(c color.Color) *SvgUseElement {
+	sue.AddClass(class.ForegroundColor(c))
+	return sue
+}
+
+func SvgUse(r Registrar, s Symbol) *SvgUseElement {
 	sue := &SvgUseElement{
 		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.SvgUse, comptonAtomsMarkup)),
 		s:           s,
@@ -76,6 +83,7 @@ func SvgUse(r Registrar, s Symbol) Element {
 
 	sue.AddClass(symbolStrings[s])
 
+	r.RegisterStyles(comptonAtomStyle, compton_atoms.StyleName(compton_atoms.SvgUse))
 	r.RegisterRequirements(compton_atoms.MarkupName(compton_atoms.SvgUse), Text(markupAtlas))
 
 	return sue

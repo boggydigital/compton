@@ -24,6 +24,7 @@ const (
 	IframeExpandContent
 	Popup
 	SvgUse
+	Frow
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -45,6 +46,7 @@ var atomStrings = map[atom.Atom]string{
 	IframeExpandContent: "iframe-expand-content",
 	Popup:               "popup",
 	SvgUse:              "svg-use",
+	Frow:                "frow",
 }
 
 func Atos(a atom.Atom) string {
