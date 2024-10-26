@@ -53,4 +53,5 @@
     --fs: unset; /*font-size*/
     --fw: unset; /*font-weight*/
     --mbe: var(--s-n); /*margin-block-end*/
+    --gtr: unset; /* grid-template-row */
 }

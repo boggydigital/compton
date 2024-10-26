@@ -7,6 +7,7 @@ import (
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
 	"maps"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -28,6 +29,7 @@ const (
 	fontSizePfx        = "fs"
 	fontWeightPfx      = "fw"
 	marginBlockEndPfx  = "mbe"
+	gridTemplateRows   = "gtr"
 )
 
 var setClasses = make(map[string]any)
@@ -101,6 +103,14 @@ func MarginBlockEnd(s size.Size) string {
 	return joinClassName(marginBlockEndPfx, s.String())
 }
 
+func GridTemplateRows(s size.Size) string {
+	return joinClassName(gridTemplateRows, s.String())
+}
+
+func GridTemplateRowsPixels(px int) string {
+	return joinClassName(gridTemplateRows, strconv.Itoa(px))
+}
+
 func StyleClasses() []byte {
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
@@ -140,6 +150,13 @@ func parsePropertyValue(className string) (string, string) {
 	case rowGapPfx:
 		sz := size.Parse(sfx)
 		value = sz.SizeCssValue()
+	case gridTemplateRows:
+		if _, err := strconv.Atoi(sfx); err == nil {
+			value = sfx + "px"
+		} else {
+			sz := size.Parse(sfx)
+			value = sz.SizeCssValue()
+		}
 	case flexDirectionPfx:
 		dr := direction.Parse(sfx)
 		value = dr.String()

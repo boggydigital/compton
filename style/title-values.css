@@ -9,6 +9,8 @@
             font-weight: var(--fw-n);
             font-size: var(--fs-n);
             color: var(--fg);
+            height: var(--s-n);
+            margin-block: var(--s-xs);
         }
 
         & a {

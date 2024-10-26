@@ -48,6 +48,16 @@ func (gie *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
 	return gie
 }
 
+func (gie *GridItemsElement) GridTemplateRows(s size.Size) *GridItemsElement {
+	gie.AddClass(class.GridTemplateRows(s))
+	return gie
+}
+
+func (gie *GridItemsElement) GridTemplateRowsPixels(px int) *GridItemsElement {
+	gie.AddClass(class.GridTemplateRowsPixels(px))
+	return gie
+}
+
 func GridItems(r Registrar) *GridItemsElement {
 	grid := &GridItemsElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.GridItems)),

@@ -2,6 +2,7 @@
     :scope {
         display: grid;
         grid-template-columns: repeat(var(--resp-grid-columns), var(--s-cw));
+        grid-template-rows: var(--gtr);
         padding-inline: var(--s-s);
         column-gap: var(--cg);
         row-gap: var(--rg);

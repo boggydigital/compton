@@ -27,8 +27,9 @@
         font-size: var(--fs-s);
         font-weight: var(--fw-b);
         outline: var(--s-xxs) solid var(--c-highlight);
-        margin: var(--s-xxs);
+        /*margin: var(--s-xxs);*/
         width: calc(100% - 2 * var(--s-xxs));
+        height: var(--s-l);
 
         &::placeholder {
             font-weight: normal;
