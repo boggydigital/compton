@@ -107,8 +107,8 @@ func GridTemplateRows(s size.Size) string {
 	return joinClassName(gridTemplateRows, s.String())
 }
 
-func GridTemplateRowsPixels(px int) string {
-	return joinClassName(gridTemplateRows, strconv.Itoa(px))
+func GridTemplateRowsPixels(px float64) string {
+	return joinClassName(gridTemplateRows, strconv.FormatFloat(px, 'f', -1, 64))
 }
 
 func StyleClasses() []byte {
@@ -151,7 +151,7 @@ func parsePropertyValue(className string) (string, string) {
 		sz := size.Parse(sfx)
 		value = sz.SizeCssValue()
 	case gridTemplateRows:
-		if _, err := strconv.Atoi(sfx); err == nil {
+		if _, err := strconv.ParseFloat(sfx, 64); err == nil {
 			value = sfx + "px"
 		} else {
 			sz := size.Parse(sfx)

@@ -53,7 +53,7 @@ func (gie *GridItemsElement) GridTemplateRows(s size.Size) *GridItemsElement {
 	return gie
 }
 
-func (gie *GridItemsElement) GridTemplateRowsPixels(px int) *GridItemsElement {
+func (gie *GridItemsElement) GridTemplateRowsPixels(px float64) *GridItemsElement {
 	gie.AddClass(class.GridTemplateRowsPixels(px))
 	return gie
 }
