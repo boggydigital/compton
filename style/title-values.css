@@ -3,6 +3,8 @@
         display: flex;
         flex-direction: column;
         row-gap: var(--rg);
+        content-visibility: auto;
+        contain-intrinsic-height: auto var(--s-xl);
 
         & h3 {
             margin: 0;
