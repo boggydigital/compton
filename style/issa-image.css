@@ -5,6 +5,8 @@
         display: grid;
         background-color: var(--c-background);
         border-radius: var(--br-n);
+        width: var(--w);
+        height: var(--h);
 
         & img {
             object-fit: contain;
@@ -12,6 +14,8 @@
             grid-row: 1;
             grid-column: 1;
             border-radius: var(--br-n);
+            width: var(--w);
+            height: var(--h);
 
             &.placeholder {
                 image-rendering: pixelated;

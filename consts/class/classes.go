@@ -13,23 +13,25 @@ import (
 )
 
 const (
-	classSelectorPfx   = "."
-	classNameSep       = "-"
-	customPropertyPfx  = "--"
-	rowGapPfx          = "rg"
-	columnGapPfx       = "cg"
-	alignContentPfx    = "ac"
-	alignItemsPfx      = "ai"
-	justifyContentPfx  = "jc"
-	justifyItemsPfx    = "ji"
-	flexDirectionPfx   = "fd"
-	backgroundColorPfx = "bg"
-	foregroundColorPfx = "fg"
-	markerColorPfx     = "cm"
-	fontSizePfx        = "fs"
-	fontWeightPfx      = "fw"
-	marginBlockEndPfx  = "mbe"
-	gridTemplateRows   = "gtr"
+	classSelectorPfx    = "."
+	classNameSep        = "-"
+	customPropertyPfx   = "--"
+	rowGapPfx           = "rg"
+	columnGapPfx        = "cg"
+	alignContentPfx     = "ac"
+	alignItemsPfx       = "ai"
+	justifyContentPfx   = "jc"
+	justifyItemsPfx     = "ji"
+	flexDirectionPfx    = "fd"
+	backgroundColorPfx  = "bg"
+	foregroundColorPfx  = "fg"
+	markerColorPfx      = "cm"
+	fontSizePfx         = "fs"
+	fontWeightPfx       = "fw"
+	marginBlockEndPfx   = "mbe"
+	gridTemplateRowsPfx = "gtr"
+	widthPfx            = "w"
+	heightPfx           = "h"
 )
 
 var setClasses = make(map[string]any)
@@ -49,6 +51,16 @@ func classSelector(className string) string {
 
 func customProperty(className string) string {
 	return customPropertyPfx + className
+}
+
+func fmtFloat(f float64) string {
+	fs := strconv.FormatFloat(f, 'f', -1, 64)
+	return strings.Replace(fs, ".", "_", 1)
+}
+
+func parseFloat(s string) (float64, error) {
+	fn := strings.Replace(s, "_", ".", 1)
+	return strconv.ParseFloat(fn, 64)
 }
 
 func RowGap(s size.Size) string {
@@ -104,11 +116,27 @@ func MarginBlockEnd(s size.Size) string {
 }
 
 func GridTemplateRows(s size.Size) string {
-	return joinClassName(gridTemplateRows, s.String())
+	return joinClassName(gridTemplateRowsPfx, s.String())
 }
 
 func GridTemplateRowsPixels(px float64) string {
-	return joinClassName(gridTemplateRows, strconv.FormatFloat(px, 'f', -1, 64))
+	return joinClassName(gridTemplateRowsPfx, fmtFloat(px))
+}
+
+func Width(s size.Size) string {
+	return joinClassName(widthPfx, s.String())
+}
+
+func WidthPixels(px float64) string {
+	return joinClassName(widthPfx, fmtFloat(px))
+}
+
+func Height(s size.Size) string {
+	return joinClassName(heightPfx, s.String())
+}
+
+func HeightPixels(px float64) string {
+	return joinClassName(heightPfx, fmtFloat(px))
 }
 
 func StyleClasses() []byte {
@@ -150,8 +178,13 @@ func parsePropertyValue(className string) (string, string) {
 	case rowGapPfx:
 		sz := size.Parse(sfx)
 		value = sz.SizeCssValue()
-	case gridTemplateRows:
-		if _, err := strconv.ParseFloat(sfx, 64); err == nil {
+	case gridTemplateRowsPfx:
+		fallthrough
+	case widthPfx:
+		fallthrough
+	case heightPfx:
+		if _, err := parseFloat(sfx); err == nil {
+			sfx = strings.Replace(sfx, "_", ".", 1)
 			value = sfx + "px"
 		} else {
 			sz := size.Parse(sfx)

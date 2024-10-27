@@ -2,7 +2,9 @@ package compton
 
 import (
 	_ "embed"
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/issa"
 )
 
@@ -25,7 +27,27 @@ type IssaImageElement struct {
 	dehydrated bool
 }
 
-func issaImage(r Registrar, placeholder, poster string, dehydrated bool) Element {
+func (iie *IssaImageElement) Width(s size.Size) *IssaImageElement {
+	iie.AddClass(class.Width(s))
+	return iie
+}
+
+func (iie *IssaImageElement) WidthPixels(px float64) *IssaImageElement {
+	iie.AddClass(class.WidthPixels(px))
+	return iie
+}
+
+func (iie *IssaImageElement) Height(s size.Size) *IssaImageElement {
+	iie.AddClass(class.Height(s))
+	return iie
+}
+
+func (iie *IssaImageElement) HeightPixels(px float64) *IssaImageElement {
+	iie.AddClass(class.HeightPixels(px))
+	return iie
+}
+
+func issaImage(r Registrar, placeholder, poster string, dehydrated bool) *IssaImageElement {
 	ii := &IssaImageElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),
 		dehydrated:  dehydrated,
@@ -57,10 +79,10 @@ func issaImage(r Registrar, placeholder, poster string, dehydrated bool) Element
 	return ii
 }
 
-func IssaImageHydrated(r Registrar, placeholder, poster string) Element {
+func IssaImageHydrated(r Registrar, placeholder, poster string) *IssaImageElement {
 	return issaImage(r, placeholder, poster, false)
 }
 
-func IssaImageDehydrated(r Registrar, placeholder, poster string) Element {
+func IssaImageDehydrated(r Registrar, placeholder, poster string) *IssaImageElement {
 	return issaImage(r, placeholder, poster, true)
 }
