@@ -482,6 +482,10 @@ func Content() Element {
 	return NewElement(contentMarkup(compton_atoms.Content))
 }
 
+func Placeholder() Element {
+	return NewElement(contentMarkup(compton_atoms.Placeholder))
+}
+
 func Deferrals() Element {
 	return NewElement(contentMarkup(compton_atoms.Deferrals))
 }

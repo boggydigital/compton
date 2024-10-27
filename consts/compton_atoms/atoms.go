@@ -25,6 +25,8 @@ const (
 	Popup
 	SvgUse
 	Frow
+	Card
+	Placeholder
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -47,6 +49,8 @@ var atomStrings = map[atom.Atom]string{
 	Popup:               "popup",
 	SvgUse:              "svg-use",
 	Frow:                "frow",
+	Card:                "card",
+	Placeholder:         "placeholder",
 }
 
 func Atos(a atom.Atom) string {
