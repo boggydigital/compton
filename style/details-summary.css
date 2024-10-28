@@ -16,7 +16,6 @@ details {
             cursor: pointer;
             display: flex;
             align-items: center;
-            /*align-content: start;*/
             user-select: none;
 
             &::marker {

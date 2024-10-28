@@ -10,6 +10,7 @@
 
         & img {
             object-fit: contain;
+            object-position: top;
             line-height: 0;
             grid-row: 1;
             grid-column: 1;
