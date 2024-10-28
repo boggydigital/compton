@@ -16,9 +16,7 @@ func Query(r Registrar, query map[string][]string, titles map[string]string, cle
 		return nil
 	}
 
-	sqStack := Frow(r)
-
-	FlexItems(r, direction.Row).
+	sqStack := FlexItems(r, direction.Row).
 		RowGap(size.Small).
 		JustifyContent(align.Center).
 		FontSize(size.Small)
