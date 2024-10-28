@@ -7,6 +7,7 @@ import (
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -121,4 +122,11 @@ func DSSmall(r Registrar, summary Element, open bool) *DetailsSummaryElement {
 	dse := create(r, summary, open)
 	dse.details.AddClass("smaller")
 	return dse
+}
+
+func DSTitle(r Registrar, title string) Element {
+	fs := Fspan(r, title).
+		FontWeight(font_weight.Bolder).
+		FontSize(size.Large)
+	return fs
 }
