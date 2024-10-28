@@ -79,8 +79,11 @@ details {
         & > summary {
             justify-content: start;
             column-gap: var(--s-xs);
-            padding: 0;
+            padding: var(--s-xxs) var(--s-n) var(--s-xxs) var(--s-s);
+            background-color: var(--c-highlight);
+            border-radius: var(--br-n);
             color: unset;
+            width: max-content;
 
             & svg.details-summary-marker {
                 width: var(--s-s);
