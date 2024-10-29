@@ -77,13 +77,13 @@ func (sue *SvgUseElement) ForegroundColor(c color.Color) *SvgUseElement {
 
 func SvgUse(r Registrar, s Symbol) *SvgUseElement {
 	sue := &SvgUseElement{
-		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.SvgUse, comptonAtomsMarkup)),
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.SvgUse, DefaultMarkup)),
 		s:           s,
 	}
 
 	sue.AddClass(symbolStrings[s])
 
-	r.RegisterStyles(comptonAtomStyle, compton_atoms.StyleName(compton_atoms.SvgUse))
+	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.SvgUse))
 	r.RegisterRequirements(compton_atoms.MarkupName(compton_atoms.SvgUse), Text(markupAtlas))
 
 	return sue

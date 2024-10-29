@@ -39,7 +39,7 @@ func Fspan(r Registrar, t string) *FspanElement {
 	}
 	fse.Append(Text(t))
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.Fspan))
 
 	return fse

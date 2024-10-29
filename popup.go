@@ -28,7 +28,7 @@ func Attach(r Registrar, actor, target Element) *PopupElement {
 		target.SetAttribute("data-popup", "hide")
 	}
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.Popup))
 	r.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.Popup), ScriptAsync(scriptPopup))
 

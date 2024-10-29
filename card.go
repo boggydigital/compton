@@ -93,7 +93,7 @@ func Card(r Registrar, id string) *CardElement {
 	ul.Append(liTitle, liLabels)
 	card.Append(ul)
 
-	r.RegisterStyles(comptonAtomStyle, compton_atoms.StyleName(compton_atoms.Card))
+	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.Card))
 
 	return card
 }

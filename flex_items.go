@@ -77,7 +77,7 @@ func FlexItems(r Registrar, d direction.Direction) *FlexItemsElement {
 	}
 	fie.AddClass(class.FlexDirection(d))
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.FlexItems))
 
 	return fie

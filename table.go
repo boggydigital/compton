@@ -81,7 +81,7 @@ func Table(r Registrar) *TableElement {
 		r:           r,
 	}
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(atom.Table))
 
 	return table

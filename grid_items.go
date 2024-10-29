@@ -63,7 +63,7 @@ func GridItems(r Registrar) *GridItemsElement {
 		BaseElement: NewElement(tacMarkup(compton_atoms.GridItems)),
 	}
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.GridItems))
 
 	return grid

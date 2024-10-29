@@ -74,7 +74,7 @@ func Labels(r Registrar, fmtLabels ...FormattedLabel) *LabelsElement {
 	}
 	lse.container.Append(ul)
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.Labels))
 
 	return lse

@@ -14,9 +14,9 @@ import (
 
 var (
 	//go:embed "markup/*.html"
-	comptonAtomsMarkup embed.FS
+	DefaultMarkup embed.FS
 	//go:embed "style/*.css"
-	comptonAtomStyle embed.FS
+	DefaultStyle embed.FS
 )
 
 /* https://developer.mozilla.org/en-US/docs/Web/API/Text */
@@ -471,7 +471,7 @@ func AtomicElement(a atom.Atom) Element {
 /* required by compton.Page */
 
 func Doctype() Element {
-	return NewElement(atomsEmbedMarkup(compton_atoms.Doctype, comptonAtomsMarkup))
+	return NewElement(atomsEmbedMarkup(compton_atoms.Doctype, DefaultMarkup))
 }
 
 func Document() Element {

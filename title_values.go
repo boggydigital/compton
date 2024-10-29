@@ -102,13 +102,13 @@ func (tve *TitleValuesElement) TitleForegroundColor(c color.Color) *TitleValuesE
 
 func TitleValues(r Registrar, title string) *TitleValuesElement {
 	tve := &TitleValuesElement{
-		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.TitleValues, comptonAtomsMarkup)),
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.TitleValues, DefaultMarkup)),
 		r:           r,
 		title:       HeadingText(title, 3),
 	}
 	tve.RowGap(size.Small)
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.TitleValues))
 
 	return tve

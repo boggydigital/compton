@@ -69,7 +69,7 @@ func issaImage(r Registrar, placeholder, poster string, dehydrated bool) *IssaIm
 	posterImg.AddClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.IssaImage))
 	r.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IssaImage),
 		ScriptAsync(scriptHydrateImage),

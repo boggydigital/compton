@@ -20,7 +20,7 @@ func IframeExpandContent(id, title string) PageElement {
 	p := Page(title).
 		SetBodyId(id)
 
-	p.RegisterStyles(comptonAtomStyle, compton_atoms.StyleName(compton_atoms.IframeExpandContent))
+	p.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.IframeExpandContent))
 	p.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IframeExpandContent),
 		ScriptAsync(scriptIframeExpandPost))
 	return p

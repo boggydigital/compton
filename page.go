@@ -186,7 +186,7 @@ func Page(title string) PageElement {
 	page.appendViewport()
 	page.appendColorScheme()
 
-	page.RegisterStyles(comptonAtomStyle,
+	page.RegisterStyles(DefaultStyle,
 		"style/colors.css", "style/units.css", "style/page.css")
 
 	return page

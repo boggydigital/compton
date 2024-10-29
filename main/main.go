@@ -23,6 +23,7 @@ var appStyles embed.FS
 
 func main() {
 	writeTestPage()
+	//writeColors()
 	//writeIframeContent()
 	//writeIssaPage()
 	//writeSvgUsePage()
@@ -215,6 +216,45 @@ func writeTestPage() {
 	}
 
 	fmt.Println("file://" + testPath)
+}
+
+func writeColors() {
+
+	page := compton.Page("Colors")
+	page.RegisterStyles(compton.DefaultStyle, "style/colors.css")
+	page.RegisterStyles(appStyles, "styles.css")
+
+	grid := compton.GridItems(page)
+	page.Append(grid)
+
+	all := color.All()
+
+	for _, bg := range all {
+		for _, fg := range all {
+			if bg == color.Unset || fg == color.Unset {
+				continue
+			}
+			if bg == fg {
+				continue
+			}
+			div := compton.DivText("F F F")
+			div.SetAttribute("style", "color:"+fg.CssValue()+"; background-color:"+bg.CssValue())
+			grid.Append(div)
+		}
+	}
+
+	colorsPath := filepath.Join(os.TempDir(), "colors.html")
+	colorsFile, err := os.Create(colorsPath)
+	if err != nil {
+		panic(err)
+	}
+	defer colorsFile.Close()
+
+	if err := page.Write(colorsFile); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("file://" + colorsPath)
 }
 
 func switchLabel(r compton.Registrar, id, label string) compton.Element {

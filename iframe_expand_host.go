@@ -32,7 +32,7 @@ func IframeExpandHost(r Registrar, id, src string) Element {
 	iframe.SetId(id)
 	iframe.AddClass("loading")
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.IframeExpandHost))
 	r.RegisterRequirements(compton_atoms.ScriptName(compton_atoms.IframeExpandHost),
 		Script(scriptIframeExpandReceive))

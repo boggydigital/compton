@@ -12,10 +12,10 @@ type NavLinksElement struct {
 
 func NavLinks(r Registrar) *NavLinksElement {
 	navLinks := &NavLinksElement{
-		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.NavLinks, comptonAtomsMarkup)),
+		BaseElement: NewElement(atomsEmbedMarkup(compton_atoms.NavLinks, DefaultMarkup)),
 	}
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.NavLinks))
 
 	return navLinks

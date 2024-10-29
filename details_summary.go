@@ -106,7 +106,7 @@ func create(r Registrar, summary Element, open bool) *DetailsSummaryElement {
 	summaryElement.Append(summaryTitleRow)
 	dse.details.Append(summaryElement)
 
-	r.RegisterStyles(comptonAtomStyle,
+	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.DetailsSummary))
 
 	return dse
