@@ -49,3 +49,8 @@ ul {
     padding-inline-start: var(--s-n);
     list-style: "- ";
 }
+
+._compton_error_message {
+    padding: var(--s-s) var(--s-n);
+    border-radius: var(--br-n);
+}

@@ -5,7 +5,9 @@ import (
 	_ "embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
+	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/font_weight"
 	"golang.org/x/net/html/atom"
 	"io"
 	"net/http"
@@ -82,6 +84,13 @@ func (p *pageElement) RegisterDeferrals(name string, elements ...Element) {
 			}
 		}
 	}
+}
+
+func (p *pageElement) Error(err error) PageElement {
+	msg := Fspan(p, err.Error()).BackgroundColor(color.Red).FontWeight(font_weight.Bolder)
+	msg.AddClass("_compton_error_message")
+	p.RegisterRequirements(err.Error(), FICenter(p, msg))
+	return p
 }
 
 func (p *pageElement) IsRegistered(name string) bool {
