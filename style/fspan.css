@@ -4,5 +4,6 @@
         background-color: var(--bg);
         font-size: var(--fs);
         font-weight: var(--fw);
+        text-align: var(--ta);
     }
 }

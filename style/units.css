@@ -56,4 +56,5 @@
     --gtr: unset; /* grid-template-row */
     --w: unset; /* width */
     --h: unset; /* height */
+    --ta: unset; /* text-align */
 }

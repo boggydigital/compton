@@ -32,6 +32,7 @@ const (
 	gridTemplateRowsPfx = "gtr"
 	widthPfx            = "w"
 	heightPfx           = "h"
+	textAlignPfx        = "ta"
 )
 
 var setClasses = make(map[string]any)
@@ -139,6 +140,10 @@ func HeightPixels(px float64) string {
 	return joinClassName(heightPfx, fmtFloat(px))
 }
 
+func TextAlign(a align.Align) string {
+	return joinClassName(textAlignPfx, a.String())
+}
+
 func StyleClasses() []byte {
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
@@ -166,6 +171,8 @@ func parsePropertyValue(className string) (string, string) {
 	case justifyContentPfx:
 		fallthrough
 	case justifyItemsPfx:
+		fallthrough
+	case textAlignPfx:
 		al := align.Parse(sfx)
 		value = al.String()
 	case fontSizePfx:

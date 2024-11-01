@@ -2,6 +2,7 @@ package compton
 
 import (
 	_ "embed"
+	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
@@ -30,6 +31,11 @@ func (fse *FspanElement) FontSize(s size.Size) *FspanElement {
 
 func (fse *FspanElement) FontWeight(w font_weight.Weight) *FspanElement {
 	fse.AddClass(class.FontWeight(w))
+	return fse
+}
+
+func (fse *FspanElement) TextAlign(a align.Align) *FspanElement {
+	fse.AddClass(class.TextAlign(a))
 	return fse
 }
 
