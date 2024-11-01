@@ -17,6 +17,7 @@ const (
 	Charset = "charset"
 	Name    = "name"
 	Content = "content"
+	Target  = "target"
 )
 
 const (

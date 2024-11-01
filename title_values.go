@@ -4,6 +4,7 @@ import (
 	"bytes"
 	_ "embed"
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
@@ -14,10 +15,13 @@ import (
 	"slices"
 )
 
+const LinkTargetTop = "_top"
+
 type TitleValuesElement struct {
 	*BaseElement
-	r     Registrar
-	title Element
+	r          Registrar
+	title      Element
+	linkTarget string
 }
 
 func (tve *TitleValuesElement) AppendValues(elements ...Element) *TitleValuesElement {
@@ -42,6 +46,11 @@ func (tve *TitleValuesElement) AppendTextValues(values ...string) *TitleValuesEl
 	return tve
 }
 
+func (tve *TitleValuesElement) SetLinksTarget(target string) *TitleValuesElement {
+	tve.linkTarget = target
+	return tve
+}
+
 func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order ...string) *TitleValuesElement {
 	if len(order) == 0 {
 		order = maps.Keys(links)
@@ -50,7 +59,11 @@ func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order .
 
 	for _, key := range order {
 		if links[key] != "" {
-			tve.AppendValues(AText(key, links[key]))
+			link := AText(key, links[key])
+			if tve.linkTarget != "" {
+				link.SetAttribute(attr.Target, tve.linkTarget)
+			}
+			tve.AppendValues(link)
 		} else {
 			// fallback to text if the link is empty
 			tve.AppendTextValues(key)
