@@ -8,13 +8,6 @@ import (
 	"github.com/boggydigital/issa"
 )
 
-const (
-	rnIssaImage                        = "issa-image"
-	scriptImageFadeInRegistrationName  = "script-image-fade-in-" + rnIssaImage
-	scriptHydrateColorRegistrationName = "script-hydrate-color-" + rnIssaImage
-	scriptHydrateImageRegistrationName = "script-hydrate-image" + rnIssaImage
-)
-
 var (
 	//go:embed "script/image_fadein.js"
 	scriptImageFadeIn []byte

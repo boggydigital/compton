@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         poster.addEventListener("error", (e) => {
             e.target.style.display = "none"
         });
+        poster.addEventListener("click", (e) => {
+            e.target.classList.toggle("loading")
+        })
     })
     let placeholders = document.querySelectorAll("img.placeholder")
     placeholders.forEach(placeholder => {
