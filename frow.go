@@ -14,6 +14,13 @@ type FrowElement struct {
 	r Registrar
 }
 
+func (f *FrowElement) Elements(elements ...Element) *FrowElement {
+	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
+		fi.Append(elements...)
+	}
+	return f
+}
+
 func (f *FrowElement) PropVal(p, v string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		fi.Append(Fspan(f.r, p+":").ForegroundColor(color.Gray))

@@ -4,7 +4,7 @@
         color: var(--c-foreground);
         padding: var(--s-snh);
         background-color: var(--c-highlight);
-        border-radius: var(--br-n);
+        border-radius: var(--br-l);
         content-visibility: auto;
         contain-intrinsic-size: 288px 144px;
         overflow: hidden;
