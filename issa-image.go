@@ -6,6 +6,7 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/issa"
+	"strings"
 )
 
 var (
@@ -37,6 +38,13 @@ func (iie *IssaImageElement) Height(s size.Size) *IssaImageElement {
 
 func (iie *IssaImageElement) HeightPixels(px float64) *IssaImageElement {
 	iie.AddClass(class.HeightPixels(px))
+	return iie
+}
+
+func (iie *IssaImageElement) BackgroundColor(hex string) *IssaImageElement {
+	if strings.HasPrefix(hex, "#") {
+		iie.SetAttribute("style", "background-color:"+hex)
+	}
 	return iie
 }
 

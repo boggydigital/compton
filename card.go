@@ -13,13 +13,15 @@ type CardElement struct {
 	r Registrar
 }
 
-func (ce *CardElement) AppendPoster(placeholder, poster string, hydrated bool) *CardElement {
+func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydrated bool) *CardElement {
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
 		if hydrated {
 			hydratedPlaceholder := issa.HydrateColor(placeholder)
 			posterPlaceholder.Append(IssaImageHydrated(ce.r, hydratedPlaceholder, poster))
 		} else {
-			posterPlaceholder.Append(IssaImageDehydrated(ce.r, placeholder, poster))
+			issaImg := IssaImageDehydrated(ce.r, placeholder, poster)
+			issaImg.BackgroundColor(background)
+			posterPlaceholder.Append(issaImg)
 		}
 	}
 	return ce
