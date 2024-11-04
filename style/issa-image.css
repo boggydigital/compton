@@ -17,22 +17,14 @@
             border-radius: var(--br-n);
             width: var(--w);
             height: var(--h);
+            transition: opacity var(--du-slow);
+
+            &.loading {
+                opacity: 0;
+            }
 
             &.placeholder {
                 image-rendering: pixelated;
-                transition: opacity var(--du-fast);
-
-                &.loading {
-                    opacity: 0;
-                }
-            }
-
-            &.poster {
-                transition: opacity var(--du-slow);
-
-                &.loading {
-                    opacity: 0
-                }
             }
         }
     }
