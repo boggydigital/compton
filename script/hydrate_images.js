@@ -7,10 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
             hydratedSrc = hydrateColor(dehydratedData)
             di.removeAttribute("data-dehydrated")
             di.src = hydratedSrc
-            registerImageLoadingEvents(di, poster)
-        } else {
-            registerImageLoadingEvents(poster, null)
         }
+        registerImageLoadingEvents(di, poster)
     })
 });
 registerImageLoadingEvents = (img, next) => {
