@@ -29,7 +29,7 @@ registerImageLoadingEvents = (img, next) => {
         e.target.style.display = "none"
     });
     img.addEventListener("click", (e) => {
-        if (e.target.classList.has("poster")) {
+        if (e.target.classList.contains("poster")) {
             e.target.classList.toggle("loading")
         }
     })
