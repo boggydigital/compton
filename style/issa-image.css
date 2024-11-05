@@ -3,7 +3,7 @@
         justify-content: center;
         align-content: center;
         display: grid;
-        background-color: var(--c-background);
+        background-color: var(--bg);
         border-radius: var(--br-n);
         width: var(--w);
         height: var(--h);

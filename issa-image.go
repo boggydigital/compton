@@ -6,12 +6,11 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
 	"github.com/boggydigital/issa"
-	"strings"
 )
 
 var (
-	//go:embed "script/image_fadein.js"
-	scriptImageFadeIn []byte
+	////go:embed "script/image_fadein.js"
+	//scriptImageFadeIn []byte
 	//go:embed "script/hydrate_images.js"
 	scriptHydrateImage []byte
 )
@@ -41,17 +40,19 @@ func (iie *IssaImageElement) HeightPixels(px float64) *IssaImageElement {
 	return iie
 }
 
-func (iie *IssaImageElement) BackgroundColor(hex string) *IssaImageElement {
-	if strings.HasPrefix(hex, "#") {
-		iie.SetAttribute("style", "background-color:"+hex)
-	}
+func (iie *IssaImageElement) BackgroundColorHex(c string) *IssaImageElement {
+	iie.AddClass(class.BackgroundColorHex(c))
 	return iie
 }
 
-func issaImage(r Registrar, placeholder, poster string, dehydrated bool) *IssaImageElement {
+func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) *IssaImageElement {
 	ii := &IssaImageElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),
 		dehydrated:  dehydrated,
+	}
+
+	if bgHex != "" {
+		ii.BackgroundColorHex(bgHex)
 	}
 
 	placeholderImg := Image("")
@@ -66,7 +67,8 @@ func issaImage(r Registrar, placeholder, poster string, dehydrated bool) *IssaIm
 
 	placeholderImg.AddClass(classes...)
 
-	posterImg := ImageLazy(poster)
+	posterImg := ImageLazy("")
+	posterImg.SetAttribute("data-src", poster)
 	posterImg.AddClass("poster", "loading")
 	ii.Append(placeholderImg, posterImg)
 
@@ -74,16 +76,16 @@ func issaImage(r Registrar, placeholder, poster string, dehydrated bool) *IssaIm
 		compton_atoms.StyleName(compton_atoms.IssaImage))
 	r.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IssaImage),
 		ScriptAsync(scriptHydrateImage),
-		ScriptAsync(scriptImageFadeIn),
+		//ScriptAsync(scriptImageFadeIn),
 		ScriptAsync(issa.HydrateColorScript))
 
 	return ii
 }
 
 func IssaImageHydrated(r Registrar, placeholder, poster string) *IssaImageElement {
-	return issaImage(r, placeholder, poster, false)
+	return issaImage(r, "", placeholder, poster, false)
 }
 
-func IssaImageDehydrated(r Registrar, placeholder, poster string) *IssaImageElement {
-	return issaImage(r, placeholder, poster, true)
+func IssaImageDehydrated(r Registrar, bgHex, placeholder, poster string) *IssaImageElement {
+	return issaImage(r, bgHex, placeholder, poster, true)
 }

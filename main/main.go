@@ -327,7 +327,7 @@ func writeIssaPage() {
 	p := compton.Page("issa page")
 	p.RegisterStyles(appStyles, "styles.css")
 
-	issaImage := compton.IssaImageDehydrated(p, dehydratedSrc, imageSrc)
+	issaImage := compton.IssaImageDehydrated(p, "", dehydratedSrc, imageSrc)
 	p.Append(issaImage)
 
 	issaPath := filepath.Join(os.TempDir(), "issa.html")

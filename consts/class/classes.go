@@ -96,6 +96,10 @@ func BackgroundColor(c color.Color) string {
 	return joinClassName(backgroundColorPfx, c.String())
 }
 
+func BackgroundColorHex(c string) string {
+	return joinClassName(backgroundColorPfx, strings.Replace(c, "#", "_", 1))
+}
+
 func ForegroundColor(c color.Color) string {
 	return joinClassName(foregroundColorPfx, c.String())
 }
@@ -205,8 +209,12 @@ func parsePropertyValue(className string) (string, string) {
 	case foregroundColorPfx:
 		fallthrough
 	case backgroundColorPfx:
-		cl := color.Parse(sfx)
-		value = cl.CssValue()
+		if strings.Contains(sfx, "_") {
+			value = strings.Replace(sfx, "_", "#", 1)
+		} else {
+			cl := color.Parse(sfx)
+			value = cl.CssValue()
+		}
 	case fontWeightPfx:
 		wt := font_weight.Parse(sfx)
 		value = wt.CssValue()

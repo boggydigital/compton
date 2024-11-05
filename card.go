@@ -19,8 +19,7 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 			hydratedPlaceholder := issa.HydrateColor(placeholder)
 			posterPlaceholder.Append(IssaImageHydrated(ce.r, hydratedPlaceholder, poster))
 		} else {
-			issaImg := IssaImageDehydrated(ce.r, placeholder, poster)
-			issaImg.BackgroundColor(background)
+			issaImg := IssaImageDehydrated(ce.r, background, placeholder, poster)
 			posterPlaceholder.Append(issaImg)
 		}
 	}
