@@ -62,6 +62,7 @@ func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) 
 		placeholderImg.SetAttribute("data-dehydrated", placeholder)
 		classes = append(classes, "loading")
 	} else {
+		placeholderImg.SetAttribute("data-dehydrated", "")
 		placeholderImg.SetAttribute("src", placeholder)
 	}
 
@@ -76,7 +77,6 @@ func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) 
 		compton_atoms.StyleName(compton_atoms.IssaImage))
 	r.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IssaImage),
 		ScriptAsync(scriptHydrateImage),
-		//ScriptAsync(scriptImageFadeIn),
 		ScriptAsync(issa.HydrateColorScript))
 
 	return ii
