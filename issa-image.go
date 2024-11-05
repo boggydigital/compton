@@ -38,6 +38,11 @@ func (iie *IssaImageElement) HeightPixels(px float64) *IssaImageElement {
 	return iie
 }
 
+func (iie *IssaImageElement) AspectRatio(ar float64) *IssaImageElement {
+	iie.AddClass(class.AspectRatio(ar))
+	return iie
+}
+
 func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) *IssaImageElement {
 	ii := &IssaImageElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),

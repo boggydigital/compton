@@ -58,4 +58,5 @@
     --h: unset; /* height */
     --ta: unset; /* text-align */
     --oc: unset; /* outline-color */
+    --ar: unset; /* aspect-ratio */
 }

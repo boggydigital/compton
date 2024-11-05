@@ -10,6 +10,7 @@
 
         & img {
             object-fit: contain;
+            aspect-ratio: var(--ar);
             line-height: 0;
             grid-row: 1;
             grid-column: 1;

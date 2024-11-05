@@ -34,6 +34,7 @@ const (
 	heightPfx           = "h"
 	textAlignPfx        = "ta"
 	outlineColorPfx     = "oc"
+	aspectRatioPfx      = "ar"
 )
 
 var setClasses = make(map[string]any)
@@ -88,6 +89,8 @@ func AlignContent(a align.Align) string {
 func AlignItems(a align.Align) string {
 	return joinClassName(alignItemsPfx, a.String())
 }
+
+func AspectRatio(ar float64) string { return joinClassName(aspectRatioPfx, fmtFloat(ar)) }
 
 func JustifyContent(a align.Align) string {
 	return joinClassName(justifyContentPfx, a.String())
@@ -207,12 +210,15 @@ func parsePropertyValue(className string) (string, string) {
 	case widthPfx:
 		fallthrough
 	case heightPfx:
-		if _, err := parseFloat(sfx); err == nil {
-			sfx = strings.Replace(sfx, "_", ".", 1)
-			value = sfx + "px"
+		if fv, err := parseFloat(sfx); err == nil {
+			value = strconv.FormatFloat(fv, 'f', -1, 64) + "px"
 		} else {
 			sz := size.Parse(sfx)
 			value = sz.SizeCssValue()
+		}
+	case aspectRatioPfx:
+		if fv, err := parseFloat(sfx); err == nil {
+			value = strconv.FormatFloat(fv, 'f', -1, 64)
 		}
 	case flexDirectionPfx:
 		dr := direction.Parse(sfx)
