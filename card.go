@@ -17,7 +17,7 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
 		if hydrated {
 			hydratedPlaceholder := issa.HydrateColor(placeholder)
-			posterPlaceholder.Append(IssaImageHydrated(ce.r, hydratedPlaceholder, poster))
+			posterPlaceholder.Append(IssaImageHydrated(ce.r, background, hydratedPlaceholder, poster))
 		} else {
 			issaImg := IssaImageDehydrated(ce.r, background, placeholder, poster)
 			posterPlaceholder.Append(issaImg)

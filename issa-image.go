@@ -9,8 +9,6 @@ import (
 )
 
 var (
-	////go:embed "script/image_fadein.js"
-	//scriptImageFadeIn []byte
 	//go:embed "script/hydrate_images.js"
 	scriptHydrateImage []byte
 )
@@ -40,11 +38,6 @@ func (iie *IssaImageElement) HeightPixels(px float64) *IssaImageElement {
 	return iie
 }
 
-func (iie *IssaImageElement) BackgroundColorHex(c string) *IssaImageElement {
-	iie.AddClass(class.BackgroundColorHex(c))
-	return iie
-}
-
 func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) *IssaImageElement {
 	ii := &IssaImageElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),
@@ -52,7 +45,7 @@ func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) 
 	}
 
 	if bgHex != "" {
-		ii.BackgroundColorHex(bgHex)
+		ii.AddClass(class.BackgroundColorHex(bgHex))
 	}
 
 	placeholderImg := Image("")
@@ -82,8 +75,8 @@ func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) 
 	return ii
 }
 
-func IssaImageHydrated(r Registrar, placeholder, poster string) *IssaImageElement {
-	return issaImage(r, "", placeholder, poster, false)
+func IssaImageHydrated(r Registrar, bgHex, placeholder, poster string) *IssaImageElement {
+	return issaImage(r, bgHex, placeholder, poster, false)
 }
 
 func IssaImageDehydrated(r Registrar, bgHex, placeholder, poster string) *IssaImageElement {

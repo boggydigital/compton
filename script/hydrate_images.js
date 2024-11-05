@@ -29,7 +29,9 @@ registerImageLoadingEvents = (img, next) => {
         e.target.style.display = "none"
     });
     img.addEventListener("click", (e) => {
-        e.target.classList.toggle("loading")
+        if (e.target.classList.has("poster")) {
+            e.target.classList.toggle("loading")
+        }
     })
 }
 loadDataSrcImage = (img) => {
