@@ -47,6 +47,20 @@ func (dse *DetailsSummaryElement) SummaryRowGap(s size.Size) *DetailsSummaryElem
 	return dse
 }
 
+func (dse *DetailsSummaryElement) SummaryOutlineColor(c color.Color) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.OutlineColor(c))
+	}
+	return dse
+}
+
+func (dse *DetailsSummaryElement) SummaryOutlineColorHex(hex string) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.OutlineColorHex(hex))
+	}
+	return dse
+}
+
 func (dse *DetailsSummaryElement) BackgroundColor(c color.Color) *DetailsSummaryElement {
 	if summary := dse.getSummary(); summary != nil {
 		summary.AddClass(class.BackgroundColor(c))

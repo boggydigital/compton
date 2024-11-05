@@ -127,7 +127,8 @@ func writeTestPage() {
 	dsTitleValues := compton.DSLarge(p, tvsTitle, true).
 		BackgroundColor(color.Purple).
 		ForegroundColor(color.Background).
-		MarkerColor(color.Yellow)
+		MarkerColor(color.Yellow).
+		SummaryOutlineColor(color.Green)
 
 	tvGrid := compton.GridItems(p).JustifyContent(align.Center)
 

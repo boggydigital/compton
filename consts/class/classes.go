@@ -33,6 +33,7 @@ const (
 	widthPfx            = "w"
 	heightPfx           = "h"
 	textAlignPfx        = "ta"
+	outlineColorPfx     = "oc"
 )
 
 var setClasses = make(map[string]any)
@@ -62,6 +63,14 @@ func fmtFloat(f float64) string {
 func parseFloat(s string) (float64, error) {
 	fn := strings.Replace(s, "_", ".", 1)
 	return strconv.ParseFloat(fn, 64)
+}
+
+func hexToClassName(hex string) string {
+	return strings.Replace(hex, "#", "_", 1)
+}
+
+func classNameToHex(cn string) string {
+	return strings.Replace(cn, "_", "#", 1)
 }
 
 func RowGap(s size.Size) string {
@@ -97,8 +106,12 @@ func BackgroundColor(c color.Color) string {
 }
 
 func BackgroundColorHex(c string) string {
-	return joinClassName(backgroundColorPfx, strings.Replace(c, "#", "_", 1))
+	return joinClassName(backgroundColorPfx, hexToClassName(c))
 }
+
+func OutlineColor(c color.Color) string { return joinClassName(outlineColorPfx, c.String()) }
+
+func OutlineColorHex(c string) string { return joinClassName(outlineColorPfx, hexToClassName(c)) }
 
 func ForegroundColor(c color.Color) string {
 	return joinClassName(foregroundColorPfx, c.String())
@@ -209,8 +222,10 @@ func parsePropertyValue(className string) (string, string) {
 	case foregroundColorPfx:
 		fallthrough
 	case backgroundColorPfx:
+		fallthrough
+	case outlineColorPfx:
 		if strings.Contains(sfx, "_") {
-			value = strings.Replace(sfx, "_", "#", 1)
+			value = classNameToHex(sfx)
 		} else {
 			cl := color.Parse(sfx)
 			value = cl.CssValue()

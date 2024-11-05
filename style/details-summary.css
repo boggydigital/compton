@@ -33,6 +33,7 @@ details {
 
             & > summary {
                 margin-block-end: var(--mbe);
+                outline: var(--s-xxs) solid var(--oc);
 
                 & svg.details-summary-marker {
                     rotate: -45deg;
