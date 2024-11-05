@@ -11,6 +11,7 @@ type PageElement interface {
 	Error(err error) PageElement
 
 	SetBodyId(id string) PageElement
+	SetBodyAttribute(name, val string)
 
 	AppendManifest() PageElement
 	AppendIcon() PageElement

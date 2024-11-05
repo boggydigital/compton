@@ -1,5 +1,6 @@
 html {
     margin-inline: var(--s-s);
+    background: transparent;
 }
 
 body {

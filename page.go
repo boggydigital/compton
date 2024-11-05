@@ -124,6 +124,18 @@ func (p *pageElement) AppendIcon() PageElement {
 	return p
 }
 
+func (p *pageElement) SetBodyAttribute(name, val string) {
+	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+		body.SetAttribute(name, val)
+	}
+}
+
+func (p *pageElement) SetAttribute(name, val string) {
+	if html := p.document.GetFirstElementByTagName(atom.Html); html != nil {
+		html.SetAttribute(name, val)
+	}
+}
+
 func (p *pageElement) SetBodyId(id string) PageElement {
 	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
 		body.SetId(id)
