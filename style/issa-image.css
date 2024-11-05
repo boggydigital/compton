@@ -25,7 +25,7 @@
 
             &.placeholder {
                 image-rendering: pixelated;
-                object-fit: cover;
+                object-fit: fill;
             }
         }
     }
