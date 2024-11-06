@@ -28,11 +28,6 @@ registerImageLoadingEvents = (img, next) => {
     img.addEventListener("error", (e) => {
         e.target.style.display = "none"
     });
-    img.addEventListener("click", (e) => {
-        if (e.target.classList.contains("poster")) {
-            e.target.classList.toggle("loading")
-        }
-    })
 }
 loadDataSrcImage = (img) => {
     img.src = img.getAttribute("data-src")
