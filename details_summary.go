@@ -28,6 +28,12 @@ func (dse *DetailsSummaryElement) AppendSummary(children ...Element) {
 	}
 }
 
+func (dse *DetailsSummaryElement) AddClassSummary(names ...string) {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(names...)
+	}
+}
+
 func (dse *DetailsSummaryElement) SummaryMarginBlockEnd(s size.Size) *DetailsSummaryElement {
 	if summaries := dse.details.GetElementsByTagName(atom.Summary); len(summaries) > 0 {
 		summaries[0].AddClass(class.MarginBlockEnd(s))
