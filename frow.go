@@ -29,6 +29,16 @@ func (f *FrowElement) PropVal(p, v string) *FrowElement {
 	return f
 }
 
+func (f *FrowElement) PropIcons(p string, symbols ...Symbol) *FrowElement {
+	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
+		fi.Append(Fspan(f.r, p+":").ForegroundColor(color.Gray))
+		for _, symbol := range symbols {
+			fi.Append(SvgUse(f.r, symbol))
+		}
+	}
+	return f
+}
+
 func (f *FrowElement) Heading(title string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		fi.Append(Fspan(f.r, title).FontWeight(font_weight.Bolder))
@@ -43,7 +53,7 @@ func (f *FrowElement) Highlight(title string) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) Icon(class string) *FrowElement {
+func (f *FrowElement) CircleIcon(class string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		icon := SvgUse(f.r, Circle)
 		if class != "" {
@@ -54,7 +64,7 @@ func (f *FrowElement) Icon(class string) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) IconColor(c color.Color) *FrowElement {
+func (f *FrowElement) CircleIconColor(c color.Color) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		fi.Append(SvgUse(f.r, Circle).ForegroundColor(c))
 	}
