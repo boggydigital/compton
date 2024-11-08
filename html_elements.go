@@ -329,6 +329,18 @@ func ParagraphText(txt string) Element {
 	return p
 }
 
+/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre */
+
+func Pre() Element {
+	return NewElement(tacMarkup(atom.Pre))
+}
+
+func PreText(txt string) Element {
+	pt := Pre()
+	pt.Append(Text(txt))
+	return pt
+}
+
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script */
 
 var b64 = base64.StdEncoding
