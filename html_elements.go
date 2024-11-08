@@ -312,6 +312,23 @@ func Option(value, label string) Element {
 	return option
 }
 
+/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p */
+
+var (
+	P     = Paragraph
+	PText = ParagraphText
+)
+
+func Paragraph() Element {
+	return NewElement(tacMarkup(atom.P))
+}
+
+func ParagraphText(txt string) Element {
+	p := Paragraph()
+	p.Append(Text(txt))
+	return p
+}
+
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script */
 
 var b64 = base64.StdEncoding

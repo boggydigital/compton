@@ -7,7 +7,6 @@ body {
     overflow: hidden;
     max-width: var(--s-maxw);
     margin: 0 auto;
-    line-height: calc(1.5 * var(--s-n));
 }
 
 img, video {

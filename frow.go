@@ -23,18 +23,22 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 
 func (f *FrowElement) PropVal(p, v string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(Fspan(f.r, p+":").ForegroundColor(color.Gray))
-		fi.Append(Fspan(f.r, v))
+		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
+		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
+		row.Append(Fspan(f.r, v))
+		fi.Append(row)
 	}
 	return f
 }
 
 func (f *FrowElement) PropIcons(p string, symbols ...Symbol) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(Fspan(f.r, p+":").ForegroundColor(color.Gray))
+		row := FlexItems(f.r, direction.Row).ColumnGap(size.Small)
+		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
 		for _, symbol := range symbols {
-			fi.Append(SvgUse(f.r, symbol))
+			row.Append(SvgUse(f.r, symbol))
 		}
+		fi.Append(row)
 	}
 	return f
 }
@@ -91,8 +95,8 @@ func Frow(r Registrar) *FrowElement {
 	}
 
 	fi := FlexItems(r, direction.Row).
-		ColumnGap(size.XSmall).
-		RowGap(size.Unset).
+		ColumnGap(size.Small).
+		RowGap(size.XSmall).
 		AlignItems(align.Center).
 		FontSize(size.Small)
 	fi.AddClass("frow")
