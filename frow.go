@@ -57,20 +57,9 @@ func (f *FrowElement) Highlight(title string) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) CircleIcon(class string) *FrowElement {
+func (f *FrowElement) IconColor(symbol Symbol, c color.Color) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		icon := SvgUse(f.r, Circle)
-		if class != "" {
-			icon.AddClass(class)
-		}
-		fi.Append(icon)
-	}
-	return f
-}
-
-func (f *FrowElement) CircleIconColor(c color.Color) *FrowElement {
-	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(SvgUse(f.r, Circle).ForegroundColor(c))
+		fi.Append(SvgUse(f.r, symbol).ForegroundColor(c))
 	}
 	return f
 }
@@ -88,6 +77,15 @@ func (f *FrowElement) LinkExternal(title, href string) *FrowElement {
 	return f
 }
 
+func (f *FrowElement) FontSize(s size.Size) *FrowElement {
+	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
+		if flexItems, ok := fi.(*FlexItemsElement); ok {
+			flexItems.FontSize(s)
+		}
+	}
+	return f
+}
+
 func Frow(r Registrar) *FrowElement {
 	frow := &FrowElement{
 		BaseElement: NewElement(compton_atoms.Frow, nil),
@@ -97,8 +95,7 @@ func Frow(r Registrar) *FrowElement {
 	fi := FlexItems(r, direction.Row).
 		ColumnGap(size.Small).
 		RowGap(size.XSmall).
-		AlignItems(align.Center).
-		FontSize(size.Small)
+		AlignItems(align.Center)
 	fi.AddClass("frow")
 
 	frow.Append(fi)
