@@ -7,6 +7,7 @@ import (
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
+	"strings"
 )
 
 type FrowElement struct {
@@ -21,11 +22,11 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) PropVal(p, v string) *FrowElement {
+func (f *FrowElement) PropVal(p string, vals ...string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
-		row.Append(Fspan(f.r, v))
+		row.Append(Fspan(f.r, strings.Join(vals, ", ")))
 		fi.Append(row)
 	}
 	return f
@@ -64,11 +65,11 @@ func (f *FrowElement) IconColor(symbol Symbol, c color.Color) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) LinkExternal(title, href string) *FrowElement {
+func (f *FrowElement) LinkColor(title, href string, c color.Color) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		linkDecoration := Fspan(f.r, "").
 			FontWeight(font_weight.Bolder).
-			ForegroundColor(color.Cyan)
+			ForegroundColor(c)
 		link := AText(title, href)
 		link.SetAttribute("target", "_top")
 		linkDecoration.Append(link)
