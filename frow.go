@@ -7,6 +7,7 @@ import (
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
+	"strings"
 )
 
 type FrowElement struct {
@@ -21,11 +22,11 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) PropVal(p string, val string) *FrowElement {
+func (f *FrowElement) PropVal(p string, vals ...string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
-		row.Append(Fspan(f.r, val))
+		row.Append(Fspan(f.r, strings.Join(vals, ", ")))
 		fi.Append(row)
 	}
 	return f
