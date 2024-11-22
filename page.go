@@ -162,6 +162,15 @@ func (p *pageElement) appendMetaCharset() {
 	}
 }
 
+func (p *pageElement) appendMetaFormatDetectionTelephoneNo() {
+	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
+		head.Append(Meta(map[string]string{
+			attr.Name:    attr.FormatDetection,
+			attr.Content: attr.TelephoneNo,
+		}))
+	}
+}
+
 func (p *pageElement) appendTitle(title string) {
 	if head := p.document.GetFirstElementByTagName(atom.Head); head != nil {
 		head.Append(Title(title))
@@ -206,6 +215,7 @@ func Page(title string) PageElement {
 	page.appendTitle(title)
 	page.appendViewport()
 	page.appendColorScheme()
+	page.appendMetaFormatDetectionTelephoneNo()
 
 	page.RegisterStyles(DefaultStyle,
 		"style/colors.css", "style/units.css", "style/page.css")

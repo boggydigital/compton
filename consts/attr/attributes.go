@@ -34,11 +34,13 @@ const (
 	AppleMobileWebAppStatusBarStyle = "apple-mobile-web-app-status-bar-style"
 	Viewport                        = "viewport"
 	ColorScheme                     = "color-scheme"
+	FormatDetection                 = "format-detection"
 
 	// meta content
 	BlackTranslucent = "black-translucent"
 	ViewportDefaults = "width=device-width,initial-scale=1.0"
 	DarkLight        = "dark light"
+	TelephoneNo      = "telephone=no"
 
 	// link rel
 	Manifest = "manifest"
