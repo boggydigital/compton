@@ -27,27 +27,29 @@ const (
 	Foreground
 	Gray
 	Highlight
+	Transparent
 )
 
 var colorStrings = map[Color]string{
-	Black:      "black",
-	White:      "white",
-	Red:        "red",
-	Orange:     "orange",
-	Yellow:     "yellow",
-	Green:      "green",
-	Mint:       "mint",
-	Teal:       "teal",
-	Cyan:       "cyan",
-	Blue:       "blue",
-	Indigo:     "indigo",
-	Purple:     "purple",
-	Pink:       "pink",
-	Brown:      "brown",
-	Gray:       "gray",
-	Background: "background",
-	Foreground: "foreground",
-	Highlight:  "highlight",
+	Black:       "black",
+	White:       "white",
+	Red:         "red",
+	Orange:      "orange",
+	Yellow:      "yellow",
+	Green:       "green",
+	Mint:        "mint",
+	Teal:        "teal",
+	Cyan:        "cyan",
+	Blue:        "blue",
+	Indigo:      "indigo",
+	Purple:      "purple",
+	Pink:        "pink",
+	Brown:       "brown",
+	Gray:        "gray",
+	Background:  "background",
+	Foreground:  "foreground",
+	Highlight:   "highlight",
+	Transparent: "transparent",
 }
 
 func (c Color) String() string {

@@ -1,6 +1,7 @@
 :root {
     --c-white: white;
     --c-black: black;
+    --c-transparent: transparent;
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */
