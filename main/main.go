@@ -185,7 +185,7 @@ func writeTestPage() {
 	s.Append(dsSwitches)
 
 	fr := compton.Frow(p)
-	fr.CircleIconColor(color.Indigo).
+	fr.IconColor(compton.Circle, color.Indigo).
 		Heading("Heading").
 		PropVal("Property", "Value").
 		Highlight("Highlight")
