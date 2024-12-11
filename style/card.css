@@ -33,6 +33,8 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-weight: var(--fw-n);
+                /* https://webkit.org/blog/16301/webkit-features-in-safari-18-2/ */
+                text-box: trim-start cap;
             }
 
             & li.labels {
