@@ -13,18 +13,21 @@ const (
 	XLarge
 	XXLarge
 	XXXLarge
+
+	ColumnWidth
 )
 
 var sizeStrings = map[Size]string{
-	Normal:   "n",
-	Small:    "s",
-	XSmall:   "xs",
-	XXSmall:  "xxs",
-	XXXSmall: "xxxs",
-	Large:    "l",
-	XLarge:   "xl",
-	XXLarge:  "xxl",
-	XXXLarge: "xxxl",
+	Normal:      "n",
+	Small:       "s",
+	XSmall:      "xs",
+	XXSmall:     "xxs",
+	XXXSmall:    "xxxs",
+	Large:       "l",
+	XLarge:      "xl",
+	XXLarge:     "xxl",
+	XXXLarge:    "xxxl",
+	ColumnWidth: "cw",
 }
 
 func (u Size) String() string {
