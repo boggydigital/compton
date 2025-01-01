@@ -23,7 +23,7 @@
                 width: min-content;
                 text-transform: uppercase;
                 padding: var(--s-xxs) calc(1.25 * var(--s-xs));
-                border-radius: var(--br-n);
+                border-radius: var(--br-s);
                 white-space: nowrap;
             }
         }
