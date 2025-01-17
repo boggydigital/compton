@@ -1,9 +1,11 @@
 @scope (card) {
     :scope {
+        --tint-bg: var(--c-highlight);
         --s-snh: calc((var(--s-s) + var(--s-n)) / 2);
         color: var(--c-foreground);
         padding: var(--s-snh);
-        background-color: var(--c-highlight);
+        background-color: var(--tint-bg);
+        border: var(--s-xxxs) solid color-mix(in display-p3, var(--tint-bg), var(--c-gray) 15%);
         border-radius: var(--br-l);
         content-visibility: auto;
         contain-intrinsic-size: 288px 144px;
@@ -68,5 +70,15 @@
                 }
             }
         }
+    }
+}
+
+card {
+    --cma: 10%
+}
+
+@media screen and (prefers-color-scheme:dark) {
+    card {
+        --cma: 15%;
     }
 }
