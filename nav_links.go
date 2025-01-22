@@ -6,6 +6,10 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
+const sectionLinksId = "section-links"
+
+const SectionLinksTitle = "&#x2935;" // ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
+
 type NavLinksElement struct {
 	*BaseElement
 }
@@ -49,4 +53,23 @@ func appendTarget(r Registrar, nl *NavLinksElement, t *Target) {
 	}
 	li.Append(link)
 	nl.Append(li)
+}
+
+func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]string) Element {
+
+	sectionLinks := make(map[string]string)
+	sectionsOrder := make([]string, 0, len(sections))
+	for _, s := range sections {
+		title := sectionTitles[s]
+		sectionLinks[title] = "#" + title
+		sectionsOrder = append(sectionsOrder, title)
+	}
+
+	targets := TextLinks(sectionLinks, "", sectionsOrder...)
+
+	psl := NavLinksTargets(r, targets...)
+	psl.SetId(sectionLinksId)
+
+	return psl
+
 }
