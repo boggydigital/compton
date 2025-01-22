@@ -5,7 +5,7 @@
         color: var(--c-foreground);
         padding: var(--s-snh);
         background-color: var(--tint-bg);
-        border: var(--s-xxxs) solid color-mix(in display-p3, var(--tint-bg), var(--c-gray) 15%);
+        border: var(--s-xxxs) solid color-mix(in display-p3, var(--tint-bg), var(--c-gray) var(--cma));
         border-radius: var(--br-l);
         content-visibility: auto;
         contain-intrinsic-size: 288px 144px;
@@ -70,15 +70,5 @@
                 }
             }
         }
-    }
-}
-
-card {
-    --cma: 10%
-}
-
-@media screen and (prefers-color-scheme:dark) {
-    card {
-        --cma: 15%;
     }
 }

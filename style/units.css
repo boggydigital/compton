@@ -38,6 +38,8 @@
     --du-fast: 256ms;
     --du-slow: 1024ms;
 
+    --cma: 10%;
+
     /* customizable properties */
 
     --cg: var(--s-n); /*column-gap*/
@@ -59,4 +61,10 @@
     --ta: unset; /* text-align */
     --oc: unset; /* outline-color */
     --ar: unset; /* aspect-ratio */
+}
+
+@media screen and (prefers-color-scheme:dark) {
+    :root {
+        --cma: 15%;
+    }
 }
