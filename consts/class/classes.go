@@ -41,9 +41,10 @@ var setClasses = make(map[string]any)
 var mtx = sync.Mutex{}
 
 func joinClassName(parts ...string) string {
-	cn := strings.Join(parts, classNameSep)
 	mtx.Lock()
 	defer mtx.Unlock()
+
+	cn := strings.Join(parts, classNameSep)
 	setClasses[cn] = nil
 	return cn
 }
@@ -165,6 +166,9 @@ func TextAlign(a align.Align) string {
 }
 
 func StyleClasses() []byte {
+	mtx.Lock()
+	defer mtx.Unlock()
+
 	sb := &strings.Builder{}
 	for className := range maps.Keys(setClasses) {
 		property, value := parsePropertyValue(className)

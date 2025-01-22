@@ -12,12 +12,14 @@ import (
 	"io"
 	"net/http"
 	"strings"
+	"sync"
 )
 
 type pageElement struct {
 	BaseElement
 	registry map[string]any
 	document Element
+	mux      *sync.Mutex
 }
 
 func (p *pageElement) appendStyleClasses() {
@@ -35,6 +37,9 @@ func (p *pageElement) Append(children ...Element) {
 }
 
 func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
+	p.mux.Lock()
+	defer p.mux.Unlock()
+
 	if policy := p.contentSecurityPolicy(); policy != "" {
 		w.Header().Set("Content-Security-Policy", policy)
 	}
@@ -43,6 +48,9 @@ func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
 }
 
 func (p *pageElement) Write(w io.Writer) error {
+	//p.mux.Lock()
+	//defer p.mux.Unlock()
+
 	p.appendStyleClasses()
 	return p.document.Write(w)
 }
@@ -124,6 +132,16 @@ func (p *pageElement) AppendIcon() PageElement {
 	return p
 }
 
+func (p *pageElement) AppendSpeculationRules(hrefMatches ...string) {
+
+	if srBytes := SpeculationRulesBytes(hrefMatches...); len(srBytes) > 0 {
+		srScript := ScriptAsync(srBytes)
+		srScript.SetAttribute(attr.Type, speculationRulesName)
+
+		p.RegisterDeferrals(speculationRulesName, srScript)
+	}
+}
+
 func (p *pageElement) SetBodyAttribute(name, val string) {
 	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
 		body.SetAttribute(name, val)
@@ -200,6 +218,7 @@ func Page(title string) PageElement {
 			TagName: compton_atoms.Page,
 		},
 		registry: make(map[string]any),
+		mux:      &sync.Mutex{},
 	}
 
 	page.document = Document()
