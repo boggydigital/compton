@@ -5,7 +5,7 @@
         overflow: hidden;
         cursor: default;
         --label-color: unset;
-        --cm-clr: var(--c-gray);
+        --label-cm-color: var(--c-gray);
 
         & ul {
             display: flex;
@@ -21,7 +21,7 @@
             & .label {
                 border-width: var(--s-xxxs);
                 border-style: solid;
-                border-color: color-mix(in display-p3, var(--label-color), var(--cm-clr) var(--cma));
+                border-color: color-mix(in display-p3, var(--label-color), var(--label-cm-color) var(--cma));
                 background-color: var(--label-color);
                 display: flex;
                 align-items: center;
