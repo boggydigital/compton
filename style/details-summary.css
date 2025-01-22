@@ -9,9 +9,6 @@ details {
 
 @scope (details) {
     :scope {
-        /* TODO: re-enable when https://bugs.webkit.org/show_bug.cgi?id=277573 is fixed */
-        /*content-visibility: auto;*/
-
         & > summary {
             cursor: pointer;
             display: flex;
