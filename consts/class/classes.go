@@ -35,6 +35,9 @@ const (
 	textAlignPfx        = "ta"
 	outlineColorPfx     = "oc"
 	aspectRatioPfx      = "ar"
+	paddingInlinePfx    = "pdi"
+	paddingBlockPfx     = "pdb"
+	borderRadiusPfx     = "br"
 )
 
 var setClasses = make(map[string]any)
@@ -165,6 +168,12 @@ func TextAlign(a align.Align) string {
 	return joinClassName(textAlignPfx, a.String())
 }
 
+func PaddingInline(s size.Size) string { return joinClassName(paddingInlinePfx, s.String()) }
+
+func PaddingBlock(s size.Size) string { return joinClassName(paddingBlockPfx, s.String()) }
+
+func BorderRadius(s size.Size) string { return joinClassName(borderRadiusPfx, s.String()) }
+
 func StyleClasses() []byte {
 	mtx.Lock()
 	defer mtx.Unlock()
@@ -202,6 +211,12 @@ func parsePropertyValue(className string) (string, string) {
 	case fontSizePfx:
 		sz := size.Parse(sfx)
 		value = sz.FontSizeCssValue()
+	case paddingInlinePfx:
+		fallthrough
+	case paddingBlockPfx:
+		fallthrough
+	case borderRadiusPfx:
+		fallthrough
 	case marginBlockEndPfx:
 		fallthrough
 	case columnGapPfx:

@@ -57,7 +57,6 @@ details {
             border-radius: var(--br-l);
             column-gap: var(--s-s);
             row-gap: var(--rg);
-            flex-direction: column;
             border: var(--s-xxxs) solid color-mix(in display-p3, var(--bg), var(--c-gray) var(--cma));
 
             & svg.details-summary-marker {

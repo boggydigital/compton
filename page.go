@@ -48,9 +48,6 @@ func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
 }
 
 func (p *pageElement) Write(w io.Writer) error {
-	//p.mux.Lock()
-	//defer p.mux.Unlock()
-
 	p.appendStyleClasses()
 	return p.document.Write(w)
 }

@@ -5,5 +5,8 @@
         font-size: var(--fs);
         font-weight: var(--fw);
         text-align: var(--ta);
+        padding-inline: var(--pdi);
+        padding-block: var(--pdb);
+        border-radius: var(--br);
     }
 }

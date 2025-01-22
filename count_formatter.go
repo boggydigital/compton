@@ -33,9 +33,13 @@ func (cf *CountFormatter) Title(from, to, total int) string {
 
 func (cf *CountFormatter) TitleElement(r Registrar, from, to, total int) Element {
 	return Fspan(r, cf.Title(from, to, total)).
-		ForegroundColor(color.Gray).
+		ForegroundColor(color.Foreground).
 		FontSize(size.XSmall).
-		FontWeight(font_weight.Normal)
+		FontWeight(font_weight.Normal).
+		BackgroundColor(color.Background).
+		PaddingBlock(size.XXSmall).
+		PaddingInline(size.XSmall).
+		BorderRadius(size.XXSmall)
 }
 
 func (cf *CountFormatter) formatManyInManySets(from, to, total int) string {

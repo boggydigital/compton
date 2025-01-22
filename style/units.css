@@ -61,6 +61,9 @@
     --ta: unset; /* text-align */
     --oc: unset; /* outline-color */
     --ar: unset; /* aspect-ratio */
+    --pdi: unset; /* padding-inline */
+    --pdb: unset; /* padding-block */
+    --br: unset; /* border-radius */
 }
 
 @media screen and (prefers-color-scheme:dark) {

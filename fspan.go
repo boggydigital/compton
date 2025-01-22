@@ -39,6 +39,27 @@ func (fse *FspanElement) TextAlign(a align.Align) *FspanElement {
 	return fse
 }
 
+func (fse *FspanElement) Padding(s size.Size) *FspanElement {
+	fse.AddClass(class.PaddingInline(s))
+	fse.AddClass(class.PaddingBlock(s))
+	return fse
+}
+
+func (fse *FspanElement) PaddingInline(s size.Size) *FspanElement {
+	fse.AddClass(class.PaddingInline(s))
+	return fse
+}
+
+func (fse *FspanElement) PaddingBlock(s size.Size) *FspanElement {
+	fse.AddClass(class.PaddingBlock(s))
+	return fse
+}
+
+func (fse *FspanElement) BorderRadius(s size.Size) *FspanElement {
+	fse.AddClass(class.BorderRadius(s))
+	return fse
+}
+
 func Fspan(r Registrar, t string) *FspanElement {
 	fse := &FspanElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.Fspan)),
