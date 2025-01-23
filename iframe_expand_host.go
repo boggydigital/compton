@@ -30,7 +30,6 @@ func (ife *IframeExpandElement) Write(w io.Writer) error {
 func IframeExpandHost(r Registrar, id, src string) Element {
 	iframe := IframeLazy(src)
 	iframe.SetId(id)
-	iframe.AddClass("loading")
 
 	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.IframeExpandHost))

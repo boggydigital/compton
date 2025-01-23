@@ -1,3 +1,11 @@
+@view-transition {
+    navigation: auto;
+}
+
+:root {
+    background: transparent;
+}
+
 html {
     margin-inline: var(--s-s);
     background: transparent;
