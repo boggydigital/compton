@@ -80,9 +80,3 @@
     }
 }
 
-@media screen and (prefers-color-scheme:dark) {
-    :root {
-        --cma: 15%;
-    }
-}
-
