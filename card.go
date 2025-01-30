@@ -82,6 +82,7 @@ func Card(r Registrar, id string) *CardElement {
 	}
 
 	card.SetAttribute("data-id", id)
+	card.SetAttribute("tabindex", "-1")
 
 	// issa-image poster slot
 	card.Append(Placeholder())

@@ -36,9 +36,8 @@
     --fw-b: 600;
 
     --du-fast: 256ms;
-    --du-slow: 1024ms;
-
-    --cma: 10%;
+    --du-normal: 1024ms;
+    --du-slow: 2048ms;
 
     /* customizable properties */
 
@@ -66,8 +65,24 @@
     --br: unset; /* border-radius */
 }
 
+@property --cma {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 10%;
+}
+
+@keyframes cma-pulse {
+    from {
+        --cma: 10%
+    }
+    to {
+        --cma: 80%
+    }
+}
+
 @media screen and (prefers-color-scheme:dark) {
     :root {
         --cma: 15%;
     }
 }
+

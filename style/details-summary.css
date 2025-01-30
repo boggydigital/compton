@@ -5,6 +5,13 @@ details {
             display: none;
         }
     }
+
+    &:focus  {
+        outline: 0;
+        & > summary {
+            animation: var(--du-slow) ease-in-out infinite alternate cma-pulse;
+        }
+    }
 }
 
 @scope (details) {
@@ -54,7 +61,8 @@ details {
             border-radius: var(--br-l);
             column-gap: var(--s-s);
             row-gap: var(--rg);
-            border: var(--s-xxxs) solid color-mix(in display-p3, var(--bg), var(--c-gray) var(--cma));
+            border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-gray) var(--cma));
+            flex-wrap: wrap;
 
             & svg.details-summary-marker {
                 width: var(--s-s);

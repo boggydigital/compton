@@ -11,6 +11,7 @@ import (
 	"github.com/boggydigital/compton/consts/size"
 	"golang.org/x/net/html/atom"
 	"io"
+	"strconv"
 )
 
 type DetailsSummaryElement struct {
@@ -101,6 +102,10 @@ func (dse *DetailsSummaryElement) Write(w io.Writer) error {
 
 func (dse *DetailsSummaryElement) SetId(id string) {
 	dse.details.SetId(id)
+}
+
+func (dse *DetailsSummaryElement) SetTabIndex(index int) {
+	dse.details.SetAttribute("tabindex", strconv.Itoa(index))
 }
 
 func create(r Registrar, summary Element, open bool) *DetailsSummaryElement {
