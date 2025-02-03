@@ -5,7 +5,7 @@
 html {
     --tint-bg: var(--c-background);
     min-height: 100%;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     background-color: var(--tint-bg);
     color: var(--c-foreground);
 }
