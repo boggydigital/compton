@@ -7,6 +7,8 @@
         background-color: var(--tint-bg);
         border: var(--s-xxxs) solid color-mix(in display-p3, var(--tint-bg), var(--c-gray) var(--cma));
         border-radius: var(--br-l);
+        content-visibility: auto;
+        contain-intrinsic-size: 288px 146.5px;
         overflow: hidden;
         display: grid;
         grid-template-columns: var(--w) 1fr;
