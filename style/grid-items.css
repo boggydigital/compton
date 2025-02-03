@@ -2,7 +2,7 @@
     :scope {
         display: grid;
         grid-template-columns: repeat(var(--resp-grid-columns), var(--s-cw));
-        grid-template-rows: var(--gtr);
+        grid-template-rows: repeat(auto-fill, var(--gtr));
         column-gap: var(--cg);
         row-gap: var(--rg);
         justify-content: var(--jc);
