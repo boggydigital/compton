@@ -73,10 +73,10 @@
 
 @keyframes cma-pulse {
     from {
-        --cma: 10%
+        --cma: 90%
     }
     to {
-        --cma: 80%
+        --cma: 40%
     }
 }
 
