@@ -1,7 +1,8 @@
 package compton
 
 import (
-	"golang.org/x/exp/maps"
+	"maps"
+	"slices"
 	"strings"
 )
 
@@ -47,5 +48,5 @@ func (cl *ClassList) ToggleClass(classes ...string) {
 }
 
 func (cl *ClassList) String() string {
-	return strings.Join(maps.Keys(cl.classList), " ")
+	return strings.Join(slices.Collect(maps.Keys(cl.classList)), " ")
 }

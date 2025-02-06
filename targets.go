@@ -1,8 +1,8 @@
 package compton
 
 import (
-	"golang.org/x/exp/maps"
-	"sort"
+	"maps"
+	"slices"
 )
 
 type Target struct {
@@ -14,8 +14,7 @@ type Target struct {
 
 func TextLinks(links map[string]string, selected string, order ...string) []*Target {
 	if len(order) == 0 {
-		order = maps.Keys(links)
-		sort.Strings(order)
+		order = slices.Sorted(maps.Keys(links))
 	}
 
 	targets := make([]*Target, 0, len(links))

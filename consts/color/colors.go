@@ -2,7 +2,8 @@ package color
 
 import (
 	_ "embed"
-	"golang.org/x/exp/maps"
+	"maps"
+	"slices"
 )
 
 type Color int
@@ -70,5 +71,5 @@ func Parse(s string) Color {
 }
 
 func All() []Color {
-	return maps.Keys(colorStrings)
+	return slices.Collect(maps.Keys(colorStrings))
 }

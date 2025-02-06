@@ -10,8 +10,8 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
-	"golang.org/x/exp/maps"
 	"io"
+	"maps"
 	"slices"
 )
 
@@ -53,8 +53,7 @@ func (tve *TitleValuesElement) SetLinksTarget(target string) *TitleValuesElement
 
 func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order ...string) *TitleValuesElement {
 	if len(order) == 0 {
-		order = maps.Keys(links)
-		slices.Sort(order)
+		order = slices.Sorted(maps.Keys(links))
 	}
 
 	for _, key := range order {

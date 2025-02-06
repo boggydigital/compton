@@ -11,9 +11,10 @@ import (
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/size"
-	"golang.org/x/exp/maps"
+	"maps"
 	"os"
 	"path/filepath"
+	"slices"
 	"strconv"
 	"time"
 )
@@ -138,11 +139,11 @@ func writeTestPage() {
 		"Overlay":            "/overlay",
 		"Single-player":      "/single-player",
 	}
-	tv1 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv1 := compton.TitleValues(p, "Features").AppendTextValues(slices.Collect(maps.Keys(tvLinks))...)
 	tv2 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
-	tv3 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv3 := compton.TitleValues(p, "Features").AppendTextValues(slices.Collect(maps.Keys(tvLinks))...)
 	tv4 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
-	tv5 := compton.TitleValues(p, "Features").AppendTextValues(maps.Keys(tvLinks)...)
+	tv5 := compton.TitleValues(p, "Features").AppendTextValues(slices.Collect(maps.Keys(tvLinks))...)
 	tv6 := compton.TitleValues(p, "Feature Links").AppendLinkValues(tvLinks)
 	tv7 := compton.TitleValues(p, "Lots of values")
 	dsTitle := compton.Fspan(p, "Expand all...").

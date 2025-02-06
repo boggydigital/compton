@@ -7,8 +7,8 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/input_types"
-	"golang.org/x/exp/maps"
 	"golang.org/x/net/html/atom"
+	"maps"
 	"slices"
 	"strconv"
 	"time"
@@ -73,10 +73,9 @@ func (ie *InputElement) SetDatalist(list map[string]string, listId string) *Inpu
 	if len(list) > 0 {
 		dataList := Datalist(listId)
 
-		values := maps.Keys(list)
-		slices.Sort(values)
+		sortedValues := slices.Sorted(maps.Keys(list))
 
-		for _, value := range values {
+		for _, value := range sortedValues {
 			dataList.Append(Option(value, list[value]))
 		}
 		ie.dataList = dataList
