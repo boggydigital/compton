@@ -26,7 +26,7 @@ func (f *FrowElement) PropVal(p string, vals ...string) *FrowElement {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
-		row.Append(Fspan(f.r, strings.Join(vals, ", ")))
+		row.Append(Fspan(f.r, strings.Join(vals, ", ")).TextAlign(align.Center))
 		fi.Append(row)
 	}
 	return f
