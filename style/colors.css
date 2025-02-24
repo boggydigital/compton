@@ -2,6 +2,13 @@
     --c-white: white;
     --c-black: black;
     --c-transparent: transparent;
+    --c-rep: var(--c-background)
+}
+
+@property --c-rep {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: var(--c-background);
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */

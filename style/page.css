@@ -3,10 +3,9 @@
 }
 
 html {
-    --tint-bg: var(--c-background);
     min-height: 100%;
     scroll-behavior: auto;
-    background-color: var(--tint-bg);
+    background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-background));
     color: var(--c-foreground);
 }
 
