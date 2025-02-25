@@ -9,7 +9,7 @@
         height: var(--h);
 
         & img {
-            object-fit: contain;
+            object-fit: cover;
             aspect-ratio: var(--ar);
             line-height: 0;
             grid-row: 1;
