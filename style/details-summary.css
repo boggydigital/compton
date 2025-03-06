@@ -85,6 +85,11 @@ details {
 
         &[open] {
             margin-block-end: 0;
+
+            & > summary {
+                background-color: var(--c-foreground);
+                --fg: var(--c-highlight)
+            }
         }
 
         & > summary {

@@ -136,29 +136,29 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		dse.details.SetAttribute("open", "")
 	}
 
-	openMarker := Fspan(r, "").
-		BackgroundColor(color.Foreground).
-		ForegroundColor(color.Background).
-		BorderRadius(size.XSmall)
+	openMarker := Fspan(r, "")
 
 	if small {
 		openMarker.Padding(size.XSmall)
 	} else {
-		openMarker.Padding(size.Small)
+		openMarker.Padding(size.Small).
+			BackgroundColor(color.Foreground).
+			ForegroundColor(color.Background).
+			BorderRadius(size.XSmall)
 	}
 
 	openMarker.Append(SvgUse(r, Multiply))
 	openMarker.AddClass("marker", "open")
 
-	closedMarker := Fspan(r, "").
-		BackgroundColor(color.Background).
-		ForegroundColor(color.Foreground).
-		BorderRadius(size.XSmall)
+	closedMarker := Fspan(r, "")
 
 	if small {
 		closedMarker.Padding(size.XSmall)
 	} else {
-		closedMarker.Padding(size.Small)
+		closedMarker.Padding(size.Small).
+			BackgroundColor(color.Background).
+			ForegroundColor(color.Foreground).
+			BorderRadius(size.XSmall)
 	}
 
 	closedMarker.Append(SvgUse(r, Plus))
