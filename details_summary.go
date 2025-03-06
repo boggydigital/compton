@@ -2,7 +2,6 @@ package compton
 
 import (
 	_ "embed"
-	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
@@ -23,15 +22,32 @@ func (dse *DetailsSummaryElement) Append(children ...Element) {
 	dse.details.Append(children...)
 }
 
-func (dse *DetailsSummaryElement) AppendSummary(children ...Element) {
+func (dse *DetailsSummaryElement) getLabel() *FspanElement {
 	if summary := dse.getSummary(); summary != nil {
-		summary.Append(children...)
+		if labels := summary.GetElementsByClassName("label"); len(labels) > 0 {
+			if fse, ok := labels[0].(*FspanElement); ok {
+				return fse
+			}
+		}
+	}
+	return nil
+}
+
+func (dse *DetailsSummaryElement) SetLabelText(text string) {
+	if label := dse.getLabel(); label != nil {
+		label.SetTextContent(text)
 	}
 }
 
-func (dse *DetailsSummaryElement) AddClassSummary(names ...string) {
-	if summary := dse.getSummary(); summary != nil {
-		summary.AddClass(names...)
+func (dse *DetailsSummaryElement) SetLabelBackgroundColor(c color.Color) {
+	if label := dse.getLabel(); label != nil {
+		label.BackgroundColor(c)
+	}
+}
+
+func (dse *DetailsSummaryElement) SetLabelForegroundColor(c color.Color) {
+	if label := dse.getLabel(); label != nil {
+		label.ForegroundColor(c)
 	}
 }
 
@@ -108,7 +124,7 @@ func (dse *DetailsSummaryElement) SetTabIndex(index int) {
 	dse.details.SetAttribute("tabindex", strconv.Itoa(index))
 }
 
-func create(r Registrar, summary Element, open bool) *DetailsSummaryElement {
+func create(r Registrar, title string, small, open bool) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: BaseElement{
 			TagName: compton_atoms.DetailsSummary,
@@ -120,15 +136,64 @@ func create(r Registrar, summary Element, open bool) *DetailsSummaryElement {
 		dse.details.SetAttribute("open", "")
 	}
 
-	svgPlus := SvgUse(r, Plus)
-	svgPlus.AddClass("details-summary-marker")
+	openMarker := Fspan(r, "").
+		BackgroundColor(color.Foreground).
+		ForegroundColor(color.Background).
+		BorderRadius(size.XSmall)
+
+	if small {
+		openMarker.Padding(size.XSmall)
+	} else {
+		openMarker.Padding(size.Small)
+	}
+
+	openMarker.Append(SvgUse(r, Multiply))
+	openMarker.AddClass("marker", "open")
+
+	closedMarker := Fspan(r, "").
+		BackgroundColor(color.Background).
+		ForegroundColor(color.Foreground).
+		BorderRadius(size.XSmall)
+
+	if small {
+		closedMarker.Padding(size.XSmall)
+	} else {
+		closedMarker.Padding(size.Small)
+	}
+
+	closedMarker.Append(SvgUse(r, Plus))
+	closedMarker.AddClass("marker", "closed")
+
+	summaryTitle := Fspan(r, title).
+		FontWeight(font_weight.Normal)
+
+	if small {
+		summaryTitle.FontSize(size.Small)
+	} else {
+		summaryTitle.FontSize(size.Large)
+	}
+
+	summaryTitle.AddClass("title")
+
+	summaryHeading := FlexItems(r, direction.Row).ColumnGap(size.Small)
+	summaryHeading.Append(openMarker, closedMarker, summaryTitle)
 
 	summaryElement := Summary()
-	summaryTitleRow := FlexItems(r, direction.Row).
-		ColumnGap(size.Small).
-		AlignItems(align.Center)
-	summaryTitleRow.Append(svgPlus, summary)
-	summaryElement.Append(summaryTitleRow)
+	summaryElement.Append(summaryHeading)
+
+	if !small {
+		summaryLabel := Fspan(r, "").
+			BackgroundColor(color.Background).
+			ForegroundColor(color.Foreground).
+			FontSize(size.Small).
+			FontWeight(font_weight.Normal).
+			PaddingInline(size.XSmall).
+			PaddingBlock(size.XXSmall).
+			BorderRadius(size.XXSmall)
+		summaryLabel.AddClass("label")
+		summaryElement.Append(summaryLabel)
+	}
+
 	dse.details.Append(summaryElement)
 
 	r.RegisterStyles(DefaultStyle,
@@ -137,21 +202,14 @@ func create(r Registrar, summary Element, open bool) *DetailsSummaryElement {
 	return dse
 }
 
-func DSLarge(r Registrar, summary Element, open bool) *DetailsSummaryElement {
-	dse := create(r, summary, open)
+func DSLarge(r Registrar, title string, open bool) *DetailsSummaryElement {
+	dse := create(r, title, false, open)
 	dse.details.AddClass("larger")
 	return dse
 }
 
-func DSSmall(r Registrar, summary Element, open bool) *DetailsSummaryElement {
-	dse := create(r, summary, open)
+func DSSmall(r Registrar, title string, open bool) *DetailsSummaryElement {
+	dse := create(r, title, true, open)
 	dse.details.AddClass("smaller")
 	return dse
-}
-
-func DSTitle(r Registrar, title string) Element {
-	fs := Fspan(r, title).
-		FontWeight(font_weight.Bolder).
-		FontSize(size.Large)
-	return fs
 }

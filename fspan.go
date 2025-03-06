@@ -60,6 +60,11 @@ func (fse *FspanElement) BorderRadius(s size.Size) *FspanElement {
 	return fse
 }
 
+func (fse *FspanElement) SetTextContent(text string) *FspanElement {
+	fse.Children = []Element{Text(text)}
+	return fse
+}
+
 func Fspan(r Registrar, t string) *FspanElement {
 	fse := &FspanElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.Fspan)),

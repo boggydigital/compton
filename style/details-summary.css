@@ -4,6 +4,15 @@ details {
         &::-webkit-details-marker {
             display: none;
         }
+
+        & .marker {
+            line-height: 0;
+
+            & svg {
+                width: var(--s-s);
+                height: var(--s-s);
+            }
+        }
     }
 
     &:focus  {
@@ -26,9 +35,8 @@ details {
                 display: none;
             }
 
-            & svg.details-summary-marker {
-                transform-origin: 50% 50%;
-                transition: rotate var(--du-fast) ease-in-out;
+            & .marker.open {
+                display: none;
             }
         }
 
@@ -37,10 +45,14 @@ details {
 
             & > summary {
                 margin-block-end: var(--mbe);
-                outline: var(--s-xxs) solid var(--oc);
+                /*outline: var(--s-xxs) solid var(--oc);*/
 
-                & svg.details-summary-marker {
-                    rotate: -45deg;
+                & .marker.open {
+                    display: initial;
+                }
+
+                & .marker.closed {
+                    display: none;
                 }
             }
         }
@@ -50,7 +62,7 @@ details {
 @scope (details.larger) {
     :scope {
         & > summary {
-            justify-content: center;
+            justify-content: space-between;
             min-width: max-content;
             max-width: var(--s-maxw);
             margin: auto;
@@ -63,12 +75,6 @@ details {
             row-gap: var(--rg);
             border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-rep) var(--cma));
             flex-wrap: wrap;
-
-            & svg.details-summary-marker {
-                width: var(--s-s);
-                height: var(--s-s);
-                color: var(--cm)
-            }
         }
     }
 }
@@ -89,12 +95,6 @@ details {
             border-radius: var(--br-n);
             color: unset;
             width: max-content;
-
-            & svg.details-summary-marker {
-                width: var(--s-s);
-                height: var(--s-s);
-                color: var(--cm)
-            }
         }
     }
 }

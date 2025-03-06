@@ -17,6 +17,7 @@ const (
 	MacOS
 	Linux
 	Plus
+	Multiply
 	Star
 	Sparkle
 	Stack
@@ -25,15 +26,16 @@ const (
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows: "windows",
-	MacOS:   "macos",
-	Linux:   "linux",
-	Plus:    "plus",
-	Star:    "star",
-	Sparkle: "sparkle",
-	Stack:   "stack",
-	Search:  "search",
-	Circle:  "circle",
+	Windows:  "windows",
+	MacOS:    "macos",
+	Linux:    "linux",
+	Plus:     "plus",
+	Multiply: "multiply",
+	Star:     "star",
+	Sparkle:  "sparkle",
+	Stack:    "stack",
+	Search:   "search",
+	Circle:   "circle",
 }
 
 var (
