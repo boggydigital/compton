@@ -4,7 +4,6 @@
         color: var(--c-foreground);
         padding: var(--s-snh);
         background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-background));
-        border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-highlight), var(--c-rep) var(--cma));
         border-radius: var(--br-l);
         content-visibility: auto;
         contain-intrinsic-size: 288px 146.5px;
