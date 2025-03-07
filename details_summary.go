@@ -185,7 +185,7 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		summaryLabel := Fspan(r, "").
 			FontSize(size.Small).
 			FontWeight(font_weight.Normal).
-			PaddingInline(size.XSmall).
+			PaddingInline(size.Small).
 			PaddingBlock(size.XXSmall).
 			BorderRadius(size.XXSmall)
 		summaryLabel.AddClass("label")
