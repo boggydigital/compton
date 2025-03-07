@@ -8,7 +8,7 @@
 @property --c-rep {
     syntax: "<color>";
     inherits: false;
-    initial-value: var(--c-background);
+    initial-value: Canvas;
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */
