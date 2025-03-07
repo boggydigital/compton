@@ -87,3 +87,18 @@ func IssaImageHydrated(r Registrar, bgHex, placeholder, poster string) *IssaImag
 func IssaImageDehydrated(r Registrar, bgHex, placeholder, poster string) *IssaImageElement {
 	return issaImage(r, bgHex, placeholder, poster, true)
 }
+
+func IssaImageWrapper(r Registrar, poster string) *IssaImageElement {
+	ii := &IssaImageElement{
+		BaseElement: NewElement(tacMarkup(compton_atoms.IssaImage)),
+	}
+
+	posterImg := ImageLazy(poster)
+	posterImg.AddClass("poster")
+	ii.Append(posterImg)
+
+	r.RegisterStyles(DefaultStyle,
+		compton_atoms.StyleName(compton_atoms.IssaImage))
+
+	return ii
+}
