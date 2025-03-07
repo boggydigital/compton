@@ -2,6 +2,7 @@ package compton
 
 import (
 	_ "embed"
+	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
@@ -164,18 +165,17 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	closedMarker.Append(SvgUse(r, Plus))
 	closedMarker.AddClass("marker", "closed")
 
-	summaryTitle := Fspan(r, title).
-		FontWeight(font_weight.Normal)
+	summaryTitle := Fspan(r, title)
 
 	if small {
-		summaryTitle.FontSize(size.Small)
+		summaryTitle.FontSize(size.Small).FontWeight(font_weight.Normal)
 	} else {
-		summaryTitle.FontSize(size.Large)
+		summaryTitle.FontSize(size.Normal).FontWeight(font_weight.Bolder)
 	}
 
 	summaryTitle.AddClass("title")
 
-	summaryHeading := FlexItems(r, direction.Row).ColumnGap(size.Small)
+	summaryHeading := FlexItems(r, direction.Row).ColumnGap(size.Small).AlignItems(align.Center)
 	summaryHeading.Append(openMarker, closedMarker, summaryTitle)
 
 	summaryElement := Summary()
