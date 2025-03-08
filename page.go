@@ -37,13 +37,17 @@ func (p *pageElement) Append(children ...Element) {
 }
 
 func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
+	return p.writeResponse(w, "text/html; charset=utf-8")
+}
+
+func (p *pageElement) writeResponse(w http.ResponseWriter, contentType string) error {
 	p.mux.Lock()
 	defer p.mux.Unlock()
 
 	if policy := p.contentSecurityPolicy(); policy != "" {
 		w.Header().Set("Content-Security-Policy", policy)
 	}
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Content-Type", contentType)
 	return p.Write(w)
 }
 
