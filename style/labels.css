@@ -28,7 +28,7 @@
                 width: min-content;
                 text-transform: uppercase;
                 padding: var(--s-xxs) var(--s-xs);
-                border-radius: var(--br-s);
+                border-radius: var(--s-xxs);
                 white-space: nowrap;
             }
         }

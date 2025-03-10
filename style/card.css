@@ -4,7 +4,7 @@
         color: var(--c-foreground);
         padding: var(--s-snh);
         background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-background));
-        border-radius: var(--br-l);
+        border-radius: var(--s-s);
         content-visibility: auto;
         contain-intrinsic-size: 288px 146.5px;
         overflow: hidden;
@@ -14,7 +14,7 @@
 
         & issa-image {
             overflow: hidden;
-            border-radius: var(--br-n);
+            border-radius: var(--s-xs);
         }
 
         & ul {

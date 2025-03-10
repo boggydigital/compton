@@ -7,7 +7,7 @@
         font-weight: var(--fw);
         font-size: var(--fs-s);
         padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
-        border-radius: var(--br-l);
+        border-radius: var(--s-s);
         cursor: pointer;
 
         &:hover {
@@ -21,7 +21,7 @@
     :scope {
         appearance: none;
         border: none;
-        border-radius: var(--br-n);
+        border-radius: var(--s-xs);
         background-color: var(--c-highlight);
         padding: var(--s-s);
         font-size: var(--fs-s);

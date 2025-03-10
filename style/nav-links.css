@@ -14,7 +14,7 @@
             column-gap: var(--s-xs);
             row-gap: var(--s-xxs);
             background-color: var(--c-highlight);
-            border-radius: var(--br-l);
+            border-radius: var(--s-s);
             justify-content: center;
 
             & > li > a {
@@ -23,7 +23,7 @@
                 align-items: center;
                 column-gap: var(--s-s);
                 padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
-                border-radius: var(--br-n);
+                border-radius: var(--s-xs);
                 font-size: var(--fs-s);
                 color: var(--c-foreground);
                 font-weight: normal;

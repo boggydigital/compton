@@ -70,7 +70,7 @@ details {
             padding: var(--s-s);
             background-color: var(--bg);
             color: var(--fg);
-            border-radius: var(--br-l);
+            border-radius: var(--s-s);
             column-gap: var(--s-s);
             row-gap: var(--rg);
             border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-rep) var(--cma));
@@ -97,7 +97,7 @@ details {
             column-gap: var(--s-xs);
             padding: var(--s-xxs) var(--s-n) var(--s-xxs) var(--s-s);
             background-color: var(--c-highlight);
-            border-radius: var(--br-n);
+            border-radius: var(--s-xs);
             color: unset;
             width: max-content;
         }
