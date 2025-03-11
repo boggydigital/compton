@@ -27,6 +27,7 @@ const (
 	Frow
 	Card
 	Placeholder
+	OneLiner
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -51,6 +52,7 @@ var atomStrings = map[atom.Atom]string{
 	Frow:                "frow",
 	Card:                "card",
 	Placeholder:         "placeholder",
+	OneLiner:            "one-liner",
 }
 
 func Atos(a atom.Atom) string {

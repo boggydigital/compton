@@ -1,0 +1,8 @@
+one-liner {
+    cursor: pointer;
+    line-clamp: 1;
+
+    &.expanded {
+        line-clamp: unset;
+    }
+}
