@@ -33,7 +33,11 @@ func (p *pageElement) appendStyleClasses() {
 }
 
 func (p *pageElement) Append(children ...Element) {
-	p.document.Append(children...)
+	if body := p.document.GetFirstElementByTagName(atom.Body); body != nil {
+		if content := body.GetFirstElementByTagName(compton_atoms.Content); content != nil {
+			content.Append(children...)
+		}
+	}
 }
 
 func (p *pageElement) WriteResponse(w http.ResponseWriter) error {
@@ -229,8 +233,6 @@ func Page(title string) PageElement {
 	body := Body()
 	html.Append(Head(), body)
 
-	body.Append(Requirements(), Content(), Deferrals())
-
 	page.appendMetaCharset()
 	page.appendTitle(title)
 	page.appendViewport()
@@ -239,6 +241,8 @@ func Page(title string) PageElement {
 
 	page.RegisterStyles(DefaultStyle,
 		"style/colors.css", "style/units.css", "style/page.css")
+
+	body.Append(Requirements(), Content(), Deferrals())
 
 	return page
 }
