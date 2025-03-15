@@ -35,7 +35,7 @@
                 }
 
                 &.selected {
-                    background-color: var(--c-foreground);
+                    background-color: var(--c-dimmedforeground);
                     color: var(--c-highlight);
                 }
 

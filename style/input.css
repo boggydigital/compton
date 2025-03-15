@@ -1,7 +1,7 @@
 @scope (input[type=button], input[type=submit]) {
     :scope {
         border: var(--s-xs) solid var(--c-highlight);
-        background-color: var(--c-foreground);
+        background-color: var(--c-dimmedforeground);
         text-decoration: none;
         color: var(--c-highlight);
         font-weight: var(--fw);

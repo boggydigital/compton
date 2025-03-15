@@ -45,7 +45,6 @@ details {
 
             & > summary {
                 margin-block-end: var(--mbe);
-                /*outline: var(--s-xxs) solid var(--oc);*/
 
                 & .marker.open {
                     display: initial;
@@ -87,7 +86,7 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background-color: var(--c-foreground);
+                background-color: var(--c-dimmedforeground);
                 --fg: var(--c-highlight)
             }
         }

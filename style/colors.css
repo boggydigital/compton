@@ -26,6 +26,7 @@
 
         --c-background: rgb(242,242,242); /* systemGray6 adjusted from rgb(242,242,247) */
         --c-foreground: rgb(28,28,28); /* systemGray6 (Dark) */
+        --c-dimmedforeground: rgb(58,58,58); /* systemGray4 (Dark) */
         --c-highlight: white;
     }
 }
@@ -50,6 +51,7 @@
 
         --c-background: rgb(28,28,28);
         --c-foreground: rgb(242,242,242); /* systemGray6 (Light) */
+        --c-dimmedforeground: rgb(209,209,209); /*systemGray4 (Light) */
         --c-highlight: black;
     }
 }
