@@ -143,7 +143,6 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		openMarker.Padding(size.XSmall)
 	} else {
 		openMarker.Padding(size.Small).
-			BackgroundColor(color.DimmedForeground).
 			ForegroundColor(color.Background).
 			BorderRadius(size.XSmall)
 	}
@@ -157,7 +156,7 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		closedMarker.Padding(size.XSmall)
 	} else {
 		closedMarker.Padding(size.Small).
-			BackgroundColor(color.Background).
+			//BackgroundColor(color.Background).
 			ForegroundColor(color.Foreground).
 			BorderRadius(size.XSmall)
 	}

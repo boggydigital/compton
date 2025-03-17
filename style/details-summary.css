@@ -74,6 +74,15 @@ details {
             row-gap: var(--rg);
             border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-rep) var(--cma));
             flex-wrap: wrap;
+
+            & .marker {
+                &.open {
+                    background: linear-gradient(var(--c-dimmedforeground), var(--c-foreground));
+                }
+                &.closed {
+                    background-color: var(--c-background)
+                }
+            }
         }
     }
 }
@@ -86,7 +95,7 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background-color: var(--c-dimmedforeground);
+                background: linear-gradient(var(--c-dimmedforeground), var(--c-foreground));
                 --fg: var(--c-highlight)
             }
         }

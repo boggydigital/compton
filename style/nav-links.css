@@ -35,7 +35,7 @@
                 }
 
                 &.selected {
-                    background-color: var(--c-dimmedforeground);
+                    background: linear-gradient(var(--c-dimmedforeground), var(--c-foreground));
                     color: var(--c-highlight);
                 }
 
