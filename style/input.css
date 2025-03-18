@@ -1,7 +1,7 @@
 @scope (input[type=button], input[type=submit]) {
     :scope {
         border: var(--s-xs) solid var(--c-highlight);
-        background: linear-gradient(var(--c-dimmedforeground), var(--c-foreground));
+        background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
         text-decoration: none;
         color: var(--c-highlight);
         font-weight: var(--fw);

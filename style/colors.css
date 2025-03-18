@@ -28,6 +28,8 @@
         --c-foreground: rgb(28,28,28); /* systemGray6 (Dark) */
         --c-dimmedforeground: rgb(72,72,72); /* systemGray3 (Dark) */
         --c-highlight: white;
+        --c-gradientfrom: var(--c-foreground);
+        --c-gradientto: var(--c-dimmedforeground);
     }
 }
 
@@ -53,5 +55,7 @@
         --c-foreground: rgb(242,242,242); /* systemGray6 (Light) */
         --c-dimmedforeground: rgb(199,199,199); /*systemGray3 (Light) */
         --c-highlight: black;
+        --c-gradientfrom: var(--c-dimmedforeground);
+        --c-gradientto: var(--c-foreground);
     }
 }
