@@ -60,7 +60,12 @@ func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]stri
 	sectionLinks := make(map[string]string)
 	sectionsOrder := make([]string, 0, len(sections))
 	for _, s := range sections {
-		title := sectionTitles[s]
+		var title string
+		if t, ok := sectionTitles[s]; ok {
+			title = t
+		} else {
+			title = s
+		}
 		sectionLinks[title] = "#" + title
 		sectionsOrder = append(sectionsOrder, title)
 	}
