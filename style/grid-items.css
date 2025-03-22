@@ -33,6 +33,7 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
@@ -46,9 +47,11 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
@@ -62,12 +65,15 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
@@ -81,15 +87,19 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
+
             &.items-5 {
                 --rgc: 5;
             }
@@ -103,18 +113,23 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
+
             &.items-5 {
                 --rgc: 5;
             }
+
             &.items-6 {
                 --rgc: 6;
             }
@@ -128,21 +143,27 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
+
             &.items-5 {
                 --rgc: 5;
             }
+
             &.items-6 {
                 --rgc: 6;
             }
+
             &.items-7 {
                 --rgc: 7;
             }
@@ -156,391 +177,76 @@
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
+
             &.items-5 {
                 --rgc: 5;
             }
+
             &.items-6 {
                 --rgc: 6;
             }
+
             &.items-7 {
                 --rgc: 7;
             }
+
             &.items-8 {
                 --rgc: 8;
             }
         }
     }
 
-    @container (min-width: 3024px) and (max-width: 3328px) {
+    @container (min-width: 3024px) {
         :scope {
             --rgc: 10;
 
             &.items-1 {
                 --rgc: 1;
             }
+
             &.items-2 {
                 --rgc: 2;
             }
+
             &.items-3 {
                 --rgc: 3;
             }
+
             &.items-4 {
                 --rgc: 4;
             }
+
             &.items-5 {
                 --rgc: 5;
             }
+
             &.items-6 {
                 --rgc: 6;
             }
+
             &.items-7 {
                 --rgc: 7;
             }
+
             &.items-8 {
                 --rgc: 8;
             }
+
             &.items-9 {
                 --rgc: 9;
             }
-        }
-    }
-
-    @container (min-width: 3328px) and (max-width: 3632px) {
-        :scope {
-            --rgc: 11;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 3632px) and (max-width: 3936px) {
-        :scope {
-            --rgc: 12;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 3936px) and (max-width: 4240px) {
-        :scope {
-            --rgc: 13;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 4240px) and (max-width: 4544px) {
-        :scope {
-            --rgc: 14;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 4544px) and (max-width: 4848px) {
-        :scope {
-            --rgc: 15;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 4848px) and (max-width: 5152px) {
-        :scope {
-            --rgc: 16;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 5152px) and (max-width: 5456px) {
-        :scope {
-            --rgc: 17;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-            &.items-9 {
-                --rgc: 9;
-            }
-        }
-    }
-
-    @container (min-width: 5456px) and (max-width: 5760px) {
-        :scope {
-            --rgc: 18;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-        }
-    }
-
-    @container (min-width: 5760px) and (max-width: 6064px) {
-        :scope {
-            --rgc: 19;
-
-            &.items-1 {
-                --rgc: 1;
-            }
-            &.items-2 {
-                --rgc: 2;
-            }
-            &.items-3 {
-                --rgc: 3;
-            }
-            &.items-4 {
-                --rgc: 4;
-            }
-            &.items-5 {
-                --rgc: 5;
-            }
-            &.items-6 {
-                --rgc: 6;
-            }
-            &.items-7 {
-                --rgc: 7;
-            }
-            &.items-8 {
-                --rgc: 8;
-            }
-        }
-    }
-
-    @container (min-width: 6064px)
-    :scope {
-        --rgc: 20;
-
-        &.items-1 {
-            --rgc: 1;
-        }
-        &.items-2 {
-            --rgc: 2;
-        }
-        &.items-3 {
-            --rgc: 3;
-        }
-        &.items-4 {
-            --rgc: 4;
-        }
-        &.items-5 {
-            --rgc: 5;
-        }
-        &.items-6 {
-            --rgc: 6;
-        }
-        &.items-7 {
-            --rgc: 7;
-        }
-        &.items-8 {
-            --rgc: 8;
         }
     }
 }
