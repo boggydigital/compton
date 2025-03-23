@@ -12,7 +12,7 @@ func Footer(r Registrar, title, href, from string) Element {
 
 	row := FICenter(r, Fspan(r, "👋"), Fspan(r, "from"), link, Fspan(r, from)).
 		ColumnGap(size.XSmall).
-		FontSize(size.Small)
+		FontSize(size.XSmall)
 
 	return row
 }
