@@ -182,7 +182,7 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 
 	if !small {
 		summaryLabel := Fspan(r, "").
-			FontSize(size.Small).
+			FontSize(size.XXSmall).
 			FontWeight(font_weight.Normal).
 			PaddingInline(size.Small).
 			PaddingBlock(size.XXSmall).

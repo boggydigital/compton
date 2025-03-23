@@ -14,17 +14,26 @@
     --s-cw: calc(9 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
 
-    --fs-n: 1rem;
+    /*--fs-n: 1rem;*/
+    --fs-n: 12pt;
 
-    --fs-s: 0.8rem;
-    --fs-xs: 0.6rem;
-    --fs-xxs: 0.4rem;
-    --fs-xxxs: 0.2rem;
+    /*--fs-s: 0.8rem;*/
+    --fs-s: 11pt;
+    /*--fs-xs: 0.6rem;*/
+    --fs-xs: 10pt;
+    /*--fs-xxs: 0.4rem;*/
+    --fs-xxs: 9pt;
+    /*--fs-xxxs: 0.2rem;*/
+    --fs-xxxs: 8pt;
 
-    --fs-l: 1.2rem;
-    --fs-xl: 1.4rem;
-    --fs-xxl: 1.6rem;
-    --fs-xxxl: 1.8rem;
+    /*--fs-l: 1.2rem;*/
+    --fs-l: 13pt;
+    /*--fs-xl: 1.4rem;*/
+    --fs-xl: 15pt;
+    /*--fs-xxl: 1.6rem;*/
+    --fs-xxl: 17pt;
+    /*--fs-xxxl: 1.8rem;*/
+    --fs-xxxl: 22pt;
 
     --fw-n: 450;
 

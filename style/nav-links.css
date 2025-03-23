@@ -24,7 +24,7 @@
                 column-gap: var(--s-s);
                 padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
                 border-radius: var(--s-xs);
-                font-size: var(--fs-s);
+                font-size: var(--fs-xs);
                 color: var(--c-foreground);
                 font-weight: normal;
                 height: var(--s-n);

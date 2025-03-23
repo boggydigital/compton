@@ -27,14 +27,12 @@
             overflow: hidden;
 
 
-            & h3 {
+            & h2 {
                 margin: 0 0 var(--s-xs) 0;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-weight: var(--fw-n);
-                /* https://webkit.org/blog/16301/webkit-features-in-safari-18-2/ */
-                text-box: trim-start cap;
             }
 
             & li.labels {
@@ -43,7 +41,7 @@
 
             & .property {
                 color: var(--c-foreground);
-                font-size: calc((var(--fs-xs) + var(--fs-s)) / 2);
+                font-size: var(--fs-xxs);
                 display: grid;
                 grid-template-columns: var(--s-xl) auto;
                 align-content: center;
