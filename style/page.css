@@ -25,11 +25,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: var(--fs-xxl)
+    font-size: var(--fs-xxxl)
 }
 
 h2 {
-    font-size: var(--fs-xl)
+    font-size: var(--fs-xxl)
 }
 
 h3 {

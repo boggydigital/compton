@@ -1,5 +1,0 @@
-div {
-    font-size: calc( 3* var(--fs-xxxl));
-    padding: var(--s-l);
-    font-weight: var(--fw-b);
-}
