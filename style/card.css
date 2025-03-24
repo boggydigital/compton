@@ -27,7 +27,7 @@
             overflow: hidden;
 
 
-            & h2 {
+            & h3 {
                 margin: 0 0 var(--s-xs) 0;
                 white-space: nowrap;
                 overflow: hidden;

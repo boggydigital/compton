@@ -27,8 +27,8 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 }
 
 func (ce *CardElement) AppendTitle(title string) *CardElement {
-	if h2 := ce.GetFirstElementByTagName(atom.H2); h2 != nil {
-		h2.Append(Text(title))
+	if h3 := ce.GetFirstElementByTagName(atom.H3); h3 != nil {
+		h3.Append(Text(title))
 	}
 	return ce
 }
@@ -89,7 +89,7 @@ func Card(r Registrar, id string) *CardElement {
 
 	ul := Ul()
 	liTitle := Li()
-	liTitle.Append(H2())
+	liTitle.Append(H3())
 	liLabels := Li()
 	liLabels.AddClass("labels")
 	ul.Append(liTitle, liLabels)
