@@ -10,7 +10,7 @@
             font-size: var(--fs-n);
             color: var(--fg);
             height: var(--s-n);
-            margin-block: var(--s-xs);
+            margin-block-end: var(--s-xs);
         }
 
         & a {
