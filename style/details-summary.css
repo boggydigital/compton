@@ -75,9 +75,6 @@ details {
             border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-rep) var(--cma));
             flex-wrap: wrap;
 
-            position: sticky;
-            top:0;
-
             & .marker {
                 &.open {
                     background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
