@@ -179,7 +179,7 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 			FontWeight(font_weight.Normal).
 			PaddingInline(size.Small).
 			PaddingBlock(size.XXSmall).
-			BorderRadius(size.XXSmall)
+			BorderRadius(size.XSmall)
 		summaryLabel.AddClass("label")
 		summaryElement.Append(summaryLabel)
 	}
