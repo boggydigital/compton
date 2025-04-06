@@ -76,6 +76,9 @@ details {
             flex-wrap: wrap;
 
             & .marker {
+
+                outline: var(--s-xxxs) solid var(--c-highlight);
+
                 &.open {
                     background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
                 }
