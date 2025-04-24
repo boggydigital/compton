@@ -117,7 +117,6 @@ func TitleValues(r Registrar, title string) *TitleValuesElement {
 		r:           r,
 		title:       HeadingText(title, 3),
 	}
-	tve.RowGap(size.Small)
 
 	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.TitleValues))

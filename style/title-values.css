@@ -7,7 +7,7 @@
         & h3 {
             margin: 0;
             font-weight: var(--fw-n);
-            font-size: var(--fs-n);
+            font-size: var(--fs-s);
             color: var(--fg);
             height: var(--s-n);
             margin-block-end: var(--s-xs);
@@ -21,7 +21,7 @@
 
         & > div {
             line-height: var(--s-n);
-            color: var(--c-gray);
+            color: var(--fg);
             font-size: var(--fs-s)
         }
 
