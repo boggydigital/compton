@@ -5,7 +5,6 @@
         overflow: hidden;
         cursor: default;
         --label-color: unset;
-        --label-cm-color: var(--c-highlight);
 
         & ul {
             display: flex;
@@ -17,18 +16,19 @@
             margin: 0;
             padding: 0;
             font-size: var(--fs);
+            font-weight: var(--fw-n);
 
             & .label {
                 border-width: var(--s-xxxs);
                 border-style: solid;
-                border-color: color-mix(in display-p3, var(--label-color), var(--label-cm-color) var(--cma));
+                border-color: var(--label-color);
                 background-color: var(--label-color);
                 display: flex;
                 align-items: center;
                 width: min-content;
                 text-transform: uppercase;
                 padding: var(--s-xxs) var(--s-xs);
-                border-radius: var(--s-xxs);
+                border-radius: var(--s-xs);
                 white-space: nowrap;
             }
         }

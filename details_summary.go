@@ -23,32 +23,32 @@ func (dse *DetailsSummaryElement) Append(children ...Element) {
 	dse.details.Append(children...)
 }
 
-func (dse *DetailsSummaryElement) getLabel() *FspanElement {
+func (dse *DetailsSummaryElement) getLabelContainer() Element {
 	if summary := dse.getSummary(); summary != nil {
-		if labels := summary.GetElementsByClassName("label"); len(labels) > 0 {
-			if fse, ok := labels[0].(*FspanElement); ok {
-				return fse
-			}
+		if labels := summary.GetElementsByClassName("label-container"); len(labels) > 0 {
+			return labels[0]
 		}
 	}
 	return nil
 }
 
-func (dse *DetailsSummaryElement) SetLabelText(text string) {
-	if label := dse.getLabel(); label != nil {
-		label.SetTextContent(text)
+func (dse *DetailsSummaryElement) SetLabel(r Registrar, text string, bgColor, fgColor color.Color) {
+	if labelContainer := dse.getLabelContainer(); labelContainer != nil {
+		summaryLabel := Fspan(r, text).
+			FontSize(size.XXSmall).
+			FontWeight(font_weight.Normal).
+			PaddingInline(size.Small).
+			PaddingBlock(size.XXSmall).
+			BorderRadius(size.XSmall).
+			BackgroundColor(bgColor).
+			ForegroundColor(fgColor)
+		labelContainer.Append(summaryLabel)
 	}
 }
 
-func (dse *DetailsSummaryElement) SetLabelBackgroundColor(c color.Color) {
-	if label := dse.getLabel(); label != nil {
-		label.BackgroundColor(c)
-	}
-}
-
-func (dse *DetailsSummaryElement) SetLabelForegroundColor(c color.Color) {
-	if label := dse.getLabel(); label != nil {
-		label.ForegroundColor(c)
+func (dse *DetailsSummaryElement) AppendLabel(elements ...Element) {
+	if labelContainer := dse.getLabelContainer(); labelContainer != nil {
+		labelContainer.Append(elements...)
 	}
 }
 
@@ -174,14 +174,9 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	summaryElement.Append(summaryHeading)
 
 	if !small {
-		summaryLabel := Fspan(r, "").
-			FontSize(size.XXSmall).
-			FontWeight(font_weight.Normal).
-			PaddingInline(size.Small).
-			PaddingBlock(size.XXSmall).
-			BorderRadius(size.XSmall)
-		summaryLabel.AddClass("label")
-		summaryElement.Append(summaryLabel)
+		summaryLabelContainer := Content()
+		summaryLabelContainer.AddClass("label-container")
+		summaryElement.Append(summaryLabelContainer)
 	}
 
 	dse.details.Append(summaryElement)
