@@ -240,7 +240,7 @@ func Page(title string) PageElement {
 	page.appendMetaFormatDetectionTelephoneNo()
 
 	page.RegisterStyles(DefaultStyle,
-		"style/colors.css", "style/units.css", "style/page.css")
+		"style/fonts.css", "style/colors.css", "style/units.css", "style/page.css")
 
 	body.Append(Requirements(), Content(), Deferrals())
 
