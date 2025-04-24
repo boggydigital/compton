@@ -1,7 +1,6 @@
 package compton
 
 import (
-	_ "embed"
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"

@@ -5,10 +5,6 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
-const (
-	rnPopup = "popup"
-)
-
 var (
 	//go:embed "script/popup.js"
 	scriptPopup []byte

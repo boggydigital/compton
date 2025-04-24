@@ -1,7 +1,6 @@
 package compton
 
 import (
-	_ "embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
@@ -17,11 +16,6 @@ import (
 const (
 	rnInput       = "input"
 	rnDatalistPfx = "datalist-"
-)
-
-var (
-	//go:embed "style/input.css"
-	styleInputs []byte
 )
 
 type InputElement struct {

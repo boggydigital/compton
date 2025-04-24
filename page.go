@@ -2,7 +2,6 @@ package compton
 
 import (
 	"embed"
-	_ "embed"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
@@ -240,7 +239,7 @@ func Page(title string) PageElement {
 	page.appendMetaFormatDetectionTelephoneNo()
 
 	page.RegisterStyles(DefaultStyle,
-		"style/fonts.css", "style/colors.css", "style/units.css", "style/page.css")
+		"style/colors.css", "style/units.css", "style/page.css")
 
 	body.Append(Requirements(), Content(), Deferrals())
 

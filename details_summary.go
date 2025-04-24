@@ -1,7 +1,6 @@
 package compton
 
 import (
-	_ "embed"
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
@@ -23,32 +22,18 @@ func (dse *DetailsSummaryElement) Append(children ...Element) {
 	dse.details.Append(children...)
 }
 
-func (dse *DetailsSummaryElement) getLabelContainer() Element {
+func (dse *DetailsSummaryElement) getSummaryBadges() Element {
 	if summary := dse.getSummary(); summary != nil {
-		if labels := summary.GetElementsByClassName("label-container"); len(labels) > 0 {
+		if labels := summary.GetElementsByClassName("badges"); len(labels) > 0 {
 			return labels[0]
 		}
 	}
 	return nil
 }
 
-func (dse *DetailsSummaryElement) SetLabel(r Registrar, text string, bgColor, fgColor color.Color) {
-	if labelContainer := dse.getLabelContainer(); labelContainer != nil {
-		summaryLabel := Fspan(r, text).
-			FontSize(size.XXSmall).
-			FontWeight(font_weight.Normal).
-			PaddingInline(size.Small).
-			PaddingBlock(size.XXSmall).
-			BorderRadius(size.XSmall).
-			BackgroundColor(bgColor).
-			ForegroundColor(fgColor)
-		labelContainer.Append(summaryLabel)
-	}
-}
-
-func (dse *DetailsSummaryElement) AppendLabel(elements ...Element) {
-	if labelContainer := dse.getLabelContainer(); labelContainer != nil {
-		labelContainer.Append(elements...)
+func (dse *DetailsSummaryElement) AppendBadges(badges ...Element) {
+	if summaryBadges := dse.getSummaryBadges(); summaryBadges != nil {
+		summaryBadges.Append(badges...)
 	}
 }
 
@@ -174,9 +159,9 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	summaryElement.Append(summaryHeading)
 
 	if !small {
-		summaryLabelContainer := Content()
-		summaryLabelContainer.AddClass("label-container")
-		summaryElement.Append(summaryLabelContainer)
+		summaryBadges := Content()
+		summaryBadges.AddClass("badges")
+		summaryElement.Append(summaryBadges)
 	}
 
 	dse.details.Append(summaryElement)

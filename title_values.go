@@ -2,7 +2,6 @@ package compton
 
 import (
 	"bytes"
-	_ "embed"
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"

@@ -1,7 +1,6 @@
 package compton
 
 import (
-	_ "embed"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"golang.org/x/net/html/atom"
 )

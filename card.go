@@ -48,9 +48,9 @@ func (ce *CardElement) AppendProperty(title string, values ...Element) *CardElem
 	return ce
 }
 
-func (ce *CardElement) AppendLabels(labels ...Element) *CardElement {
-	if liLables := ce.GetElementsByClassName("labels"); len(liLables) > 0 {
-		liLables[0].Append(labels...)
+func (ce *CardElement) AppendBadges(badges ...Element) *CardElement {
+	if liBadges := ce.GetElementsByClassName("badges"); len(liBadges) > 0 {
+		liBadges[0].Append(badges...)
 	}
 	return ce
 }
@@ -90,9 +90,9 @@ func Card(r Registrar, id string) *CardElement {
 	ul := Ul()
 	liTitle := Li()
 	liTitle.Append(H3())
-	liLabels := Li()
-	liLabels.AddClass("labels")
-	ul.Append(liTitle, liLabels)
+	liBadges := Li()
+	liBadges.AddClass("badges")
+	ul.Append(liTitle, liBadges)
 	card.Append(ul)
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.Card))

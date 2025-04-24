@@ -1,7 +1,6 @@
 package color
 
 import (
-	_ "embed"
 	"maps"
 	"slices"
 )
