@@ -1,13 +1,17 @@
 package compton
 
 import (
-	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
 const sectionLinksId = "section-links"
 
-const SectionLinksTitle = "&#x2935;" // ARROW POINTING RIGHTWARDS THEN CURVING DOWNWARDS
+type NavTarget struct {
+	Href     string
+	Title    string
+	Symbol   Symbol
+	Selected bool
+}
 
 type NavLinksElement struct {
 	*BaseElement
@@ -24,40 +28,36 @@ func NavLinks(r Registrar) *NavLinksElement {
 	return navLinks
 }
 
-func NavLinksTargets(r Registrar, targets ...*Target) *NavLinksElement {
-	nl := NavLinks(r)
-	for _, t := range targets {
-		appendTarget(r, nl, t)
+func (nle *NavLinksElement) AppendLink(r Registrar, target *NavTarget) Element {
+	navListItem := ListItem()
+
+	navLink := A(target.Href)
+
+	if target.Selected {
+		navLink.AddClass("selected")
 	}
-	return nl
-}
 
-func appendTarget(r Registrar, nl *NavLinksElement, t *Target) {
-	li := ListItem()
-	link := A(t.Href)
-
-	if t.Icon != None {
-		icon := SvgUse(r, t.Icon)
-		icon.SetAttribute("title", t.Title)
-		link.Append(icon)
-		if t.Current {
-			icon.ForegroundColor(color.Background)
-			link.Append(SpanText(t.Title))
+	if target.Symbol != None {
+		navLink.Append(SvgUse(r, target.Symbol))
+		if target.Title != "" && target.Selected {
+			navLink.Append(Text(target.Title))
 		}
-	} else {
-		link.Append(Text(t.Title))
+	} else if target.Title != "" {
+		navLink.Append(Text(target.Title))
 	}
-	if t.Current {
-		link.AddClass("selected")
-	}
-	li.Append(link)
-	nl.Append(li)
+
+	navListItem.Append(navLink)
+
+	nle.Append(navListItem)
+
+	return navListItem
 }
 
 func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]string) Element {
 
-	sectionLinks := make(map[string]string)
-	sectionsOrder := make([]string, 0, len(sections))
+	sectionNavLinks := NavLinks(r)
+	sectionNavLinks.SetId(sectionLinksId)
+
 	for _, s := range sections {
 		var title string
 		if t, ok := sectionTitles[s]; ok {
@@ -65,15 +65,12 @@ func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]stri
 		} else {
 			title = s
 		}
-		sectionLinks[title] = "#" + title
-		sectionsOrder = append(sectionsOrder, title)
+		sectionNavLinks.AppendLink(r, &NavTarget{
+			Href:  "#" + title,
+			Title: title,
+		})
 	}
 
-	targets := TextLinks(sectionLinks, "", sectionsOrder...)
-
-	psl := NavLinksTargets(r, targets...)
-	psl.SetId(sectionLinksId)
-
-	return psl
+	return sectionNavLinks
 
 }
