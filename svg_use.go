@@ -23,19 +23,21 @@ const (
 	Stack
 	Search
 	Circle
+	DownwardArrow
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:  "windows",
-	MacOS:    "macos",
-	Linux:    "linux",
-	Plus:     "plus",
-	Multiply: "multiply",
-	Star:     "star",
-	Sparkle:  "sparkle",
-	Stack:    "stack",
-	Search:   "search",
-	Circle:   "circle",
+	Windows:       "windows",
+	MacOS:         "macos",
+	Linux:         "linux",
+	Plus:          "plus",
+	Multiply:      "multiply",
+	Star:          "star",
+	Sparkle:       "sparkle",
+	Stack:         "stack",
+	Search:        "search",
+	Circle:        "circle",
+	DownwardArrow: "downward-arrow",
 }
 
 var (

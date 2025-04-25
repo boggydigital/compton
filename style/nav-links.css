@@ -22,7 +22,7 @@
                 flex-direction: row;
                 align-items: center;
                 column-gap: var(--s-s);
-                padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
+                padding: calc((var(--s-s) + var(--s-xs))/2);
                 border-radius: var(--s-xs);
                 font-size: var(--fs-xs);
                 color: var(--c-foreground);
