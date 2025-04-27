@@ -72,12 +72,9 @@ details {
             border-radius: var(--s-s);
             column-gap: var(--s-s);
             row-gap: var(--rg);
-            border: var(--s-xxs) solid color-mix(in display-p3, var(--bg), var(--c-rep) var(--cma));
             flex-wrap: wrap;
 
             & .marker {
-
-                outline: var(--s-xxxs) solid var(--c-highlight);
 
                 &.open {
                     background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
