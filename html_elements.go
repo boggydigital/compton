@@ -7,6 +7,7 @@ import (
 	"encoding/base64"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/loading"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -132,6 +133,11 @@ func Form(action, method string) Element {
 	form := NewElement(tacMarkup(atom.Form))
 	form.SetAttribute(attr.Action, action)
 	form.SetAttribute(attr.Method, method)
+
+	hiddenSubmit := Input(nil, input_types.Submit)
+	hiddenSubmit.SetAttribute("hidden", "")
+	form.Append(hiddenSubmit)
+
 	return form
 }
 

@@ -95,8 +95,10 @@ func Input(r Registrar, it input_types.Type) *InputElement {
 	}
 	input.SetAttribute(attr.Type, it.String())
 
-	r.RegisterStyles(DefaultStyle,
-		compton_atoms.StyleName(atom.Input))
+	if r != nil {
+		r.RegisterStyles(DefaultStyle,
+			compton_atoms.StyleName(atom.Input))
+	}
 
 	return input
 }
