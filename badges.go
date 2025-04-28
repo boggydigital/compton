@@ -18,7 +18,7 @@ func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement
 		FontWeight(font_weight.Normal).
 		PaddingInline(size.Small).
 		PaddingBlock(size.XXSmall).
-		BorderRadius(size.XSmall).
+		BorderRadius(size.XXSmall).
 		BackgroundColor(bgColor).
 		ForegroundColor(fgColor)
 }
