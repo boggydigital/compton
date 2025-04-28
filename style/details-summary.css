@@ -1,6 +1,9 @@
 /* Safari specific fix, need to file a bug (or find existing one) to track */
 details {
     & > summary {
+
+        transition: --cma var(--du-fast) ease-out;
+
         &::-webkit-details-marker {
             display: none;
         }
@@ -13,6 +16,10 @@ details {
                 height: var(--s-s);
             }
         }
+
+        &:hover {
+            --cma: 24%
+        }
     }
 
     &:focus  {
@@ -21,6 +28,7 @@ details {
             animation: var(--du-slow) ease-in-out infinite alternate cma-pulse;
         }
     }
+
 }
 
 @scope (details) {

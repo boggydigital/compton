@@ -11,6 +11,7 @@
         display: grid;
         grid-template-columns: var(--w) 1fr;
         column-gap: var(--s-snh);
+        transition: --cma var(--du-fast) ease-out;
 
         & issa-image {
             overflow: hidden;
@@ -67,4 +68,8 @@
             }
         }
     }
+}
+
+card:hover {
+    --cma: 24%
 }

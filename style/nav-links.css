@@ -38,12 +38,12 @@
                     background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
                     color: var(--c-highlight);
                 }
-
-                &:hover {
-                    color: var(--c-background);
-                    background-color: var(--c-gray);
-                }
             }
         }
     }
+}
+
+nav-links > li > a:hover {
+    color: var(--c-background);
+    background-color: var(--c-gray);
 }

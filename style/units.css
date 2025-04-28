@@ -64,15 +64,15 @@
 @property --cma {
     syntax: "<percentage>";
     inherits: false;
-    initial-value: 10%;
+    initial-value: 8%;
 }
 
 @keyframes cma-pulse {
     from {
-        --cma: 40%
+        --cma: 32%
     }
     to {
-        --cma: 25%
+        --cma: 16%
     }
 }
 
