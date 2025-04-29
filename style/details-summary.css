@@ -69,6 +69,7 @@ details {
 @scope (details.larger) {
     :scope {
         & > summary {
+            --bg: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-highlight));
             justify-content: space-between;
             min-width: max-content;
             max-width: var(--s-maxw);
@@ -81,6 +82,8 @@ details {
             column-gap: var(--s-s);
             row-gap: var(--rg);
             flex-wrap: wrap;
+            outline: var(--s-xxs) solid color-mix(in display-p3, var(--c-rep) 8%, var(--c-highlight));
+            outline-offset: calc(-1 * var(--s-xxs));
 
             & .marker {
 
