@@ -60,8 +60,8 @@
                     text-overflow: ellipsis;
 
                     & svg {
-                        width: calc(3 * var(--s-xs));
-                        height: calc(3 * var(--s-xs));
+                        width: calc(1.75 * var(--s-s));
+                        height: calc(1.75 * var(--s-s));
                         margin-inline-end: var(--s-s)
                     }
                 }
