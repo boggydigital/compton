@@ -91,7 +91,7 @@ details {
                     background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
                 }
                 &.closed {
-                    background-color: var(--c-background)
+                    background-color: var(--c-highlight)
                 }
             }
         }
