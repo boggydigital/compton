@@ -25,7 +25,7 @@
         background-color: var(--c-highlight);
         padding: var(--s-s);
         font-size: var(--fs-s);
-        font-weight: var(--fw-b);
+        font-weight: var(--fw-n);
         outline: var(--s-xxs) solid var(--c-highlight);
         margin: var(--s-xxs);
         width: calc(100% - 2 * var(--s-xxs));
