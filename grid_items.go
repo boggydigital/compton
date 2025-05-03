@@ -47,6 +47,16 @@ func (gie *GridItemsElement) JustifyItems(a align.Align) *GridItemsElement {
 	return gie
 }
 
+func (gie *GridItemsElement) Width(s size.Size) *GridItemsElement {
+	gie.AddClass(class.Width(s))
+	return gie
+}
+
+func (gie *GridItemsElement) MaxWidth(s size.Size) *GridItemsElement {
+	gie.AddClass(class.MaxWidth(s))
+	return gie
+}
+
 func GridItems(r Registrar) *GridItemsElement {
 	grid := &GridItemsElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.GridItems)),

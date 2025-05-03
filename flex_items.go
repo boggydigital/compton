@@ -70,6 +70,21 @@ func (fie *FlexItemsElement) BackgroundColor(c color.Color) *FlexItemsElement {
 	return fie
 }
 
+func (fie *FlexItemsElement) BorderRadius(s size.Size) *FlexItemsElement {
+	fie.AddClass(class.BorderRadius(s))
+	return fie
+}
+
+func (fie *FlexItemsElement) Width(s size.Size) *FlexItemsElement {
+	fie.AddClass(class.Width(s))
+	return fie
+}
+
+func (fie *FlexItemsElement) MaxWidth(s size.Size) *FlexItemsElement {
+	fie.AddClass(class.MaxWidth(s))
+	return fie
+}
+
 func FlexItems(r Registrar, d direction.Direction) *FlexItemsElement {
 	fie := &FlexItemsElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.FlexItems)),

@@ -13,6 +13,7 @@
 
     --s-cw: calc(9 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
+    --s-fw: 100%;
 
     --fs-n: 12pt;
 
@@ -59,6 +60,7 @@
     --pdi: unset; /* padding-inline */
     --pdb: unset; /* padding-block */
     --br: unset; /* border-radius */
+    --mw: unset; /* max-width */
 }
 
 @property --cma {

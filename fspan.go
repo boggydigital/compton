@@ -59,6 +59,16 @@ func (fse *FspanElement) BorderRadius(s size.Size) *FspanElement {
 	return fse
 }
 
+func (fse *FspanElement) Width(s size.Size) *FspanElement {
+	fse.AddClass(class.Width(s))
+	return fse
+}
+
+func (fse *FspanElement) MaxWidth(s size.Size) *FspanElement {
+	fse.AddClass(class.MaxWidth(s))
+	return fse
+}
+
 func (fse *FspanElement) SetTextContent(text string) *FspanElement {
 	fse.Children = []Element{Text(text)}
 	return fse

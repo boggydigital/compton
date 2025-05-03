@@ -8,5 +8,7 @@
         padding-inline: var(--pdi);
         padding-block: var(--pdb);
         border-radius: var(--br);
+        max-width: var(--mw);
+        width: var(--w);
     }
 }

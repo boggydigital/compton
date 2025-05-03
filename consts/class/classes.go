@@ -38,6 +38,7 @@ const (
 	paddingInlinePfx    = "pdi"
 	paddingBlockPfx     = "pdb"
 	borderRadiusPfx     = "br"
+	maxWidthPfx         = "mw"
 )
 
 var setClasses = make(map[string]any)
@@ -164,6 +165,8 @@ func HeightPixels(px float64) string {
 	return joinClassName(heightPfx, fmtFloat(px))
 }
 
+func MaxWidth(s size.Size) string { return joinClassName(maxWidthPfx, s.String()) }
+
 func TextAlign(a align.Align) string {
 	return joinClassName(textAlignPfx, a.String())
 }
@@ -227,6 +230,8 @@ func parsePropertyValue(className string) (string, string) {
 	case gridTemplateRowsPfx:
 		fallthrough
 	case widthPfx:
+		fallthrough
+	case maxWidthPfx:
 		fallthrough
 	case heightPfx:
 		if fv, err := parseFloat(sfx); err == nil {

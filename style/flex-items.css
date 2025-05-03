@@ -13,5 +13,8 @@
         font-weight: var(--fw);
         color: var(--fg);
         background-color: var(--bg);
+        max-width: var(--mw);
+        width: var(--w);
+        border-radius: var(--br);
     }
 }

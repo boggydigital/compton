@@ -14,6 +14,7 @@ type FormattedBadge struct {
 
 func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
 	return Fspan(r, text).
+		Width(size.Unset).
 		FontSize(size.XXSmall).
 		FontWeight(font_weight.Normal).
 		PaddingInline(size.Small).
@@ -25,6 +26,7 @@ func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement
 
 func SmallBadge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
 	return Fspan(r, text).
+		Width(size.Unset).
 		FontSize(size.XXXSmall).
 		FontWeight(font_weight.Normal).
 		PaddingInline(size.XSmall).

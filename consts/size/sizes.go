@@ -15,6 +15,8 @@ const (
 	XXXLarge
 
 	ColumnWidth
+	MaxWidth
+	FullWidth
 )
 
 var sizeStrings = map[Size]string{
@@ -28,6 +30,8 @@ var sizeStrings = map[Size]string{
 	XXLarge:     "xxl",
 	XXXLarge:    "xxxl",
 	ColumnWidth: "cw",
+	MaxWidth:    "maxw",
+	FullWidth:   "fw",
 }
 
 func (u Size) String() string {
