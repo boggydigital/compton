@@ -43,7 +43,7 @@
             }
 
             & .property {
-                color: var(--c-foreground);
+                /*color: var(--c-foreground);*/
                 font-size: var(--fs-xxs);
                 display: grid;
                 grid-template-columns: var(--s-xl) auto;
