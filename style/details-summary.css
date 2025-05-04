@@ -18,7 +18,7 @@ details {
         }
 
         &:hover {
-            --cma: 24%
+            --cma: 15%
         }
     }
 
@@ -88,7 +88,7 @@ details {
             & .marker {
 
                 &.open {
-                    background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
+                    background: var(--c-dimmedforeground);
                 }
                 &.closed {
                     background-color: var(--c-highlight)
@@ -106,7 +106,7 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background: linear-gradient(var(--c-gradientfrom), var(--c-gradientto));
+                background: var(--c-dimmedforeground);
                 --fg: var(--c-highlight)
             }
         }
@@ -117,7 +117,7 @@ details {
             padding: var(--s-xxs) var(--s-n) var(--s-xxs) var(--s-s);
             background-color: var(--c-highlight);
             border-radius: var(--s-xs);
-            color: unset;
+            color: var(--fg);
             width: max-content;
         }
     }

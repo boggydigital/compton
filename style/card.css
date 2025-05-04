@@ -1,9 +1,11 @@
 @scope (card) {
     :scope {
+        --cma: 15%;
         --s-snh: calc((var(--s-s) + var(--s-n)) / 2);
-        color: var(--c-foreground);
+        color: color-mix(in display-p3, var(--c-rep) , var(--c-foreground) calc(5 * var(--cma)));
+        /*color: var(--c-foreground);*/
         padding: var(--s-snh);
-        background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-background));
+        background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-highlight));
         border-radius: var(--s-s);
         content-visibility: auto;
         contain-intrinsic-size: 288px 146.5px;
@@ -71,5 +73,5 @@
 }
 
 card:hover {
-    --cma: 24%
+    --cma: 20%
 }

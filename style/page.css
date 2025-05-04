@@ -6,7 +6,8 @@ html {
     min-height: 100%;
     scroll-behavior: auto;
     background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-background));
-    color: var(--c-foreground);
+    color: color-mix(in display-p3, var(--c-rep), var(--c-foreground) calc(7 * var(--cma)));
+    /*color: var(--c-foreground);*/
     -webkit-font-smoothing: subpixel-antialiased
 }
 
