@@ -63,18 +63,3 @@
     --mw: unset; /* max-width */
 }
 
-@property --cma {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 10%;
-}
-
-@keyframes cma-pulse {
-    from {
-        --cma: 25%
-    }
-    to {
-        --cma: 0%
-    }
-}
-

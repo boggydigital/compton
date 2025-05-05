@@ -2,8 +2,6 @@
 details {
     & > summary {
 
-        transition: --cma var(--du-fast) ease-out;
-
         &::-webkit-details-marker {
             display: none;
         }
@@ -16,17 +14,10 @@ details {
                 height: var(--s-s);
             }
         }
-
-        &:hover {
-            --cma: 0%
-        }
     }
 
     &:focus  {
         outline: 0;
-        & > summary {
-            animation: var(--du-slow) ease-in-out infinite alternate cma-pulse;
-        }
     }
 
 }
@@ -69,8 +60,7 @@ details {
 @scope (details.larger) {
     :scope {
         & > summary {
-            --bg: color-mix(in display-p3, var(--c-rep) calc(0.5 * var(--cma)), var(--c-highlight));
-            /*--bg: var(--c-highlight);*/
+            --bg: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight));
             justify-content: space-between;
             min-width: max-content;
             max-width: var(--s-maxw);
@@ -83,8 +73,6 @@ details {
             column-gap: var(--s-s);
             row-gap: var(--rg);
             flex-wrap: wrap;
-            outline: var(--s-xxs) solid color-mix(in display-p3, var(--c-rep) 10%, var(--c-highlight));
-            outline-offset: calc(-1 * var(--s-xxs));
 
             & .marker {
 

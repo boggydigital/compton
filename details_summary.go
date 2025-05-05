@@ -152,7 +152,10 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	summaryTitle := Fspan(r, title).FontSize(size.Small).FontWeight(font_weight.Normal)
 	summaryTitle.AddClass("title")
 
-	summaryHeading := FlexItems(r, direction.Row).ColumnGap(size.Small).AlignItems(align.Center)
+	summaryHeading := FlexItems(r, direction.Row).
+		ColumnGap(size.Small).
+		AlignItems(align.Center).
+		BackgroundColor(color.Transparent)
 	summaryHeading.Append(openMarker, closedMarker, summaryTitle)
 
 	summaryElement := Summary()

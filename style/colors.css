@@ -2,7 +2,7 @@
     --c-white: white;
     --c-black: black;
     --c-transparent: transparent;
-    --c-rep: var(--c-background)
+    --c-rep: transparent;
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */

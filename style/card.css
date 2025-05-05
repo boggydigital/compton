@@ -1,11 +1,8 @@
 @scope (card) {
     :scope {
-        --cma: 15%;
         --s-snh: calc((var(--s-s) + var(--s-n)) / 2);
-        color: color-mix(in display-p3, var(--c-rep) , var(--c-foreground) calc(5 * var(--cma)));
-        /*color: var(--c-foreground);*/
         padding: var(--s-snh);
-        background-color: color-mix(in display-p3, var(--c-rep) var(--cma), var(--c-highlight));
+        background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
         border-radius: var(--s-s);
         content-visibility: auto;
         contain-intrinsic-size: 288px 146.5px;
@@ -13,7 +10,6 @@
         display: grid;
         grid-template-columns: var(--w) 1fr;
         column-gap: var(--s-snh);
-        transition: --cma var(--du-fast) ease-out;
 
         & issa-image {
             overflow: hidden;
@@ -43,7 +39,6 @@
             }
 
             & .property {
-                /*color: var(--c-foreground);*/
                 font-size: var(--fs-xxs);
                 display: grid;
                 grid-template-columns: var(--s-xl) auto;
@@ -70,8 +65,4 @@
             }
         }
     }
-}
-
-card:hover {
-    --cma: 20%
 }
