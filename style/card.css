@@ -2,7 +2,8 @@
     :scope {
         --s-snh: calc((var(--s-s) + var(--s-n)) / 2);
         padding: var(--s-snh);
-        background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
+        background-color: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-highlight));
+        color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-foreground));
         border-radius: var(--s-s);
         content-visibility: auto;
         contain-intrinsic-size: 288px 146.5px;
