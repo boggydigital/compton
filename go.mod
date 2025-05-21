@@ -1,6 +1,6 @@
 module github.com/boggydigital/compton
 
-go 1.24.0
+go 1.24.3
 
 require (
 	github.com/boggydigital/issa v0.1.23
