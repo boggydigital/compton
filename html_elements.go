@@ -497,6 +497,12 @@ func Video(src string) Element {
 	return video
 }
 
+/* https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/wbr */
+
+func LineBreakOpportunity() Element { return NewElement(tacMarkup(atom.Wbr)) }
+
+var Wbr = LineBreakOpportunity
+
 /* this allows creating any HTML element that has atom.Atom */
 
 func AtomicElement(a atom.Atom) Element {
