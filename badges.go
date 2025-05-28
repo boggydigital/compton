@@ -7,9 +7,10 @@ import (
 )
 
 type FormattedBadge struct {
-	Title string
-	Class string
-	Color color.Color
+	Title      string
+	Class      string
+	Background color.Color
+	Foreground color.Color
 }
 
 func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
