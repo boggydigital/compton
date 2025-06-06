@@ -42,7 +42,7 @@ func (nle *NavLinksElement) AppendLink(r Registrar, target *NavTarget) Element {
 		navLink.AddClass("selected")
 	}
 
-	if target.Symbol != None {
+	if target.Symbol != NoSymbol {
 		navLink.Append(SvgUse(r, target.Symbol))
 		if target.Title != "" && target.Selected {
 			navLink.Append(Text(target.Title))

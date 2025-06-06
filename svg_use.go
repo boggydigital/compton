@@ -12,7 +12,7 @@ import (
 type Symbol int
 
 const (
-	None Symbol = iota
+	NoSymbol Symbol = iota
 	Windows
 	MacOS
 	Linux
@@ -23,21 +23,23 @@ const (
 	Stack
 	Search
 	Circle
+	RightwardDownwardArrow
 	DownwardArrow
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:       "windows",
-	MacOS:         "macos",
-	Linux:         "linux",
-	Plus:          "plus",
-	Multiply:      "multiply",
-	Star:          "star",
-	Sparkle:       "sparkle",
-	Stack:         "stack",
-	Search:        "search",
-	Circle:        "circle",
-	DownwardArrow: "downward-arrow",
+	Windows:                "windows",
+	MacOS:                  "macos",
+	Linux:                  "linux",
+	Plus:                   "plus",
+	Multiply:               "multiply",
+	Star:                   "star",
+	Sparkle:                "sparkle",
+	Stack:                  "stack",
+	Search:                 "search",
+	Circle:                 "circle",
+	RightwardDownwardArrow: "rightward-downward-arrow",
+	DownwardArrow:          "downward-arrow",
 }
 
 var (

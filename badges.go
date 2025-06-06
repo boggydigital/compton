@@ -8,6 +8,7 @@ import (
 
 type FormattedBadge struct {
 	Title      string
+	Icon       Symbol
 	Class      string
 	Background color.Color
 	Foreground color.Color
@@ -35,4 +36,16 @@ func SmallBadge(r Registrar, text string, bgColor, fgColor color.Color) *FspanEl
 		BorderRadius(size.XXSmall).
 		BackgroundColor(bgColor).
 		ForegroundColor(fgColor)
+}
+
+func BadgeIcon(r Registrar, icon Symbol, bgColor, fgColor color.Color) *FspanElement {
+	span := Badge(r, "", bgColor, fgColor)
+	span.Append(SvgUse(r, icon))
+	return span
+}
+
+func SmallBadgeIcon(r Registrar, icon Symbol, bgColor, fgColor color.Color) *FspanElement {
+	span := SmallBadge(r, "", bgColor, fgColor)
+	span.Append(SvgUse(r, icon))
+	return span
 }

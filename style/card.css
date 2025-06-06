@@ -37,6 +37,11 @@
 
             & li.badges {
                 margin-block-end: auto;
+
+                & svg {
+                    width: var(--s-s);
+                    height: var(--s-s);
+                }
             }
 
             & .property {
