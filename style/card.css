@@ -47,7 +47,7 @@
             & .property {
                 font-size: var(--fs-xxs);
                 display: grid;
-                grid-template-columns: var(--s-xl) auto;
+                grid-template-columns: calc(var(--s-n) + var(--s-s)) auto;
                 align-content: center;
                 grid-column-gap: var(--s-s);
                 grid-row-gap: var(--s-s);
