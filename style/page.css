@@ -3,12 +3,12 @@
 }
 
 ::view-transition-old(*) {
-    animation: fade-out var(--du-fast) ease-out forwards;
+    animation: fade-out var(--du-fast) ease-in forwards;
     height: 100%;
     width:min-content;
 }
 ::view-transition-new(*) {
-    animation: fade-out var(--du-fast) ease-out reverse;
+    animation: fade-out var(--du-fast) ease-in reverse;
     height: 100%;
     width:min-content;
 }
