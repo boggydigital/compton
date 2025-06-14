@@ -10,18 +10,25 @@ import (
 
 type CardElement struct {
 	*BaseElement
-	r Registrar
+	id string
+	r  Registrar
 }
 
 func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydrated bool) *CardElement {
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
+		var issaImg *IssaImageElement
 		if hydrated {
 			hydratedPlaceholder := issa.HydrateColor(placeholder)
-			posterPlaceholder.Append(IssaImageHydrated(ce.r, background, hydratedPlaceholder, poster))
+			issaImg = IssaImageHydrated(ce.r, background, hydratedPlaceholder, poster)
 		} else {
-			issaImg := IssaImageDehydrated(ce.r, background, placeholder, poster)
+			issaImg = IssaImageDehydrated(ce.r, background, placeholder, poster)
+		}
+		if issaImg != nil {
+			issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
+
 			posterPlaceholder.Append(issaImg)
 		}
+
 	}
 	return ce
 }
@@ -78,6 +85,7 @@ func (ce *CardElement) HeightPixels(px float64) *CardElement {
 func Card(r Registrar, id string) *CardElement {
 	card := &CardElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.Card)),
+		id:          id,
 		r:           r,
 	}
 
@@ -88,11 +96,16 @@ func Card(r Registrar, id string) *CardElement {
 	card.Append(Placeholder())
 
 	ul := Ul()
+
 	liTitle := Li()
-	liTitle.Append(H3())
+	productTitle := H3()
+	productTitle.SetAttribute("style", "view-transition-name:product-title-"+id)
+	liTitle.Append(productTitle)
+
 	liBadges := Li()
 	liBadges.AddClass("badges")
 	ul.Append(liTitle, liBadges)
+
 	card.Append(ul)
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.Card))
