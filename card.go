@@ -25,7 +25,6 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 		}
 		if issaImg != nil {
 			issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
-
 			posterPlaceholder.Append(issaImg)
 		}
 
@@ -40,7 +39,7 @@ func (ce *CardElement) AppendTitle(title string) *CardElement {
 	return ce
 }
 
-func (ce *CardElement) AppendProperty(title string, values ...Element) *CardElement {
+func (ce *CardElement) AppendProperty(title string, values ...Element) Element {
 	if ul := ce.GetFirstElementByTagName(atom.Ul); ul != nil {
 		liProperty := Li()
 		liProperty.AddClass("property")
@@ -51,8 +50,9 @@ func (ce *CardElement) AppendProperty(title string, values ...Element) *CardElem
 		spanValues.Append(values...)
 		liProperty.Append(spanTitle, spanValues)
 		ul.Append(liProperty)
+		return liProperty
 	}
-	return ce
+	return nil
 }
 
 func (ce *CardElement) AppendBadges(badges ...Element) *CardElement {
@@ -104,6 +104,7 @@ func Card(r Registrar, id string) *CardElement {
 
 	liBadges := Li()
 	liBadges.AddClass("badges")
+	liBadges.SetAttribute("style", "view-transition-name:product-badges-"+id)
 	ul.Append(liTitle, liBadges)
 
 	card.Append(ul)

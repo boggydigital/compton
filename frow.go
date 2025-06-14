@@ -22,17 +22,18 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 	return f
 }
 
-func (f *FrowElement) PropVal(p string, vals ...string) *FrowElement {
+func (f *FrowElement) PropVal(p string, vals ...string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
 		row.Append(Fspan(f.r, strings.Join(vals, ", ")).TextAlign(align.Center))
 		fi.Append(row)
+		return row
 	}
-	return f
+	return nil
 }
 
-func (f *FrowElement) PropIcons(p string, symbols ...Symbol) *FrowElement {
+func (f *FrowElement) PropIcons(p string, symbols ...Symbol) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.Small)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
@@ -40,32 +41,40 @@ func (f *FrowElement) PropIcons(p string, symbols ...Symbol) *FrowElement {
 			row.Append(SvgUse(f.r, symbol))
 		}
 		fi.Append(row)
+		return row
 	}
-	return f
+	return nil
 }
 
-func (f *FrowElement) Heading(title string) *FrowElement {
+func (f *FrowElement) Heading(title string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(Fspan(f.r, title).FontWeight(font_weight.Bolder))
+		heading := Fspan(f.r, title).FontWeight(font_weight.Bolder)
+		fi.Append(heading)
+		return heading
+
 	}
-	return f
+	return nil
 }
 
-func (f *FrowElement) Highlight(title string) *FrowElement {
+func (f *FrowElement) Highlight(title string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(Fspan(f.r, title).FontWeight(font_weight.Bolder).ForegroundColor(color.Orange))
+		highlight := Fspan(f.r, title).FontWeight(font_weight.Bolder).ForegroundColor(color.Orange)
+		fi.Append(highlight)
+		return highlight
 	}
-	return f
+	return nil
 }
 
-func (f *FrowElement) IconColor(symbol Symbol, c color.Color) *FrowElement {
+func (f *FrowElement) IconColor(symbol Symbol, c color.Color) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
-		fi.Append(SvgUse(f.r, symbol).ForegroundColor(c))
+		icon := SvgUse(f.r, symbol).ForegroundColor(c)
+		fi.Append(icon)
+		return icon
 	}
-	return f
+	return nil
 }
 
-func (f *FrowElement) LinkColor(title, href string, c color.Color) *FrowElement {
+func (f *FrowElement) LinkColor(title, href string, c color.Color) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		linkDecoration := Fspan(f.r, "").
 			FontWeight(font_weight.Bolder).
@@ -74,8 +83,9 @@ func (f *FrowElement) LinkColor(title, href string, c color.Color) *FrowElement 
 		link.SetAttribute("target", "_top")
 		linkDecoration.Append(link)
 		fi.Append(linkDecoration)
+		return linkDecoration
 	}
-	return f
+	return nil
 }
 
 func (f *FrowElement) FontSize(s size.Size) *FrowElement {
