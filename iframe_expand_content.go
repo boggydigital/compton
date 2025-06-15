@@ -8,8 +8,6 @@ import (
 var (
 	//go:embed "script/iframe_expand_post.js"
 	scriptIframeExpandPost []byte
-	//go:embed "style/iframe-expand-content.css"
-	styleIframeContent []byte
 )
 
 // IframeExpandContent creates an iframe content page and attaches
@@ -19,6 +17,8 @@ var (
 func IframeExpandContent(id, title string) PageElement {
 	p := Page(title).
 		SetBodyId(id)
+
+	p.SetAttribute("style", "view-transition-name:iframe-content-"+id)
 
 	p.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.IframeExpandContent))
 	p.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IframeExpandContent),

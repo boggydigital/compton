@@ -36,6 +36,8 @@ func IframeExpandHost(r Registrar, id, src string) Element {
 	r.RegisterRequirements(compton_atoms.ScriptName(compton_atoms.IframeExpandHost),
 		Script(scriptIframeExpandReceive))
 
+	iframe.SetAttribute("style", "view-transition-name:iframe-content-"+id)
+
 	return &IframeExpandElement{
 		r:      r,
 		iframe: iframe,
