@@ -379,6 +379,7 @@ func Script(code []byte) *ScriptElement {
 
 	if hash, err := computeSha256(bytes.NewReader(code)); err == nil {
 		script.hash = hash
+		script.SetAttribute("integrity", script.Sha256())
 	}
 
 	script.Append(Text(string(code)))

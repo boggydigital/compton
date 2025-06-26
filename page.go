@@ -173,7 +173,7 @@ func (p *pageElement) contentSecurityPolicy() string {
 				digests = append(digests, "'"+se.Sha256()+"'")
 			}
 		}
-		return "script-src " + strings.Join(digests, " ")
+		return "script-src " + strings.Join(digests, " ") + "; object-src 'none'; frame-ancestors 'self'"
 	}
 	return ""
 }
