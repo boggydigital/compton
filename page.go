@@ -178,8 +178,10 @@ func (p *pageElement) contentSecurityPolicy() string {
 	}
 	objectCsp := "object-src 'none'"
 	frameAncestorsCsp := "frame-ancestors 'self'"
+	baseUriCsp := "base-uri 'self'"
+	formActionCsp := "form-action 'self'"
 
-	return strings.Join([]string{scriptCsp, objectCsp, frameAncestorsCsp}, "; ")
+	return strings.Join([]string{scriptCsp, objectCsp, frameAncestorsCsp, baseUriCsp, formActionCsp}, "; ")
 }
 
 func (p *pageElement) appendMetaCharset() {
