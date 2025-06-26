@@ -412,8 +412,28 @@ func SpanText(txt string) Element {
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style */
 
+type StyleElement struct {
+	*BaseElement
+	hash []byte
+}
+
+func (se *StyleElement) Sha256() string {
+	if len(se.hash) > 0 {
+		return "sha256-" + b64.EncodeToString(se.hash)
+	}
+	return ""
+}
+
 func Style(styles []byte) Element {
-	style := NewElement(tacMarkup(atom.Style))
+	style := &StyleElement{
+		BaseElement: NewElement(tacMarkup(atom.Style)),
+	}
+
+	if hash, err := computeSha256(bytes.NewReader(styles)); err == nil {
+		style.hash = hash
+		style.SetAttribute("integrity", style.Sha256())
+	}
+
 	style.Append(Text(string(styles)))
 	return style
 }

@@ -166,16 +166,20 @@ func (p *pageElement) SetBodyId(id string) PageElement {
 }
 
 func (p *pageElement) contentSecurityPolicy() string {
+	var scriptCsp string
 	if scripts := p.document.GetElementsByTagName(atom.Script); len(scripts) > 0 {
-		digests := make([]string, 0, len(scripts))
+		scriptDigests := make([]string, 0, len(scripts))
 		for _, s := range scripts {
 			if se, ok := s.(*ScriptElement); ok {
-				digests = append(digests, "'"+se.Sha256()+"'")
+				scriptDigests = append(scriptDigests, "'"+se.Sha256()+"'")
 			}
 		}
-		return "script-src " + strings.Join(digests, " ") + "; object-src 'none'; frame-ancestors 'self'"
+		scriptCsp = "script-src " + strings.Join(scriptDigests, " ")
 	}
-	return ""
+	objectCsp := "object-src 'none'"
+	frameAncestorsCsp := "frame-ancestors 'self'"
+
+	return strings.Join([]string{scriptCsp, objectCsp, frameAncestorsCsp}, "; ")
 }
 
 func (p *pageElement) appendMetaCharset() {
