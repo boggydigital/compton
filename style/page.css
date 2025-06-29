@@ -23,8 +23,8 @@
 html {
     min-height: 100%;
     scroll-behavior: auto;
-    background-color: color-mix(in display-p3, var(--c-rep) 7.5%, var(--c-background));
-    color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-foreground));
+    background-color: color-mix(in display-p3, var(--c-rep) 10%, var(--c-background));
+    color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
     -webkit-font-smoothing: subpixel-antialiased
 }
 
