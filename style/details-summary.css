@@ -29,6 +29,9 @@ details {
 
 @scope (details) {
     :scope {
+
+        width: 100%;
+
         & > summary {
             cursor: pointer;
             display: flex;
