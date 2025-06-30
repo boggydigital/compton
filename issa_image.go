@@ -53,23 +53,29 @@ func issaImage(r Registrar, bgHex, placeholder, poster string, dehydrated bool) 
 		ii.AddClass(class.BackgroundColorHex(bgHex))
 	}
 
-	placeholderImg := Image("")
-	classes := []string{"placeholder"}
+	if placeholder != "" {
+		placeholderImg := Image("")
+		classes := []string{"placeholder"}
 
-	if dehydrated {
-		placeholderImg.SetAttribute("data-dehydrated", placeholder)
-		classes = append(classes, "loading")
-	} else {
-		placeholderImg.SetAttribute("data-dehydrated", "")
-		placeholderImg.SetAttribute("src", placeholder)
+		if dehydrated {
+			placeholderImg.SetAttribute("data-dehydrated", placeholder)
+			classes = append(classes, "loading")
+		} else {
+			placeholderImg.SetAttribute("data-dehydrated", "")
+			placeholderImg.SetAttribute("src", placeholder)
+		}
+
+		placeholderImg.AddClass(classes...)
+		ii.Append(placeholderImg)
 	}
 
-	placeholderImg.AddClass(classes...)
+	if poster != "" {
+		posterImg := ImageLazy("")
+		posterImg.SetAttribute("data-src", poster)
+		posterImg.AddClass("poster", "loading")
 
-	posterImg := ImageLazy("")
-	posterImg.SetAttribute("data-src", poster)
-	posterImg.AddClass("poster", "loading")
-	ii.Append(placeholderImg, posterImg)
+		ii.Append(posterImg)
+	}
 
 	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.IssaImage))
