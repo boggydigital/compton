@@ -3,6 +3,7 @@
         display: flex;
         flex-direction: column;
         row-gap: var(--rg);
+        width: var(--s-cw);
 
         & h3 {
             margin: 0;
@@ -28,6 +29,14 @@
         & svg {
             width: var(--s-n);
             height: var(--s-n);
+        }
+    }
+}
+
+@container (max-width: 592px) {
+    @scope (title-values) {
+        :scope {
+            width: 100%;
         }
     }
 }

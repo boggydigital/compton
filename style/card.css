@@ -5,18 +5,24 @@
         --rep-foreground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
         color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
         background-color: color-mix(in display-p3, var(--rep-foreground) 20%, var(--c-highlight));
-        outline: var(--s-xxxs) solid color-mix(in display-p3, var(--rep-foreground) 15%, var(--c-background));
+        border: var(--s-xxxs) solid color-mix(in display-p3, var(--rep-foreground) 15%, var(--c-background));
         border-radius: var(--s-s);
         content-visibility: auto;
-        contain-intrinsic-size: 288px 146.5px;
+        width: 264px;
+        height: 120.5px;
         overflow: hidden;
-        display: grid;
-        grid-template-columns: var(--w) 1fr;
+        display: flex;
+        flex-direction: row;
         column-gap: var(--s-snh);
 
         & issa-image {
             overflow: hidden;
             border-radius: var(--s-xs);
+            flex-shrink: 0;
+
+            & img {
+                object-fit: cover;
+            }
         }
 
         & ul {
@@ -24,6 +30,7 @@
             padding-inline-start: 0;
             margin: 0;
             display: flex;
+            flex-grow: 0;
             flex-direction: column;
             row-gap: var(--s-xs);
             overflow: hidden;
@@ -71,6 +78,14 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@container (max-width: 592px) {
+    @scope (card) {
+        :scope {
+            width: unset;
         }
     }
 }

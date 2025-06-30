@@ -11,7 +11,7 @@
     --s-xxl: calc(2 * var(--s-xl)); /* 8rem == 128px */
     --s-xxxl: calc(2 * var(--s-xxl)); /* 16rem == 256px */
 
-    --s-cw: calc(9 * var(--s-l));
+    --s-cw: calc(7 * var(--s-l));
     --s-maxw: calc(3 * var(--s-xxxl));
     --s-fw: 100%;
 

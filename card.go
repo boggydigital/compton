@@ -14,7 +14,7 @@ type CardElement struct {
 	r  Registrar
 }
 
-func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydrated bool) *CardElement {
+func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydrated bool) *IssaImageElement {
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
 		var issaImg *IssaImageElement
 		if hydrated {
@@ -27,9 +27,9 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 			issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
 			posterPlaceholder.Append(issaImg)
 		}
-
+		return issaImg
 	}
-	return ce
+	return nil
 }
 
 func (ce *CardElement) AppendTitle(title string) *CardElement {

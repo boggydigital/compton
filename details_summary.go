@@ -125,7 +125,8 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	openMarker := Fspan(r, "")
 
 	if small {
-		openMarker.Padding(size.XSmall)
+		openMarker.Padding(size.XSmall).
+			Width(size.Unset)
 	} else {
 		openMarker.Padding(size.Small).
 			ForegroundColor(color.Background).
@@ -138,7 +139,8 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	closedMarker := Fspan(r, "")
 
 	if small {
-		closedMarker.Padding(size.XSmall)
+		closedMarker.Padding(size.XSmall).
+			Width(size.Unset)
 	} else {
 		closedMarker.Padding(size.Small).
 			//BackgroundColor(color.Background).
@@ -149,7 +151,7 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	closedMarker.Append(SvgUse(r, Plus))
 	closedMarker.AddClass("marker", "closed")
 
-	summaryTitle := Fspan(r, title).FontSize(size.Small).FontWeight(font_weight.Normal)
+	summaryTitle := Fspan(r, title).FontSize(size.Small).FontWeight(font_weight.Normal).Width(size.Unset)
 	summaryTitle.AddClass("title")
 
 	summaryHeading := FlexItems(r, direction.Row).
