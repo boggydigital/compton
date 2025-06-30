@@ -2,6 +2,12 @@
     navigation: auto;
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+}
+
 ::view-transition-old(*) {
     animation: fade-out var(--du-fast) ease-out forwards;
     height: 100%;
