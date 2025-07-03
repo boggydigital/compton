@@ -45,7 +45,7 @@
     --jc: unset; /*justify-content*/
     --ji: unset; /*justify-items*/
     --fd: unset; /*flex-direction*/
-    --fg: unset; /*color*/
+    --fg: inherit; /*color*/
     --bg: unset; /*background-color*/
     --cm: var(--c-gray); /*marker color*/
     --fs: unset; /*font-size*/

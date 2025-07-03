@@ -25,7 +25,7 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 func (f *FrowElement) PropVal(p string, vals ...string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
-		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
+		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
 		row.Append(Fspan(f.r, strings.Join(vals, ", ")).TextAlign(align.Center))
 		fi.Append(row)
 		return row
@@ -36,7 +36,7 @@ func (f *FrowElement) PropVal(p string, vals ...string) Element {
 func (f *FrowElement) PropIcons(p string, symbols ...Symbol) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.Small)
-		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
+		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
 		for _, symbol := range symbols {
 			row.Append(SvgUse(f.r, symbol))
 		}
