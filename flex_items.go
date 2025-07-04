@@ -85,6 +85,11 @@ func (fie *FlexItemsElement) MaxWidth(s size.Size) *FlexItemsElement {
 	return fie
 }
 
+func (fie *FlexItemsElement) ColumnWidthRule(s size.Size) *FlexItemsElement {
+	fie.AddClass(class.ColumnRuleWidth(s))
+	return fie
+}
+
 func FlexItems(r Registrar, d direction.Direction) *FlexItemsElement {
 	fie := &FlexItemsElement{
 		BaseElement: NewElement(tacMarkup(compton_atoms.FlexItems)),

@@ -11,8 +11,7 @@
     --s-xxl: calc(2 * var(--s-xl)); /* 8rem == 128px */
     --s-xxxl: calc(2 * var(--s-xxl)); /* 16rem == 256px */
 
-    --s-cw: calc(7 * var(--s-l));
-    --s-maxw: calc(3 * var(--s-xxxl));
+    --s-maxw: calc(3 * var(--s-xxxl) + 2 * var(--s-l)); /* 3 * 256px + 2 * 32px = 832px */
     --s-fw: 100%;
 
     --fs-n: 12pt;
@@ -61,5 +60,6 @@
     --pdb: unset; /* padding-block */
     --br: unset; /* border-radius */
     --mw: unset; /* max-width */
+    --crw: unset; /* column-rule-width */
 }
 

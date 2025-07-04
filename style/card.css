@@ -8,7 +8,7 @@
         border: var(--s-xxxs) solid color-mix(in display-p3, var(--rep-foreground) 15%, var(--c-background));
         border-radius: var(--s-s);
         content-visibility: auto;
-        width: 264px;
+        width: var(--s-xxxl);
         height: 120.5px;
         overflow: hidden;
         display: flex;

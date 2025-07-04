@@ -39,6 +39,7 @@ const (
 	paddingBlockPfx     = "pdb"
 	borderRadiusPfx     = "br"
 	maxWidthPfx         = "mw"
+	columnRuleWidthPfx  = "crw"
 )
 
 var setClasses = make(map[string]any)
@@ -177,6 +178,8 @@ func PaddingBlock(s size.Size) string { return joinClassName(paddingBlockPfx, s.
 
 func BorderRadius(s size.Size) string { return joinClassName(borderRadiusPfx, s.String()) }
 
+func ColumnRuleWidth(s size.Size) string { return joinClassName(columnRuleWidthPfx, s.String()) }
+
 func StyleClasses() []byte {
 	mtx.Lock()
 	defer mtx.Unlock()
@@ -225,6 +228,8 @@ func parsePropertyValue(className string) (string, string) {
 	case columnGapPfx:
 		fallthrough
 	case rowGapPfx:
+		fallthrough
+	case columnRuleWidthPfx:
 		sz := size.Parse(sfx)
 		value = sz.SizeCssValue()
 	case gridTemplateRowsPfx:

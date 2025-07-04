@@ -3,6 +3,7 @@ package compton
 import (
 	_ "embed"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/loading"
 	"io"
 )
 
@@ -27,8 +28,18 @@ func (ife *IframeExpandElement) Write(w io.Writer) error {
 // script/post.js within the iframe page. See NewContent that creates the page
 // with that script. Initially host iframe has opacity: 0 through `loading`
 // class to avoid flash of white content as iframe loads
-func IframeExpandHost(r Registrar, id, src string) Element {
-	iframe := IframeLazy(src)
+func IframeExpandHost(r Registrar, id, src string, eagerness loading.Loading) Element {
+
+	var iframe Element
+	switch eagerness {
+	case loading.Lazy:
+		iframe = IframeLazy(src)
+	case loading.Eager:
+		iframe = IframeEager(src)
+	default:
+		iframe = Iframe(src)
+	}
+
 	iframe.SetId(id)
 
 	r.RegisterStyles(DefaultStyle,

@@ -157,7 +157,8 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 	summaryHeading := FlexItems(r, direction.Row).
 		ColumnGap(size.Small).
 		AlignItems(align.Center).
-		BackgroundColor(color.Transparent)
+		BackgroundColor(color.Transparent).
+		ColumnWidthRule(size.Unset).Width(size.Unset)
 	summaryHeading.Append(openMarker, closedMarker, summaryTitle)
 
 	summaryElement := Summary()

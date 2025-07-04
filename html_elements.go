@@ -227,6 +227,12 @@ func IframeLazy(src string) Element {
 	return iframe
 }
 
+func IframeEager(src string) Element {
+	iframe := Iframe(src)
+	iframe.SetAttribute(attr.Loading, loading.Eager.String())
+	return iframe
+}
+
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img */
 
 var (
