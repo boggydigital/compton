@@ -68,7 +68,7 @@ details {
 @scope (details.larger) {
     :scope {
         & > summary {
-            --bg: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight));
+            --bg: var(--c-rephighlight);
             justify-content: space-between;
             min-width: max-content;
             max-width: var(--s-maxw);
@@ -85,7 +85,7 @@ details {
             & .marker {
 
                 &.open {
-                    background: var(--c-dimmedforeground);
+                    background: var(--c-repforeground);
                 }
                 &.closed {
                     background-color: var(--c-highlight)
