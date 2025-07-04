@@ -4,7 +4,7 @@
     --c-transparent: transparent;
     --c-inherit: inherit;
     --c-rep: transparent;
-    --c-repgray: color-mix(in display-p3, var(--c-rep) 20%, var(--c-gray))
+    --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray))
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */
