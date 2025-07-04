@@ -2,10 +2,11 @@
     :scope {
         --s-snh: calc((var(--s-s) + var(--s-n)) / 2);
         padding: var(--s-snh);
-        --rep-foreground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
         color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
-        background-color: color-mix(in display-p3, var(--rep-foreground) 20%, var(--c-highlight));
-        border: var(--s-xxxs) solid color-mix(in display-p3, var(--rep-foreground) 15%, var(--c-background));
+        /* the definition is the same as page level, but need to be here to mix with card rep color, not page */
+        --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
+        background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
+        border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));
         border-radius: var(--s-s);
         content-visibility: auto;
         width: var(--s-xxxl);

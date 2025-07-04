@@ -31,6 +31,8 @@ const (
 	Transparent
 	Inherit
 	Rep
+	RepForeground
+	RepBackground
 	RepGray
 )
 
@@ -57,6 +59,8 @@ var colorStrings = map[Color]string{
 	Transparent:      "transparent",
 	Inherit:          "inherit",
 	Rep:              "rep",
+	RepForeground:    "repforeground",
+	RepBackground:    "repbackground",
 	RepGray:          "repgray",
 }
 
