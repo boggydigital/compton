@@ -133,7 +133,14 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 			BorderRadius(size.XSmall)
 	}
 
-	openMarker.Append(SvgUse(r, Multiply))
+	var openSymbol Symbol
+	if small {
+		openSymbol = UpwardChevron
+	} else {
+		openSymbol = Multiply
+	}
+
+	openMarker.Append(SvgUse(r, openSymbol))
 	openMarker.AddClass("marker", "open")
 
 	closedMarker := Fspan(r, "")
@@ -143,12 +150,17 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 			Width(size.Unset)
 	} else {
 		closedMarker.Padding(size.Small).
-			//BackgroundColor(color.Background).
-			//ForegroundColor(color.Foreground).
 			BorderRadius(size.XSmall)
 	}
 
-	closedMarker.Append(SvgUse(r, Plus))
+	var closedSymbol Symbol
+	if small {
+		closedSymbol = DownwardChevron
+	} else {
+		closedSymbol = Plus
+	}
+
+	closedMarker.Append(SvgUse(r, closedSymbol))
 	closedMarker.AddClass("marker", "closed")
 
 	summaryTitle := Fspan(r, title).FontSize(size.Small).FontWeight(font_weight.Normal).Width(size.Unset)
@@ -159,7 +171,12 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		AlignItems(align.Center).
 		BackgroundColor(color.Transparent).
 		ColumnWidthRule(size.Unset).Width(size.Unset)
-	summaryHeading.Append(openMarker, closedMarker, summaryTitle)
+
+	if small {
+		summaryHeading.Append(summaryTitle, openMarker, closedMarker)
+	} else {
+		summaryHeading.Append(openMarker, closedMarker, summaryTitle)
+	}
 
 	summaryElement := Summary()
 	summaryElement.Append(summaryHeading)

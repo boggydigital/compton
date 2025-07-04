@@ -24,22 +24,26 @@ const (
 	Search
 	Circle
 	DownwardArrow
-	DownwardChevrons
+	TwoDownwardChevrons
+	DownwardChevron
+	UpwardChevron
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:          "windows",
-	MacOS:            "macos",
-	Linux:            "linux",
-	Plus:             "plus",
-	Multiply:         "multiply",
-	Star:             "star",
-	Sparkle:          "sparkle",
-	Stack:            "stack",
-	Search:           "search",
-	Circle:           "circle",
-	DownwardArrow:    "downward-arrow",
-	DownwardChevrons: "downward-chevrons",
+	Windows:             "windows",
+	MacOS:               "macos",
+	Linux:               "linux",
+	Plus:                "plus",
+	Multiply:            "multiply",
+	Star:                "star",
+	Sparkle:             "sparkle",
+	Stack:               "stack",
+	Search:              "search",
+	Circle:              "circle",
+	DownwardArrow:       "downward-arrow",
+	TwoDownwardChevrons: "two-downward-chevrons",
+	DownwardChevron:     "downward-chevron",
+	UpwardChevron:       "upward-chevron",
 }
 
 var (
