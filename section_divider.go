@@ -16,6 +16,7 @@ func SectionDivider(r Registrar, content ...Element) Element {
 		JustifyItems(align.Center).
 		ColumnGap(size.Small).
 		BackgroundColor(color.Highlight).
+		ForegroundColor(color.RepForeground).
 		BorderRadius(size.XSmall)
 
 	titleFspan := Fspan(r, "").

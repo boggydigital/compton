@@ -33,6 +33,7 @@ const (
 	Rep
 	RepForeground
 	RepBackground
+	RepHighlight
 	RepGray
 )
 
@@ -61,6 +62,7 @@ var colorStrings = map[Color]string{
 	Rep:              "rep",
 	RepForeground:    "repforeground",
 	RepBackground:    "repbackground",
+	RepHighlight:     "rephighlight",
 	RepGray:          "repgray",
 }
 
