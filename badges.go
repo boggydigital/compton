@@ -14,8 +14,8 @@ type FormattedBadge struct {
 	Foreground color.Color
 }
 
-func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
-	return Fspan(r, text).
+func badgeContainer(r Registrar, bgColor, fgColor color.Color) *FspanElement {
+	return Fspan(r, "").
 		Width(size.Unset).
 		FontSize(size.XXSmall).
 		FontWeight(font_weight.Normal).
@@ -26,8 +26,8 @@ func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement
 		ForegroundColor(fgColor)
 }
 
-func SmallBadge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
-	return Fspan(r, text).
+func smallBadgeContainer(r Registrar, bgColor, fgColor color.Color) *FspanElement {
+	return Fspan(r, "").
 		Width(size.Unset).
 		FontSize(size.XXXSmall).
 		FontWeight(font_weight.Normal).
@@ -38,14 +38,34 @@ func SmallBadge(r Registrar, text string, bgColor, fgColor color.Color) *FspanEl
 		ForegroundColor(fgColor)
 }
 
-func BadgeIcon(r Registrar, icon Symbol, bgColor, fgColor color.Color) *FspanElement {
-	span := Badge(r, "", bgColor, fgColor)
-	span.Append(SvgUse(r, icon))
-	return span
+func Badge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
+	bc := badgeContainer(r, bgColor, fgColor)
+	bc.Append(Text(text))
+	return bc
 }
 
-func SmallBadgeIcon(r Registrar, icon Symbol, bgColor, fgColor color.Color) *FspanElement {
-	span := SmallBadge(r, "", bgColor, fgColor)
-	span.Append(SvgUse(r, icon))
-	return span
+func SmallBadge(r Registrar, text string, bgColor, fgColor color.Color) *FspanElement {
+	sbc := smallBadgeContainer(r, bgColor, fgColor)
+	sbc.Append(Text(text))
+	return sbc
+}
+
+func BadgeIcon(r Registrar, icon Symbol, text string, bgColor, fgColor color.Color) *FspanElement {
+	bc := badgeContainer(r, bgColor, fgColor)
+	bc.Append(SvgUse(r, icon))
+	if text != "" {
+		bc.Append(Text("&nbsp;"))
+		bc.Append(Text(text))
+	}
+	return bc
+}
+
+func SmallBadgeIcon(r Registrar, icon Symbol, text string, bgColor, fgColor color.Color) *FspanElement {
+	sbc := smallBadgeContainer(r, bgColor, fgColor)
+	sbc.Append(SvgUse(r, icon))
+	if text != "" {
+		sbc.Append(Text("&nbsp;"))
+		sbc.Append(Text(text))
+	}
+	return sbc
 }
