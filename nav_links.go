@@ -3,13 +3,9 @@ package compton
 import (
 	_ "embed"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"golang.org/x/net/html/atom"
 )
 
 const sectionLinksId = "section-links"
-
-//go:embed "script/nav_link_submit_form.js"
-var navLinkSubmitForm []byte
 
 type NavTarget struct {
 	Href     string
@@ -56,18 +52,6 @@ func (nle *NavLinksElement) AppendLink(r Registrar, target *NavTarget) Element {
 	nle.Append(navListItem)
 
 	return navListItem
-}
-
-func (nle *NavLinksElement) AppendSubmitLink(r Registrar, target *NavTarget) Element {
-
-	r.RegisterDeferrals("nav-link-submit-script", ScriptAsync(navLinkSubmitForm))
-
-	submitListItem := nle.AppendLink(r, target)
-	if link := submitListItem.GetFirstElementByTagName(atom.A); link != nil {
-		link.AddClass("submit")
-	}
-
-	return submitListItem
 }
 
 func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]string) Element {
