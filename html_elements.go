@@ -115,6 +115,10 @@ func Details() *DetailsElement {
 	}
 }
 
+/* https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog */
+
+func Dialog() Element { return NewElement(tacMarkup(atom.Dialog)) }
+
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div */
 
 func Div() Element {

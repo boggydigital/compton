@@ -41,8 +41,10 @@
     --rg: var(--s-n); /*row-gap*/
     --ac: unset; /*align-content*/
     --ai: unset; /*align-items*/
+    --as: unset; /*align-self*/
     --jc: unset; /*justify-content*/
     --ji: unset; /*justify-items*/
+    --js: unset; /*justify-self*/
     --fd: unset; /*flex-direction*/
     --fg: inherit; /*color*/
     --bg: unset; /*background-color*/

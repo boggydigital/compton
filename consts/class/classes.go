@@ -20,8 +20,10 @@ const (
 	columnGapPfx        = "cg"
 	alignContentPfx     = "ac"
 	alignItemsPfx       = "ai"
+	alignSelfPfx        = "as"
 	justifyContentPfx   = "jc"
 	justifyItemsPfx     = "ji"
+	justifySelfPfx      = "js"
 	flexDirectionPfx    = "fd"
 	backgroundColorPfx  = "bg"
 	foregroundColorPfx  = "fg"
@@ -96,6 +98,8 @@ func AlignItems(a align.Align) string {
 	return joinClassName(alignItemsPfx, a.String())
 }
 
+func AlignSelf(a align.Align) string { return joinClassName(alignSelfPfx, a.String()) }
+
 func AspectRatio(ar float64) string { return joinClassName(aspectRatioPfx, fmtFloat(ar)) }
 
 func JustifyContent(a align.Align) string {
@@ -105,6 +109,8 @@ func JustifyContent(a align.Align) string {
 func JustifyItems(a align.Align) string {
 	return joinClassName(justifyItemsPfx, a.String())
 }
+
+func JustifySelf(a align.Align) string { return joinClassName(justifySelfPfx, a.String()) }
 
 func FlexDirection(d direction.Direction) string {
 	return joinClassName(flexDirectionPfx, d.String())
@@ -194,11 +200,13 @@ func StyleClasses() []byte {
 }
 
 func parsePropertyValue(className string) (string, string) {
-	abbrParts := strings.Split(className, classNameSep)
-	if len(abbrParts) != 2 {
+
+	var pfx, sfx string
+	var ok bool
+	if pfx, sfx, ok = strings.Cut(className, classNameSep); !ok {
 		return "", ""
 	}
-	pfx, sfx := abbrParts[0], abbrParts[1]
+
 	property := customProperty(pfx)
 	value := ""
 
@@ -207,9 +215,13 @@ func parsePropertyValue(className string) (string, string) {
 		fallthrough
 	case alignItemsPfx:
 		fallthrough
+	case alignSelfPfx:
+		fallthrough
 	case justifyContentPfx:
 		fallthrough
 	case justifyItemsPfx:
+		fallthrough
+	case justifySelfPfx:
 		fallthrough
 	case textAlignPfx:
 		al := align.Parse(sfx)

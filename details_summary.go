@@ -70,6 +70,20 @@ func (dse *DetailsSummaryElement) SummaryOutlineColorHex(hex string) *DetailsSum
 	return dse
 }
 
+func (dse *DetailsSummaryElement) SummaryAlignSelf(a align.Align) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.AlignSelf(a))
+	}
+	return dse
+}
+
+func (dse *DetailsSummaryElement) SummaryJustifySelf(a align.Align) *DetailsSummaryElement {
+	if summary := dse.getSummary(); summary != nil {
+		summary.AddClass(class.JustifySelf(a))
+	}
+	return dse
+}
+
 func (dse *DetailsSummaryElement) BackgroundColor(c color.Color) *DetailsSummaryElement {
 	if summary := dse.getSummary(); summary != nil {
 		summary.AddClass(class.BackgroundColor(c))

@@ -27,23 +27,25 @@ const (
 	TwoDownwardChevrons
 	DownwardChevron
 	UpwardChevron
+	ThreeHorizontalLines
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:             "windows",
-	MacOS:               "macos",
-	Linux:               "linux",
-	Plus:                "plus",
-	Multiply:            "multiply",
-	Star:                "star",
-	Sparkle:             "sparkle",
-	Stack:               "stack",
-	Search:              "search",
-	Circle:              "circle",
-	DownwardArrow:       "downward-arrow",
-	TwoDownwardChevrons: "two-downward-chevrons",
-	DownwardChevron:     "downward-chevron",
-	UpwardChevron:       "upward-chevron",
+	Windows:              "windows",
+	MacOS:                "macos",
+	Linux:                "linux",
+	Plus:                 "plus",
+	Multiply:             "multiply",
+	Star:                 "star",
+	Sparkle:              "sparkle",
+	Stack:                "stack",
+	Search:               "search",
+	Circle:               "circle",
+	DownwardArrow:        "downward-arrow",
+	TwoDownwardChevrons:  "two-downward-chevrons",
+	DownwardChevron:      "downward-chevron",
+	UpwardChevron:        "upward-chevron",
+	ThreeHorizontalLines: "three-horizontal-lines",
 }
 
 var (

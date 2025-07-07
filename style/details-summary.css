@@ -109,13 +109,14 @@ details {
         }
 
         & > summary {
-            justify-content: start;
             column-gap: var(--s-xs);
             padding: var(--s-xs) var(--s-s);
             background-color: var(--c-highlight);
             border-radius: var(--s-xs);
             color: var(--fg);
             width: max-content;
+            justify-self: var(--js);
+            align-self: var(--as);
         }
     }
 }
