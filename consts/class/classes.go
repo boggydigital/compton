@@ -42,6 +42,7 @@ const (
 	borderRadiusPfx     = "br"
 	maxWidthPfx         = "mw"
 	columnRuleWidthPfx  = "crw"
+	lineHeightPfx       = "lh"
 )
 
 var setClasses = make(map[string]any)
@@ -186,6 +187,8 @@ func BorderRadius(s size.Size) string { return joinClassName(borderRadiusPfx, s.
 
 func ColumnRuleWidth(s size.Size) string { return joinClassName(columnRuleWidthPfx, s.String()) }
 
+func LineHeight(s size.Size) string { return joinClassName(lineHeightPfx, s.String()) }
+
 func StyleClasses() []byte {
 	mtx.Lock()
 	defer mtx.Unlock()
@@ -242,6 +245,8 @@ func parsePropertyValue(className string) (string, string) {
 	case rowGapPfx:
 		fallthrough
 	case columnRuleWidthPfx:
+		fallthrough
+	case lineHeightPfx:
 		sz := size.Parse(sfx)
 		value = sz.SizeCssValue()
 	case gridTemplateRowsPfx:

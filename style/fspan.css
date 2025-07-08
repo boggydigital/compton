@@ -10,5 +10,6 @@
         border-radius: var(--br);
         max-width: var(--mw);
         width: var(--w);
+        line-height: var(--lh);
     }
 }

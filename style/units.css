@@ -1,4 +1,7 @@
 :root {
+
+    --s-zero: 0;
+
     --s-n: 1rem; /* 16px */
 
     --s-s: calc(var(--s-n) / 2); /* 0.5rem == 8px */
@@ -63,5 +66,6 @@
     --br: unset; /* border-radius */
     --mw: unset; /* max-width */
     --crw: unset; /* column-rule-width */
+    --lh: initial; /* line-height */
 }
 

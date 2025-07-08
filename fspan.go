@@ -69,6 +69,11 @@ func (fse *FspanElement) MaxWidth(s size.Size) *FspanElement {
 	return fse
 }
 
+func (fse *FspanElement) LineHeight(s size.Size) *FspanElement {
+	fse.AddClass(class.LineHeight(s))
+	return fse
+}
+
 func (fse *FspanElement) SetTextContent(text string) *FspanElement {
 	fse.Children = []Element{Text(text)}
 	return fse

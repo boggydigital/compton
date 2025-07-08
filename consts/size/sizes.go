@@ -4,6 +4,7 @@ type Size int
 
 const (
 	Unset Size = iota
+	Zero
 	Normal
 	Small
 	XSmall
@@ -20,6 +21,7 @@ const (
 )
 
 var sizeStrings = map[Size]string{
+	Zero:        "zero",
 	Normal:      "n",
 	Small:       "s",
 	XSmall:      "xs",
