@@ -33,6 +33,23 @@ func (f *FrowElement) PropVal(p string, vals ...string) Element {
 	return nil
 }
 
+func (f *FrowElement) PropLinkColor(p string, c color.Color, title, href string) Element {
+	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
+		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
+		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
+		linkDecoration := Fspan(f.r, "").
+			FontWeight(font_weight.Bolder).
+			ForegroundColor(c)
+		link := AText(title, href)
+		link.SetAttribute("target", "_top")
+		linkDecoration.Append(link)
+		row.Append(linkDecoration)
+		fi.Append(row)
+		return row
+	}
+	return nil
+}
+
 func (f *FrowElement) PropIcons(p string, symbols ...Symbol) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.Small)
@@ -105,7 +122,7 @@ func Frow(r Registrar) *FrowElement {
 
 	fi := FlexItems(r, direction.Row).
 		ColumnGap(size.Small).
-		RowGap(size.XSmall).
+		RowGap(size.Small).
 		AlignItems(align.Center)
 	fi.AddClass("frow")
 
