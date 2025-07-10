@@ -5,6 +5,8 @@
         color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
         /* the definition is the same as page level, but need to be here to mix with card rep color, not page */
         --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
+        /* same as above */
+        --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
         background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
         border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));
         border-radius: var(--s-s);
@@ -64,7 +66,7 @@
                 align-items: center;
 
                 & .title {
-                    color: var(--c-gray);
+                    color: var(--c-repgray);
                 }
 
                 & .values {
