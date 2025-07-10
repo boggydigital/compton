@@ -26,6 +26,17 @@ func badgeContainer(r Registrar, bgColor, fgColor color.Color) *FspanElement {
 		ForegroundColor(fgColor)
 }
 
+func badgeTextContainer(r Registrar, fgColor color.Color) *FspanElement {
+	return Fspan(r, "").
+		Width(size.Unset).
+		FontSize(size.XXSmall).
+		FontWeight(font_weight.Normal).
+		PaddingBlock(size.XXSmall).
+		BorderRadius(size.XSmall).
+		ForegroundColor(fgColor).
+		BackgroundColor(color.Transparent)
+}
+
 func smallBadgeContainer(r Registrar, bgColor, fgColor color.Color) *FspanElement {
 	return Fspan(r, "").
 		Width(size.Unset).
@@ -35,6 +46,16 @@ func smallBadgeContainer(r Registrar, bgColor, fgColor color.Color) *FspanElemen
 		PaddingBlock(size.XXSmall).
 		BorderRadius(size.XXSmall).
 		BackgroundColor(bgColor).
+		ForegroundColor(fgColor)
+}
+
+func smallBadgeTextContainer(r Registrar, fgColor color.Color) *FspanElement {
+	return Fspan(r, "").
+		Width(size.Unset).
+		FontSize(size.XXXSmall).
+		FontWeight(font_weight.Normal).
+		PaddingBlock(size.XXSmall).
+		BorderRadius(size.XXSmall).
 		ForegroundColor(fgColor)
 }
 
@@ -68,4 +89,10 @@ func SmallBadgeIcon(r Registrar, icon Symbol, text string, bgColor, fgColor colo
 		sbc.Append(Text(text))
 	}
 	return sbc
+}
+
+func BadgeText(r Registrar, text string, fgColor color.Color) *FspanElement {
+	btc := badgeTextContainer(r, fgColor)
+	btc.Append(Text(text))
+	return btc
 }

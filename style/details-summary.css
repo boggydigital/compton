@@ -10,8 +10,8 @@ details {
             line-height: 0;
 
             & svg {
-                width: var(--s-s);
-                height: var(--s-s);
+                width: var(--s-n);
+                height: var(--s-n);
             }
         }
 
@@ -42,7 +42,7 @@ details {
                 display: none;
             }
 
-            & .marker.open {
+            & .open-marker {
                 display: none;
             }
         }
@@ -53,11 +53,11 @@ details {
             & > summary {
                 margin-block-end: var(--mbe);
 
-                & .marker.open {
+                & .open-marker {
                     display: initial;
                 }
 
-                & .marker.closed {
+                & .closed-marker {
                     display: none;
                 }
             }
@@ -74,7 +74,8 @@ details {
             max-width: var(--s-maxw);
             margin: auto;
             font-weight: var(--fw-b);
-            padding: var(--s-s);
+            padding: var(--s-xs);
+            padding-inline-end: var(--s-s);
             background-color: var(--bg);
             color: var(--fg);
             border-radius: var(--s-s);
@@ -82,14 +83,17 @@ details {
             row-gap: var(--rg);
             flex-wrap: wrap;
 
-            & .marker {
+            & .summary-heading {
+                background-color: var(--c-rephighlight);
+                padding: calc(1.5 * var(--s-xs));
+                border-radius: var(--s-xs);
+            }
+        }
 
-                &.open {
-                    background: var(--c-repforeground);
-                }
-                &.closed {
-                    background-color: var(--c-highlight)
-                }
+        &[open] {
+            & .summary-heading {
+                background-color: var(--c-repforeground);
+                color: var(--c-rephighlight)
             }
         }
     }
