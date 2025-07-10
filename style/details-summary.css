@@ -21,7 +21,7 @@ details {
         }
     }
 
-    &:focus  {
+    &:focus {
         outline: 0;
     }
 
@@ -121,6 +121,12 @@ details {
             width: max-content;
             justify-self: var(--js);
             align-self: var(--as);
+
+            & svg {
+                width: var(--s-s);
+                height: var(--s-s);
+            }
+
         }
     }
 }
