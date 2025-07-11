@@ -22,8 +22,8 @@
                 flex-direction: row;
                 align-items: center;
                 column-gap: var(--s-s);
-                padding: calc((var(--s-s) + var(--s-xs))/2);
-                border-radius: var(--s-xs);
+                padding: calc(1.5 * var(--s-xs));
+                border-radius: calc(1.5 * var(--s-xs));
                 font-size: var(--fs-xs);
                 font-weight: normal;
                 height: var(--s-n);

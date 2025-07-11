@@ -86,7 +86,7 @@ details {
             & .summary-heading {
                 background-color: var(--c-rephighlight);
                 padding: calc(1.5 * var(--s-xs));
-                border-radius: var(--s-xs);
+                border-radius: calc(1.5 * var(--s-xs));
             }
         }
 

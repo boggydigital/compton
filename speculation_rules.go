@@ -7,6 +7,22 @@ import (
 
 const speculationRulesName = "speculationrules"
 
+type SpeculationRulesEagerness int
+
+const (
+	SpeculationRulesImmediateEagerness SpeculationRulesEagerness = iota
+	SpeculationRulesEagerEagerness
+	SpeculationRulesModerateEagerness
+	SpeculationRulesConservativeEagerness
+)
+
+var speculationRulesEagernessStrings = map[SpeculationRulesEagerness]string{
+	SpeculationRulesImmediateEagerness:    "immediate",
+	SpeculationRulesEagerEagerness:        "eager",
+	SpeculationRulesModerateEagerness:     "moderate",
+	SpeculationRulesConservativeEagerness: "conservative",
+}
+
 type UriMatch struct {
 	HrefMatches     string    `json:"href_matches,omitempty"`
 	SelectorMatches string    `json:"selector_matches,omitempty"`
@@ -25,12 +41,19 @@ type SpeculationRulesPrerender struct {
 	Eagerness string `json:"eagerness"`
 }
 
-func SpeculationRulesBytes(hrefMatches ...string) []byte {
+func SpeculationRulesBytes(eagerness SpeculationRulesEagerness, hrefMatches ...string) []byte {
+
+	var srEagerness string
+	if sre, ok := speculationRulesEagernessStrings[eagerness]; ok {
+		srEagerness = sre
+	} else {
+		srEagerness = speculationRulesEagernessStrings[SpeculationRulesModerateEagerness]
+	}
 
 	sr := new(SpeculationRules)
 	srp := SpeculationRulesPrerender{
 		Source:    "document",
-		Eagerness: "moderate",
+		Eagerness: srEagerness,
 	}
 
 	for _, hr := range hrefMatches {

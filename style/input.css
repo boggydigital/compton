@@ -6,7 +6,7 @@
         color: var(--c-highlight);
         font-weight: var(--fw);
         font-size: var(--fs-xs);
-        padding: calc((var(--s-s) + var(--s-xs))/2) var(--s-s);
+        padding: calc(1.5 * var(--s-xs)) var(--s-s);
         border-radius: var(--s-s);
         cursor: pointer;
 

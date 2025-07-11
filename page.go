@@ -136,9 +136,9 @@ func (p *pageElement) AppendIcon() PageElement {
 	return p
 }
 
-func (p *pageElement) AppendSpeculationRules(hrefMatches ...string) {
+func (p *pageElement) AppendSpeculationRules(eagerness SpeculationRulesEagerness, hrefMatches ...string) {
 
-	if srBytes := SpeculationRulesBytes(hrefMatches...); len(srBytes) > 0 {
+	if srBytes := SpeculationRulesBytes(eagerness, hrefMatches...); len(srBytes) > 0 {
 		srScript := ScriptAsync(srBytes)
 		srScript.SetAttribute(attr.Type, speculationRulesName)
 

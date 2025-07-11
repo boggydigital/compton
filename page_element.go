@@ -15,7 +15,7 @@ type PageElement interface {
 
 	AppendManifest() PageElement
 	AppendIcon() PageElement
-	AppendSpeculationRules(hrefMatches ...string)
+	AppendSpeculationRules(eagerness SpeculationRulesEagerness, hrefMatches ...string)
 
 	WriteResponse(w http.ResponseWriter) error
 }
