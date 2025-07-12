@@ -25,6 +25,7 @@ const (
 	UpwardNestedChevrons
 	CompactDisk
 	RisingSun
+	News
 )
 
 var symbolStrings = map[Symbol]string{
@@ -40,6 +41,7 @@ var symbolStrings = map[Symbol]string{
 	UpwardNestedChevrons:   "upward-nested-chevrons",
 	CompactDisk:            "compact-disk",
 	RisingSun:              "rising-sun",
+	News:                   "news",
 }
 
 var (
