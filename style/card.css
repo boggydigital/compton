@@ -6,7 +6,6 @@
         --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
         /* same as above */
         --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
-        background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
         border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));
         border-radius: var(--s-s);
         content-visibility: auto;
@@ -88,6 +87,22 @@
     @scope (card) {
         :scope {
             width: unset;
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    @scope (card) {
+        :scope {
+            background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
+        }
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    @scope (card) {
+        :scope {
+            background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
         }
     }
 }
