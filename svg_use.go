@@ -23,6 +23,8 @@ const (
 	TwoDownwardChevrons
 	DownwardNestedChevrons
 	UpwardNestedChevrons
+	CompactDisk
+	RisingSun
 )
 
 var symbolStrings = map[Symbol]string{
@@ -36,6 +38,8 @@ var symbolStrings = map[Symbol]string{
 	TwoDownwardChevrons:    "two-downward-chevrons",
 	DownwardNestedChevrons: "downward-nested-chevrons",
 	UpwardNestedChevrons:   "upward-nested-chevrons",
+	CompactDisk:            "compact-disk",
+	RisingSun:              "rising-sun",
 }
 
 var (

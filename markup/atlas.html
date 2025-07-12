@@ -1,4 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <style>
+        symbol[id=today] {
+            & line {
+                stroke-width: var(--s-xs);
+            }
+        }
+        .sun-ray{
+            transform-origin: 50px 65px;
+        }
+    </style>
     <symbol id="circle" viewBox="0 0 100 100" style="fill:currentColor">
         <circle cx="50" cy="50" r="40"/>
     </symbol>
@@ -39,5 +49,23 @@
     <symbol id="upward-nested-chevrons" viewBox="0 0 100 100"
             style="stroke:currentColor;fill:none;stroke-width:var(--s-s); stroke-linecap: round; stroke-linejoin: round">
         <path d="M8,75L50,33L92,75M28,75L50,53L72,75M48,75L50,73L52,75"/>
+    </symbol>
+    <symbol id="compact-disk" viewBox="0 0 100 100"
+            style="stroke:currentColor; fill:none; stroke-width:var(--s-xs)">
+        <circle cx="50" cy="50" r="46" style="stroke-width: var(--s-s)"/>
+        <circle cx="50" cy="50" r="20"/>
+        <circle cx="50" cy="50" r="8" style="fill:currentColor"/>
+    </symbol>
+    <symbol id="rising-sun" viewBox="0 0 100 100"
+         style="stroke:currentColor; fill:none; stroke-width:var(--s-xs)">
+        <line x1="10" y1="86" x2="90" y2="86" style="stroke-width:var(--s-s);stroke-linecap: round"/>
+        <path d="M30,80A27,27,0,1,1,70,80"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: -90deg"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: -60deg"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: -30deg"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: 30deg"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: 60deg"/>
+        <line x1="50" y1="35" x2="50" y2="0" class="sun-ray" style="rotate: 90deg"/>
     </symbol>
 </svg>
