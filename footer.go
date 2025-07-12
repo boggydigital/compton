@@ -5,12 +5,12 @@ import (
 	"github.com/boggydigital/compton/consts/size"
 )
 
-func Footer(r Registrar, title, href, from string) Element {
+func Footer(r Registrar, greeting, href string) Element {
 
 	link := A(href)
-	link.Append(Fspan(r, title).FontWeight(font_weight.Bolder))
+	link.Append(Fspan(r, greeting).FontWeight(font_weight.Bolder))
 
-	row := FICenter(r, Fspan(r, "👋"), Fspan(r, "from"), link, Fspan(r, from)).
+	row := FICenter(r, link).
 		ColumnGap(size.XSmall).
 		FontSize(size.XSmall)
 
