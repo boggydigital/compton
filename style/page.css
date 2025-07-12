@@ -9,7 +9,7 @@
 }
 
 ::view-transition-old(*) {
-    animation: fade-out var(--du-fast) ease-out forwards;
+    animation: fade-out var(--du-fast) ease-out normal;
     height: 100%;
     width: min-content;
 }
