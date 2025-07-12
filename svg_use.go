@@ -16,36 +16,26 @@ const (
 	Windows
 	MacOS
 	Linux
-	Plus
-	Multiply
-	Star
 	Sparkle
 	Stack
 	Search
 	Circle
-	DownwardArrow
 	TwoDownwardChevrons
-	DownwardChevron
-	UpwardChevron
-	ThreeHorizontalLines
+	DownwardNestedChevrons
+	UpwardNestedChevrons
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:              "windows",
-	MacOS:                "macos",
-	Linux:                "linux",
-	Plus:                 "plus",
-	Multiply:             "multiply",
-	Star:                 "star",
-	Sparkle:              "sparkle",
-	Stack:                "stack",
-	Search:               "search",
-	Circle:               "circle",
-	DownwardArrow:        "downward-arrow",
-	TwoDownwardChevrons:  "two-downward-chevrons",
-	DownwardChevron:      "downward-chevron",
-	UpwardChevron:        "upward-chevron",
-	ThreeHorizontalLines: "three-horizontal-lines",
+	Windows:                "windows",
+	MacOS:                  "macos",
+	Linux:                  "linux",
+	Sparkle:                "sparkle",
+	Stack:                  "stack",
+	Search:                 "search",
+	Circle:                 "circle",
+	TwoDownwardChevrons:    "two-downward-chevrons",
+	DownwardNestedChevrons: "downward-nested-chevrons",
+	UpwardNestedChevrons:   "upward-nested-chevrons",
 }
 
 var (
