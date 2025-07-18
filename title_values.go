@@ -2,6 +2,7 @@ package compton
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
@@ -23,26 +24,10 @@ type TitleValuesElement struct {
 	linkTarget string
 }
 
-func (tve *TitleValuesElement) AppendValues(elements ...Element) *TitleValuesElement {
-	if flexItemsElements := tve.GetElementsByTagName(compton_atoms.FlexItems); len(flexItemsElements) > 0 {
-		flexItemsElements[0].Append(elements...)
-	} else {
-		flexItems := FlexItems(tve.r, direction.Row).
-			JustifyContent(align.Start).
-			RowGap(size.Small).
-			ColumnGap(size.Normal)
-		flexItems.Append(elements...)
-		tve.Append(flexItems)
+func (tve *TitleValuesElement) Append(elements ...Element) {
+	if flexItems := tve.GetElementsByTagName(compton_atoms.FlexItems); len(flexItems) > 0 {
+		flexItems[0].Append(elements...)
 	}
-	return tve
-}
-
-func (tve *TitleValuesElement) AppendTextValues(values ...string) *TitleValuesElement {
-	slices.Sort(values)
-	for _, value := range values {
-		tve.AppendValues(DivText(value))
-	}
-	return tve
 }
 
 func (tve *TitleValuesElement) SetLinksTarget(target string) *TitleValuesElement {
@@ -50,9 +35,24 @@ func (tve *TitleValuesElement) SetLinksTarget(target string) *TitleValuesElement
 	return tve
 }
 
-func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order ...string) *TitleValuesElement {
+func (tve *TitleValuesElement) AppendLinkValues(limit int, links map[string]string, order ...string) *TitleValuesElement {
 	if len(order) == 0 {
 		order = slices.Sorted(maps.Keys(links))
+	}
+
+	var container Element
+
+	if limit > -1 && len(order) > limit {
+		summaryTitle := fmt.Sprintf("%d values", len(order))
+		ds := DSSmall(tve.r, summaryTitle, false).
+			SummaryMarginBlockEnd(size.Normal).
+			DetailsMarginBlockEnd(size.Small)
+		row := FlexItems(tve.r, direction.Row).JustifyContent(align.Start)
+		ds.Append(row)
+		tve.Append(ds)
+		container = row
+	} else {
+		container = tve
 	}
 
 	for _, key := range order {
@@ -61,10 +61,10 @@ func (tve *TitleValuesElement) AppendLinkValues(links map[string]string, order .
 			if tve.linkTarget != "" {
 				link.SetAttribute(attr.Target, tve.linkTarget)
 			}
-			tve.AppendValues(link)
+			container.Append(link)
 		} else {
 			// fallback to text if the link is empty
-			tve.AppendTextValues(key)
+			container.Append(DivText(key))
 		}
 	}
 	return tve
@@ -120,6 +120,12 @@ func TitleValues(r Registrar, title string) *TitleValuesElement {
 
 	r.RegisterStyles(DefaultStyle,
 		compton_atoms.StyleName(compton_atoms.TitleValues))
+
+	flexItems := FlexItems(tve.r, direction.Row).
+		JustifyContent(align.Start).
+		RowGap(size.Small).
+		ColumnGap(size.Normal)
+	tve.Children = append(tve.Children, flexItems)
 
 	return tve
 }
