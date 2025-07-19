@@ -52,13 +52,13 @@
     </symbol>
     <symbol id="rising-sun" viewBox="0 0 100 100"
             style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap: round">
-        <line x1="0" y1="86" x2="100" y2="86"/>
+        <path d="M6,86h88"/>
         <path d="M30,85A27,27,0,1,1,70,85"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="rotate: -70deg"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="rotate: -35deg"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="rotate: 35deg"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="rotate: 70deg"/>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -70deg"/>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -35deg"/>
+        <line x1="50" y1="39" x2="50" y2="6" class="sun-ray"/>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 35deg"/>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 70deg"/>
     </symbol>
     <symbol id="news-broadcast" viewBox="0 0 100 100"
             style="stroke:currentColor; fill:none;stroke-linecap: round">
@@ -66,8 +66,18 @@
         <path d="M10,37.5A40,40 0 0 1 57.5,85 M10,10A70,70 0 0 1 85,85" style="stroke-width:var(--s-s)"/>
     </symbol>
     <symbol id="shopping-label" viewBox="0 0 100 100"
-         style="stroke:currentColor; fill:none;stroke-linejoin:round">
+            style="stroke:currentColor; fill:none;stroke-linejoin:round">
         <path d="M4,20L20,4L42,4L96,58L58,96L4,42z" stroke-width="var(--s-s)"/>
         <circle cx="30" cy="30" r="10" fill="currentColor"/>
+    </symbol>
+    <symbol id="bookmark" viewBox="0 0 100 100"
+            style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap:round; stroke-linejoin:round">
+        <path d="M30,15h40v70l-20,-15l-20,15z"/>
+    </symbol>
+    <symbol id="percent" viewBox="0 0 100 100"
+            style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap:round">
+        <line x1="25" y1="75" x2="75" y2="25"/>
+        <circle cx="35" cy="35" r="10" fill="none"/>
+        <circle cx="65" cy="65" r="10" fill="none"/>
     </symbol>
 </svg>

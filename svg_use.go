@@ -27,6 +27,8 @@ const (
 	RisingSun
 	NewsBroadcast
 	ShoppingLabel
+	Bookmark
+	Percent
 )
 
 var symbolStrings = map[Symbol]string{
@@ -44,6 +46,8 @@ var symbolStrings = map[Symbol]string{
 	RisingSun:              "rising-sun",
 	NewsBroadcast:          "news-broadcast",
 	ShoppingLabel:          "shopping-label",
+	Bookmark:               "bookmark",
+	Percent:                "percent",
 }
 
 var (
