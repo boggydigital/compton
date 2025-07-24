@@ -29,6 +29,10 @@ const (
 	ShoppingLabel
 	Bookmark
 	Percent
+	Heart
+	Shield
+	PuzzlePiece
+	TwoLabelledInputs
 )
 
 var symbolStrings = map[Symbol]string{
@@ -48,6 +52,10 @@ var symbolStrings = map[Symbol]string{
 	ShoppingLabel:          "shopping-label",
 	Bookmark:               "bookmark",
 	Percent:                "percent",
+	Heart:                  "heart",
+	Shield:                 "shield",
+	PuzzlePiece:            "puzzle-piece",
+	TwoLabelledInputs:      "two-labelled-inputs",
 }
 
 var (
