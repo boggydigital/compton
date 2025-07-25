@@ -37,6 +37,7 @@
                 &.selected {
                     background: var(--c-dimmedforeground);
                     color: var(--c-highlight);
+                    font-weight: var(--fw-b);
                 }
             }
         }

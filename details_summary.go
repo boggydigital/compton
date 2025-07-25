@@ -6,7 +6,6 @@ import (
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
-	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
 	"golang.org/x/net/html/atom"
 	"io"
@@ -144,7 +143,6 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 
 	summaryTitle := Fspan(r, title).
 		FontSize(size.XSmall).
-		FontWeight(font_weight.Normal).
 		Width(size.Unset).
 		BackgroundColor(color.Transparent)
 

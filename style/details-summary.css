@@ -87,6 +87,7 @@ details {
                 background-color: var(--c-rephighlight);
                 padding: calc(1.5 * var(--s-xs));
                 border-radius: calc(1.5 * var(--s-xs));
+                /*font-weight: var(--fw-b);*/
             }
         }
 
