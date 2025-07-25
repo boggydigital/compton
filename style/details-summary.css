@@ -73,7 +73,6 @@ details {
             min-width: max-content;
             max-width: var(--s-maxw);
             margin: auto;
-            font-weight: var(--fw-b);
             padding: var(--s-xs);
             padding-inline-end: var(--s-s);
             background-color: var(--bg);
@@ -87,7 +86,6 @@ details {
                 background-color: var(--c-rephighlight);
                 padding: calc(1.5 * var(--s-xs));
                 border-radius: calc(1.5 * var(--s-xs));
-                /*font-weight: var(--fw-b);*/
             }
         }
 
