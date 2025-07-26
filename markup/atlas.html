@@ -1,99 +1,92 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <style>
-        .sun-ray {
-            transform-origin: 50px 66.75px;
+        symbol {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: var(--s-s);
+            stroke-linecap:round;
+            stroke-linejoin: round;
         }
     </style>
     <symbol id="circle" viewBox="0 0 100 100" style="fill:currentColor">
-        <circle cx="50" cy="50" r="40"/>
+        <circle cx="50" cy="50" r="40"></circle>
     </symbol>
-    <symbol id="stack" viewBox="0 0 100 100" style="stroke: currentColor; fill: transparent">
-        <path d="M10,80v-30A10,10,0,0,1,20,40h60A10,10,0,0,1,90,50v30A10,10,0,0,1,80,90h-60A10,10,0,0,1,10,80z"
-              style="stroke-width: var(--s-s);"/>
-        <path d="M20,40v-12A5,5,0,0,1,25,23h50A5,5,0,0,1,80,28v12z" style="stroke-width: calc(3*var(--s-xxs));"/>
-        <path d="M30,23v-9A4,4,0,0,1,34,10h32A4,4,0,0,1,70,14v9z" style="stroke-width: var(--s-xs);"/>
+    <symbol id="stack" viewBox="0 0 100 100">
+        <path d="M10,80v-30A10,10,0,0,1,20,40h60A10,10,0,0,1,90,50v30A10,10,0,0,1,80,90h-60A10,10,0,0,1,10,80z"></path>
+        <path d="M20,40v-12A5,5,0,0,1,25,23h50A5,5,0,0,1,80,28v12z" style="stroke-width: calc(1.5*var(--s-xs));"></path>
+        <path d="M30,23v-9A4,4,0,0,1,34,10h32A4,4,0,0,1,70,14v9z" style="stroke-width: var(--s-xs);"></path>
     </symbol>
-    <symbol id="sparkle" viewBox="0 0 100 100" style="fill:currentColor">
-        <path d="M40,15L50.6,39.4,75,50,50.6,60.6,40,85,29.4,60.6,5,50,29.4,39.4z" style="fill:none; stroke:currentColor; stroke-width: var(--s-s)"/>
-        <path d="M75,2.5L80.3,14.7,92.5,20,80.3,25.3,75,37.5,69.7,25.3,57.5,20,69.7,14.7z"/>
-        <path d="M75,62.5L80.3,74.7,92.5,80,80.3,85.3,75,97.5,69.7,85.3,57.5,80,69.7,74.7z"/>
+    <symbol id="sparkle" viewBox="0 0 100 100">
+        <path d="M40,15L50.6,39.4,75,50,50.6,60.6,40,85,29.4,60.6,5,50,29.4,39.4z"></path>
+        <path d="M75,2.5L80.3,14.7,92.5,20,80.3,25.3,75,37.5,69.7,25.3,57.5,20,69.7,14.7z" style="stroke:none;fill:currentColor"></path>
+        <path d="M75,62.5L80.3,74.7,92.5,80,80.3,85.3,75,97.5,69.7,85.3,57.5,80,69.7,74.7z" style="stroke:none;fill:currentColor"></path>
     </symbol>
-    <symbol id="search" viewBox="0 0 100 100" style="stroke: currentColor; fill: transparent">
-        <circle cx="40" cy="40" r="30" style="stroke-width: var(--s-s);"/>
-        <path d="M64.2,64.2L82.4,82.4" style="stroke-width:calc(1.5*var(--s-s));stroke-linecap: round"/>
+    <symbol id="search" viewBox="0 0 100 100">
+        <circle cx="40" cy="40" r="30"></circle>
+        <path d="M64.2,64.2L85,85"></path>
     </symbol>
-    <symbol id="windows" viewBox="0 0 100 100" style="fill:currentColor">
-        <path d="M6,6h41v41h-41zM53,6h41v41h-41zM6,53h41v41h-41zM53,53h41v41h-41z"/>
+    <symbol id="windows" viewBox="0 0 100 100" style="stroke:none;fill:currentColor">
+        <path d="M6,6h41v41h-41zM53,6h41v41h-41zM6,53h41v41h-41zM53,53h41v41h-41z"></path>
     </symbol>
-    <symbol id="macos" viewBox="0 0 100 100" style="stroke:currentColor; stroke-width: var(--s-s); fill:none">
-        <path d="M66,78L66,21A12,12,0,1,1,78,33L21,33A12,12,0,1,1,33,21L33,78A12,12,0,1,1,21,66L78,66A12,12,0,1,1,66,78z"/>
+    <symbol id="macos" viewBox="0 0 100 100">
+        <path d="M66,78L66,21A12,12,0,1,1,78,33L21,33A12,12,0,1,1,33,21L33,78A12,12,0,1,1,21,66L78,66A12,12,0,1,1,66,78z"></path>
     </symbol>
     <symbol id="linux" viewBox="0 0 100 100" style="fill:currentColor">
-        <circle cx="50" cy="50" r="25"/>
-        <path d="M50,0A50,50,0,0,1,50,100v-18.8A25,25,0,0,0,50,18.8"/>
+        <circle cx="50" cy="50" r="25"></circle>
+        <path d="M50,0A50,50,0,0,1,50,100v-18.8A25,25,0,0,0,50,18.8"></path>
     </symbol>
-    <symbol id="two-downward-chevrons" viewBox="0 0 100 100"
-            style="stroke:currentColor;fill:none;stroke-width:var(--s-s)">
-        <path d="M20,25L50,55L80,25M20,65L50,95L80,65"
-              style="fill:transparent;stroke-linejoin:round;stroke-linecap:round"/>
+    <symbol id="two-downward-chevrons" viewBox="0 0 100 100">
+        <path d="M20,25L50,55L80,25M20,65L50,95L80,65"></path>
     </symbol>
-    <symbol id="downward-nested-chevrons" viewBox="0 0 100 100"
-            style="stroke:currentColor;fill:none;stroke-width:var(--s-s); stroke-linecap: round; stroke-linejoin: round">
-        <path d="M8,35L50,77L92,35M28,35L50,57L72,35M48,35L50,37L52,35"/>
+    <symbol id="downward-nested-chevrons" viewBox="0 0 100 100">
+        <path d="M8,35L50,77L92,35M28,35L50,57L72,35M48,35L50,37L52,35"></path>
     </symbol>
-    <symbol id="upward-nested-chevrons" viewBox="0 0 100 100"
-            style="stroke:currentColor;fill:none;stroke-width:var(--s-s); stroke-linecap: round; stroke-linejoin: round">
-        <path d="M8,65L50,23L92,65M28,65L50,43L72,65M48,65L50,63L52,65"/>
+    <symbol id="upward-nested-chevrons" viewBox="0 0 100 100">
+        <path d="M8,65L50,23L92,65M28,65L50,43L72,65M48,65L50,63L52,65"></path>
     </symbol>
-    <symbol id="compact-disk" viewBox="0 0 100 100"
-            style="stroke:currentColor">
-        <circle cx="50" cy="50" r="46" style="stroke-width: var(--s-s); fill:none"/>
-        <circle cx="50" cy="50" r="18" style="stroke: none; fill:currentColor"/>
+    <symbol id="compact-disk" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" />
+        <circle cx="50" cy="50" r="18" />
     </symbol>
-    <symbol id="rising-sun" viewBox="0 0 100 100"
-            style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap: round">
-        <path d="M6,86h88"/>
-        <path d="M30,85A27,27,0,1,1,70,85"/>
-        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -70deg"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -35deg"/>
-        <line x1="50" y1="39" x2="50" y2="6" class="sun-ray"/>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 35deg"/>
-        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 70deg"/>
+    <symbol id="rising-sun" viewBox="0 0 100 100">
+        <path d="M6,86h88"></path>
+        <path d="M30,85A27,27,0,1,1,70,85"></path>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -70deg"></line>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -35deg"></line>
+        <line x1="50" y1="39" x2="50" y2="6" class="sun-ray"></line>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 35deg"></line>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 70deg"></line>
     </symbol>
-    <symbol id="news-broadcast" viewBox="0 0 100 100"
-            style="stroke:currentColor; fill:none;stroke-linecap: round">
-        <circle cx="20" cy="75" r="15" style="fill:currentColor;stroke:none"/>
-        <path d="M10,37.5A40,40 0 0 1 57.5,85 M10,10A70,70 0 0 1 85,85" style="stroke-width:var(--s-s)"/>
+    <symbol id="news-broadcast" viewBox="0 0 100 100">
+        <path d="M10,10a70,70 0 0 1 75,75 M10,40a40,40 0 0 1 45,45 M10,70a12.5,12.5 0 0 1 15,15" />
     </symbol>
-    <symbol id="shopping-label" viewBox="0 0 100 100"
-            style="stroke:currentColor; fill:none;stroke-linejoin:round">
-        <path d="M4,20L20,4L42,4L96,58L58,96L4,42z" stroke-width="var(--s-s)"/>
-        <circle cx="30" cy="30" r="10" fill="currentColor"/>
+    <symbol id="shopping-label" viewBox="0 0 100 100">
+        <path d="M4,20L20,4L42,4L96,58L58,96L4,42z"></path>
+        <circle cx="30" cy="30" r="10" style="fill:currentColor"></circle>
     </symbol>
-    <symbol id="bookmark" viewBox="0 0 100 100"
-            style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap:round; stroke-linejoin:round">
-        <path d="M25,15h50v70l-25,-15l-25,15z"/>
+    <symbol id="bookmark" viewBox="0 0 100 100">
+        <path d="M25,15h50v70l-25,-15l-25,15z"></path>
     </symbol>
-    <symbol id="percent" viewBox="0 0 100 100"
-            style="stroke:currentColor; fill:none; stroke-width:var(--s-s); stroke-linecap:round">
-        <line x1="25" y1="75" x2="75" y2="25"/>
-        <circle cx="27.5" cy="27.5" r="12.5" fill="none"/>
-        <circle cx="72.5" cy="72.5" r="12.5" fill="none"/>
+    <symbol id="percent" viewBox="0 0 100 100">
+        <line x1="25" y1="75" x2="75" y2="25"></line>
+        <circle cx="27.5" cy="27.5" r="12.5" style="fill:none"></circle>
+        <circle cx="72.5" cy="72.5" r="12.5" style="fill:none"></circle>
     </symbol>
-    <symbol id="heart" viewBox="0 0 100 100"
-            style="stroke:currentColor;fill:none;stroke-width:var(--s-s);stroke-linejoin:round">
-        <path d="M55,25a20,20,1,1,1,30,30 l-35,30 l-35,-30 a20,20,1,1,1,30,-30 l5,5 l5,-5z" />
+    <symbol id="heart" viewBox="0 0 100 100">
+        <path d="M55,25a20,20,1,1,1,30,30 l-35,30 l-35,-30 a20,20,1,1,1,30,-30 l5,5 l5,-5z"></path>
     </symbol>
-    <symbol id="shield" viewBox="0 0 100 100" style="stroke:currentColor;fill:none;stroke-width:var(--s-s);stroke-linejoin:round">
-        <path d="M20,25q15,5,30,-10q15,15,30,10v25q0,25,-30,35q-30,-10,-30,-35z" />
+    <symbol id="shield" viewBox="0 0 100 100">
+        <path d="M20,25q15,5,30,-10q15,15,30,10v25q0,25,-30,35q-30,-10,-30,-35z"></path>
     </symbol>
-    <symbol id="puzzle-piece" viewBox="0 0 100 100" style="stroke:currentColor;fill:none;stroke-width:var(--s-s);stroke-linejoin:round">
-        <path d="M15,25h20a10,10 1 1 1 20,0h20v20a10,10 1 1 1 0,20v20h-20a10,10 1 1 0 -20,0h-20v-60z" />
+    <symbol id="puzzle-piece" viewBox="0 0 100 100">
+        <path d="M15,25h20a10,10 1 1 1 20,0h20v20a10,10 1 1 1 0,20v20h-20a10,10 1 1 0 -20,0h-20v-60z"></path>
     </symbol>
-    <symbol id="two-labelled-inputs" viewBox="0 0 100 100" style="stroke:currentColor; stroke-width:var(--s-s); stroke-linecap:round">
-        <line x1="15" y1="15" x2="50" y2="15" />
-        <line x1="15" y1="35" x2="85" y2="35" />
-        <line x1="15" y1="60" x2="50" y2="60" />
-        <line x1="15" y1="80" x2="85" y2="80" />
+    <symbol id="two-labelled-inputs" viewBox="0 0 100 100">
+        <path d="M15,15h35 M15,35h70 M15,60h35 M15,80h70" />
+    </symbol>
+    <symbol id="gemstone" viewBox="0 0 100 100">
+        <path d="M10,40l15,-25h50l15,25l-40,50z"/>
+        <path d="M40,15l-5,25l15,45 M60,15l5,25l-15,45" style="stroke-width:var(--s-xs)"/>
+        <path d="M15,40h70" style="stroke-width:var(--s-xs)" />
     </symbol>
 </svg>
