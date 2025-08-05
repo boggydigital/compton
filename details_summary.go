@@ -150,7 +150,8 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		ColumnGap(size.Small).
 		AlignItems(align.Center).
 		ColumnWidthRule(size.Unset).
-		Width(size.Unset)
+		Width(size.Unset).
+		BackgroundColor(color.Transparent)
 
 	summaryHeading.AddClass("summary-heading")
 

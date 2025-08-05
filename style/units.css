@@ -1,6 +1,7 @@
 :root {
 
     --s-zero: 0;
+    --s-unset: unset;
 
     --s-n: 1rem; /* 16px */
 

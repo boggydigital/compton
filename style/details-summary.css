@@ -82,7 +82,7 @@ details {
             row-gap: var(--rg);
             flex-wrap: wrap;
 
-            & .summary-heading {
+            & > .summary-heading {
                 background-color: var(--c-rephighlight);
                 padding: calc(1.5 * var(--s-xs));
                 padding-inline-end: var(--s-s);
@@ -91,9 +91,11 @@ details {
         }
 
         &[open] {
-            & .summary-heading {
-                background-color: var(--c-repforeground);
-                color: var(--c-rephighlight)
+            & > summary {
+                & > .summary-heading {
+                    background-color: var(--c-repforeground);
+                    color: var(--c-rephighlight)
+                }
             }
         }
     }

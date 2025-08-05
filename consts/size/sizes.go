@@ -21,6 +21,7 @@ const (
 )
 
 var sizeStrings = map[Size]string{
+	Unset:       "unset",
 	Zero:        "zero",
 	Normal:      "n",
 	Small:       "s",
