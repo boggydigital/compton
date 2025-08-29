@@ -21,8 +21,10 @@ const (
 	Stack
 	Search
 	Circle
-	DownwardChevron
 	UpwardChevron
+	RightwardChevron
+	DownwardChevron
+	LeftwardChevron
 	TwoDownwardChevrons
 	DownwardNestedChevrons
 	UpwardNestedChevrons
@@ -47,8 +49,10 @@ var symbolStrings = map[Symbol]string{
 	Stack:                  "stack",
 	Search:                 "search",
 	Circle:                 "circle",
-	DownwardChevron:        "downward-chevron",
 	UpwardChevron:          "upward-chevron",
+	RightwardChevron:       "rightward-chevron",
+	DownwardChevron:        "downward-chevron",
+	LeftwardChevron:        "leftward-chevron",
 	TwoDownwardChevrons:    "two-downward-chevrons",
 	DownwardNestedChevrons: "downward-nested-chevrons",
 	UpwardNestedChevrons:   "upward-nested-chevrons",

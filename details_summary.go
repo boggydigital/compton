@@ -136,10 +136,10 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		dse.details.SetAttribute("open", "")
 	}
 
-	openMarker := SvgUse(r, UpwardChevron)
+	openMarker := SvgUse(r, DownwardChevron)
 	openMarker.AddClass("open-marker")
 
-	closedMarker := SvgUse(r, DownwardChevron)
+	closedMarker := SvgUse(r, RightwardChevron)
 	closedMarker.AddClass("closed-marker")
 
 	summaryTitle := Fspan(r, title).
