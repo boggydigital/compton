@@ -3,10 +3,11 @@ package compton
 import (
 	"bytes"
 	_ "embed"
+	"io"
+
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
-	"io"
 )
 
 type Symbol int
@@ -20,6 +21,8 @@ const (
 	Stack
 	Search
 	Circle
+	DownwardChevron
+	UpwardChevron
 	TwoDownwardChevrons
 	DownwardNestedChevrons
 	UpwardNestedChevrons
@@ -44,6 +47,8 @@ var symbolStrings = map[Symbol]string{
 	Stack:                  "stack",
 	Search:                 "search",
 	Circle:                 "circle",
+	DownwardChevron:        "downward-chevron",
+	UpwardChevron:          "upward-chevron",
 	TwoDownwardChevrons:    "two-downward-chevrons",
 	DownwardNestedChevrons: "downward-nested-chevrons",
 	UpwardNestedChevrons:   "upward-nested-chevrons",

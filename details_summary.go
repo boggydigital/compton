@@ -1,6 +1,9 @@
 package compton
 
 import (
+	"io"
+	"strconv"
+
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
@@ -8,8 +11,6 @@ import (
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
 	"golang.org/x/net/html/atom"
-	"io"
-	"strconv"
 )
 
 type DetailsSummaryElement struct {
@@ -135,10 +136,10 @@ func create(r Registrar, title string, small, open bool) *DetailsSummaryElement 
 		dse.details.SetAttribute("open", "")
 	}
 
-	openMarker := SvgUse(r, Circle)
+	openMarker := SvgUse(r, UpwardChevron)
 	openMarker.AddClass("open-marker")
 
-	closedMarker := SvgUse(r, Circle)
+	closedMarker := SvgUse(r, DownwardChevron)
 	closedMarker.AddClass("closed-marker")
 
 	summaryTitle := Fspan(r, title).

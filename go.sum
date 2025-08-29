@@ -1,0 +1,6 @@
+github.com/boggydigital/issa v0.1.23 h1:rlofF32FwkXSKrplZ5J/AWn3mw4vq9VIP/KBZVE8sA0=
+github.com/boggydigital/issa v0.1.23/go.mod h1:1p/XNBpQW+dtnpUFhVxZHjNEZyP3qw4DsTC4rb0Qu68=
+golang.org/x/image v0.29.0 h1:HcdsyR4Gsuys/Axh0rDEmlBmB68rW1U9BUdB3UVHsas=
+golang.org/x/image v0.29.0/go.mod h1:RVJROnf3SLK8d26OW91j4FrIHGbsJ8QnbEocVTOWQDA=
+golang.org/x/net v0.42.0 h1:jzkYrhi3YQWD6MLBJcsklgQsoAcw89EcZbJw8Z614hs=
+golang.org/x/net v0.42.0/go.mod h1:FF1RA5d3u7nAYA4z2TkclSCKh68eSXtiFwcWQpPXdt8=
