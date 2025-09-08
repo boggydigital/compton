@@ -43,6 +43,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-weight: var(--fw-n);
+                font-size: var(--fs-n);
             }
 
             & li.badges {
