@@ -76,6 +76,7 @@ details {
             padding: var(--s-xs);
             padding-inline-end: var(--s-s);
             background-color: var(--bg);
+            border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));
             color: var(--fg);
             border-radius: var(--s-s);
             column-gap: var(--s-s);
@@ -93,8 +94,7 @@ details {
         &[open] {
             & > summary {
                 & > .summary-heading {
-                    background-color: var(--c-repforeground);
-                    color: var(--c-rephighlight)
+                    background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
                 }
             }
         }
