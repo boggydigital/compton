@@ -121,6 +121,7 @@ details {
             width: max-content;
             justify-self: var(--js);
             align-self: var(--as);
+            border: 1px solid color-mix(in display-p3, var(--c-repforeground) 20%, transparent);
 
             & svg {
                 width: var(--s-s);
