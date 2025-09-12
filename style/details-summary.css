@@ -108,7 +108,7 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background-color: color-mix(in display-p3, var(--c-repforeground) 20%, transparent);
+                background-color: color-mix(in display-p3, var(--c-repforeground) 10%, transparent);
             }
         }
 
