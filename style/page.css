@@ -38,7 +38,7 @@ html {
 }
 
 body {
-    margin: var(--s-n);
+    margin: var(--s-n) var(--s-s);
     container-type: inline-size;
 }
 
