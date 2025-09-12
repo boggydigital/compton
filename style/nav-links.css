@@ -23,8 +23,8 @@
                 flex-direction: row;
                 align-items: center;
                 column-gap: calc(1.5 * var(--s-xs));
-                padding: calc(1.5 * var(--s-xs));
-                border-radius: calc(1.5 * var(--s-xs));
+                padding: calc(1.5 * var(--s-xs)) var(--s-s);
+                border-radius: var(--s-xs);
                 font-size: var(--fs-xs);
                 font-weight: normal;
                 height: var(--s-n);
