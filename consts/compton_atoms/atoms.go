@@ -1,8 +1,9 @@
 package compton_atoms
 
 import (
-	"golang.org/x/net/html/atom"
 	"path"
+
+	"golang.org/x/net/html/atom"
 )
 
 const (
@@ -27,7 +28,7 @@ const (
 	Frow
 	Card
 	Placeholder
-	OneLiner
+	SectionDivider
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -52,7 +53,7 @@ var atomStrings = map[atom.Atom]string{
 	Frow:                "frow",
 	Card:                "card",
 	Placeholder:         "placeholder",
-	OneLiner:            "one-liner",
+	SectionDivider:      "section-divider",
 }
 
 func Atos(a atom.Atom) string {
