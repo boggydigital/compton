@@ -36,7 +36,7 @@
 @container (max-width: 592px) {
     @scope (title-values) {
         :scope {
-            width: 100%;
+            width: calc(50% - var(--s-n))
         }
     }
 }
