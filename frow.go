@@ -1,13 +1,14 @@
 package compton
 
 import (
+	"strings"
+
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"strings"
 )
 
 type FrowElement struct {
@@ -39,7 +40,8 @@ func (f *FrowElement) PropLinkColor(p string, c color.Color, title, href string)
 		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
 		linkDecoration := Fspan(f.r, "").
 			FontWeight(font_weight.Bolder).
-			ForegroundColor(c)
+			ForegroundColor(c).
+			TextAlign(align.Center)
 		link := AText(title, href)
 		link.SetAttribute("target", "_top")
 		linkDecoration.Append(link)
