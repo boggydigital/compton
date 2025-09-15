@@ -25,7 +25,8 @@ func SectionDivider(r Registrar, content ...Element) Element {
 	titleFspan := Fspan(r, "").
 		Width(size.Unset).
 		FontSize(size.Small).
-		PaddingBlock(size.Small)
+		PaddingBlock(size.Small).
+		LineHeight(size.Normal)
 	titleFspan.Append(content...)
 
 	sectionDividerRow.Append(titleFspan)
