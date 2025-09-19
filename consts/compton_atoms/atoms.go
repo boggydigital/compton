@@ -29,6 +29,7 @@ const (
 	Card
 	Placeholder
 	SectionDivider
+	CopyToClipboard
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -54,6 +55,7 @@ var atomStrings = map[atom.Atom]string{
 	Card:                "card",
 	Placeholder:         "placeholder",
 	SectionDivider:      "section-divider",
+	CopyToClipboard:     "copy-to-clipboard",
 }
 
 func Atos(a atom.Atom) string {
