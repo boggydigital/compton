@@ -8,7 +8,7 @@
         --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
         border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));
         border-radius: var(--s-s);
-        content-visibility: auto;
+        /*content-visibility: auto;*/
         width: var(--s-xxxl);
         height: 120.5px;
         overflow: hidden;
