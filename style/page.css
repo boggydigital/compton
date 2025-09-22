@@ -8,26 +8,6 @@
     }
 }
 
-::view-transition-old(*) {
-    animation: fade-out var(--du-fast) ease-out normal;
-    height: 100%;
-    width: min-content;
-}
-::view-transition-new(*) {
-    animation: fade-out var(--du-fast) ease-out reverse;
-    height: 100%;
-    width: min-content;
-}
-
-@keyframes fade-out {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
 html {
     min-height: 100%;
     scroll-behavior: auto;
