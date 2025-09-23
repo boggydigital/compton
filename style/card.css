@@ -104,6 +104,7 @@
     @scope (card) {
         :scope {
             background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
+            border-color: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight))
         }
     }
 }
