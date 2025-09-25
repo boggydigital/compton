@@ -3,6 +3,10 @@ package compton
 import (
 	"bytes"
 	"fmt"
+	"io"
+	"maps"
+	"slices"
+
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
@@ -10,9 +14,6 @@ import (
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/size"
-	"io"
-	"maps"
-	"slices"
 )
 
 const LinkTargetTop = "_top"
@@ -108,6 +109,16 @@ func (tve *TitleValuesElement) ForegroundColor(c color.Color) *TitleValuesElemen
 
 func (tve *TitleValuesElement) TitleForegroundColor(c color.Color) *TitleValuesElement {
 	tve.title.AddClass(class.ForegroundColor(c))
+	return tve
+}
+
+func (tve *TitleValuesElement) Width(s size.Size) *TitleValuesElement {
+	tve.AddClass(class.Width(s))
+	return tve
+}
+
+func (tve *TitleValuesElement) MaxWidth(s size.Size) *TitleValuesElement {
+	tve.AddClass(class.MaxWidth(s))
 	return tve
 }
 

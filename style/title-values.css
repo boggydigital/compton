@@ -3,7 +3,8 @@
         display: flex;
         flex-direction: column;
         row-gap: var(--rg);
-        width: var(--s-xxxl);
+        width: var(--w);
+        max-width: var(--mw);
 
         & h3 {
             margin: 0;
@@ -36,7 +37,7 @@
 @container (max-width: 592px) {
     @scope (title-values) {
         :scope {
-            width: 100%
+            --w: 100%
         }
     }
 }

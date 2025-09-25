@@ -1,8 +1,6 @@
 package compton
 
 import (
-	"strings"
-
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
