@@ -17,7 +17,7 @@
     }
 }
 
-@scope (input[type=text],input[type=search]) {
+@scope (input[type=text],input[type=search],input[type=password]) {
     :scope {
         appearance: none;
         border: none;

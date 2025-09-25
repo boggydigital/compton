@@ -9,6 +9,7 @@ const (
 	Button
 	Checkbox
 	Hidden
+	Password
 )
 
 var inputTypeStrings = map[Type]string{
@@ -18,6 +19,7 @@ var inputTypeStrings = map[Type]string{
 	Button:   "button",
 	Checkbox: "checkbox",
 	Hidden:   "hidden",
+	Password: "password",
 }
 
 func (it Type) String() string {

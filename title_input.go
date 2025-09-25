@@ -15,7 +15,7 @@ func (ti *TitleInputElement) SetDatalist(list map[string]string, listId string) 
 	return ti
 }
 
-func TISearch(r Registrar, title, inputId string) *TitleInputElement {
+func newTitleInput(r Registrar, inputType input_types.Type, title, inputId string) *TitleInputElement {
 	titleInput := &TitleInputElement{
 		TitleValuesElement: TitleValues(r, title),
 	}
@@ -26,7 +26,7 @@ func TISearch(r Registrar, title, inputId string) *TitleInputElement {
 	label.Append(heading)
 	titleInput.title = label
 
-	input := Input(r, input_types.Search)
+	input := Input(r, inputType)
 	input.SetPlaceholder(title).
 		SetName(inputId).
 		SetId(inputId)
@@ -37,8 +37,20 @@ func TISearch(r Registrar, title, inputId string) *TitleInputElement {
 	return titleInput
 }
 
+func TISearch(r Registrar, title, inputId string) *TitleInputElement {
+	return newTitleInput(r, input_types.Search, title, inputId)
+}
+
 func TISearchValue(wcr Registrar, title, inputId, value string) *TitleInputElement {
 	titleInput := TISearch(wcr, title, inputId)
 	titleInput.input.SetAttribute(attr.Value, value)
 	return titleInput
+}
+
+func TIText(r Registrar, title, inputId string) *TitleInputElement {
+	return newTitleInput(r, input_types.Text, title, inputId)
+}
+
+func TIPassword(r Registrar, title, inputId string) *TitleInputElement {
+	return newTitleInput(r, input_types.Password, title, inputId)
 }
