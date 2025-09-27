@@ -28,7 +28,7 @@ func CopyToClipboard(r Registrar, cta, success, err Element, value string) Eleme
 	err.SetAttribute("style", "display:none")
 	err.AddClass("copy-to-clipboard-error")
 
-	copyToClipboard.SetAttribute("data-value", value)
+	copyToClipboard.SetAttribute("title", value)
 
 	return copyToClipboard
 }

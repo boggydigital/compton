@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctc.addEventListener("click", e => {
             let cta = e.target.parentNode.querySelector(".copy-to-clipboard-cta")
 
-            navigator.clipboard.writeText(e.currentTarget.getAttribute("data-value")).then(
+            navigator.clipboard.writeText(e.currentTarget.getAttribute("title")).then(
             res => {
                 let success = e.target.parentNode.querySelector(".copy-to-clipboard-success")
                 if (success) {
