@@ -2,16 +2,17 @@ package compton
 
 import (
 	"embed"
+	"io"
+	"net/http"
+	"strings"
+	"sync"
+
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"golang.org/x/net/html/atom"
-	"io"
-	"net/http"
-	"strings"
-	"sync"
 )
 
 type pageElement struct {
@@ -233,6 +234,7 @@ func Page(title string) PageElement {
 
 	page.document = Document()
 	html := Html("en")
+	html.SetId("_top")
 	page.document.Append(Doctype(), html)
 
 	body := Body()
