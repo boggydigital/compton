@@ -18,7 +18,6 @@ const (
 	MacOS
 	Linux
 	Sparkle
-	Stack
 	Search
 	Circle
 	SmallerCircle
@@ -47,7 +46,6 @@ var symbolStrings = map[Symbol]string{
 	MacOS:                  "macos",
 	Linux:                  "linux",
 	Sparkle:                "sparkle",
-	Stack:                  "stack",
 	Search:                 "search",
 	Circle:                 "circle",
 	SmallerCircle:          "smaller-circle",
