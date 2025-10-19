@@ -50,15 +50,9 @@
                 margin-block-end: auto;
                 height: var(--s-n);
 
-                & fspan {
-                    --fs: var(--fs-xxxs);
-                    display: flex;
-                    align-content: center;
-
-                    & svg {
-                        width: var(--s-n);
-                        height: var(--s-n);
-                    }
+                & svg {
+                    width: var(--s-n);
+                    height: var(--s-n);
                 }
             }
 
