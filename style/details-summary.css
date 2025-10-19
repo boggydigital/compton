@@ -6,13 +6,9 @@ details {
             display: none;
         }
 
-        & .marker {
-            line-height: 0;
-
-            & svg {
-                width: var(--s-n);
-                height: var(--s-n);
-            }
+        & svg.open-marker, svg.closed-marker {
+            width: calc(1.25 * var(--s-s));
+            height: calc(1.25 * var(--s-s));
         }
 
         & svg {
