@@ -39,6 +39,8 @@ const (
 	PuzzlePiece
 	TwoLabelledInputs
 	Gemstone
+	TwoStackedItems
+	ItemPlus
 )
 
 var symbolStrings = map[Symbol]string{
@@ -67,6 +69,8 @@ var symbolStrings = map[Symbol]string{
 	PuzzlePiece:            "puzzle-piece",
 	TwoLabelledInputs:      "two-labelled-inputs",
 	Gemstone:               "gemstone",
+	TwoStackedItems:        "two-stacked-items",
+	ItemPlus:               "item-plus",
 }
 
 var (
