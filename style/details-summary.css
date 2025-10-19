@@ -16,8 +16,8 @@ details {
         }
 
         & svg {
-            width: calc(1.25 * var(--s-s));
-            height: calc(1.25 * var(--s-s));
+            width: var(--s-n);
+            height: var(--s-n);
         }
     }
 

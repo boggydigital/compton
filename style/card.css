@@ -48,10 +48,17 @@
 
             & li.badges {
                 margin-block-end: auto;
+                height: var(--s-n);
 
-                & svg {
-                    width: var(--s-s);
-                    height: var(--s-s);
+                & fspan {
+                    --fs: var(--fs-xxxs);
+                    display: flex;
+                    align-content: center;
+
+                    & svg {
+                        width: var(--s-n);
+                        height: var(--s-n);
+                    }
                 }
             }
 
