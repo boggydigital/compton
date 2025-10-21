@@ -4,7 +4,7 @@
             fill: none;
             stroke: currentColor;
             stroke-width: var(--s-s);
-            stroke-linecap:round;
+            stroke-linecap: round;
             stroke-linejoin: round;
         }
     </style>
@@ -45,30 +45,45 @@
     <symbol id="upward-chevron" viewBox="0 0 100 100">
         <path d="M5,75L50,25L95,75"/>
     </symbol>
-    <symbol id="two-downward-chevrons" viewBox="0 0 100 100">
-        <path d="M20,25L50,55L80,25M20,65L50,95L80,65"></path>
+    <symbol id="three-downward-chevrons" viewBox="0 0 100 100">
+        <path d="M20,10l30,20l30,-20 M20,40l30,20l30,-20 M20,70l30,20l30,-20"></path>
     </symbol>
-    <symbol id="downward-nested-chevrons" viewBox="0 0 100 100">
-        <path d="M8,35L50,77L92,35M28,35L50,57L72,35M48,35L50,37L52,35"></path>
+    <symbol id="three-upward-chevrons" viewBox="0 0 100 100">
+        <path d="M20,30l30,-20l30,20 M20,60l30,-20l30,20 M20,90l30,-20l30,20"></path>
     </symbol>
-    <symbol id="upward-nested-chevrons" viewBox="0 0 100 100">
-        <path d="M8,65L50,23L92,65M28,65L50,43L72,65M48,65L50,63L52,65"></path>
+    <symbol id="three-horizontal-lines" viewBox="0 0 100 100">
+        <path d="M20,20h60 M20,50h60 M20,80h60"/>
     </symbol>
     <symbol id="compact-disk" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" />
-        <circle cx="50" cy="50" r="18" />
+        <circle cx="50" cy="50" r="46"/>
+        <circle cx="50" cy="50" r="18"/>
+    </symbol>
+    <symbol id="dashed-circle" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" style="stroke-dasharray:var(--s-n)"/>
+    </symbol>
+    <symbol id="clock-face" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46"/>
+        <path d="M50,50 v-30 M50,50l15,15"/>
+    </symbol>
+    <symbol id="cycling-circle" viewBox="0 0 100 100">
+        <path d="M50,4 a46,46 1 0 1 23,86 h20 m-20,0 v-20"/>
+        <path d="M50,96 a46,46 1 0 1 -23,-86 h-20 m20,0 v20"/>
     </symbol>
     <symbol id="rising-sun" viewBox="0 0 100 100">
         <path d="M6,86h88"></path>
         <path d="M30,85A27,27,0,1,1,70,85"></path>
-        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -70deg"></line>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: -35deg"></line>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray"
+              style="transform-origin: 50px 66.75px;rotate: -70deg"></line>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray"
+              style="transform-origin: 50px 66.75px;rotate: -35deg"></line>
         <line x1="50" y1="39" x2="50" y2="6" class="sun-ray"></line>
-        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 35deg"></line>
-        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray" style="transform-origin: 50px 66.75px;rotate: 70deg"></line>
+        <line x1="50" y1="39" x2="50" y2="0" class="sun-ray"
+              style="transform-origin: 50px 66.75px;rotate: 35deg"></line>
+        <line x1="50" y1="39" x2="50" y2="20" class="sun-ray"
+              style="transform-origin: 50px 66.75px;rotate: 70deg"></line>
     </symbol>
     <symbol id="news-broadcast" viewBox="0 0 100 100">
-        <path d="M85,10a75,75 0 0 0 -75,75 M85,40a45,45 0 0 0 -45,45 M85,70a15,15 0 0 0 -15,15" />
+        <path d="M85,10a75,75 0 0 0 -75,75 M85,40a45,45 0 0 0 -45,45 M85,70a15,15 0 0 0 -15,15"/>
     </symbol>
     <symbol id="shopping-label" viewBox="0 0 100 100">
         <path d="M12,48 a25.5,25.5 0 0 1 36,-36 l47,47l-36,36z"></path>
@@ -91,20 +106,24 @@
     <symbol id="puzzle-piece" viewBox="0 0 100 100">
         <path d="M15,25h20a10,10 1 1 1 20,0h20v20a10,10 1 1 1 0,20v20h-20a10,10 1 1 0 -20,0h-20v-60z"></path>
     </symbol>
-    <symbol id="two-labelled-inputs" viewBox="0 0 100 100">
-        <path d="M15,15h35 M15,35h70 M15,60h35 M15,80h70" />
+    <symbol id="two-title-values" viewBox="0 0 100 100">
+        <path d="M15,15h35 M15,35h70 M15,60h35 M15,80h70"/>
     </symbol>
     <symbol id="gemstone" viewBox="0 0 100 100">
         <path d="M10,40l15,-25h50l15,25l-40,50z"/>
         <path d="M40,15l-5,25l15,45 M60,15l5,25l-15,45" style="stroke-width:var(--s-xs)"/>
-        <path d="M15,40h70" style="stroke-width:var(--s-xs)" />
+        <path d="M15,40h70" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="two-stacked-items" viewBox="0 0 100 100">
-        <path d="M25,25m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z" />
-        <path d="M5,5m7,0h56a7,7 1 0 1 7,7m0,63m-63,0a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7" />
+        <path d="M25,25m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z"/>
+        <path d="M5,5m7,0h56a7,7 1 0 1 7,7m0,63m-63,0a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7"/>
     </symbol>
     <symbol id="item-plus" viewBox="0 0 100 100">
-        <path d="M15,15m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z" />
+        <path d="M15,15m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z"/>
         <path d="M50,50m-20,0h40 M50,50m0,-20v40" style="stroke-width:var(--s-xs)"/>
+    </symbol>
+    <symbol id="trophy" viewBox="0 0 100 100">
+        <path d="M25,10 v25 a25,35 1 0 0 25,35 M75,10 v25 a25,35 1 0 1 -25,35 M25,10h50 M50,70v20m-20,0h40"/>
+        <path d="M25,25h-20v15 a45,30 1 0 0 45,30 M75,25h20v15 a45,30 1 0 1 -45,30" style="stroke-width:var(--s-xs)"/>
     </symbol>
 </svg>

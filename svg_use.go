@@ -25,10 +25,13 @@ const (
 	RightwardChevron
 	DownwardChevron
 	LeftwardChevron
-	TwoDownwardChevrons
-	DownwardNestedChevrons
-	UpwardNestedChevrons
+	ThreeDownwardChevrons
+	ThreeUpwardChevrons
+	ThreeHorizontalLines
 	CompactDisk
+	DashedCircle
+	ClockFace
+	CyclingCircle
 	RisingSun
 	NewsBroadcast
 	ShoppingLabel
@@ -37,40 +40,45 @@ const (
 	Heart
 	Shield
 	PuzzlePiece
-	TwoLabelledInputs
+	TwoTitleValues
 	Gemstone
 	TwoStackedItems
 	ItemPlus
+	Trophy
 )
 
 var symbolStrings = map[Symbol]string{
-	Windows:                "windows",
-	MacOS:                  "macos",
-	Linux:                  "linux",
-	Sparkle:                "sparkle",
-	Search:                 "search",
-	Circle:                 "circle",
-	SmallerCircle:          "smaller-circle",
-	UpwardChevron:          "upward-chevron",
-	RightwardChevron:       "rightward-chevron",
-	DownwardChevron:        "downward-chevron",
-	LeftwardChevron:        "leftward-chevron",
-	TwoDownwardChevrons:    "two-downward-chevrons",
-	DownwardNestedChevrons: "downward-nested-chevrons",
-	UpwardNestedChevrons:   "upward-nested-chevrons",
-	CompactDisk:            "compact-disk",
-	RisingSun:              "rising-sun",
-	NewsBroadcast:          "news-broadcast",
-	ShoppingLabel:          "shopping-label",
-	Bookmark:               "bookmark",
-	Percent:                "percent",
-	Heart:                  "heart",
-	Shield:                 "shield",
-	PuzzlePiece:            "puzzle-piece",
-	TwoLabelledInputs:      "two-labelled-inputs",
-	Gemstone:               "gemstone",
-	TwoStackedItems:        "two-stacked-items",
-	ItemPlus:               "item-plus",
+	Windows:               "windows",
+	MacOS:                 "macos",
+	Linux:                 "linux",
+	Sparkle:               "sparkle",
+	Search:                "search",
+	Circle:                "circle",
+	SmallerCircle:         "smaller-circle",
+	UpwardChevron:         "upward-chevron",
+	RightwardChevron:      "rightward-chevron",
+	DownwardChevron:       "downward-chevron",
+	LeftwardChevron:       "leftward-chevron",
+	ThreeDownwardChevrons: "three-downward-chevrons",
+	ThreeUpwardChevrons:   "three-upward-chevrons",
+	ThreeHorizontalLines:  "three-horizontal-lines",
+	CompactDisk:           "compact-disk",
+	DashedCircle:          "dashed-circle",
+	ClockFace:             "clock-face",
+	CyclingCircle:         "cycling-circle",
+	RisingSun:             "rising-sun",
+	NewsBroadcast:         "news-broadcast",
+	ShoppingLabel:         "shopping-label",
+	Bookmark:              "bookmark",
+	Percent:               "percent",
+	Heart:                 "heart",
+	Shield:                "shield",
+	PuzzlePiece:           "puzzle-piece",
+	TwoTitleValues:        "two-title-values",
+	Gemstone:              "gemstone",
+	TwoStackedItems:       "two-stacked-items",
+	ItemPlus:              "item-plus",
+	Trophy:                "trophy",
 }
 
 var (
