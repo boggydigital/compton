@@ -1,7 +1,7 @@
 @scope(flex-items.section-divider) {
     :scope {
         --bg: color-mix(in display-p3, var(--c-repforeground) 10%, transparent);
-        border: var(--s-xxxs) solid var(--c-rephighlight)
+        /*border: var(--s-xxxs) solid var(--c-rephighlight)*/
     }
 
     & fspan {
