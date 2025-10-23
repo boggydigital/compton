@@ -1,7 +1,9 @@
 package compton
 
-import "fmt"
+import (
+	"errors"
+)
 
 func ErrUnknownToken(t string) error {
-	return fmt.Errorf("unknown token: %s", t)
+	return errors.New("unknown token: " + t)
 }
