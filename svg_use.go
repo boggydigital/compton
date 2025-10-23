@@ -20,7 +20,6 @@ const (
 	Sparkle
 	Search
 	Circle
-	SmallerCircle
 	UpwardChevron
 	RightwardChevron
 	DownwardChevron
@@ -46,6 +45,9 @@ const (
 	TwoStackedItems
 	ItemPlus
 	Trophy
+	Hexagon
+	DashedHexagon
+	HexagonClockFace
 )
 
 var symbolStrings = map[Symbol]string{
@@ -55,7 +57,6 @@ var symbolStrings = map[Symbol]string{
 	Sparkle:               "sparkle",
 	Search:                "search",
 	Circle:                "circle",
-	SmallerCircle:         "smaller-circle",
 	UpwardChevron:         "upward-chevron",
 	RightwardChevron:      "rightward-chevron",
 	DownwardChevron:       "downward-chevron",
@@ -81,6 +82,9 @@ var symbolStrings = map[Symbol]string{
 	TwoStackedItems:       "two-stacked-items",
 	ItemPlus:              "item-plus",
 	Trophy:                "trophy",
+	Hexagon:               "hexagon",
+	DashedHexagon:         "dashed-hexagon",
+	HexagonClockFace:      "hexagon-clockface",
 }
 
 var (
