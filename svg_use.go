@@ -15,8 +15,8 @@ type Symbol int
 const (
 	NoSymbol Symbol = iota
 	Windows
-	MacOS
-	Linux
+	PlaceOfInterest
+	SteamDeck
 	Sparkle
 	Search
 	Circle
@@ -53,8 +53,8 @@ const (
 
 var symbolStrings = map[Symbol]string{
 	Windows:               "windows",
-	MacOS:                 "macos",
-	Linux:                 "linux",
+	PlaceOfInterest:       "place-of-interest",
+	SteamDeck:             "steam-deck",
 	Sparkle:               "sparkle",
 	Search:                "search",
 	Circle:                "circle",
