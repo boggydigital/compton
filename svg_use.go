@@ -30,6 +30,7 @@ const (
 	ThreeHorizontalLines
 	CompactDisk
 	DashedCircle
+	DashedClockFace
 	ClockFace
 	CyclingCircle
 	RisingSun
@@ -64,6 +65,7 @@ var symbolStrings = map[Symbol]string{
 	ThreeHorizontalLines:  "three-horizontal-lines",
 	CompactDisk:           "compact-disk",
 	DashedCircle:          "dashed-circle",
+	DashedClockFace:       "dashed-clock-face",
 	ClockFace:             "clock-face",
 	CyclingCircle:         "cycling-circle",
 	RisingSun:             "rising-sun",
