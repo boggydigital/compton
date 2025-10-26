@@ -19,7 +19,10 @@ const (
 	SteamDeck
 	Sparkle
 	Search
+	Square
+	Triangle
 	Circle
+	Cross
 	UpwardChevron
 	RightwardChevron
 	DownwardChevron
@@ -57,7 +60,10 @@ var symbolStrings = map[Symbol]string{
 	SteamDeck:             "steam-deck",
 	Sparkle:               "sparkle",
 	Search:                "search",
+	Square:                "square",
+	Triangle:              "triangle",
 	Circle:                "circle",
+	Cross:                 "cross",
 	UpwardChevron:         "upward-chevron",
 	RightwardChevron:      "rightward-chevron",
 	DownwardChevron:       "downward-chevron",
