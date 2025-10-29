@@ -52,6 +52,8 @@ const (
 	DashedHexagon
 	HexagonClockFace
 	CyclingHexagon
+	VideoThumbnail
+	ImageThumbnail
 )
 
 var symbolStrings = map[Symbol]string{
@@ -93,6 +95,8 @@ var symbolStrings = map[Symbol]string{
 	DashedHexagon:         "dashed-hexagon",
 	HexagonClockFace:      "hexagon-clockface",
 	CyclingHexagon:        "cycling-hexagon",
+	VideoThumbnail:        "video-thumbnail",
+	ImageThumbnail:        "image-thumbnail",
 }
 
 var (
