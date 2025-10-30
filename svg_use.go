@@ -93,7 +93,7 @@ var symbolStrings = map[Symbol]string{
 	Trophy:                "trophy",
 	Hexagon:               "hexagon",
 	DashedHexagon:         "dashed-hexagon",
-	HexagonClockFace:      "hexagon-clockface",
+	HexagonClockFace:      "hexagon-clock-face",
 	CyclingHexagon:        "cycling-hexagon",
 	VideoThumbnail:        "video-thumbnail",
 	ImageThumbnail:        "image-thumbnail",
