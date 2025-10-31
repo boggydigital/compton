@@ -8,6 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
+	"github.com/boggydigital/compton/consts/wrap"
 )
 
 type FlexItemsElement struct {
@@ -47,6 +48,11 @@ func (fie *FlexItemsElement) JustifyContent(a align.Align) *FlexItemsElement {
 
 func (fie *FlexItemsElement) JustifyItems(a align.Align) *FlexItemsElement {
 	fie.AddClass(class.JustifyItems(a))
+	return fie
+}
+
+func (fie *FlexItemsElement) FlexWrap(fw wrap.FlexWrap) *FlexItemsElement {
+	fie.AddClass(class.FlexWrap(fw))
 	return fie
 }
 

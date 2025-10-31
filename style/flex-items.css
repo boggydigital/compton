@@ -1,7 +1,7 @@
 @scope (flex-items) {
     :scope {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: var(--fwr);
         row-gap: var(--rg);
         column-gap: var(--cg);
         flex-direction: var(--fd);

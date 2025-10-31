@@ -68,5 +68,6 @@
     --mw: unset; /* max-width */
     --crw: unset; /* column-rule-width */
     --lh: initial; /* line-height */
+    --fwr: unset; /* flex-wrap */
 }
 

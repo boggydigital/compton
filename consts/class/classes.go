@@ -1,15 +1,17 @@
 package class
 
 import (
+	"maps"
+	"strconv"
+	"strings"
+	"sync"
+
 	"github.com/boggydigital/compton/consts/align"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/direction"
 	"github.com/boggydigital/compton/consts/font_weight"
 	"github.com/boggydigital/compton/consts/size"
-	"maps"
-	"strconv"
-	"strings"
-	"sync"
+	"github.com/boggydigital/compton/consts/wrap"
 )
 
 const (
@@ -43,6 +45,7 @@ const (
 	maxWidthPfx         = "mw"
 	columnRuleWidthPfx  = "crw"
 	lineHeightPfx       = "lh"
+	flexWrapPfx         = "fwr"
 )
 
 var setClasses = make(map[string]any)
@@ -115,6 +118,10 @@ func JustifySelf(a align.Align) string { return joinClassName(justifySelfPfx, a.
 
 func FlexDirection(d direction.Direction) string {
 	return joinClassName(flexDirectionPfx, d.String())
+}
+
+func FlexWrap(fw wrap.FlexWrap) string {
+	return joinClassName(flexWrapPfx, fw.String())
 }
 
 func BackgroundColor(c color.Color) string {
@@ -285,6 +292,9 @@ func parsePropertyValue(className string) (string, string) {
 	case fontWeightPfx:
 		wt := font_weight.Parse(sfx)
 		value = wt.CssValue()
+	case flexWrapPfx:
+		fw := wrap.Parse(sfx)
+		value = fw.String()
 	default:
 		panic("class support not implemented for " + pfx)
 	}
