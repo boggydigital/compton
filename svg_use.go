@@ -53,6 +53,7 @@ const (
 	CyclingHexagon
 	VideoThumbnail
 	ImageThumbnail
+	ExternalLink
 )
 
 var symbolStrings = map[Symbol]string{
@@ -95,6 +96,7 @@ var symbolStrings = map[Symbol]string{
 	CyclingHexagon:        "cycling-hexagon",
 	VideoThumbnail:        "video-thumbnail",
 	ImageThumbnail:        "image-thumbnail",
+	ExternalLink:          "external-link",
 }
 
 var (
