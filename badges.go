@@ -22,7 +22,8 @@ func badgeText(r Registrar, text string, c color.Color) *FspanElement {
 	return Fspan(r, text).
 		Width(size.Unset).
 		BackgroundColor(color.Transparent).
-		ForegroundColor(c)
+		ForegroundColor(c).
+		Padding(size.Unset)
 }
 
 func Badges(r Registrar, badges ...FormattedBadge) Element {
@@ -44,7 +45,7 @@ func Badges(r Registrar, badges ...FormattedBadge) Element {
 				FlexWrap(wrap.NoWrap).
 				ColumnGap(size.Small).
 				Width(size.Unset)
-			badgesRow.Append(badgeIcon(r, fb.Icon, fb.Color), badgeText(r, fb.Title, fb.Color))
+			badgeRow.Append(badgeIcon(r, fb.Icon, fb.Color), badgeText(r, fb.Title, fb.Color))
 			badgesRow.Append(badgeRow)
 		} else if fb.Icon != NoSymbol {
 			badgesRow.Append(badgeIcon(r, fb.Icon, fb.Color))

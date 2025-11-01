@@ -8,7 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/size"
 )
 
-func SectionDivider(r Registrar, content ...Element) Element {
+func SectionDivider(r Registrar, fmtBadge FormattedBadge) Element {
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.SectionDivider))
 
@@ -27,7 +27,7 @@ func SectionDivider(r Registrar, content ...Element) Element {
 		FontSize(size.Small).
 		PaddingBlock(size.Small).
 		LineHeight(size.Normal)
-	titleFspan.Append(content...)
+	titleFspan.Append(Badges(r, fmtBadge))
 
 	sectionDividerRow.Append(titleFspan)
 	sectionDividerRow.AddClass("section-divider")
