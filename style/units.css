@@ -17,6 +17,7 @@
 
     --s-maxw: calc(3 * var(--s-xxxl) + 2 * var(--s-l)); /* 3 * 256px + 2 * 32px = 832px */
     --s-fw: 100%;
+    --s-fc: fit-content;
 
     --fs-n: 12pt;
 

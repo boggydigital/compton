@@ -2,6 +2,7 @@ package compton
 
 import (
 	"github.com/boggydigital/compton/consts/align"
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/color"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/direction"
@@ -116,6 +117,16 @@ func (f *FrowElement) FontSize(s size.Size) *FrowElement {
 			flexItems.FontSize(s)
 		}
 	}
+	return f
+}
+
+func (f *FrowElement) Width(s size.Size) *FrowElement {
+	f.AddClass(class.Width(s))
+	return f
+}
+
+func (f *FrowElement) BackgroundColor(c color.Color) *FrowElement {
+	f.AddClass(class.BackgroundColor(c))
 	return f
 }
 

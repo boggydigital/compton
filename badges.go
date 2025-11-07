@@ -36,7 +36,8 @@ func Badges(r Registrar, badges ...FormattedBadge) Element {
 		JustifyContent(align.Start).
 		AlignItems(align.Center).
 		AlignContent(align.Center).
-		Width(size.Unset)
+		Width(size.Unset).
+		BackgroundColor(color.Transparent)
 
 	for _, fb := range badges {
 

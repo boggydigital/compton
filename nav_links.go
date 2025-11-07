@@ -2,7 +2,10 @@ package compton
 
 import (
 	_ "embed"
+
+	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
+	"github.com/boggydigital/compton/consts/size"
 	"golang.org/x/net/html/atom"
 )
 
@@ -68,6 +71,11 @@ func (nle *NavLinksElement) AppendSubmitLink(r Registrar, target *NavTarget) Ele
 	}
 
 	return submitListItem
+}
+
+func (nle *NavLinksElement) Width(s size.Size) *NavLinksElement {
+	nle.AddClass(class.Width(s))
+	return nle
 }
 
 func SectionsLinks(r Registrar, sections []string, sectionTitles map[string]string) Element {

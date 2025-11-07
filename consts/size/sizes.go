@@ -19,6 +19,7 @@ const (
 	ColumnWidth
 	MaxWidth
 	FullWidth
+	FitContent
 )
 
 var sizeStrings = map[Size]string{
@@ -37,6 +38,7 @@ var sizeStrings = map[Size]string{
 	ColumnWidth: "cw",
 	MaxWidth:    "maxw",
 	FullWidth:   "fw",
+	FitContent:  "fc",
 }
 
 func (u Size) String() string {

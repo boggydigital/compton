@@ -8,6 +8,12 @@
     }
 }
 
+::view-transition-old(*),
+::view-transition-new(*) {
+    inline-size:fit-content;
+    block-size: 100%;
+}
+
 html {
     min-height: 100%;
     scroll-behavior: auto;

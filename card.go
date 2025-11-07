@@ -49,6 +49,7 @@ func (ce *CardElement) AppendProperty(title string, values ...Element) Element {
 		spanValues.AddClass("values")
 		spanValues.Append(values...)
 		liProperty.Append(spanTitle, spanValues)
+		liProperty.SetAttribute("style", "width:fit-content")
 		ul.Append(liProperty)
 		return liProperty
 	}
@@ -104,7 +105,7 @@ func Card(r Registrar, id string) *CardElement {
 
 	liBadges := Li()
 	liBadges.AddClass("badges")
-	liBadges.SetAttribute("style", "view-transition-name:product-badges-"+id)
+	liBadges.SetAttribute("style", "view-transition-name:product-badges-"+id+";width:fit-content")
 	ul.Append(liTitle, liBadges)
 
 	card.Append(ul)
