@@ -72,7 +72,7 @@ details {
             padding: var(--s-xs);
             padding-inline-end: var(--s-s);
             background-color: var(--bg);
-            border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));
+            /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));*/
             color: var(--fg);
             border-radius: var(--s-s);
             column-gap: var(--s-s);
@@ -117,7 +117,7 @@ details {
             width: max-content;
             justify-self: var(--js);
             align-self: var(--as);
-            border: 1px solid color-mix(in display-p3, var(--c-repforeground) 20%, transparent);
+            /*border: 1px solid color-mix(in display-p3, var(--c-repforeground) 20%, transparent);*/
 
             & svg {
                 width: var(--s-s);

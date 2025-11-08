@@ -6,7 +6,7 @@
         --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
         /* same as above */
         --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
-        border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));
+        /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));*/
         border-radius: var(--s-s);
         /*content-visibility: auto;*/
         width: var(--s-xxxl);
@@ -105,7 +105,7 @@
     @scope (card) {
         :scope {
             background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
-            border-color: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight))
+            /*border-color: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight))*/
         }
     }
 }
