@@ -9,10 +9,10 @@
         }
     </style>
     <symbol id="circle" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" />
+        <circle cx="50" cy="50" r="40"/>
     </symbol>
     <symbol id="triangle" viewBox="0 0 100 100">
-        <path d="M85,80h-70l35,-60z" />
+        <path d="M85,80h-70l35,-60z"/>
     </symbol>
     <symbol id="cross" viewBox="0 0 100 100">
         <path d="M23,23l54,54M77,23l-54,54" style="stroke-width: var(--s-n)"/>
@@ -26,8 +26,8 @@
         <path d="M80,70 l0,20 M70,80 l20,0" style="stroke-width: var(--s-xs)"/>
     </symbol>
     <symbol id="search" viewBox="0 0 100 100">
-        <circle cx="40" cy="40" r="30" />
-        <path d="M64.2,64.2L85,85" />
+        <circle cx="40" cy="40" r="30"/>
+        <path d="M64.2,64.2L85,85"/>
     </symbol>
     <symbol id="windows" viewBox="0 0 100 100" style="stroke:none;fill:currentColor">
         <path d="M6,6h41v41h-41z M53,6h41v41h-41z M6,53h41v41h-41z M53,53h41v41h-41z"/>
@@ -60,20 +60,25 @@
     <symbol id="three-horizontal-lines" viewBox="0 0 100 100">
         <path d="M20,20h60 M20,50h60 M20,80h60"/>
     </symbol>
+    <symbol id="circle-shared" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46"/>
+    </symbol>
     <symbol id="compact-disk" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46"/>
+        <use xlink:href="#circle-shared"/>
         <circle cx="50" cy="50" r="18"/>
+        <path d="M22,34l12,-12" style="stroke-width:var(--s-xs)"/>
+        <path d="M78,66l-12,12" style="stroke-width:var(--s-xs)"/>
     </symbol>
-    <symbol id="dashed-circle" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" style="stroke-dasharray:var(--s-n)"/>
+    <symbol id="circle-dashed" viewBox="0 0 100 100" >
+        <use xlink:href="#circle-shared" style="stroke-dasharray:var(--s-n)"/>
     </symbol>
-    <symbol id="clock-face" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46"/>
+    <symbol id="circle-clock-arrows" viewBox="0 0 100 100" >
+        <use xlink:href="#circle-shared"/>
         <path d="M50,50 v-30 M50,50l15,15"/>
     </symbol>
-    <symbol id="cycling-circle" viewBox="0 0 100 100">
-        <path d="M50,4 a46,46 1 0 1 23,86 h20 m-20,0 v-20"/>
-        <path d="M50,96 a46,46 1 0 1 -23,-86 h-20 m20,0 v20"/>
+    <symbol id="circle-downward-arrow" viewBox="0 0 100 100">
+        <use xlink:href="#circle-shared"/>
+        <path d="M50,25v45l-15,-15m15,15l15,-15"/>
     </symbol>
     <symbol id="rising-sun" viewBox="0 0 100 100">
         <path d="M6,86h88"/>
@@ -132,25 +137,32 @@
         <path d="M25,10 v25 a25,35 1 0 0 25,35 M75,10 v25 a25,35 1 0 1 -25,35 M25,10h50 M50,70v20m-20,0h40"/>
         <path d="M25,25h-20v15 a45,30 1 0 0 45,30 M75,25h20v15 a45,30 1 0 1 -45,30" style="stroke-width:var(--s-xs)"/>
     </symbol>
-    <symbol id="hexagon" viewBox="0 0 100 100">
-        <path d="M50,10l35,20v40l-35,20l-35,-20v-40z" />
+    <symbol id="hexagon-shared" viewBox="0 0 100 100">
+        <path d="M50,10l35,20v40l-35,20l-35,-20v-40z"/>
     </symbol>
-    <symbol id="dashed-hexagon" viewBox="0 0 100 100">
-        <path d="M50,10l35,20v40l-35,20l-35,-20v-40z" style="stroke-dasharray:var(--s-n)" />
+    <symbol id="hexagon-diagonal-lines" viewBox="0 0 100 100">
+        <use xlink:href="#hexagon-shared"/>
+        <path d="M50,10L85,30 M35,20L85,50 M15,30L85,70 M15,50L67.5,80 M15,70L50,90"/>
     </symbol>
-    <symbol id="hexagon-clock-face" viewBox="0 0 100 100">
-        <path d="M50,10l35,20v40l-35,20l-35,-20v-40z" />
+    <symbol id="hexagon-clock-arrows" viewBox="0 0 100 100">
+        <use xlink:href="#hexagon-shared"/>
         <path d="M50,50 v-20 M50,50l10,10"/>
     </symbol>
-    <symbol id="cycling-hexagon" viewBox="0 0 100 100">
-        <path d="M50,10l35,20v40l-17.5,10l15,5m-15,-5l2.5,-16.5m-2.5,16.5 m-17.5,10l-35,-20v-40l17.5,-10l-15,-5m15,5l-2.5,16.5"/>
+    <symbol id="hexagon-downward-arrow" viewBox="0 0 100 100">
+        <use xlink:href="#hexagon-shared"/>
+        <path d="M50,30v40l-15,-15m15,15l15,-15"/>
+    </symbol>
+    <symbol id="hexagon-sparkling" viewBox="0 0 100 100">
+        <use xlink:href="#hexagon-shared"/>
+        <path d="M72.5,52.5 l0,10 l-8.5,5" style="stroke-width:var(--s-xs)"/>
+        <path d="M27.5,47.5 l0,-10 l8.5,-5" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="video-thumbnail">
-        <path d="M10,20h80v60h-80z" />
+        <path d="M10,20h80v60h-80z"/>
         <path d="M35,20l30,30l-30,30" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="image-thumbnail">
-        <path d="M20,10h60v80h-60z" />
+        <path d="M20,10h60v80h-60z"/>
         <path d="M20,65l30,-30l30,30" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="external-link">

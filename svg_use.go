@@ -19,9 +19,9 @@ const (
 	SteamDeck
 	Sparkle
 	Search
+	Circle
 	Square
 	Triangle
-	Circle
 	Cross
 	UpwardChevron
 	RightwardChevron
@@ -30,10 +30,10 @@ const (
 	ThreeDownwardChevrons
 	ThreeUpwardChevrons
 	ThreeHorizontalLines
-	CompactDisk
-	DashedCircle
-	ClockFace
-	CyclingCircle
+	CircleCompactDisk
+	CircleDashed
+	CircleClockArrows
+	CircleDownwardArrow
 	RisingSun
 	NewsBroadcast
 	ShoppingLabel
@@ -47,10 +47,10 @@ const (
 	TwoStackedItems
 	ItemPlus
 	Trophy
-	Hexagon
-	DashedHexagon
-	HexagonClockFace
-	CyclingHexagon
+	HexagonDiagonalLines
+	HexagonClockArrows
+	HexagonDownwardArrow
+	HexagonSparkling
 	VideoThumbnail
 	ImageThumbnail
 	ExternalLink
@@ -62,9 +62,9 @@ var symbolStrings = map[Symbol]string{
 	SteamDeck:             "steam-deck",
 	Sparkle:               "sparkle",
 	Search:                "search",
+	Circle:                "circle",
 	Square:                "square",
 	Triangle:              "triangle",
-	Circle:                "circle",
 	Cross:                 "cross",
 	UpwardChevron:         "upward-chevron",
 	RightwardChevron:      "rightward-chevron",
@@ -73,10 +73,10 @@ var symbolStrings = map[Symbol]string{
 	ThreeDownwardChevrons: "three-downward-chevrons",
 	ThreeUpwardChevrons:   "three-upward-chevrons",
 	ThreeHorizontalLines:  "three-horizontal-lines",
-	CompactDisk:           "compact-disk",
-	DashedCircle:          "dashed-circle",
-	ClockFace:             "clock-face",
-	CyclingCircle:         "cycling-circle",
+	CircleDashed:          "circle-dashed",
+	CircleClockArrows:     "circle-clock-arrows",
+	CircleDownwardArrow:   "circle-downward-arrow",
+	CircleCompactDisk:     "compact-disk",
 	RisingSun:             "rising-sun",
 	NewsBroadcast:         "news-broadcast",
 	ShoppingLabel:         "shopping-label",
@@ -90,10 +90,10 @@ var symbolStrings = map[Symbol]string{
 	TwoStackedItems:       "two-stacked-items",
 	ItemPlus:              "item-plus",
 	Trophy:                "trophy",
-	Hexagon:               "hexagon",
-	DashedHexagon:         "dashed-hexagon",
-	HexagonClockFace:      "hexagon-clock-face",
-	CyclingHexagon:        "cycling-hexagon",
+	HexagonDiagonalLines:  "hexagon-diagonal-lines",
+	HexagonClockArrows:    "hexagon-clock-arrows",
+	HexagonDownwardArrow:  "hexagon-downward-arrow",
+	HexagonSparkling:      "hexagon-sparkling",
 	VideoThumbnail:        "video-thumbnail",
 	ImageThumbnail:        "image-thumbnail",
 	ExternalLink:          "external-link",
