@@ -38,6 +38,25 @@ func (f *FrowElement) PropVal(p string, vals ...string) Element {
 	return nil
 }
 
+func (f *FrowElement) LinkVal(title, href string, vals ...string) Element {
+	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
+		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
+		link := A(href)
+		link.Append(Fspan(f.r, title).ForegroundColor(color.RepForeground).FontWeight(font_weight.Bolder))
+		row.Append(link)
+		for ii, val := range vals {
+			row.Append(Fspan(f.r, val))
+			if ii < len(vals)-1 {
+				row.Append(Fspan(f.r, ",").ForegroundColor(color.Gray))
+			}
+		}
+		fi.Append(row)
+		return row
+	}
+	return nil
+
+}
+
 func (f *FrowElement) PropLinkColor(p string, c color.Color, title, href string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
