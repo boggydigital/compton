@@ -124,6 +124,12 @@ func (dse *DetailsSummaryElement) SetTabIndex(index int) {
 	dse.details.SetAttribute("tabindex", strconv.Itoa(index))
 }
 
+func (dse *DetailsSummaryElement) SetAccessKey(ak string) {
+	if sum := dse.getSummary(); sum != nil {
+		sum.SetAttribute("accesskey", ak)
+	}
+}
+
 func create(r Registrar, title string, small, open bool) *DetailsSummaryElement {
 	dse := &DetailsSummaryElement{
 		BaseElement: BaseElement{
