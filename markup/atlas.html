@@ -8,14 +8,17 @@
             stroke-linejoin: round;
         }
     </style>
-    <symbol id="circle" viewBox="0 0 100 100">
+    <symbol id="circle-positive" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40"/>
+        <path d="M25,50 A25,25 1 1 0 75,50" style="stroke-width: var(--s-xs)"/>
     </symbol>
-    <symbol id="triangle" viewBox="0 0 100 100">
+    <symbol id="triangle-neutral" viewBox="0 0 100 100">
         <path d="M85,80h-70l35,-60z"/>
+        <path d="M40,65h20" style="stroke-width:var(--s-xs)"/>
     </symbol>
-    <symbol id="cross" viewBox="0 0 100 100">
-        <path d="M23,23l54,54M77,23l-54,54" style="stroke-width: var(--s-n)"/>
+    <symbol id="cross-negative" viewBox="0 0 100 100">
+        <path d="M22,22l56,56M78,22l-56,56"/>
+        <path d="M37,78l13,-13l13,13" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="square" viewBox="0 0 100 100">
         <path d="M15,15h70v70h-70z"/>
