@@ -33,7 +33,6 @@ const (
 	CircleDashed
 	CircleClockArrows
 	CircleDownwardArrow
-	RisingSun
 	NewsBroadcast
 	ShoppingLabel
 	Bookmark
@@ -53,6 +52,7 @@ const (
 	VideoThumbnail
 	ImageThumbnail
 	ExternalLink
+	Today
 )
 
 var symbolStrings = map[Symbol]string{
@@ -75,7 +75,6 @@ var symbolStrings = map[Symbol]string{
 	CircleClockArrows:     "circle-clock-arrows",
 	CircleDownwardArrow:   "circle-downward-arrow",
 	CircleCompactDisk:     "compact-disk",
-	RisingSun:             "rising-sun",
 	NewsBroadcast:         "news-broadcast",
 	ShoppingLabel:         "shopping-label",
 	Bookmark:              "bookmark",
@@ -95,11 +94,14 @@ var symbolStrings = map[Symbol]string{
 	VideoThumbnail:        "video-thumbnail",
 	ImageThumbnail:        "image-thumbnail",
 	ExternalLink:          "external-link",
+	Today:                 "today",
 }
 
 var (
 	//go:embed "markup/atlas.html"
 	markupAtlas string
+	//go:embed "script/set_today.js"
+	scriptSetToday []byte
 )
 
 type SvgUseElement struct {
@@ -146,6 +148,7 @@ func SvgUse(r Registrar, s Symbol) *SvgUseElement {
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.SvgUse))
 	r.RegisterRequirements(compton_atoms.MarkupName(compton_atoms.SvgUse), Text(markupAtlas))
+	r.RegisterDeferrals(compton_atoms.MarkupName(compton_atoms.SetToday), ScriptAsync(scriptSetToday))
 
 	return sue
 }
