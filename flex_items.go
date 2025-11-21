@@ -86,6 +86,11 @@ func (fie *FlexItemsElement) Width(s size.Size) *FlexItemsElement {
 	return fie
 }
 
+func (fie *FlexItemsElement) Height(s size.Size) *FlexItemsElement {
+	fie.AddClass(class.Height(s))
+	return fie
+}
+
 func (fie *FlexItemsElement) MaxWidth(s size.Size) *FlexItemsElement {
 	fie.AddClass(class.MaxWidth(s))
 	return fie

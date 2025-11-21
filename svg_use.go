@@ -100,8 +100,6 @@ var symbolStrings = map[Symbol]string{
 var (
 	//go:embed "markup/atlas.html"
 	markupAtlas string
-	//go:embed "script/set_today.js"
-	scriptSetToday []byte
 )
 
 type SvgUseElement struct {
@@ -148,7 +146,6 @@ func SvgUse(r Registrar, s Symbol) *SvgUseElement {
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.SvgUse))
 	r.RegisterRequirements(compton_atoms.MarkupName(compton_atoms.SvgUse), Text(markupAtlas))
-	r.RegisterDeferrals(compton_atoms.MarkupName(compton_atoms.SetToday), ScriptAsync(scriptSetToday))
 
 	return sue
 }

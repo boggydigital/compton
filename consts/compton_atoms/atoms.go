@@ -30,7 +30,7 @@ const (
 	Placeholder
 	SectionDivider
 	CopyToClipboard
-	SetToday
+	MonthDay
 )
 
 var atomStrings = map[atom.Atom]string{
@@ -57,7 +57,7 @@ var atomStrings = map[atom.Atom]string{
 	Placeholder:         "placeholder",
 	SectionDivider:      "section-divider",
 	CopyToClipboard:     "copy-to-clipboard",
-	SetToday:            "set-today",
+	MonthDay:            "month-day",
 }
 
 func Atos(a atom.Atom) string {

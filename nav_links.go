@@ -15,10 +15,11 @@ const sectionLinksId = "section-links"
 var navLinkSubmitForm []byte
 
 type NavTarget struct {
-	Href     string
-	Title    string
-	Symbol   Symbol
-	Selected bool
+	Href  string
+	Title string
+	//Symbol   Symbol
+	IconElement Element
+	Selected    bool
 }
 
 type NavLinksElement struct {
@@ -45,8 +46,14 @@ func (nle *NavLinksElement) AppendLink(r Registrar, target *NavTarget) Element {
 		navLink.AddClass("selected")
 	}
 
-	if target.Symbol != NoSymbol {
-		navLink.Append(SvgUse(r, target.Symbol))
+	//if target.Symbol != NoSymbol {
+	//	navLink.Append(SvgUse(r, target.Symbol))
+	//	if target.Title != "" && target.Selected {
+	//		navLink.Append(Text(target.Title))
+	//	}
+	//}
+	if target.IconElement != nil {
+		navLink.Append(target.IconElement)
 		if target.Title != "" && target.Selected {
 			navLink.Append(Text(target.Title))
 		}
