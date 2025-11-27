@@ -42,7 +42,7 @@ const (
 	PuzzlePiece
 	TwoTitleValues
 	Gemstone
-	TwoStackedItems
+	ItemsPack
 	ItemPlus
 	Trophy
 	HexagonDiagonalLines
@@ -84,7 +84,7 @@ var symbolStrings = map[Symbol]string{
 	PuzzlePiece:           "puzzle-piece",
 	TwoTitleValues:        "two-title-values",
 	Gemstone:              "gemstone",
-	TwoStackedItems:       "two-stacked-items",
+	ItemsPack:             "items-pack",
 	ItemPlus:              "item-plus",
 	Trophy:                "trophy",
 	HexagonDiagonalLines:  "hexagon-diagonal-lines",

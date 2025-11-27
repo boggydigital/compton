@@ -6,19 +6,6 @@
             stroke-width: var(--s-s);
             stroke-linecap: round;
             stroke-linejoin: round;
-
-            & text {
-                font-family: "SF Mono", "PT Mono", ui-monospace, monospace;
-                fill: currentColor;
-                stroke-width: 0;
-                &#today-month {
-                    font-size:calc(1.5*var(--s-l));
-                }
-                &#today-day {
-                    font-size:calc(1.75*var(--s-l));
-                    font-weight: bold;
-                }
-            }
         }
     </style>
     <symbol id="circle-positive" viewBox="0 0 100 100">
@@ -128,12 +115,15 @@
         <path d="M40,15l-5,25l15,45 M60,15l5,25l-15,45" style="stroke-width:var(--s-xs)"/>
         <path d="M15,40h70" style="stroke-width:var(--s-xs)"/>
     </symbol>
-    <symbol id="two-stacked-items" viewBox="0 0 100 100">
-        <path d="M25,25m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z"/>
-        <path d="M5,5m7,0h56a7,7 1 0 1 7,7m0,63m-63,0a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7"/>
+    <symbol id="box-shared">
+        <path d="M15,15h70v70h-70z" />
+    </symbol>
+    <symbol id="items-pack" viewBox="0 0 100 100">
+        <use href="#box-shared"/>
+        <path d="M30,30h40v40h-40z" style="stroke-width: var(--s-xs)"/>
     </symbol>
     <symbol id="item-plus" viewBox="0 0 100 100">
-        <path d="M15,15m7,0h56a7,7 1 0 1 7,7v56a7,7 1 0 1 -7,7h-56a7,7 1 0 1 -7,-7v-56a7,7 1 0 1 7,-7z"/>
+        <use href="#box-shared"/>
         <path d="M50,50m-20,0h40 M50,50m0,-20v40" style="stroke-width:var(--s-xs)"/>
     </symbol>
     <symbol id="trophy" viewBox="0 0 100 100">
