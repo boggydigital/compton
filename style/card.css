@@ -1,6 +1,6 @@
 @scope (card) {
     :scope {
-        padding: calc(1.5 * var(--s-s));
+        padding: var(--s-s);
         color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
         /* the definition is the same as page level, but need to be here to mix with card rep color, not page */
         --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
