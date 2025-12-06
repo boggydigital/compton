@@ -2,9 +2,10 @@ package compton
 
 import (
 	_ "embed"
+	"io"
+
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/loading"
-	"io"
 )
 
 var (
@@ -47,7 +48,7 @@ func IframeExpandHost(r Registrar, id, src string, eagerness loading.Loading) El
 	r.RegisterRequirements(compton_atoms.ScriptName(compton_atoms.IframeExpandHost),
 		Script(scriptIframeExpandReceive))
 
-	iframe.SetAttribute("style", "view-transition-name:iframe-content-"+id)
+	//iframe.SetAttribute("style", "view-transition-name:iframe-content-"+id)
 
 	return &IframeExpandElement{
 		r:      r,

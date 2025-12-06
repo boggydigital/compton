@@ -24,7 +24,7 @@ func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydr
 			issaImg = IssaImageDehydrated(ce.r, background, placeholder, poster)
 		}
 		if issaImg != nil {
-			issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
+			//issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
 			posterPlaceholder.Append(issaImg)
 		}
 		return issaImg
@@ -100,12 +100,12 @@ func Card(r Registrar, id string) *CardElement {
 
 	liTitle := Li()
 	productTitle := H3()
-	productTitle.SetAttribute("style", "view-transition-name:product-title-"+id)
+	//productTitle.SetAttribute("style", "view-transition-name:product-title-"+id)
 	liTitle.Append(productTitle)
 
 	liBadges := Li()
 	liBadges.AddClass("badges")
-	liBadges.SetAttribute("style", "view-transition-name:product-badges-"+id+";width:fit-content")
+	//liBadges.SetAttribute("style", "view-transition-name:product-badges-"+id+";width:fit-content")
 	ul.Append(liTitle, liBadges)
 
 	card.Append(ul)

@@ -2,6 +2,7 @@ package compton
 
 import (
 	_ "embed"
+
 	"github.com/boggydigital/compton/consts/compton_atoms"
 )
 
@@ -18,7 +19,7 @@ func IframeExpandContent(id, title string) PageElement {
 	p := Page(title).
 		SetBodyId(id)
 
-	p.SetAttribute("style", "view-transition-name:iframe-content-"+id)
+	//p.SetAttribute("style", "view-transition-name:iframe-content-"+id)
 
 	p.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.IframeExpandContent))
 	p.RegisterDeferrals(compton_atoms.ScriptName(compton_atoms.IframeExpandContent),
