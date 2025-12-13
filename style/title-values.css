@@ -34,6 +34,6 @@ title-values {
 
 @container (max-width: 592px) {
     title-values {
-        --w: 100%
+        --w: 100% !important;
     }
 }

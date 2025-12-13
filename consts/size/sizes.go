@@ -16,29 +16,27 @@ const (
 	XXLarge
 	XXXLarge
 
-	ColumnWidth
 	MaxWidth
 	FullWidth
 	FitContent
 )
 
 var sizeStrings = map[Size]string{
-	Unset:       "unset",
-	Initial:     "initial",
-	Zero:        "zero",
-	Normal:      "n",
-	Small:       "s",
-	XSmall:      "xs",
-	XXSmall:     "xxs",
-	XXXSmall:    "xxxs",
-	Large:       "l",
-	XLarge:      "xl",
-	XXLarge:     "xxl",
-	XXXLarge:    "xxxl",
-	ColumnWidth: "cw",
-	MaxWidth:    "maxw",
-	FullWidth:   "fw",
-	FitContent:  "fc",
+	Unset:      "unset",
+	Initial:    "initial",
+	Zero:       "zero",
+	Normal:     "n",
+	Small:      "s",
+	XSmall:     "xs",
+	XXSmall:    "xxs",
+	XXXSmall:   "xxxs",
+	Large:      "l",
+	XLarge:     "xl",
+	XXLarge:    "xxl",
+	XXXLarge:   "xxxl",
+	MaxWidth:   "maxw",
+	FullWidth:  "fw",
+	FitContent: "fc",
 }
 
 func (u Size) String() string {
