@@ -1,6 +1,37 @@
-/* Safari specific fix, need to file a bug (or find existing one) to track */
 details {
+
+    width: 100%;
+
+    &[open] {
+        margin-block-end: var(--mbe);
+
+        & > summary {
+            margin-block-end: var(--mbe);
+
+            & .open-marker {
+                display: initial;
+            }
+
+            & .closed-marker {
+                display: none;
+            }
+        }
+    }
+
     & > summary {
+
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        user-select: none;
+
+        &::marker {
+            display: none;
+        }
+
+        & .open-marker {
+            display: none;
+        }
 
         &::-webkit-details-marker {
             display: none;
@@ -21,48 +52,7 @@ details {
         outline: 0;
     }
 
-}
-
-@scope (details) {
-    :scope {
-
-        width: 100%;
-
-        & > summary {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            user-select: none;
-
-            &::marker {
-                display: none;
-            }
-
-            & .open-marker {
-                display: none;
-            }
-        }
-
-        &[open] {
-            margin-block-end: var(--mbe);
-
-            & > summary {
-                margin-block-end: var(--mbe);
-
-                & .open-marker {
-                    display: initial;
-                }
-
-                & .closed-marker {
-                    display: none;
-                }
-            }
-        }
-    }
-}
-
-@scope (details.larger) {
-    :scope {
+    &.larger {
         & > summary {
             --bg: var(--c-rephighlight);
             justify-content: space-between;
@@ -88,16 +78,15 @@ details {
 
         &[open] {
             & > summary {
+                margin-block-end: var(--mbe);
                 & > .summary-heading {
                     background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
                 }
             }
         }
     }
-}
 
-@scope (details.smaller) {
-    :scope {
+    &.smaller {
         width: 100%;
 
         &[open] {
@@ -126,7 +115,5 @@ details {
 
         }
     }
+
 }
-
-
-

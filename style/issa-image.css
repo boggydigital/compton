@@ -1,31 +1,29 @@
-@scope (issa-image) {
-    :scope {
-        justify-content: center;
-        align-content: center;
-        display: grid;
-        background-color: var(--bg);
+issa-image {
+    justify-content: center;
+    align-content: center;
+    display: grid;
+    background-color: var(--bg);
+    border-radius: var(--s-xs);
+    width: var(--w);
+    height: var(--h);
+
+    & img {
+        object-fit: cover;
+        aspect-ratio: var(--ar);
+        line-height: 0;
+        grid-row: 1;
+        grid-column: 1;
         border-radius: var(--s-xs);
         width: var(--w);
         height: var(--h);
+        transition: opacity var(--du-slow);
 
-        & img {
-            object-fit: cover;
-            aspect-ratio: var(--ar);
-            line-height: 0;
-            grid-row: 1;
-            grid-column: 1;
-            border-radius: var(--s-xs);
-            width: var(--w);
-            height: var(--h);
-            transition: opacity var(--du-slow);
+        &.loading {
+            opacity: 0;
+        }
 
-            &.loading {
-                opacity: 0;
-            }
-
-            &.placeholder {
-                image-rendering: pixelated;
-            }
+        &.placeholder {
+            image-rendering: pixelated;
         }
     }
 }

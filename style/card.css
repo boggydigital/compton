@@ -1,84 +1,82 @@
-@scope (card) {
-    :scope {
-        padding: var(--s-s);
-        color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
-        /* the definition is the same as page level, but need to be here to mix with card rep color, not page */
-        --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
-        /* same as above */
-        --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
-        /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));*/
-        border-radius: var(--s-s);
-        /*content-visibility: auto;*/
-        width: var(--s-xxxl);
-        height: 120.5px;
+card {
+    padding: var(--s-s);
+    color: color-mix(in display-p3, var(--c-rep) 25%, var(--c-foreground));
+    /* the definition is the same as page level, but need to be here to mix with card rep color, not page */
+    --c-repforeground: color-mix(in display-p3, var(--c-rep), var(--c-foreground));
+    /* same as above */
+    --c-repgray: color-mix(in display-p3, var(--c-rep) 12.5%, var(--c-gray));
+    /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 15%, var(--c-background));*/
+    border-radius: var(--s-s);
+    /*content-visibility: auto;*/
+    width: var(--s-xxxl);
+    height: 120.5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    column-gap: calc(1.5 * var(--s-s));
+
+    & issa-image {
         overflow: hidden;
+        border-radius: var(--s-xs);
+        flex-shrink: 0;
+
+        & img {
+            object-fit: cover;
+        }
+    }
+
+    & ul {
+        list-style: none;
+        padding-inline-start: 0;
+        margin: 0;
         display: flex;
-        flex-direction: row;
-        column-gap: calc(1.5 * var(--s-s));
+        flex-grow: 0;
+        flex-direction: column;
+        row-gap: var(--s-xs);
+        overflow: hidden;
 
-        & issa-image {
+
+        & h3 {
+            margin: 0 0 var(--s-xs) 0;
+            white-space: nowrap;
             overflow: hidden;
-            border-radius: var(--s-xs);
-            flex-shrink: 0;
+            text-overflow: ellipsis;
+            font-weight: var(--fw-n);
+            font-size: var(--fs-n);
+        }
 
-            & img {
-                object-fit: cover;
+        & li.badges {
+            margin-block-end: auto;
+            height: var(--s-n);
+
+            & svg {
+                width: var(--s-n);
+                height: var(--s-n);
             }
         }
 
-        & ul {
-            list-style: none;
-            padding-inline-start: 0;
-            margin: 0;
-            display: flex;
-            flex-grow: 0;
-            flex-direction: column;
-            row-gap: var(--s-xs);
-            overflow: hidden;
+        & .property {
+            font-size: var(--fs-xxs);
+            display: grid;
+            grid-template-columns: calc(1.5 * var(--s-n)) auto;
+            align-content: center;
+            grid-column-gap: var(--s-s);
+            grid-row-gap: var(--s-s);
+            align-items: center;
 
+            & .title {
+                color: var(--c-repgray);
+            }
 
-            & h3 {
-                margin: 0 0 var(--s-xs) 0;
+            & .values {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                font-weight: var(--fw-n);
-                font-size: var(--fs-n);
-            }
-
-            & li.badges {
-                margin-block-end: auto;
-                height: var(--s-n);
 
                 & svg {
-                    width: var(--s-n);
-                    height: var(--s-n);
-                }
-            }
-
-            & .property {
-                font-size: var(--fs-xxs);
-                display: grid;
-                grid-template-columns: calc(1.5 * var(--s-n)) auto;
-                align-content: center;
-                grid-column-gap: var(--s-s);
-                grid-row-gap: var(--s-s);
-                align-items: center;
-
-                & .title {
-                    color: var(--c-repgray);
-                }
-
-                & .values {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-
-                    & svg {
-                        width: calc(1.75 * var(--s-s));
-                        height: calc(1.75 * var(--s-s));
-                        margin-inline-end: var(--s-s)
-                    }
+                    width: calc(1.75 * var(--s-s));
+                    height: calc(1.75 * var(--s-s));
+                    margin-inline-end: var(--s-s)
                 }
             }
         }
@@ -86,26 +84,20 @@
 }
 
 @container (max-width: 592px) {
-    @scope (card) {
-        :scope {
-            width: unset;
-        }
+    card {
+        width: unset;
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    @scope (card) {
-        :scope {
-            background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
-        }
+    card {
+        background-color: color-mix(in display-p3, var(--c-repforeground) 20%, var(--c-highlight));
     }
 }
 
 @media (prefers-color-scheme: light) {
-    @scope (card) {
-        :scope {
-            background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
-            /*border-color: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight))*/
-        }
+    card {
+        background-color: color-mix(in display-p3, var(--c-rep) 15%, var(--c-highlight));
+        /*border-color: color-mix(in display-p3, var(--c-rep) 5%, var(--c-highlight))*/
     }
 }

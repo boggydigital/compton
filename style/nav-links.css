@@ -1,50 +1,48 @@
-@scope (nav-links) {
-    :scope {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        & > ul {
-            list-style: none;
-            margin: 0;
+    & > ul {
+        list-style: none;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: var(--s-xs);
+        column-gap: var(--s-xs);
+        row-gap: var(--s-xxs);
+        background-color: var(--c-rephighlight);
+        border-radius: var(--s-s);
+        justify-content: center;
+        /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));*/
+
+        & > li > a {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            padding: var(--s-xs);
-            column-gap: var(--s-xs);
-            row-gap: var(--s-xxs);
-            background-color: var(--c-rephighlight);
-            border-radius: var(--s-s);
-            justify-content: center;
-            /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));*/
+            align-items: center;
+            column-gap: calc(1.5 * var(--s-xs));
+            padding: calc(1.5 * var(--s-xs)) var(--s-s);
+            border-radius: var(--s-xs);
+            font-size: var(--fs-xs);
+            font-weight: normal;
+            height: var(--s-n);
+            color: inherit;
 
-            & > li > a {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                column-gap: calc(1.5 * var(--s-xs));
-                padding: calc(1.5 * var(--s-xs)) var(--s-s);
-                border-radius: var(--s-xs);
-                font-size: var(--fs-xs);
-                font-weight: normal;
+            & svg {
+                width: var(--s-n);
                 height: var(--s-n);
-                color: inherit;
+            }
 
-                & svg {
-                    width: var(--s-n);
-                    height: var(--s-n);
-                }
-
-                &.selected {
-                    background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
-                    padding-inline-end: var(--s-s);
-                }
+            &.selected {
+                background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
+                padding-inline-end: var(--s-s);
             }
         }
     }
-}
 
-nav-links > li > a:hover {
-    color: var(--c-background);
-    background-color: var(--c-gray);
+    & > li > a:hover {
+        color: var(--c-background);
+        background-color: var(--c-gray);
+    }
 }

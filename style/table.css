@@ -1,23 +1,21 @@
-@scope (table) {
-    :scope {
-        border-collapse: collapse;
+table {
+    border-collapse: collapse;
+    border: 1px solid var(--c-gray);
+    width: max-content;
+    margin: 0;
+
+    & tr * {
         border: 1px solid var(--c-gray);
-        width: max-content;
-        margin: 0;
+        padding: var(--s-s);
+        padding-inline-end: var(--s-n)
+    }
 
-        & tr * {
-            border: 1px solid var(--c-gray);
-            padding: var(--s-s);
-            padding-inline-end: var(--s-n)
-        }
+    & th {
+        text-align: left;
+        background-color: var(--c-highlight)
+    }
 
-        & th {
-            text-align: left;
-            background-color: var(--c-highlight)
-        }
-
-        & tfoot {
-            color: var(--c-gray)
-        }
+    & tfoot {
+        color: var(--c-gray)
     }
 }

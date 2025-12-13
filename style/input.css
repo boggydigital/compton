@@ -1,50 +1,46 @@
-@scope (input[type=button], input[type=submit]) {
-    :scope {
-        /*border: var(--s-xs) solid var(--c-highlight);*/
-        background: var(--c-dimmedforeground);
-        text-decoration: none;
-        color: var(--c-highlight);
-        font-weight: var(--fw);
-        font-size: var(--fs-xs);
-        padding: calc(1.5 * var(--s-xs)) var(--s-s);
-        border-radius: var(--s-s);
-        cursor: pointer;
+input[type=button], input[type=submit] {
+    /*border: var(--s-xs) solid var(--c-highlight);*/
+    background: var(--c-dimmedforeground);
+    text-decoration: none;
+    color: var(--c-highlight);
+    font-weight: var(--fw);
+    font-size: var(--fs-xs);
+    padding: calc(1.5 * var(--s-xs)) var(--s-s);
+    border-radius: var(--s-s);
+    cursor: pointer;
 
-        &:hover {
-            background-color: var(--c-gray);
-            color: var(--c-background);
-        }
+    &:hover {
+        background-color: var(--c-gray);
+        color: var(--c-background);
     }
 }
 
-@scope (input[type=text],input[type=search],input[type=password]) {
-    :scope {
-        appearance: none;
-        border: none;
-        border-radius: var(--s-xs);
-        background-color: var(--c-highlight);
-        padding: var(--s-s);
-        font-size: var(--fs-s);
-        font-weight: var(--fw-n);
-        outline: var(--s-xxs) solid var(--c-highlight);
-        margin: var(--s-xxs);
-        width: calc(100% - 2 * var(--s-xxs));
-        height: calc(var(--s-l) - 2*var(--s-xxs));
+input[type=text], input[type=search], input[type=password] {
+    appearance: none;
+    border: none;
+    border-radius: var(--s-xs);
+    background-color: var(--c-highlight);
+    padding: var(--s-s);
+    font-size: var(--fs-s);
+    font-weight: var(--fw-n);
+    outline: var(--s-xxs) solid var(--c-highlight);
+    margin: var(--s-xxs);
+    width: calc(100% - 2 * var(--s-xxs));
+    height: calc(var(--s-l) - 2 * var(--s-xxs));
 
-        &::placeholder {
-            font-weight: normal;
-            color: var(--c-gray);
-        }
+    &::placeholder {
+        font-weight: normal;
+        color: var(--c-gray);
+    }
 
-        &:focus {
-            outline: var(--s-xxs) solid var(--c-blue)
-        }
+    &:focus {
+        outline: var(--s-xxs) solid var(--c-blue)
+    }
 
-        &:not(:placeholder-shown) {
-            background-color: var(--c-foreground);
-            outline-color: var(--c-foreground);
-            color: var(--c-background);
-        }
+    &:not(:placeholder-shown) {
+        background-color: var(--c-foreground);
+        outline-color: var(--c-foreground);
+        color: var(--c-background);
     }
 }
 

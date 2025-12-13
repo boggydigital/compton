@@ -1,16 +1,14 @@
-@scope (fspan) {
-    :scope {
-        display: inline-block;
-        color: var(--fg);
-        background-color: var(--bg);
-        font-size: var(--fs);
-        font-weight: var(--fw);
-        text-align: var(--ta);
-        padding-inline: var(--pdi);
-        padding-block: var(--pdb);
-        border-radius: var(--br);
-        max-width: var(--mw);
-        width: var(--w);
-        line-height: var(--lh);
-    }
+fspan {
+    display: inline-block;
+    color: var(--fg);
+    background-color: var(--bg);
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    text-align: var(--ta);
+    padding-inline: var(--pdi);
+    padding-block: var(--pdb);
+    border-radius: var(--br);
+    max-width: var(--mw);
+    width: var(--w);
+    line-height: var(--lh);
 }

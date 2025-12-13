@@ -1,43 +1,39 @@
-@scope (title-values) {
-    :scope {
-        display: flex;
-        flex-direction: column;
-        row-gap: var(--rg);
-        width: var(--w);
-        max-width: var(--mw);
+title-values {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--rg);
+    width: var(--w);
+    max-width: var(--mw);
 
-        & h3 {
-            margin: 0;
-            font-weight: var(--fw-n);
-            font-size: var(--fs-s);
-            color: var(--fg);
-            height: var(--s-n);
-            margin-block-end: var(--s-xs);
-        }
+    & h3 {
+        margin: 0;
+        font-weight: var(--fw-n);
+        font-size: var(--fs-s);
+        color: var(--fg);
+        height: var(--s-n);
+        margin-block-end: var(--s-xs);
+    }
 
-        & a {
-            line-height: var(--s-n);
-            font-weight: var(--fw-b);
-            color: inherit
-        }
+    & a {
+        line-height: var(--s-n);
+        font-weight: var(--fw-b);
+        color: inherit
+    }
 
-        & > div {
-            line-height: var(--s-n);
-            color: var(--fg);
-            font-size: var(--fs-s)
-        }
+    & > div {
+        line-height: var(--s-n);
+        color: var(--fg);
+        font-size: var(--fs-s)
+    }
 
-        & svg {
-            width: var(--s-n);
-            height: var(--s-n);
-        }
+    & svg {
+        width: var(--s-n);
+        height: var(--s-n);
     }
 }
 
 @container (max-width: 592px) {
-    @scope (title-values) {
-        :scope {
-            --w: 100%
-        }
+    title-values {
+        --w: 100%
     }
 }
