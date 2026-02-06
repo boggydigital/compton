@@ -8,7 +8,7 @@ import (
 	"github.com/boggydigital/compton/consts/size"
 )
 
-func SectionDivider(r Registrar, fmtBadge FormattedBadge) Element {
+func SectionDivider(r Registrar, fmtBadge *FormattedBadge) Element {
 
 	r.RegisterStyles(DefaultStyle, compton_atoms.StyleName(compton_atoms.SectionDivider))
 

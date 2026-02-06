@@ -26,7 +26,7 @@ func badgeText(r Registrar, text string, c color.Color) *FspanElement {
 		Padding(size.Unset)
 }
 
-func Badges(r Registrar, badges ...FormattedBadge) Element {
+func Badges(r Registrar, badges ...*FormattedBadge) Element {
 
 	badgesRow := FlexItems(r, direction.Row).
 		FlexWrap(wrap.Wrap).
