@@ -72,7 +72,7 @@ details {
             & > .summary-heading {
                 background-color: var(--c-rephighlight);
                 padding: calc(1.5 * var(--s-xs)) var(--s-s);
-                border-radius: var(--s-xs);
+                border-radius: calc(1.25 * var(--s-xs));
             }
         }
 
