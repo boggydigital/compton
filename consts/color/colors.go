@@ -30,11 +30,6 @@ const (
 	Highlight
 	Transparent
 	Inherit
-	Rep
-	RepForeground
-	RepBackground
-	RepHighlight
-	RepGray
 )
 
 var colorStrings = map[Color]string{
@@ -59,11 +54,6 @@ var colorStrings = map[Color]string{
 	Highlight:        "highlight",
 	Transparent:      "transparent",
 	Inherit:          "inherit",
-	Rep:              "rep",
-	RepForeground:    "repforeground",
-	RepBackground:    "repbackground",
-	RepHighlight:     "rephighlight",
-	RepGray:          "repgray",
 }
 
 func (c Color) String() string {

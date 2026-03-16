@@ -54,7 +54,7 @@ details {
 
     &.larger {
         & > summary {
-            --bg: var(--c-rephighlight);
+            --bg: var(--c-highlight);
             justify-content: space-between;
             min-width: max-content;
             max-width: var(--s-maxw);
@@ -62,7 +62,6 @@ details {
             padding: var(--s-xs);
             padding-inline-end: var(--s-s);
             background-color: var(--bg);
-            /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));*/
             color: var(--fg);
             border-radius: var(--s-s);
             column-gap: var(--s-s);
@@ -70,7 +69,8 @@ details {
             flex-wrap: wrap;
 
             & > .summary-heading {
-                background-color: var(--c-rephighlight);
+                background-color: var(--c-highlight);
+                color: var(--c-dimmedforeground);
                 padding: calc(1.5 * var(--s-xs)) var(--s-s);
                 border-radius: calc(1.25 * var(--s-xs));
             }
@@ -80,7 +80,7 @@ details {
             & > summary {
                 margin-block-end: var(--mbe);
                 & > .summary-heading {
-                    background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
+                    background-color: var(--c-background)
                 }
             }
         }
@@ -93,7 +93,9 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background-color: color-mix(in display-p3, var(--c-repforeground) 10%, transparent);
+                background-color: var(--c-dimmedforeground);
+                color: var(--c-highlight)
+
             }
         }
 
@@ -106,7 +108,6 @@ details {
             width: max-content;
             justify-self: var(--js);
             align-self: var(--as);
-            /*border: 1px solid color-mix(in display-p3, var(--c-repforeground) 20%, transparent);*/
 
             & svg {
                 width: var(--s-s);

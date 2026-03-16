@@ -45,10 +45,10 @@ const (
 	ItemsPack
 	ItemPlus
 	Trophy
+	Hexagon
 	HexagonDiagonalLines
 	HexagonClockArrows
 	HexagonDownwardArrow
-	HexagonSparkling
 	HexagonNegativeDiagonalLine
 	VideoThumbnail
 	ImageThumbnail
@@ -88,10 +88,10 @@ var symbolStrings = map[Symbol]string{
 	ItemsPack:                   "items-pack",
 	ItemPlus:                    "item-plus",
 	Trophy:                      "trophy",
+	Hexagon:                     "hexagon",
 	HexagonDiagonalLines:        "hexagon-diagonal-lines",
 	HexagonClockArrows:          "hexagon-clock-arrows",
 	HexagonDownwardArrow:        "hexagon-downward-arrow",
-	HexagonSparkling:            "hexagon-sparkling",
 	HexagonNegativeDiagonalLine: "hexagon-negative-diagonal-line",
 	VideoThumbnail:              "video-thumbnail",
 	ImageThumbnail:              "image-thumbnail",

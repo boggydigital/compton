@@ -18,8 +18,8 @@ func SectionDivider(r Registrar, fmtBadge *FormattedBadge) Element {
 		AlignItems(align.Center).
 		JustifyItems(align.Center).
 		ColumnGap(size.Small).
-		BackgroundColor(color.RepHighlight).
-		ForegroundColor(color.RepForeground).
+		BackgroundColor(color.Highlight).
+		ForegroundColor(color.Foreground).
 		BorderRadius(size.Small)
 
 	titleFspan := Fspan(r, "").

@@ -25,7 +25,7 @@ func (f *FrowElement) Elements(elements ...Element) *FrowElement {
 func (f *FrowElement) PropVal(p string, vals ...string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
-		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
+		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
 		for ii, val := range vals {
 			row.Append(Fspan(f.r, val))
 			if ii < len(vals)-1 {
@@ -42,7 +42,7 @@ func (f *FrowElement) LinkVal(title, href string, vals ...string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
 		link := A(href)
-		link.Append(Fspan(f.r, title).ForegroundColor(color.RepForeground).FontWeight(font_weight.Bolder))
+		link.Append(Fspan(f.r, title).ForegroundColor(color.Foreground).FontWeight(font_weight.Bolder))
 		row.Append(link)
 		for ii, val := range vals {
 			row.Append(Fspan(f.r, val))
@@ -60,7 +60,7 @@ func (f *FrowElement) LinkVal(title, href string, vals ...string) Element {
 func (f *FrowElement) PropLinkColor(p string, c color.Color, title, href string) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.XSmall)
-		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
+		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
 		linkDecoration := Fspan(f.r, "").
 			FontWeight(font_weight.Bolder).
 			ForegroundColor(c).
@@ -78,7 +78,7 @@ func (f *FrowElement) PropLinkColor(p string, c color.Color, title, href string)
 func (f *FrowElement) PropIcons(p string, symbols ...Symbol) Element {
 	if fi := f.GetFirstElementByTagName(compton_atoms.FlexItems); fi != nil {
 		row := FlexItems(f.r, direction.Row).ColumnGap(size.Small)
-		row.Append(Fspan(f.r, p).ForegroundColor(color.RepGray))
+		row.Append(Fspan(f.r, p).ForegroundColor(color.Gray))
 		for _, symbol := range symbols {
 			row.Append(SvgUse(f.r, symbol))
 		}

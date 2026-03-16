@@ -12,10 +12,9 @@ nav-links {
         padding: var(--s-xs);
         column-gap: var(--s-xs);
         row-gap: var(--s-xxs);
-        background-color: var(--c-rephighlight);
+        background-color: var(--c-highlight);
         border-radius: var(--s-s);
         justify-content: center;
-        /*border: var(--s-xxxs) solid color-mix(in display-p3, var(--c-repforeground) 7.5%, var(--c-repbackground));*/
 
         & > li > a {
             display: flex;
@@ -35,7 +34,7 @@ nav-links {
             }
 
             &.selected {
-                background-color: color-mix(in display-p3, var(--c-repforeground) 15%, transparent);
+                background-color: var(--c-background);
                 padding-inline-end: var(--s-s);
             }
         }

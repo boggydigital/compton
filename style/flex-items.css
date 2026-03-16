@@ -15,5 +15,5 @@ flex-items {
     max-width: var(--mw);
     width: var(--w);
     border-radius: var(--br);
-    column-rule: var(--crw) solid color-mix(in display-p3, var(--c-repgray) 25%, transparent)
+    column-rule: var(--crw) solid var(--c-gray)
 }

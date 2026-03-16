@@ -1,5 +1,5 @@
 flex-items.section-divider {
-    --bg: color-mix(in display-p3, var(--c-repforeground) 10%, transparent);
+    --bg: color-mix(in display-p3, var(--c-background), var(--c-highlight));
 
     & fspan {
         --bg: transparent
