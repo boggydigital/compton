@@ -4,7 +4,6 @@ import (
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
-	"github.com/boggydigital/issa"
 	"golang.org/x/net/html/atom"
 )
 
@@ -14,22 +13,12 @@ type CardElement struct {
 	r  Registrar
 }
 
-func (ce *CardElement) AppendPoster(background, placeholder, poster string, hydrated bool) *IssaImageElement {
+func (ce *CardElement) AppendImage(image string) Element {
+	imgLazy := ImageLazy(image)
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
-		var issaImg *IssaImageElement
-		if hydrated {
-			hydratedPlaceholder := issa.HydrateColor(placeholder)
-			issaImg = IssaImageHydrated(ce.r, background, hydratedPlaceholder, poster)
-		} else {
-			issaImg = IssaImageDehydrated(ce.r, background, placeholder, poster)
-		}
-		if issaImg != nil {
-			//issaImg.SetAttribute("style", "view-transition-name:product-image-"+ce.id)
-			posterPlaceholder.Append(issaImg)
-		}
-		return issaImg
+		posterPlaceholder.Append(imgLazy)
 	}
-	return nil
+	return imgLazy
 }
 
 func (ce *CardElement) AppendTitle(title string) *CardElement {

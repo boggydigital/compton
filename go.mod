@@ -1,10 +1,5 @@
 module github.com/boggydigital/compton
 
-go 1.24.5
+go 1.26.1
 
-require (
-	github.com/boggydigital/issa v0.1.23
-	golang.org/x/net v0.47.0
-)
-
-require golang.org/x/image v0.33.0 // indirect
+require golang.org/x/net v0.52.0
