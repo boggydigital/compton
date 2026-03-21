@@ -13,12 +13,22 @@ type CardElement struct {
 	r  Registrar
 }
 
-func (ce *CardElement) AppendImage(image string) Element {
-	imgLazy := ImageLazy(image)
-	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil {
-		posterPlaceholder.Append(imgLazy)
+func (ce *CardElement) AppendImage(imageUrl string) Element {
+
+	var imgElement Element
+
+	switch imageUrl {
+	case "":
+		imgElement = Div()
+	default:
+		imgElement = ImageLazy(imageUrl)
 	}
-	return imgLazy
+
+	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil && imgElement != nil {
+		posterPlaceholder.Append(imgElement)
+	}
+
+	return imgElement
 }
 
 func (ce *CardElement) AppendTitle(title string) *CardElement {

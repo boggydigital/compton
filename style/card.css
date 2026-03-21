@@ -11,10 +11,11 @@ card {
     flex-direction: row;
     column-gap: calc(1.5 * var(--s-s));
 
-    & issa-image {
+    & .poster {
         overflow: hidden;
         border-radius: var(--s-xs);
         flex-shrink: 0;
+        background-color: var(--c-background);
 
         & img {
             object-fit: cover;

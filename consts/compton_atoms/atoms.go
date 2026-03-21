@@ -18,7 +18,6 @@ const (
 	GridItems
 	TitleValues
 	NavLinks
-	IssaImage
 	Fspan
 	Labels
 	IframeExpandHost
@@ -45,7 +44,6 @@ var atomStrings = map[atom.Atom]string{
 	GridItems:           "grid-items",
 	TitleValues:         "title-values",
 	NavLinks:            "nav-links",
-	IssaImage:           "issa-image",
 	Fspan:               "fspan",
 	Labels:              "labels",
 	IframeExpandHost:    "iframe-expand-host",
