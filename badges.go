@@ -44,7 +44,7 @@ func Badges(r Registrar, badges ...*FormattedBadge) Element {
 		if fb.Icon != NoSymbol && fb.Title != "" {
 			badgeRow := FlexItems(r, direction.Row).
 				FlexWrap(wrap.NoWrap).
-				ColumnGap(size.Small).
+				ColumnGap(size.XSmall).
 				Width(size.Unset)
 			badgeRow.Append(badgeIcon(r, fb.Icon, fb.Color), badgeText(r, fb.Title, fb.Color))
 			badgesRow.Append(badgeRow)
