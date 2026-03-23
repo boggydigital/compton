@@ -30,9 +30,9 @@ func Badges(r Registrar, badges ...*FormattedBadge) Element {
 
 	badgesRow := FlexItems(r, direction.Row).
 		FlexWrap(wrap.Wrap).
-		RowGap(size.XSmall).
+		RowGap(size.XXSmall).
 		ColumnGap(size.Small).
-		FontSize(size.XXSmall).
+		FontSize(size.XXXSmall).
 		JustifyContent(align.Start).
 		AlignItems(align.Center).
 		AlignContent(align.Center).

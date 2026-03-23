@@ -48,8 +48,8 @@ card {
             color: var(--c-gray);
 
             & svg {
-                width: var(--s-n);
-                height: var(--s-n);
+                width: calc(1.75 * var(--s-s));
+                height: calc(1.75 * var(--s-s));
             }
         }
 
