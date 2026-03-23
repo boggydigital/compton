@@ -16,10 +16,6 @@ card {
         border-radius: var(--s-xs);
         flex-shrink: 0;
         background-color: var(--c-background);
-
-        & img {
-            object-fit: cover;
-        }
     }
 
     & ul {
