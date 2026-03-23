@@ -10,6 +10,7 @@ const (
 	Small
 	XSmall
 	XXSmall
+	XXHSmall
 	XXXSmall
 	Large
 	XLarge
@@ -29,6 +30,7 @@ var sizeStrings = map[Size]string{
 	Small:      "s",
 	XSmall:     "xs",
 	XXSmall:    "xxs",
+	XXHSmall:   "xxhs",
 	XXXSmall:   "xxxs",
 	Large:      "l",
 	XLarge:     "xl",
