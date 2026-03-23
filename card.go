@@ -1,6 +1,8 @@
 package compton
 
 import (
+	"fmt"
+
 	"github.com/boggydigital/compton/consts/class"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/size"
@@ -13,7 +15,7 @@ type CardElement struct {
 	r  Registrar
 }
 
-func (ce *CardElement) AppendImage(imageUrl string) Element {
+func (ce *CardElement) AppendImage(imageUrl string, width, height float64) Element {
 
 	var imgElement Element
 
@@ -23,6 +25,11 @@ func (ce *CardElement) AppendImage(imageUrl string) Element {
 	default:
 		imgElement = ImageLazy(imageUrl)
 	}
+
+	imgElement.AddClass("poster")
+	imgElement.SetAttribute("width", fmt.Sprintf("%fpx", width))
+	imgElement.SetAttribute("height", fmt.Sprintf("%fpx", height))
+	imgElement.SetAttribute("style", fmt.Sprint("width:%fpx;height:%fpx", width, height))
 
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil && imgElement != nil {
 		posterPlaceholder.Append(imgElement)
