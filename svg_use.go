@@ -46,6 +46,7 @@ const (
 	ItemPlus
 	Trophy
 	Hexagon
+	HexagonPacked
 	HexagonDiagonalLines
 	HexagonClockArrows
 	HexagonDownwardArrow
@@ -89,6 +90,7 @@ var symbolStrings = map[Symbol]string{
 	ItemPlus:                    "item-plus",
 	Trophy:                      "trophy",
 	Hexagon:                     "hexagon",
+	HexagonPacked:               "hexagon-packed",
 	HexagonDiagonalLines:        "hexagon-diagonal-lines",
 	HexagonClockArrows:          "hexagon-clock-arrows",
 	HexagonDownwardArrow:        "hexagon-downward-arrow",
