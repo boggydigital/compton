@@ -29,7 +29,7 @@ func (ce *CardElement) AppendImage(imageUrl string, width, height float64) Eleme
 	imgElement.AddClass("poster")
 	imgElement.SetAttribute("width", fmt.Sprintf("%fpx", width))
 	imgElement.SetAttribute("height", fmt.Sprintf("%fpx", height))
-	imgElement.SetAttribute("style", fmt.Sprint("width:%fpx;height:%fpx", width, height))
+	imgElement.SetAttribute("style", fmt.Sprintf("width:%fpx;height:%fpx", width, height))
 
 	if posterPlaceholder := ce.GetFirstElementByTagName(compton_atoms.Placeholder); posterPlaceholder != nil && imgElement != nil {
 		posterPlaceholder.Append(imgElement)
