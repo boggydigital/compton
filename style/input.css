@@ -1,6 +1,6 @@
 input[type=button], input[type=submit] {
     /*border: var(--s-xs) solid var(--c-highlight);*/
-    background: var(--c-dimmedforeground);
+    background: var(--c-foreground);
     text-decoration: none;
     color: var(--c-highlight);
     font-weight: var(--fw);

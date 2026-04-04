@@ -2,7 +2,7 @@ card {
     padding: var(--s-s);
     border-radius: var(--s-s);
     background-color: var(--c-highlight);
-    color: var(--c-dimmedforeground);
+    color: var(--c-foreground);
     /*content-visibility: auto;*/
     width: var(--s-xxxl);
     height: 120.5px;
@@ -36,6 +36,7 @@ card {
             text-overflow: ellipsis;
             font-weight: var(--fw-n);
             font-size: var(--fs-n);
+            color: var(--c-foreground);
         }
 
         & li.badges {
@@ -66,7 +67,7 @@ card {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                color: var(--c-dimmedforeground);
+                color: var(--c-foreground);
 
                 & svg {
                     width: calc(1.75 * var(--s-s));

@@ -26,7 +26,7 @@ nav-links {
             font-size: var(--fs-xs);
             font-weight: normal;
             height: var(--s-n);
-            color: inherit;
+            color: var(--c-gray);
 
             & svg {
                 width: var(--s-n);
@@ -36,6 +36,7 @@ nav-links {
             &.selected {
                 background-color: var(--c-background);
                 padding-inline-end: var(--s-s);
+                color: var(--c-foreground)
             }
         }
     }

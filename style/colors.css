@@ -10,24 +10,23 @@
 
 @media screen and (prefers-color-scheme:light) {
     :root {
-        --c-red: rgb(215,0,21);
-        --c-orange: rgb(201,52,0);
-        --c-yellow: rgb(160,90,0);
-        --c-green: rgb(0,125,27);
-        --c-mint: rgb(12,129,123);
-        --c-teal: rgb(0,130,153);
-        --c-cyan: rgb(0,113,164);
-        --c-blue: rgb(0,64,221);
-        --c-indigo: rgb(54,52,163);
-        --c-purple: rgb(173,68,171);
-        --c-pink: rgb(211,15,69);
-        --c-brown: rgb(127,101,69);
-        --c-gray: rgb(105,105,105);
+        --c-red: rgb(233,21,45);
+        --c-orange: rgb(197,83,0);
+        --c-yellow: rgb(161,106,0);
+        --c-green: rgb(0,137,50);
+        --c-mint: rgb(0,133,117);
+        --c-teal: rgb(0,129,152);
+        --c-cyan: rgb(0,126,174);
+        --c-blue: rgb(30,110,244);
+        --c-indigo: rgb(86,74,222);
+        --c-purple: rgb(176,47,194);
+        --c-pink: rgb(231,18,77);
+        --c-brown: rgb(149,109,81);
+        --c-gray: rgb(142,142,142);
 
-        --c-background: rgb(242,242,242); /* systemGray6 adjusted from rgb(242,242,247) */
-        --c-foreground: rgb(28,28,28); /* systemGray6 (Dark) */
-        --c-dimmedforeground: rgb(72,72,72); /* systemGray3 (Dark) */
-        --c-highlight: white;
+        --c-background: white;
+        --c-foreground: rgb(28,28,28);
+        --c-highlight: rgb(242,242,242);
     }
 }
 
@@ -35,23 +34,22 @@
 
 @media screen and (prefers-color-scheme:dark) {
     :root {
-        --c-red: rgb(255,69,58);
-        --c-orange: rgb(255,159,10);
-        --c-yellow: rgb(255,214,10);
-        --c-green: rgb(50,215,75);
-        --c-mint: rgb(102,212,207);
-        --c-teal: rgb(106,196,220);
-        --c-cyan: rgb(90,200,245);
-        --c-blue: rgb(10,132,255);
-        --c-indigo: rgb(94,92,230);
-        --c-purple: rgb(191,90,242);
-        --c-pink: rgb(255,55,95);
-        --c-brown: rgb(172,142,104);
-        --c-gray: rgb(152,152,152);
+        --c-red: rgb(255,97,101);
+        --c-orange: rgb(255,160,86);
+        --c-yellow: rgb(254,223,67);
+        --c-green: rgb(74,217,104);
+        --c-mint: rgb(84,223,203);
+        --c-teal: rgb(59,221,236);
+        --c-cyan: rgb(109,217,255);
+        --c-blue: rgb(92,184,255);
+        --c-indigo: rgb(167,179,255);
+        --c-purple: rgb(234,141,255);
+        --c-pink: rgb(255,138,196);
+        --c-brown: rgb(219,166,121);
+        --c-gray: rgb(142,142,142);
 
-        --c-background: rgb(28,28,28);
-        --c-foreground: rgb(242,242,242); /* systemGray6 (Light) */
-        --c-dimmedforeground: rgb(199,199,199); /*systemGray3 (Light) */
-        --c-highlight: black;
+        --c-background: black;
+        --c-foreground: rgb(242,242,242);
+        --c-highlight: rgb(28,28,28);
     }
 }
