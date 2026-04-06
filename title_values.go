@@ -47,7 +47,8 @@ func (tve *TitleValuesElement) AppendLinkValues(limit int, links map[string]stri
 		summaryTitle := fmt.Sprintf("%d values", len(order))
 		ds := DSSmall(tve.r, summaryTitle, false).
 			SummaryMarginBlockEnd(size.Normal).
-			DetailsMarginBlockEnd(size.Small)
+			DetailsMarginBlockEnd(size.Small).
+			ForegroundColor(color.Inherit)
 		row := FlexItems(tve.r, direction.Row).JustifyContent(align.Start)
 		ds.Append(row)
 		tve.Append(ds)

@@ -93,7 +93,7 @@ details {
             margin-block-end: 0;
 
             & > summary {
-                background-color: var(--c-foreground);
+                background-color: var(--c-gray);
                 color: var(--c-highlight)
 
             }
