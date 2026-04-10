@@ -16,27 +16,35 @@ nav-links {
         border-radius: var(--s-s);
         justify-content: center;
 
-        & > li > a {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            column-gap: calc(1.5 * var(--s-xs));
-            padding: calc(1.5 * var(--s-xs)) var(--s-s);
-            border-radius: calc(1.25 * var(--s-xs));
-            font-size: var(--fs-xs);
-            font-weight: normal;
-            height: var(--s-n);
+        & > li {
+
             color: var(--c-gray);
 
-            & svg {
-                width: var(--s-n);
-                height: var(--s-n);
+            &:only-child {
+                color: var(--c-foreground)
             }
 
-            &.selected {
-                background-color: var(--c-background);
-                padding-inline-end: var(--s-s);
-                color: var(--c-foreground)
+            & > a {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                column-gap: calc(1.5 * var(--s-xs));
+                padding: calc(1.5 * var(--s-xs)) var(--s-s);
+                border-radius: calc(1.25 * var(--s-xs));
+                font-size: var(--fs-xs);
+                font-weight: normal;
+                height: var(--s-n);
+
+                & svg {
+                    width: var(--s-n);
+                    height: var(--s-n);
+                }
+
+                &.selected {
+                    background-color: var(--c-background);
+                    padding-inline-end: var(--s-s);
+                    color: var(--c-foreground)
+                }
             }
         }
     }
