@@ -60,7 +60,7 @@ details {
             max-width: var(--s-maxw);
             margin: auto;
             padding: var(--s-xs);
-            padding-inline-end: var(--s-s);
+            padding-inline-end: calc(1.5 * var(--s-s));
             background-color: var(--bg);
             color: var(--fg);
             border-radius: var(--s-s);
