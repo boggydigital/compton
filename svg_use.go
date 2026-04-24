@@ -54,6 +54,7 @@ const (
 	VideoThumbnail
 	ImageThumbnail
 	ExternalLink
+	LetterG
 	Today
 )
 
@@ -98,6 +99,7 @@ var symbolStrings = map[Symbol]string{
 	VideoThumbnail:              "video-thumbnail",
 	ImageThumbnail:              "image-thumbnail",
 	ExternalLink:                "external-link",
+	LetterG:                     "letter-g",
 	Today:                       "today",
 }
 
