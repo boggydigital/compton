@@ -67,14 +67,13 @@ ul {
     border-radius: var(--s-xs);
 }
 
-/* causes images to blink in Safari, seems fixed in Safari Technology Preview, uncomment when fix is in stable */
-/*img {
+img {
     opacity: 1;
-    transition: opacity var(--du-normal) ease-in-out;
+    transition: opacity var(--du-fast) ease-in;
 }
 
 @starting-style {
     img {
         opacity: 0;
     }
-}*/
+}
