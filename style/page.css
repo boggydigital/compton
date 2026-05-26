@@ -67,12 +67,12 @@ ul {
     border-radius: var(--s-xs);
 }
 
-img {
-    opacity: 1;
-    transition: opacity var(--du-fast) ease-in;
+/*img {*/
+/*    opacity: 1;*/
+/*    transition: opacity var(--du-fast) ease-in;*/
 
-    @starting-style {
-        opacity: 0;
-    }
-}
+/*    @starting-style {*/
+/*        opacity: 0;*/
+/*    }*/
+/*}*/
 
