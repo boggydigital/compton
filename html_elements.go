@@ -5,12 +5,13 @@ import (
 	"crypto/sha256"
 	"embed"
 	"encoding/base64"
+	"io"
+
 	"github.com/boggydigital/compton/consts/attr"
 	"github.com/boggydigital/compton/consts/compton_atoms"
 	"github.com/boggydigital/compton/consts/input_types"
 	"github.com/boggydigital/compton/consts/loading"
 	"golang.org/x/net/html/atom"
-	"io"
 )
 
 var (
@@ -407,6 +408,8 @@ func ScriptAsync(code []byte) *ScriptElement {
 func Section() Element {
 	return NewElement(tacMarkup(atom.Section))
 }
+
+func Select() Element { return NewElement(tacMarkup(atom.Select)) }
 
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span */
 

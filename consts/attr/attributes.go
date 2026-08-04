@@ -39,7 +39,7 @@ const (
 	// meta content
 	BlackTranslucent = "black-translucent"
 	ViewportDefaults = "width=device-width,initial-scale=1.0"
-	DarkLight        = "dark light"
+	DarkLight        = "light dark"
 	TelephoneNo      = "telephone=no"
 
 	// link rel

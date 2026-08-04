@@ -3,6 +3,7 @@
     --c-black: black;
     --c-transparent: transparent;
     --c-inherit: inherit;
+    color-scheme: light dark;
 }
 
 /* https://developer.apple.com/design/human-interface-guidelines/color#macOS-system-colors */
